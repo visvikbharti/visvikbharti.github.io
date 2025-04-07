@@ -169,13 +169,26 @@ function setupFeedbackSystem() {
     const saveButtons = document.querySelectorAll('.save-feedback-btn');
     
     saveButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            console.log('Save feedback button clicked for project:', button.dataset.project);
-            const projectId = button.dataset.project;
+        // Replace each button with an anchor tag that has the same appearance
+        const buttonParent = button.parentNode;
+        const projectId = button.dataset.project;
+        
+        // Create a mailto link that looks exactly like the original button
+        const mailtoLink = document.createElement('a');
+        mailtoLink.className = button.className;
+        mailtoLink.innerHTML = button.innerHTML; // Keep the same content (icon + text)
+        mailtoLink.style.cursor = 'pointer';
+        mailtoLink.style.display = 'inline-block';
+        
+        // Replace the button with our new link element
+        buttonParent.replaceChild(mailtoLink, button);
+        
+        // Add click event to the new link
+        mailtoLink.addEventListener('click', function(e) {
             const textarea = document.getElementById(`pi-feedback-${projectId}`);
             const statusSelect = document.getElementById(`pi-feedback-status-${projectId}`);
             const previousFeedbackContainer = document.getElementById(`previous-feedback-${projectId}`);
-    
+            
             if (!textarea || !statusSelect || !previousFeedbackContainer) {
                 console.error("Missing one or more required elements for project", projectId);
                 return;
@@ -184,6 +197,7 @@ function setupFeedbackSystem() {
             const feedbackText = textarea.value.trim();
             if (!feedbackText) {
                 alert('Please enter your feedback before saving.');
+                e.preventDefault();
                 return;
             }
             
@@ -212,33 +226,29 @@ function setupFeedbackSystem() {
             });
             localStorage.setItem(feedbackKey, JSON.stringify(storedFeedback));
             
-            // Prepare email data
+            // Set the mailto href at the moment of clicking
             const subject = `Feedback on ${projectId} project from Dr. Debojyoti Chakraborty Sir`;
             const body = `Type: ${status}\nTimestamp: ${timestamp}\n\nFeedback:\n${feedbackText}\n\n`;
-            const mailtoLink = `mailto:vishalvikashbharti@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            
-            // Create a visible email link button
-            const emailLink = document.createElement('a');
-            emailLink.href = mailtoLink;
-            emailLink.className = 'email-link-btn';
-            emailLink.innerHTML = '<i class="fas fa-envelope"></i> Send Email Feedback';
-            emailLink.style.display = 'inline-block';
-            emailLink.style.marginTop = '10px';
-            emailLink.style.backgroundColor = '#3498db';
-            emailLink.style.color = 'white';
-            emailLink.style.padding = '8px 16px';
-            emailLink.style.borderRadius = '4px';
-            emailLink.style.textDecoration = 'none';
-            emailLink.style.marginLeft = '10px';
-            
-            // Insert the link after the save button
-            button.parentNode.insertBefore(emailLink, button.nextSibling);
+            mailtoLink.href = `mailto:vishalvikashbharti@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             
             // Clear textarea
             textarea.value = '';
             
-            // Show confirmation message
-            alert('Feedback saved! Please click the "Send Email Feedback" button to send the feedback to Vishal.');
+            // Also copy text to clipboard as a backup method
+            const fullMessage = `To: vishalvikashbharti@gmail.com\nSubject: ${subject}\n\n${body}`;
+            
+            try {
+                // Modern approach
+                navigator.clipboard.writeText(fullMessage).then(function() {
+                    alert('Feedback saved! Email will open in your default client. The feedback has also been copied to clipboard as a backup.');
+                }).catch(function() {
+                    // Fallback for clipboard API failure
+                    alert('Feedback saved! Email will open in your default client.');
+                });
+            } catch (e) {
+                // Older browsers or if clipboard API isn't available
+                alert('Feedback saved! Email will open in your default client.');
+            }
         });
     });
     

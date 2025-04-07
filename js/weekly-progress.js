@@ -166,25 +166,15 @@ function setupEditableContent() {
  * Set up feedback system
  */
 function setupFeedbackSystem() {
+    // Load previous feedback first
+    loadPreviousFeedback('genexp');
+    loadPreviousFeedback('stickforstats');
+    
     const saveButtons = document.querySelectorAll('.save-feedback-btn');
     
     saveButtons.forEach(button => {
-        // Replace each button with an anchor tag that has the same appearance
-        const buttonParent = button.parentNode;
-        const projectId = button.dataset.project;
-        
-        // Create a mailto link that looks exactly like the original button
-        const mailtoLink = document.createElement('a');
-        mailtoLink.className = button.className;
-        mailtoLink.innerHTML = button.innerHTML; // Keep the same content (icon + text)
-        mailtoLink.style.cursor = 'pointer';
-        mailtoLink.style.display = 'inline-block';
-        
-        // Replace the button with our new link element
-        buttonParent.replaceChild(mailtoLink, button);
-        
-        // Add click event to the new link
-        mailtoLink.addEventListener('click', function(e) {
+        button.addEventListener('click', () => {
+            const projectId = button.dataset.project;
             const textarea = document.getElementById(`pi-feedback-${projectId}`);
             const statusSelect = document.getElementById(`pi-feedback-status-${projectId}`);
             const previousFeedbackContainer = document.getElementById(`previous-feedback-${projectId}`);
@@ -197,7 +187,6 @@ function setupFeedbackSystem() {
             const feedbackText = textarea.value.trim();
             if (!feedbackText) {
                 alert('Please enter your feedback before saving.');
-                e.preventDefault();
                 return;
             }
             
@@ -226,35 +215,40 @@ function setupFeedbackSystem() {
             });
             localStorage.setItem(feedbackKey, JSON.stringify(storedFeedback));
             
-            // Set the mailto href at the moment of clicking
+            // Create a separate email button
+            const emailContainer = document.createElement('div');
+            emailContainer.style.marginTop = '15px';
+            emailContainer.style.padding = '10px';
+            emailContainer.style.backgroundColor = '#f8f9fa';
+            emailContainer.style.border = '1px solid #ddd';
+            emailContainer.style.borderRadius = '5px';
+            
             const subject = `Feedback on ${projectId} project from Dr. Debojyoti Chakraborty Sir`;
-            const body = `Type: ${status}\nTimestamp: ${timestamp}\n\nFeedback:\n${feedbackText}\n\n`;
-            mailtoLink.href = `mailto:vishalvikashbharti@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            const body = `Type: ${status}\nTimestamp: ${timestamp}\n\nFeedback:\n${feedbackText}`;
+            
+            emailContainer.innerHTML = `
+                <p><strong>Feedback saved!</strong> To send this feedback to Vishal Bharti, please:</p>
+                <ol>
+                    <li>Click the button below to open your email client</li>
+                    <li>Send the pre-formatted email that appears</li>
+                </ol>
+                <a href="mailto:vishalvikashbharti@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}" 
+                   style="display: inline-block; background-color: #3498db; color: white; padding: 10px 15px; 
+                   text-decoration: none; border-radius: 5px; margin-top: 10px; font-weight: bold;">
+                   <i class="fas fa-envelope"></i> Send Feedback via Email
+                </a>
+            `;
+            
+            // Insert the email container after the feedback section
+            const feedbackSection = document.querySelector(`.pi-feedback-section:has(#pi-feedback-${projectId})`);
+            if (feedbackSection && feedbackSection.parentNode) {
+                feedbackSection.parentNode.insertBefore(emailContainer, feedbackSection.nextSibling);
+            }
             
             // Clear textarea
             textarea.value = '';
-            
-            // Also copy text to clipboard as a backup method
-            const fullMessage = `To: vishalvikashbharti@gmail.com\nSubject: ${subject}\n\n${body}`;
-            
-            try {
-                // Modern approach
-                navigator.clipboard.writeText(fullMessage).then(function() {
-                    alert('Feedback saved! Email will open in your default client. The feedback has also been copied to clipboard as a backup.');
-                }).catch(function() {
-                    // Fallback for clipboard API failure
-                    alert('Feedback saved! Email will open in your default client.');
-                });
-            } catch (e) {
-                // Older browsers or if clipboard API isn't available
-                alert('Feedback saved! Email will open in your default client.');
-            }
         });
     });
-    
-    // Load previous feedback
-    loadPreviousFeedback('genexp');
-    loadPreviousFeedback('stickforstats');
 }
 
 /**

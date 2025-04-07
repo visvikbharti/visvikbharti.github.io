@@ -1,0 +1,179 @@
+/* Responsive styles for Vishal Bharti's Portfolio Website */
+
+/* Tablets and smaller desktops */
+@media (max-width: 992px) {
+    .profile-details h1 {
+        font-size: 2.2rem;
+    }
+    
+    .profile-details .tagline {
+        font-size: 1.1rem;
+    }
+    
+    .tabs-nav button {
+        padding: 10px 18px;
+        font-size: 0.95rem;
+    }
+    
+    .app-features,
+    .projects-grid,
+    .skills-container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+/* Tablets and large phones */
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-details {
+        text-align: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .tabs-nav {
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 5px;
+    }
+    
+    .tabs-nav li {
+        display: inline-block;
+    }
+
+    .tabs-nav button {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .timeline::after {
+        left: 15px;
+    }
+
+    .timeline-item {
+        padding-left: 40px;
+    }
+
+    .timeline-item::after {
+        left: -9px;
+    }
+    
+    .publication-meta {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .week-selector {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Small phones */
+@media (max-width: 576px) {
+    .profile-image {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .profile-details h1 {
+        font-size: 1.8rem;
+    }
+    
+    .profile-details .tagline {
+        font-size: 1rem;
+    }
+    
+    .tabs-nav button {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    h3 {
+        font-size: 1.2rem;
+    }
+    
+    .app-features,
+    .projects-grid,
+    .skills-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-links,
+    .publication-links {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+        bottom: 15px;
+        right: 15px;
+    }
+}
+
+/* Print styles for CV */
+@media print {
+    header,
+    .tabs-nav,
+    .theme-toggle,
+    footer,
+    .social-links {
+        display: none;
+    }
+    
+    body,
+    .tab-content {
+        background: white;
+        color: black;
+    }
+    
+    .main-container {
+        margin: 0;
+        padding: 0;
+    }
+    
+    h2 {
+        color: black;
+    }
+    
+    h3 {
+        color: #333;
+    }
+    
+    .timeline::after {
+        background-color: #666;
+    }
+    
+    .timeline-item::after {
+        border-color: #666;
+    }
+    
+    .timeline-date {
+        color: #333;
+    }
+    
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+    
+    .skill-item {
+        border: 1px solid #ccc;
+    }
+    
+    @page {
+        margin: 1.5cm;
+    }
+}

@@ -202,7 +202,7 @@ function setupFeedbackSystem() {
             `;
             previousFeedbackContainer.appendChild(feedbackItem);
             
-            // Save to localStorage (original functionality)
+            // Save to localStorage
             const feedbackKey = `feedback-${projectId}`;
             let storedFeedback = JSON.parse(localStorage.getItem(feedbackKey) || '[]');
             storedFeedback.push({
@@ -212,23 +212,35 @@ function setupFeedbackSystem() {
             });
             localStorage.setItem(feedbackKey, JSON.stringify(storedFeedback));
             
-            // Construct mailto link
+            // Prepare email data
             const subject = `Feedback on ${projectId} project from Dr. Debojyoti Chakraborty Sir`;
             const body = `Type: ${status}\nTimestamp: ${timestamp}\n\nFeedback:\n${feedbackText}\n\n`;
             const mailtoLink = `mailto:vishalvikashbharti@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            console.log("Opening mailto link:", mailtoLink);
             
-            // Open email draft (check if popup blockers are disabled)
-            // window.open(mailtoLink, '_blank');
-            window.location.href = mailtoLink;
+            // Create a visible email link button
+            const emailLink = document.createElement('a');
+            emailLink.href = mailtoLink;
+            emailLink.className = 'email-link-btn';
+            emailLink.innerHTML = '<i class="fas fa-envelope"></i> Send Email Feedback';
+            emailLink.style.display = 'inline-block';
+            emailLink.style.marginTop = '10px';
+            emailLink.style.backgroundColor = '#3498db';
+            emailLink.style.color = 'white';
+            emailLink.style.padding = '8px 16px';
+            emailLink.style.borderRadius = '4px';
+            emailLink.style.textDecoration = 'none';
+            emailLink.style.marginLeft = '10px';
+            
+            // Insert the link after the save button
+            button.parentNode.insertBefore(emailLink, button.nextSibling);
             
             // Clear textarea
             textarea.value = '';
             
-            alert('Feedback saved and email notification prepared. Please send the email that opened.');
+            // Show confirmation message
+            alert('Feedback saved! Please click the "Send Email Feedback" button to send the feedback to Vishal.');
         });
     });
-    
     
     // Load previous feedback
     loadPreviousFeedback('genexp');

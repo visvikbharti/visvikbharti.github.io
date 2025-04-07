@@ -170,55 +170,64 @@ function setupFeedbackSystem() {
     
     saveButtons.forEach(button => {
         button.addEventListener('click', () => {
+            console.log('Save feedback button clicked for project:', button.dataset.project);
             const projectId = button.dataset.project;
             const textarea = document.getElementById(`pi-feedback-${projectId}`);
             const statusSelect = document.getElementById(`pi-feedback-status-${projectId}`);
             const previousFeedbackContainer = document.getElementById(`previous-feedback-${projectId}`);
-            
-            if (textarea && statusSelect && previousFeedbackContainer) {
-                const feedbackText = textarea.value.trim();
-                if (!feedbackText) return;
-                
-                const status = statusSelect.value;
-                const timestamp = new Date().toLocaleString();
-                
-                // Create feedback item and add to display
-                const feedbackItem = document.createElement('div');
-                feedbackItem.className = `feedback-item ${status}`;
-                feedbackItem.innerHTML = `
-                    <div class="feedback-header">
-                        <span>Dr. Chakraborty</span>
-                        <span>${timestamp}</span>
-                    </div>
-                    <div class="feedback-content">${feedbackText}</div>
-                `;
-                
-                // Add to previous feedback container
-                previousFeedbackContainer.appendChild(feedbackItem);
-                
-                // Save to localStorage (original functionality)
-                const feedbackKey = `feedback-${projectId}`;
-                let storedFeedback = JSON.parse(localStorage.getItem(feedbackKey) || '[]');
-                storedFeedback.push({
-                    text: feedbackText,
-                    status: status,
-                    timestamp: timestamp
-                });
-                localStorage.setItem(feedbackKey, JSON.stringify(storedFeedback));
-                
-                // Send email notification (using mailto link)
-                const subject = `Feedback on ${projectId} project from Dr. Chakraborty`;
-                const body = `Type: ${status}\nTimestamp: ${timestamp}\n\nFeedback:\n${feedbackText}\n\n`;
-                window.open(`mailto:vishalvikashbharti@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
-                
-                // Clear textarea
-                textarea.value = '';
-                
-                // Show confirmation
-                alert('Feedback saved and email notification prepared. Please send the email that opened.');
+    
+            if (!textarea || !statusSelect || !previousFeedbackContainer) {
+                console.error("Missing one or more required elements for project", projectId);
+                return;
             }
+            
+            const feedbackText = textarea.value.trim();
+            if (!feedbackText) {
+                alert('Please enter your feedback before saving.');
+                return;
+            }
+            
+            const status = statusSelect.value;
+            const timestamp = new Date().toLocaleString();
+            
+            // Create feedback item and add to display
+            const feedbackItem = document.createElement('div');
+            feedbackItem.className = `feedback-item ${status}`;
+            feedbackItem.innerHTML = `
+                <div class="feedback-header">
+                    <span>Dr. Chakraborty</span>
+                    <span>${timestamp}</span>
+                </div>
+                <div class="feedback-content">${feedbackText}</div>
+            `;
+            previousFeedbackContainer.appendChild(feedbackItem);
+            
+            // Save to localStorage (original functionality)
+            const feedbackKey = `feedback-${projectId}`;
+            let storedFeedback = JSON.parse(localStorage.getItem(feedbackKey) || '[]');
+            storedFeedback.push({
+                text: feedbackText,
+                status: status,
+                timestamp: timestamp
+            });
+            localStorage.setItem(feedbackKey, JSON.stringify(storedFeedback));
+            
+            // Construct mailto link
+            const subject = `Feedback on ${projectId} project from Dr. Chakraborty`;
+            const body = `Type: ${status}\nTimestamp: ${timestamp}\n\nFeedback:\n${feedbackText}\n\n`;
+            const mailtoLink = `mailto:vishalvikashbharti@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            console.log("Opening mailto link:", mailtoLink);
+            
+            // Open email draft (check if popup blockers are disabled)
+            window.open(mailtoLink, '_blank');
+            
+            // Clear textarea
+            textarea.value = '';
+            
+            alert('Feedback saved and email notification prepared. Please send the email that opened.');
         });
     });
+    
     
     // Load previous feedback
     loadPreviousFeedback('genexp');

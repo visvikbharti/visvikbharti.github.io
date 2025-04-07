@@ -195,7 +195,7 @@ function setupFeedbackSystem() {
             feedbackItem.className = `feedback-item ${status}`;
             feedbackItem.innerHTML = `
                 <div class="feedback-header">
-                    <span>Dr. Chakraborty</span>
+                    <span>Dr. Debojyoti Chakraborty Sir</span>
                     <span>${timestamp}</span>
                 </div>
                 <div class="feedback-content">${feedbackText}</div>
@@ -213,7 +213,7 @@ function setupFeedbackSystem() {
             localStorage.setItem(feedbackKey, JSON.stringify(storedFeedback));
             
             // Construct mailto link
-            const subject = `Feedback on ${projectId} project from Dr. Chakraborty`;
+            const subject = `Feedback on ${projectId} project from Dr. Debojyoti Chakraborty Sir`;
             const body = `Type: ${status}\nTimestamp: ${timestamp}\n\nFeedback:\n${feedbackText}\n\n`;
             const mailtoLink = `mailto:vishalvikashbharti@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             console.log("Opening mailto link:", mailtoLink);
@@ -251,7 +251,7 @@ function loadPreviousFeedback(projectId) {
             feedbackItem.className = `feedback-item ${feedback.status}`;
             feedbackItem.innerHTML = `
                 <div class="feedback-header">
-                    <span>Dr. Chakraborty</span>
+                    <span>Dr. Debojyoti Chakraborty Sir</span>
                     <span>${feedback.timestamp}</span>
                 </div>
                 <div class="feedback-content">${feedback.text}</div>

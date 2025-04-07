@@ -219,7 +219,8 @@ function setupFeedbackSystem() {
             console.log("Opening mailto link:", mailtoLink);
             
             // Open email draft (check if popup blockers are disabled)
-            window.open(mailtoLink, '_blank');
+            // window.open(mailtoLink, '_blank');
+            window.location.href = mailtoLink;
             
             // Clear textarea
             textarea.value = '';

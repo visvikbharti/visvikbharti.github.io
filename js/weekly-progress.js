@@ -282,26 +282,64 @@ function loadPreviousFeedback(projectId) {
  * Set up archive interactions
  */
 function setupArchiveInteractions() {
+    // For debugging
+    console.log('Setting up archive interactions');
+    
     const archiveHeaders = document.querySelectorAll('.archive-header');
+    console.log('Found', archiveHeaders.length, 'archive headers');
     
     archiveHeaders.forEach(header => {
-        header.addEventListener('click', () => {
-            const archiveItem = header.parentElement;
-            archiveItem.classList.toggle('open');
+        header.addEventListener('click', function(event) {
+            // Prevent default action if needed
+            event.preventDefault();
             
-            // If opening and content is empty, load content
-            if (archiveItem.classList.contains('open')) {
-                const contentDiv = archiveItem.querySelector('.archive-content');
-                if (contentDiv && contentDiv.textContent.trim() === 'Report content will load dynamically when clicked') {
+            // Log which header was clicked
+            console.log('Archive header clicked:', this.textContent.trim());
+            
+            // Get the parent archive item
+            const archiveItem = this.parentElement;
+            
+            // Toggle the open class
+            archiveItem.classList.toggle('open');
+            console.log('Toggled open class on archive item');
+            
+            // If opening and content is placeholder, load content
+            const contentDiv = archiveItem.querySelector('.archive-content');
+            if (contentDiv && archiveItem.classList.contains('open')) {
+                if (contentDiv.textContent.trim() === 'Report content will load dynamically when clicked') {
                     const week = archiveItem.dataset.week;
                     const year = archiveItem.dataset.year;
                     if (week && year) {
+                        console.log(`Loading archive content for Week ${week}, ${year}`);
                         loadArchiveContent(contentDiv, week, year);
                     }
                 }
             }
         });
     });
+}
+/**
+ * Toggle archive item open/closed state
+ * @param {HTMLElement} headerElement - The header element that was clicked
+ */
+function toggleArchiveItem(headerElement) {
+    // Get the parent archive item
+    const archiveItem = headerElement.parentElement;
+    
+    // Toggle the open class
+    archiveItem.classList.toggle('open');
+    
+    // If opening and content is placeholder, load content
+    if (archiveItem.classList.contains('open')) {
+        const contentDiv = archiveItem.querySelector('.archive-content');
+        if (contentDiv && contentDiv.textContent.trim() === 'Report content will load dynamically when clicked') {
+            const week = archiveItem.dataset.week;
+            const year = archiveItem.dataset.year;
+            if (week && year) {
+                loadArchiveContent(contentDiv, week, year);
+            }
+        }
+    }
 }
 
 /**

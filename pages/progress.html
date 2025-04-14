@@ -29,56 +29,82 @@
                     <tbody>
                         <tr>
                             <td>Mon - Wed</td>
-                            <td>Downloaded SRA files on HPC</td>
+                            <td>SRA Download & Inspection on HPC</td>
                             <td>
-                                <p>Successfully downloaded <strong>SRR12554204</strong>, <strong>SRR12554205</strong>, <strong>SRR12554206</strong> using HPC.</p>
-                                <p>Verified contents using <code>head</code> & <code>tail</code>. Confirmed data contains expected 8bp UMI/barcode reads.</p>
+                                <p>Successfully downloaded <strong>SRR12554204</strong>, <strong>SRR12554205</strong>, and <strong>SRR12554206</strong> from NCBI SRA using SLURM-based jobs on IGIB HPC.</p>
+                                <p>Used <code>head</code>, <code>vdb-dump</code>, and <code>zcat</code> to inspect file structure. Confirmed all files contain only <strong>8bp UMI/barcode reads</strong>.</p>
                             </td>
                         </tr>
                         <tr>
                             <td>Thu - Fri</td>
-                            <td>Realized Limitation of Raw Data</td>
+                            <td>Script Optimization and Retry</td>
                             <td>
-                                <p>Identified that raw SRA data is not directly useful for my downstream gene expression analysis goals.</p>
-                                <p>Requires either processed count matrices or Seurat objects.</p>
+                                <p>Tested multiple script variations to validate FASTQ formatting. Used <code>fasterq-dump</code> with:</p>
+                                <pre><code>fasterq-dump SRR12554204 --split-files --threads 8 --progress</code></pre>
+                                <p>Also tried <code>--split-3</code> and <code>--log-level fatal</code> to suppress noise. Same 8bp structure confirmed. Gzipped outputs for storage.</p>
+                                <p>Created final clean directory <code>sc_data_final/</code> to store optimized output: 2.3GB <code>SRR12554204_1.fastq.gz</code>.</p>
                             </td>
                         </tr>
                         <tr>
                             <td>Sat - Sun</td>
-                            <td>Plan to Contact Authors</td>
+                            <td>Verified Limitation + Contact Plan</td>
                             <td>
-                                <p>Decided to write to the authors of Shin et al. (2020) to request processed gene expression matrices or Seurat objects.</p>
-                                <p>Will CC PI in the email.</p>
+                                <p>Determined that these raw SRA FASTQs are not usable for expression quantification (no transcriptome reads).</p>
+                                <p>Drafted email to authors of Shin et al. (2020) requesting access to either:</p>
+                                <ul>
+                                    <li><code>filtered_feature_bc_matrix.h5</code></li>
+                                    <li>or Seurat <code>.rds</code> objects</li>
+                                </ul>
+                                <p>Will CC PI in this request for transparency.</p>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                
+
                 <div class="progress-challenges editable-section">
                     <h4><i class="fas fa-exclamation-triangle"></i> Challenges:</h4>
                     <div contenteditable="true" class="editable-content" data-storage-key="week15-challenges-genexp">
                         <ul>
-                            <li>Raw SRA data mainly contains 8bp UMI/barcodes — not directly usable for gene expression quantification.</li>
-                            <li>Need processed count matrices or processed Seurat objects to proceed further.</li>
+                            <li>Raw SRA data contains only 8bp UMI/barcode sequences; no usable gene expression reads found.</li>
+                            <li>Unable to proceed with <code>cellranger count</code> or Seurat/Scanpy without transcript reads or processed matrices.</li>
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="progress-next-steps editable-section">
                     <h4><i class="fas fa-arrow-right"></i> Next Steps:</h4>
                     <div contenteditable="true" class="editable-content" data-storage-key="week15-nextsteps-genexp">
                         <ul>
-                            <li>Draft and send an email to the authors requesting processed data.</li>
-                            <li>Continue processing on HPC if processed data is unavailable.</li>
-                            <li>Prepare gene list and downstream analysis pipeline in parallel.</li>
+                            <li>Send email to Shin et al. (2020) authors requesting processed expression matrices or Seurat objects.</li>
+                            <li><strong>Pause downstream analysis</strong> until full raw data or processed matrices are available.</li>
+                            <li>In parallel: prepare gene list file and metadata template for rapid downstream integration post response.</li>
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="note">
-                    <p><strong>For Dr. Debojyoti Chakraborty Sir:</strong> When you submit feedback, an email will be prepared to send to Vishal. Please complete sending the email that opens after clicking "Save Feedback".</p>
+                    <p><strong>SLURM Script Used:</strong></p>
+                    <pre><code>#!/bin/bash
+#SBATCH --job-name=sra_download
+#SBATCH --output=sra_download_final_%j.out
+#SBATCH --error=sra_download_final_%j.err
+#SBATCH --cpus-per-task=8
+#SBATCH --time=4:00:00
+#SBATCH --mem=32G
+#SBATCH --partition=compute
+
+module load sratoolkit
+mkdir -p ~/single_cell_analysis_cd34_03_04_2025/sc_data_final
+cd ~/single_cell_analysis_cd34_03_04_2025/sc_data_final
+fasterq-dump SRR12554204 --split-files --threads 8 --progress
+gzip SRR12554204_1.fastq
+                    </code></pre>
                 </div>
 
+                <div class="note">
+                    <p><strong>For Dr. Debojyoti Chakraborty Sir:</strong> All exploratory options for raw SRA data have been tested. Awaiting processed matrix access to proceed with gene expression comparisons across cell cycle conditions.</p>
+                </div>
+                
                 <div class="pi-feedback-section">
                     <h4><i class="fas fa-comments"></i> PI Feedback:</h4>
                     <div class="feedback-container">
@@ -277,7 +303,7 @@
     <h2>Archive of Past Weekly Reports</h2>
     <div class="archive-list">
         <div class="archive-item" data-week="14" data-year="2025">
-            <div class="archive-header">
+            <div class="archive-header" onclick="toggleArchiveItem(this)">
                 <i class="fas fa-calendar-week"></i>
                 <span class="archive-title">Week 14, 2025 (April 1 - April 7)</span>
                 <i class="fas fa-chevron-down archive-toggle"></i>
@@ -429,7 +455,7 @@
             </div>
         </div>
         <div class="archive-item" data-week="13" data-year="2025">
-            <div class="archive-header">
+            <div class="archive-header" onclick="toggleArchiveItem(this)">
                 <i class="fas fa-calendar-week"></i>
                 <span class="archive-title">Week 13, 2025 (March 24 - March 31)</span>
                 <i class="fas fa-chevron-down archive-toggle"></i>
@@ -439,7 +465,7 @@
             </div>
         </div>
         <div class="archive-item" data-week="12" data-year="2025">
-            <div class="archive-header">
+            <div class="archive-header" onclick="toggleArchiveItem(this)">
                 <i class="fas fa-calendar-week"></i>
                 <span class="archive-title">Week 12, 2025 (March 17 - March 23)</span>
                 <i class="fas fa-chevron-down archive-toggle"></i>
@@ -449,7 +475,7 @@
             </div>
         </div>
         <div class="archive-item" data-week="11" data-year="2025">
-            <div class="archive-header">
+            <div class="archive-header" onclick="toggleArchiveItem(this)">
                 <i class="fas fa-calendar-week"></i>
                 <span class="archive-title">Week 11, 2025 (March 10 - March 16)</span>
                 <i class="fas fa-chevron-down archive-toggle"></i>
@@ -467,3 +493,30 @@
         // This will be populated by the weekly-progress.js file
     </script>
 </div>
+
+<!-- Add toggleArchiveItem function -->
+<script>
+/**
+ * Toggle archive item open/closed state
+ * @param {HTMLElement} headerElement - The header element that was clicked
+ */
+function toggleArchiveItem(headerElement) {
+    // Get the parent archive item
+    const archiveItem = headerElement.parentElement;
+    
+    // Toggle the open class
+    archiveItem.classList.toggle('open');
+    
+    // If opening and content is placeholder, load content
+    if (archiveItem.classList.contains('open')) {
+        const contentDiv = archiveItem.querySelector('.archive-content');
+        if (contentDiv && contentDiv.textContent.trim() === 'Report content will load dynamically when clicked') {
+            const week = archiveItem.dataset.week;
+            const year = archiveItem.dataset.year;
+            if (week && year) {
+                loadArchiveContent(contentDiv, week, year);
+            }
+        }
+    }
+}
+</script>

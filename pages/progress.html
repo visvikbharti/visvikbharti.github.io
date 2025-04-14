@@ -1,19 +1,18 @@
-<!-- Enhanced Weekly Progress Page for Vishal Bharti's Portfolio -->
 <div class="section">
     <h2>Weekly Research Progress Tracker</h2>
     <p>This is my centralized system for tracking research and development progress. I update this weekly to share with my PI and collaborators.</p>
     
     <div class="week-selector">
         <button id="prev-week" class="progress-nav-button"><i class="fas fa-chevron-left"></i> Previous Week</button>
-        <div id="week-display" class="week-display">Week 14, 2025</div>
-        <div id="week-range" class="week-range">April 1 - April 7, 2025</div>
+        <div id="week-display" class="week-display">Week 15, 2025</div>
+        <div id="week-range" class="week-range">April 8 - April 14, 2025</div>
         <button id="current-week" class="progress-nav-button">Current Week</button>
         <button id="next-week" class="progress-nav-button">Next Week <i class="fas fa-chevron-right"></i></button>
     </div>
     
     <div id="progress-content-container" class="progress-content active">
         <div class="progress-section">
-            <h2>This Week's Progress (Week 14, 2025)</h2>
+            <h2>This Week's Progress (Week 15, 2025)</h2>
             
             <div class="progress-subsection">
                 <h3>Gene Expression Analysis Project</h3>
@@ -29,29 +28,27 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Mon - Thu</td>
-                            <td>Reading Paper & Creating Pipeline</td>
+                            <td>Mon - Wed</td>
+                            <td>Downloaded SRA files on HPC</td>
                             <td>
-                                <p>Thoroughly read the Shin et al. (2020) paper and outlined a data analysis pipeline.</p>
-                                <p>Drafted an HTML workflow for single-cell data analysis steps.</p>
+                                <p>Successfully downloaded <strong>SRR12554204</strong>, <strong>SRR12554205</strong>, <strong>SRR12554206</strong> using HPC.</p>
+                                <p>Verified contents using <code>head</code> & <code>tail</code>. Confirmed data contains expected 8bp UMI/barcode reads.</p>
                             </td>
                         </tr>
                         <tr>
-                            <td>Fri</td>
-                            <td>SRA Toolkit Setup</td>
+                            <td>Thu - Fri</td>
+                            <td>Realized Limitation of Raw Data</td>
                             <td>
-                                <p>Installed <code>sratoolkit</code> via Homebrew to handle large SRA downloads.</p>
-                                <p>Tried downloading the data on my local system (MAC M1) as well as on my external HDD, but encountered connection issues (weak internet).</p>
+                                <p>Identified that raw SRA data is not directly useful for my downstream gene expression analysis goals.</p>
+                                <p>Requires either processed count matrices or Seurat objects.</p>
                             </td>
                         </tr>
                         <tr>
                             <td>Sat - Sun</td>
-                            <td>Attempted SRA Downloads</td>
+                            <td>Plan to Contact Authors</td>
                             <td>
-                                <p>Tried downloading <strong>SRR12554204</strong> (∼22.5 GB) and others <strong>SRR12554205</strong>, and <strong>SRR12554206</strong> (additional ∼48 GB).</p>
-                                <p>Encountered institute-wide Wi-Fi downtime; cannot fully download large files via mobile hotspot.</p>
-                                <p>Verified partial attempts, but postponed full downloads until Wi-Fi is restored.</p>
-                                <p>Plan to move downloads & processing to HPC <strong>once HPC access is stable</strong>.</p>
+                                <p>Decided to write to the authors of Shin et al. (2020) to request processed gene expression matrices or Seurat objects.</p>
+                                <p>Will CC PI in the email.</p>
                             </td>
                         </tr>
                     </tbody>
@@ -59,22 +56,21 @@
                 
                 <div class="progress-challenges editable-section">
                     <h4><i class="fas fa-exclamation-triangle"></i> Challenges:</h4>
-                    <div contenteditable="true" class="editable-content" data-storage-key="week14-challenges-genexp">
+                    <div contenteditable="true" class="editable-content" data-storage-key="week15-challenges-genexp">
                         <ul>
-                            <li>Institute Wi-Fi downtime - still not resolved</li>
-                            <li>Large file sizes make downloads impractical on mobile hotspot</li>
-                            <li>HPC access needs to be renewed</li>
+                            <li>Raw SRA data mainly contains 8bp UMI/barcodes — not directly usable for gene expression quantification.</li>
+                            <li>Need processed count matrices or processed Seurat objects to proceed further.</li>
                         </ul>
                     </div>
                 </div>
                 
                 <div class="progress-next-steps editable-section">
                     <h4><i class="fas fa-arrow-right"></i> Next Steps:</h4>
-                    <div contenteditable="true" class="editable-content" data-storage-key="week14-nextsteps-genexp">
+                    <div contenteditable="true" class="editable-content" data-storage-key="week15-nextsteps-genexp">
                         <ul>
-                            <li>Follow up on Wi-Fi restoration timeline</li>
-                            <li>Renew HPC access credentials</li>
-                            <li>Try alternative data sources or request processed data matrices from authors</li>
+                            <li>Draft and send an email to the authors requesting processed data.</li>
+                            <li>Continue processing on HPC if processed data is unavailable.</li>
+                            <li>Prepare gene list and downstream analysis pipeline in parallel.</li>
                         </ul>
                     </div>
                 </div>
@@ -123,30 +119,18 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>PCA Module</td>
-                            <td><div class="progress-bar" style="--progress: 95%;">95%</div></td>
+                            <td>Confidence Intervals Explorer</td>
+                            <td><div class="progress-bar" style="--progress: 100%;">100%</div></td>
                             <td>
-                                <p>Added 3D visualization option</p>
-                                <p>Fixed loading issues with large datasets</p>
-                                <p>Improved documentation and tutorials</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Distributions Module</td>
-                            <td><div class="progress-bar" style="--progress: 90%;">90%</div></td>
-                            <td>
-                                <p>Added distribution fitting functionality</p>
-                                <p>Created interactive parameter exploration</p>
-                                <p>Need to add more distribution types</p>
+                                <p>Completed and deployed a new educational app for exploring confidence intervals: <a href="https://visvikbharti-confidence-intervals-explorer.streamlit.app/" target="_blank">Live App</a>.</p>
+                                <p>Working on LaTeX rendering issues and improving dark/light theme responsiveness.</p>
                             </td>
                         </tr>
                         <tr>
                             <td>Statistical Tests Module</td>
-                            <td><div class="progress-bar" style="--progress: 75%;">75%</div></td>
+                            <td><div class="progress-bar" style="--progress: 80%;">80%</div></td>
                             <td>
-                                <p>Implemented t-tests, ANOVA, and non-parametric tests</p>
-                                <p>Working on test recommendation logic</p>
-                                <p>Need to add multiple testing correction</p>
+                                <p>Further improvements ongoing — working on test recommendations logic and styling issues.</p>
                             </td>
                         </tr>
                     </tbody>
@@ -155,6 +139,9 @@
                 <div class="demo-links">
                     <p><strong>Module Demos:</strong></p>
                     <div class="link-badges">
+                        <a href="https://visvikbharti-confidence-intervals-explorer.streamlit.app/" target="_blank" class="demo-badge">
+                            <i class="fas fa-chart-line"></i> Confidence Intervals Explorer
+                        </a>
                         <a href="https://visvikbharti-pca-tool.streamlit.app/" target="_blank" class="demo-badge">
                             <i class="fas fa-chart-pie"></i> PCA Tool App
                         </a>
@@ -164,24 +151,27 @@
                     </div>
                 </div>
                 
+                <div class="note">
+                    <p><strong>Vision behind StickForStats:</strong> Unlike existing tools like GraphPad Prism or Origin, StickForStats aims to help researchers not only perform analyses but truly understand statistical concepts through interactive learning. The modular approach allows users to explore simulations, visualize parameter changes, and understand statistical nuances before making analytical decisions. This educational foundation will empower researchers to make well-informed choices based on a deeper understanding of statistical methods.</p>
+                </div>
+                
                 <div class="progress-challenges editable-section">
                     <h4><i class="fas fa-exclamation-triangle"></i> Challenges:</h4>
-                    <div contenteditable="true" class="editable-content" data-storage-key="week14-challenges-stickforstats">
+                    <div contenteditable="true" class="editable-content" data-storage-key="week15-challenges-stickforstats">
                         <ul>
-                            <li>Performance issues with very large datasets</li>
-                            <li>Integration of R modules through rpy2 has dependency conflicts</li>
-                            <li>Need more test datasets for edge cases</li>
+                            <li>Fixing LaTeX formula rendering on webpage.</li>
+                            <li>Handling dark/light theme CSS adjustments for complex elements.</li>
                         </ul>
                     </div>
                 </div>
                 
                 <div class="progress-next-steps editable-section">
                     <h4><i class="fas fa-arrow-right"></i> Next Steps:</h4>
-                    <div contenteditable="true" class="editable-content" data-storage-key="week14-nextsteps-stickforstats">
+                    <div contenteditable="true" class="editable-content" data-storage-key="week15-nextsteps-stickforstats">
                         <ul>
-                            <li>Complete Statistical Tests Module</li>
-                            <li>Begin integration of modules into unified platform</li>
-                            <li>Set up automated testing pipeline</li>
+                            <li>Resolve styling issues in StickForStats modules.</li>
+                            <li>Begin preparing downloadable reports feature in Confidence Intervals Explorer.</li>
+                            <li>Integrate CI app modules gradually into StickForStats unified platform.</li>
                         </ul>
                     </div>
                 </div>
@@ -217,8 +207,8 @@
             
             <div class="weekly-summary editable-section">
                 <h3><i class="fas fa-flag"></i> Weekly Summary</h3>
-                <div contenteditable="true" class="editable-content" data-storage-key="week14-summary">
-                    <p>This week focused on two main areas: (1) initiating the gene expression analysis of Shin et al. (2020) data, and (2) continuing development of the StickForStats platform. The major challenge has been the institute-wide Wi-Fi downtime, which has delayed the data download process. Despite this, progress on the StickForStats platform continues, with two modules now available for demonstration.</p>
+                <div contenteditable="true" class="editable-content" data-storage-key="week15-summary">
+                    <p>This week saw significant progress on two fronts. For the Gene Expression Analysis project, I successfully downloaded the required SRA files on the HPC but identified that raw data requires additional processing before analysis. For StickForStats, I completed and deployed the Confidence Intervals Explorer module, adding to our growing collection of educational statistical tools. This new module represents a key step toward our vision of creating not just analytical tools but also learning platforms that help researchers truly understand statistical concepts.</p>
                 </div>
             </div>
             
@@ -233,212 +223,6 @@
 </div>
 
 <div class="section">
-    <h2>Study Overview: Shin et al. (2020)</h2>
-    <div class="note">
-        <p>This investigation examines how cell cycle status affects DNA repair decisions (NHEJ vs HDR) in hematopoietic stem and progenitor cells (HSPCs).</p>
-        <p><strong>Key conditions in the study:</strong></p>
-        <ul>
-            <li><strong>Day 1:</strong> Freshly thawed CD34+ cells (mostly quiescent)</li>
-            <li><strong>SC SC:</strong> Cells cultured in stem cell expansion media for 6 days (actively cycling)</li>
-            <li><strong>SC XRC:</strong> Cells cultured in SC for 3 days then treated with rapamycin and CHIR99021 to induce quiescence (re-quiescent)</li>
-        </ul>
-        <p><strong>Cell populations:</strong> HSC/MPP, LMPP, CLP, CMP, GMP, MEP</p>
-    </div>
-</div>
-
-<div class="section">
-    <h2>Workflow Checklist</h2>
-    <div class="step">
-        <h3>Step 1: Obtain the scRNA-seq Data</h3>
-        <ul class="checkbox-list">
-            <li><input type="checkbox" id="check1-1"><label for="check1-1">Access BioProject PRJNA498122 at <a href="https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA498122" target="_blank">NCBI BioProject</a></label></li>
-            <li><input type="checkbox" id="check1-2"><label for="check1-2">Download SRA files using <code>sratoolkit</code> (fasterq-dump, etc.)</label></li>
-            <li><input type="checkbox" id="check1-3"><label for="check1-3">Process FASTQ files using <strong>Cell Ranger pipeline</strong> on HPC or local environment (depending on resources)</label></li>
-            <li><input type="checkbox" id="check1-4"><label for="check1-4">Alternative: Contact authors for processed data matrices if available</label></li>
-        </ul>
-    </div>
-
-    <div class="step">
-        <h3>Step 2: Prepare Our Gene List</h3>
-        <ul class="checkbox-list">
-            <li><input type="checkbox" id="check2-1"><label for="check2-1">Format your <strong>477 genes</strong> as a CSV or text file with gene symbols</label></li>
-            <li><input type="checkbox" id="check2-2"><label for="check2-2">Ensure gene symbols match the annotation in the dataset (e.g., HUGO symbols)</label></li>
-        </ul>
-    </div>
-
-    <div class="step">
-        <h3>Step 3: Load and Process the Data (R/Seurat)</h3>
-        <ul class="checkbox-list">
-            <li><input type="checkbox" id="check3-1"><label for="check3-1">Install required R packages (<code>Seurat</code>, <code>dplyr</code>, <code>ggplot2</code>, etc.)</label></li>
-            <li><input type="checkbox" id="check3-2"><label for="check3-2">Load data for each condition (Day1, SC SC, SC XRC)</label></li>
-            <li><input type="checkbox" id="check3-3"><label for="check3-3">Add condition metadata to each dataset</label></li>
-            <li><input type="checkbox" id="check3-4"><label for="check3-4">Merge datasets and perform integration if needed</label></li>
-            <li><input type="checkbox" id="check3-5"><label for="check3-5">Check how many of your genes are present in the dataset</label></li>
-        </ul>
-        <div class="code-snippet">
-            <pre><code class="language-r"># Example code
-library(Seurat)
-library(dplyr)
-library(ggplot2)
-
-# Load data
-day1 <- readRDS("day1_processed.rds")
-sc_sc <- readRDS("sc_sc_processed.rds")
-sc_xrc <- readRDS("sc_xrc_processed.rds")
-
-# Add condition info
-day1$condition <- "Day1"
-sc_sc$condition <- "SC_SC" 
-sc_xrc$condition <- "SC_XRC"
-
-# Merge datasets
-seurat_combined <- merge(day1, y = c(sc_sc, sc_xrc))
-
-# Check genes
-genes_of_interest <- read.csv("my_gene_list_477.csv")
-genes_present <- intersect(genes_of_interest$gene_symbol, rownames(seurat_combined))
-cat("Found", length(genes_present), "out of", length(genes_of_interest$gene_symbol), "genes")</code></pre>
-        </div>
-    </div>
-
-    <div class="step">
-        <h3>Step 4: Basic Visualizations</h3>
-        <ul class="checkbox-list">
-            <li><input type="checkbox" id="check4-1"><label for="check4-1">Generate UMAPs showing cell clusters across conditions (similar to Fig 5B)</label></li>
-            <li><input type="checkbox" id="check4-2"><label for="check4-2">Calculate fraction of cell types for each condition (similar to Fig 5C)</label></li>
-            <li><input type="checkbox" id="check4-3"><label for="check4-3">Visualize cell cycle status across conditions (similar to Fig 5E)</label></li>
-        </ul>
-        <div class="expected-visualizations">
-            <h4>Expected Outputs:</h4>
-            <div class="visualization-previews">
-                <div class="viz-preview">
-                    <div class="viz-placeholder">
-                        <i class="fas fa-chart-scatter"></i>
-                        <span>UMAP Plot</span>
-                    </div>
-                    <p>UMAP plots showing how cell clusters differ between Day1, SC SC, and SC XRC</p>
-                </div>
-                <div class="viz-preview">
-                    <div class="viz-placeholder">
-                        <i class="fas fa-chart-bar"></i>
-                        <span>Cell Type Fractions</span>
-                    </div>
-                    <p>Bar chart showing proportion of each cell type in each condition</p>
-                </div>
-                <div class="viz-preview">
-                    <div class="viz-placeholder">
-                        <i class="fas fa-dot-circle"></i>
-                        <span>Cell Cycle Status</span>
-                    </div>
-                    <p>UMAP or scatter plot showing cell cycle status (G0, G1, S-G2-M)</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="step">
-        <h3>Step 5: Expression Analysis of Your Gene Set</h3>
-        <ul class="checkbox-list">
-            <li><input type="checkbox" id="check5-1"><label for="check5-1">Create heatmap of gene expression across cell types and conditions</label></li>
-            <li><input type="checkbox" id="check5-2"><label for="check5-2">Generate dot plot showing expression level and percentage of cells expressing each gene</label></li>
-            <li><input type="checkbox" id="check5-3"><label for="check5-3">Create violin plots for selected top genes</label></li>
-            <li><input type="checkbox" id="check5-4"><label for="check5-4">Visualize gene expression on UMAP projections</label></li>
-        </ul>
-    </div>
-
-    <div class="step">
-        <h3>Step 6: Differential Expression Analysis</h3>
-        <ul class="checkbox-list">
-            <li><input type="checkbox" id="check6-1"><label for="check6-1">Identify which of your genes are differentially expressed between conditions</label></li>
-            <li><input type="checkbox" id="check6-2"><label for="check6-2">For each cell type, compare Day1 vs SC SC</label></li>
-            <li><input type="checkbox" id="check6-3"><label for="check6-3">For each cell type, compare Day1 vs SC XRC</label></li>
-            <li><input type="checkbox" id="check6-4"><label for="check6-4">For each cell type, compare SC SC vs SC XRC (cycling vs quiescent)</label></li>
-            <li><input type="checkbox" id="check6-5"><label for="check6-5">Create summary table of significant genes</label></li>
-        </ul>
-        <div class="code-snippet">
-            <pre><code class="language-r"># Example code for differential expression
-de_results <- FindMarkers(
-  seurat_combined,
-  group.by = "condition",
-  ident.1 = "SC_SC",
-  ident.2 = "SC_XRC",
-  subset.ident = "HSC/MPP",  # For specific cell type
-  features = genes_present
-)</code></pre>
-        </div>
-    </div>
-
-    <div class="step">
-        <h3>Step 7: Correlation with DNA Repair Pathways</h3>
-        <ul class="checkbox-list">
-            <li><input type="checkbox" id="check7-1"><label for="check7-1">Calculate expression scores for NHEJ pathway genes</label></li>
-            <li><input type="checkbox" id="check7-2"><label for="check7-2">Calculate expression scores for HDR pathway genes</label></li>
-            <li><input type="checkbox" id="check7-3"><label for="check7-3">Calculate expression scores for cell cycle genes</label></li>
-            <li><input type="checkbox" id="check7-4"><label for="check7-4">Correlate your genes with these pathway scores</label></li>
-            <li><input type="checkbox" id="check7-5"><label for="check7-5">Identify genes that correlate with repair pathways</label></li>
-        </ul>
-        <div class="note">
-            <p><strong>Key DNA repair pathway genes:</strong></p>
-            <table class="pathway-genes-table">
-                <tr>
-                    <th>Pathway</th>
-                    <th>Genes</th>
-                </tr>
-                <tr>
-                    <td>NHEJ</td>
-                    <td>XRCC4, XRCC5, XRCC6, PRKDC, LIG4, NHEJ1, DCLRE1C</td>
-                </tr>
-                <tr>
-                    <td>HDR</td>
-                    <td>RAD51, BRCA1, BRCA2, MRE11, RAD50, NBN, RBBP8, BLM</td>
-                </tr>
-                <tr>
-                    <td>Cell Cycle</td>
-                    <td>CCNA1, CCNA2, CCNB1, CCNB2, CCND1, CCNE1, CDK1, CDK2, CDK4, CDK6</td>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-    <div class="step">
-        <h3>Step 8: Cell Cycle-Specific Analysis</h3>
-        <ul class="checkbox-list">
-            <li><input type="checkbox" id="check8-1"><label for="check8-1">Score cells for cell cycle phases (G0, G1, S-G2-M)</label></li>
-            <li><input type="checkbox" id="check8-2"><label for="check8-2">Analyze expression of your genes in each cell cycle phase</label></li>
-            <li><input type="checkbox" id="check8-3"><label for="check8-3">Compare with NHEJ/HDR efficiency results from the paper</label></li>
-        </ul>
-        <div class="code-snippet">
-            <pre><code class="language-r"># Score cells for cell cycle phases
-seurat_combined <- CellCycleScoring(
-  seurat_combined,
-  s.features = s_phase_markers,
-  g2m.features = g2m_phase_markers
-)</code></pre>
-        </div>
-    </div>
-
-    <div class="step">
-        <h3>Step 9: Functional Enrichment Analysis</h3>
-        <ul class="checkbox-list">
-            <li><input type="checkbox" id="check9-1"><label for="check9-1">Perform Gene Ontology (GO) analysis on your gene list</label></li>
-            <li><input type="checkbox" id="check9-2"><label for="check9-2">Identify enriched biological processes, molecular functions, and cellular components</label></li>
-            <li><input type="checkbox" id="check9-3"><label for="check9-3">Check for enrichment in specific pathways (KEGG, Reactome)</label></li>
-            <li><input type="checkbox" id="check9-4"><label for="check9-4">Compare enrichment between gene subsets showing different expression patterns</label></li>
-        </ul>
-    </div>
-
-    <div class="step">
-        <h3>Step 10: Interpretation and Reporting</h3>
-        <ul class="checkbox-list">
-            <li><input type="checkbox" id="check10-1"><label for="check10-1">Identify genes with expression patterns correlating with HDR/NHEJ efficiency</label></li>
-            <li><input type="checkbox" id="check10-2"><label for="check10-2">Identify genes regulated by cell cycle status and quiescence</label></li>
-            <li><input type="checkbox" id="check10-3"><label for="check10-3">Create summary figures and tables</label></li>
-            <li><input type="checkbox" id="check10-4"><label for="check10-4">Interpret biological significance in context of DNA repair decisions in HSCs</label></li>
-        </ul>
-    </div>
-</div>
-
-<div class="section">
     <h2>Development Plan for StickForStats</h2>
     <div class="milestones-container">
         <div class="milestone-timeline">
@@ -449,7 +233,7 @@ seurat_combined <- CellCycleScoring(
                 </div>
                 <div class="milestone-content">
                     <ul>
-                        <li>Complete and deploy PCA and Probability Distribution modules</li>
+                        <li>Complete and deploy educational modules (Confidence Intervals, PCA, Probability Distributions)</li>
                         <li>Develop Statistical Tests module with test recommendation system</li>
                         <li>Create initial integration framework for unified platform</li>
                     </ul>
@@ -492,6 +276,158 @@ seurat_combined <- CellCycleScoring(
 <div class="section">
     <h2>Archive of Past Weekly Reports</h2>
     <div class="archive-list">
+        <div class="archive-item" data-week="14" data-year="2025">
+            <div class="archive-header">
+                <i class="fas fa-calendar-week"></i>
+                <span class="archive-title">Week 14, 2025 (April 1 - April 7)</span>
+                <i class="fas fa-chevron-down archive-toggle"></i>
+            </div>
+            <div class="archive-content" id="archive-week-14-2025">
+                <div class="progress-section">
+                    <h2>Week 14, 2025 Progress</h2>
+                    
+                    <div class="progress-subsection">
+                        <h3>Gene Expression Analysis Project</h3>
+                        <p><strong>Project Goal:</strong> Analyze the <strong>477 genes</strong> of interest in single-cell RNA sequencing data from Shin et al. (2020).</p>
+                        
+                        <table class="progress-table">
+                            <thead>
+                                <tr>
+                                    <th width="15%">Date</th>
+                                    <th width="25%">Task</th>
+                                    <th width="60%">Details / Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mon - Thu</td>
+                                    <td>Reading Paper & Creating Pipeline</td>
+                                    <td>
+                                        <p>Thoroughly read the Shin et al. (2020) paper and outlined a data analysis pipeline.</p>
+                                        <p>Drafted an HTML workflow for single-cell data analysis steps.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Fri</td>
+                                    <td>SRA Toolkit Setup</td>
+                                    <td>
+                                        <p>Installed <code>sratoolkit</code> via Homebrew to handle large SRA downloads.</p>
+                                        <p>Tried downloading the data on my local system (MAC M1) as well as on my external HDD, but encountered connection issues (weak internet).</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sat - Sun</td>
+                                    <td>Attempted SRA Downloads</td>
+                                    <td>
+                                        <p>Tried downloading <strong>SRR12554204</strong> (∼22.5 GB) and others <strong>SRR12554205</strong>, and <strong>SRR12554206</strong> (additional ∼48 GB).</p>
+                                        <p>Encountered institute-wide Wi-Fi downtime; cannot fully download large files via mobile hotspot.</p>
+                                        <p>Verified partial attempts, but postponed full downloads until Wi-Fi is restored.</p>
+                                        <p>Plan to move downloads & processing to HPC <strong>once HPC access is stable</strong>.</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="challenges-section">
+                            <h4><i class="fas fa-exclamation-triangle"></i> Challenges:</h4>
+                            <ul>
+                                <li>Institute Wi-Fi downtime - still not resolved</li>
+                                <li>Large file sizes make downloads impractical on mobile hotspot</li>
+                                <li>HPC access needs to be renewed</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="next-steps-section">
+                            <h4><i class="fas fa-arrow-right"></i> Next Steps:</h4>
+                            <ul>
+                                <li>Follow up on Wi-Fi restoration timeline</li>
+                                <li>Renew HPC access credentials</li>
+                                <li>Try alternative data sources or request processed data matrices from authors</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-subsection">
+                        <h3>StickForStats Development</h3>
+                        <p><strong>Project Goal:</strong> Develop advanced statistical analysis tools for researchers with minimal statistical background.</p>
+                        
+                        <table class="progress-table">
+                            <thead>
+                                <tr>
+                                    <th width="20%">Module</th>
+                                    <th width="15%">Progress</th>
+                                    <th width="65%">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>PCA Module</td>
+                                    <td>95%</td>
+                                    <td>
+                                        <p>Added 3D visualization option</p>
+                                        <p>Fixed loading issues with large datasets</p>
+                                        <p>Improved documentation and tutorials</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Distributions Module</td>
+                                    <td>90%</td>
+                                    <td>
+                                        <p>Added distribution fitting functionality</p>
+                                        <p>Created interactive parameter exploration</p>
+                                        <p>Need to add more distribution types</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Statistical Tests Module</td>
+                                    <td>75%</td>
+                                    <td>
+                                        <p>Implemented t-tests, ANOVA, and non-parametric tests</p>
+                                        <p>Working on test recommendation logic</p>
+                                        <p>Need to add multiple testing correction</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="module-demos">
+                            <p><strong>Module Demos:</strong></p>
+                            <div class="demo-links">
+                                <a href="https://visvikbharti-pca-tool.streamlit.app/" target="_blank" class="demo-badge">
+                                    <i class="fas fa-chart-pie"></i> PCA Tool App
+                                </a>
+                                <a href="https://visvikbharti-probability-distributions-tool.streamlit.app/" target="_blank" class="demo-badge">
+                                    <i class="fas fa-calculator"></i> Probability Distributions Tool App
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="challenges-section">
+                            <h4><i class="fas fa-exclamation-triangle"></i> Challenges:</h4>
+                            <ul>
+                                <li>Performance issues with very large datasets</li>
+                                <li>Integration of R modules through rpy2 has dependency conflicts</li>
+                                <li>Need more test datasets for edge cases</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="next-steps-section">
+                            <h4><i class="fas fa-arrow-right"></i> Next Steps:</h4>
+                            <ul>
+                                <li>Complete Statistical Tests Module</li>
+                                <li>Begin integration of modules into unified platform</li>
+                                <li>Set up automated testing pipeline</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="weekly-summary">
+                        <h3><i class="fas fa-flag"></i> Weekly Summary</h3>
+                        <p>This week focused on two main areas: (1) initiating the gene expression analysis of Shin et al. (2020) data, and (2) continuing development of the StickForStats platform. The major challenge has been the institute-wide Wi-Fi downtime, which has delayed the data download process. Despite this, progress on the StickForStats platform continues, with two modules now available for demonstration.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="archive-item" data-week="13" data-year="2025">
             <div class="archive-header">
                 <i class="fas fa-calendar-week"></i>
@@ -522,7 +458,6 @@ seurat_combined <- CellCycleScoring(
                 <p>Report content will load dynamically when clicked</p>
             </div>
         </div>
-        <!-- More archive items can be added here -->
     </div>
 </div>
 

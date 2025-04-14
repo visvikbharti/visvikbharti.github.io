@@ -311,21 +311,29 @@ function setupArchiveInteractions() {
  * @param {string} year - Year
  */
 function loadArchiveContent(container, week, year) {
-    // For demonstration purposes, we'll just show a placeholder message
-    // In a real implementation, you would load the actual content from a server or localStorage
-    container.innerHTML = `
-        <div class="progress-section">
-            <h3>Week ${week}, ${year} Summary</h3>
-            <p>This week's focus was on [placeholder content for archived week].</p>
-            <p>Key accomplishments:</p>
-            <ul>
-                <li>Task 1 completed</li>
-                <li>Task 2 completed</li>
-                <li>Task 3 in progress</li>
-            </ul>
-            <p>Please visit the archived reports section to view the full details for this week.</p>
-        </div>
-    `;
+    // First, check if we have an existing element with real content for this week
+    const existingContentId = `archive-week-${week}-${year}`;
+    const existingContentElement = document.getElementById(existingContentId);
+    
+    if (existingContentElement) {
+        // If we have pre-populated content in the HTML, use that
+        container.innerHTML = existingContentElement.innerHTML;
+    } else {
+        // Otherwise, show placeholder content as before
+        container.innerHTML = `
+            <div class="progress-section">
+                <h3>Week ${week}, ${year} Summary</h3>
+                <p>This week's focus was on [placeholder content for archived week].</p>
+                <p>Key accomplishments:</p>
+                <ul>
+                    <li>Task 1 completed</li>
+                    <li>Task 2 completed</li>
+                    <li>Task 3 in progress</li>
+                </ul>
+                <p>Please visit the archived reports section to view the full details for this week.</p>
+            </div>
+        `;
+    }
 }
 
 /**

@@ -36,10 +36,22 @@ function setupWeekNavigation() {
     const nextWeekBtn = document.getElementById('next-week');
     const currentWeekBtn = document.getElementById('current-week');
     
-    if (prevWeekBtn && nextWeekBtn && currentWeekBtn) {
-        prevWeekBtn.addEventListener('click', () => navigateWeeks(-1));
-        nextWeekBtn.addEventListener('click', () => navigateWeeks(1));
-        currentWeekBtn.addEventListener('click', () => navigateToCurrentWeek());
+    if (prevWeekBtn) {
+        prevWeekBtn.addEventListener('click', function() {
+            navigateWeeks(-1);
+        });
+    }
+    
+    if (nextWeekBtn) {
+        nextWeekBtn.addEventListener('click', function() {
+            navigateWeeks(1);
+        });
+    }
+    
+    if (currentWeekBtn) {
+        currentWeekBtn.addEventListener('click', function() {
+            navigateToCurrentWeek();
+        });
     }
 }
 
@@ -69,7 +81,10 @@ function loadCurrentWeekData() {
  */
 function navigateWeeks(direction) {
     const weekDisplay = document.getElementById('week-display');
-    if (!weekDisplay) return;
+    if (!weekDisplay) {
+        console.error("Week display element not found");
+        return;
+    }
     
     const displayText = weekDisplay.textContent;
     const matches = displayText.match(/Week (\d+), (\d{4})/);
@@ -90,7 +105,10 @@ function navigateWeeks(direction) {
             year -= 1;
         }
         
+        console.log(`Navigating to Week ${week}, ${year}`);
         displayWeekData(week, year);
+    } else {
+        console.error("Could not parse week and year from display text:", displayText);
     }
 }
 
@@ -102,6 +120,7 @@ function navigateToCurrentWeek() {
     const currentWeek = getWeekNumber(now);
     const currentYear = now.getFullYear();
     
+    console.log(`Navigating to current week: Week ${currentWeek}, ${currentYear}`);
     displayWeekData(currentWeek, currentYear);
 }
 
@@ -112,7 +131,10 @@ function navigateToCurrentWeek() {
  */
 function displayWeekData(week, year) {
     const weekDisplay = document.getElementById('week-display');
-    if (!weekDisplay) return;
+    if (!weekDisplay) {
+        console.error("Week display element not found");
+        return;
+    }
     
     // Update week display
     weekDisplay.textContent = `Week ${week}, ${year}`;
@@ -129,8 +151,66 @@ function displayWeekData(week, year) {
         weekRangeDisplay.textContent = `${formatDate(weekRange.start)} - ${formatDate(weekRange.end)}`;
     }
     
-    // Try to load stored content, otherwise keep current content (for this demo)
-    // In a full implementation, you would load the appropriate content for the selected week
+    // Find the content container
+    const contentContainer = document.getElementById('progress-content-container');
+    if (!contentContainer) {
+        console.error("Progress content container not found");
+        return;
+    }
+
+    const now = new Date();
+    const currentWeek = getWeekNumber(now);
+    const currentYear = now.getFullYear();
+    const isCurrentWeek = (week === currentWeek && year === currentYear);
+    
+    // For current week, display the current week content
+    if (isCurrentWeek) {
+        // If we're looking for the live content and we're in Week 15, 2025
+        if (week === 15 && year === 2025) {
+            // Ensure content is visible
+            contentContainer.style.display = 'block';
+            contentContainer.classList.add('active');
+        } else {
+            // For any other current week that isn't specifically modeled, show a placeholder
+            contentContainer.innerHTML = `
+                <div class="progress-section">
+                    <h2>Current Week (${week}, ${year}) Progress</h2>
+                    <p>Progress tracking for this week has not started yet.</p>
+                </div>
+            `;
+        }
+    } else {
+        // For past weeks, check if we have archived content
+        if (week === 14 && year === 2025) {
+            // Week 14, 2025 has archived content prepared
+            const archiveElement = document.getElementById('archive-week-14-2025');
+            if (archiveElement) {
+                contentContainer.innerHTML = archiveElement.innerHTML;
+            } else {
+                // Show generic archive content for Week 14, 2025
+                contentContainer.innerHTML = `
+                    <div class="progress-section">
+                        <h2>Week 14, 2025 Progress</h2>
+                        <p>This was the week where I started setting up the SRA toolkit and explored the Shin et al. (2020) paper analysis pipeline.</p>
+                        <p>Please check the Archives section for more details about this week.</p>
+                    </div>
+                `;
+            }
+        } else {
+            // Generic content for any other week
+            contentContainer.innerHTML = `
+                <div class="progress-section">
+                    <h2>Week ${week}, ${year} Progress</h2>
+                    <p>Progress content for this week is not available.</p>
+                    <p>Please return to Current Week for live updates.</p>
+                </div>
+            `;
+        }
+        
+        // Ensure content is visible
+        contentContainer.style.display = 'block';
+        contentContainer.classList.add('active');
+    }
     
     // Update next/prev week buttons state
     updateNavigationButtonsState(week, year);
@@ -243,6 +323,14 @@ function setupFeedbackSystem() {
             const feedbackSection = document.querySelector(`.pi-feedback-section:has(#pi-feedback-${projectId})`);
             if (feedbackSection && feedbackSection.parentNode) {
                 feedbackSection.parentNode.insertBefore(emailContainer, feedbackSection.nextSibling);
+            } else {
+                // Fallback if :has() selector is not supported
+                const allFeedbackSections = document.querySelectorAll('.pi-feedback-section');
+                allFeedbackSections.forEach(section => {
+                    if (section.querySelector(`#pi-feedback-${projectId}`)) {
+                        section.parentNode.insertBefore(emailContainer, section.nextSibling);
+                    }
+                });
             }
             
             // Clear textarea
@@ -318,6 +406,7 @@ function setupArchiveInteractions() {
         });
     });
 }
+
 /**
  * Toggle archive item open/closed state
  * @param {HTMLElement} headerElement - The header element that was clicked

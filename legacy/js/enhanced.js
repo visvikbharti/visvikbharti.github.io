@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeLazyLoading();
     initializeCitationChart();
     initializeAnimations();
+    initializeConfidenceIntervals(); // Add the new initialization
 });
 
 /**
@@ -286,7 +287,7 @@ function createCitationChart(canvas) {
 function initializeAnimations() {
     // Check if IntersectionObserver is supported
     if ('IntersectionObserver' in window) {
-        const animatedElements = document.querySelectorAll('.section, .publication, .project-card, .feature-card');
+        const animatedElements = document.querySelectorAll('.section, .publication, .project-card, .feature-card, .confidence-feature-item');
         
         if (animatedElements.length > 0) {
             const observer = new IntersectionObserver((entries) => {
@@ -302,5 +303,115 @@ function initializeAnimations() {
                 observer.observe(element);
             });
         }
+    }
+}
+
+/**
+ * Initialize Confidence Intervals Explorer specific functionality
+ */
+function initializeConfidenceIntervals() {
+    // Handle tab navigation if on the confidence intervals page
+    if (document.querySelector('.confidence-feature-grid')) {
+        initializeFeatureHover();
+        initializeMathRendering();
+    }
+    
+    // Add confidence tab to module tabs if on StickForStats page
+    const moduleTabs = document.querySelector('.module-tabs');
+    if (moduleTabs && !document.querySelector('.module-tab[data-module="education"]')) {
+        const educationTab = document.createElement('button');
+        educationTab.className = 'module-tab';
+        educationTab.setAttribute('data-module', 'education');
+        educationTab.textContent = 'Educational Tools';
+        moduleTabs.appendChild(educationTab);
+        
+        // Reinitialize module tabs
+        initializeModuleTabs();
+    }
+}
+
+/**
+ * Add hover effects to feature cards
+ */
+function initializeFeatureHover() {
+    const featureItems = document.querySelectorAll('.confidence-feature-item');
+    
+    featureItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            const icon = this.querySelector('.confidence-feature-icon i');
+            if (icon) {
+                icon.classList.add('fa-bounce');
+            }
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            const icon = this.querySelector('.confidence-feature-icon i');
+            if (icon) {
+                icon.classList.remove('fa-bounce');
+            }
+        });
+    });
+}
+
+/**
+ * Initialize math formula rendering
+ */
+function initializeMathRendering() {
+    // Check if MathJax is already loaded
+    if (typeof MathJax === 'undefined') {
+        // Load MathJax for rendering mathematical formulas
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+        script.async = true;
+        document.head.appendChild(script);
+        
+        // Configure MathJax
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    } else {
+        // If MathJax is already loaded, typeset the page
+        MathJax.typeset();
+    }
+}
+
+/**
+ * Module Tabs Initialization (for StickForStats page)
+ * This function assumes a pre-existing initializeModuleTabs or adds compatibility
+ */
+function initializeModuleTabs() {
+    const moduleTabs = document.querySelectorAll('.module-tab');
+    const modulePanels = document.querySelectorAll('.module-panel');
+    
+    if (moduleTabs.length > 0 && modulePanels.length > 0) {
+        moduleTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                moduleTabs.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Get the module value
+                const module = tab.getAttribute('data-module');
+                
+                // Show the corresponding panel
+                modulePanels.forEach(panel => {
+                    if (panel.getAttribute('data-module') === module) {
+                        panel.classList.add('active');
+                    } else {
+                        panel.classList.remove('active');
+                    }
+                });
+            });
+        });
     }
 }

@@ -1,0 +1,419 @@
+<!-- Weekly Progress Tracker Page with Fixed Navigation -->
+<div class="section">
+    <h2>Weekly Research Progress Tracker</h2>
+    <p>This is my centralized system for tracking research and development progress. I update this weekly to share with my PI and collaborators.</p>
+    
+    <!-- Improved Week Navigation -->
+    <div class="week-selector">
+        <button id="prev-week" class="progress-nav-button" aria-label="Previous week"><i class="fas fa-chevron-left"></i> Previous Week</button>
+        <div class="week-info">
+            <div id="week-display" class="week-display">Week 15, 2025</div>
+            <div id="week-range" class="week-range">April 8 - April 14, 2025</div>
+        </div>
+        <div class="week-buttons">
+            <button id="current-week" class="progress-nav-button" aria-label="Current week">Current Week</button>
+            <button id="next-week" class="progress-nav-button" aria-label="Next week">Next Week <i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+    
+    <div class="two-column-layout">
+        <div class="main-content">
+            <!-- Week content container -->
+            <div id="week-content" class="progress-content active">
+                <!-- Content for Week 15 (Current Week) -->
+                <div id="content-week-15-2025">
+                    <!-- Gene Expression Project Section -->
+                    <div class="progress-section">
+                        <h3><i class="fas fa-dna"></i> Gene Expression Analysis Project</h3>
+                        <p><strong>Project Goal:</strong> Analyze the <strong>477 genes</strong> of interest in single-cell RNA sequencing data from Shin et al. (2020).</p>
+                        
+                        <table class="progress-table">
+                            <thead>
+                                <tr>
+                                    <th width="15%">Date</th>
+                                    <th width="25%">Task</th>
+                                    <th width="60%">Details / Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mon - Wed</td>
+                                    <td>SRA Download & Inspection on HPC</td>
+                                    <td>
+                                        <p>Successfully downloaded <strong>SRR12554204</strong>, <strong>SRR12554205</strong>, and <strong>SRR12554206</strong> from NCBI SRA using SLURM-based jobs on IGIB HPC.</p>
+                                        <p>Used <code>head</code>, <code>vdb-dump</code>, and <code>zcat</code> to inspect file structure. Confirmed all files contain only <strong>8bp UMI/barcode reads</strong>.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Thu - Fri</td>
+                                    <td>Script Optimization and Retry</td>
+                                    <td>
+                                        <p>Tested multiple script variations to validate FASTQ formatting. Used <code>fasterq-dump</code> with:</p>
+                                        <pre><code>fasterq-dump SRR12554204 --split-files --threads 8 --progress</code></pre>
+                                        <p>Also tried <code>--split-3</code> and <code>--log-level fatal</code> to suppress noise. Same 8bp structure confirmed. Gzipped outputs for storage.</p>
+                                        <p>Created final clean directory <code>sc_data_final/</code> to store optimized output: 2.3GB <code>SRR12554204_1.fastq.gz</code>.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sat - Sun</td>
+                                    <td>Verified Limitation + Contact Plan</td>
+                                    <td>
+                                        <p>Determined that these raw SRA FASTQs are not usable for expression quantification (no transcriptome reads).</p>
+                                        <p>Drafted email to authors of Shin et al. (2020) requesting access to either:</p>
+                                        <ul>
+                                            <li><code>filtered_feature_bc_matrix.h5</code></li>
+                                            <li>or Seurat <code>.rds</code> objects</li>
+                                        </ul>
+                                        <p>Will CC PI in this request for transparency.</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="progress-challenges editable-section">
+                            <h4><i class="fas fa-exclamation-triangle"></i> Challenges:</h4>
+                            <div contenteditable="true" class="editable-content" data-storage-key="week15-challenges-genexp">
+                                <ul>
+                                    <li>Raw SRA data contains only 8bp UMI/barcode sequences; no usable gene expression reads found.</li>
+                                    <li>Unable to proceed with <code>cellranger count</code> or Seurat/Scanpy without transcript reads or processed matrices.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-next-steps editable-section">
+                            <h4><i class="fas fa-arrow-right"></i> Next Steps:</h4>
+                            <div contenteditable="true" class="editable-content" data-storage-key="week15-nextsteps-genexp">
+                                <ul>
+                                    <li>Send email to Shin et al. (2020) authors requesting processed expression matrices or Seurat objects.</li>
+                                    <li><strong>Pause downstream analysis</strong> until full raw data or processed matrices are available.</li>
+                                    <li>In parallel: prepare gene list file and metadata template for rapid downstream integration post response.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="pi-feedback-section">
+                            <h4><i class="fas fa-comments"></i> PI Feedback:</h4>
+                            <div class="feedback-container">
+                                <div id="previous-feedback-genexp" class="previous-feedback">
+                                    <!-- Previous feedback will be loaded here -->
+                                </div>
+                                <div class="new-feedback-input">
+                                    <textarea id="pi-feedback-genexp" placeholder="Dr. Debojyoti Chakraborty Sir: Add your feedback or comments here..." class="pi-feedback-textarea"></textarea>
+                                    <div class="feedback-actions">
+                                        <select id="pi-feedback-status-genexp" class="pi-status-select">
+                                            <option value="approved">Approve Direction</option>
+                                            <option value="changes">Request Changes</option>
+                                            <option value="question">Ask Question</option>
+                                        </select>
+                                        <button class="save-feedback-btn" data-project="genexp"><i class="fas fa-save"></i> Save Feedback</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- StickForStats Development Section -->
+                    <div class="progress-section">
+                        <h3><i class="fas fa-chart-bar"></i> StickForStats Development</h3>
+                        <p><strong>Project Goal:</strong> Develop advanced statistical analysis tools for researchers with minimal statistical background.</p>
+                        
+                        <table class="progress-table">
+                            <thead>
+                                <tr>
+                                    <th width="20%">Module</th>
+                                    <th width="15%">Progress</th>
+                                    <th width="65%">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Confidence Intervals Explorer</td>
+                                    <td><div class="progress-bar" style="--progress: 100%;">100%</div></td>
+                                    <td>
+                                        <p>Completed and deployed a new educational app for exploring confidence intervals: <a href="https://visvikbharti-confidence-intervals-explorer.streamlit.app/" target="_blank">Live App</a>.</p>
+                                        <p>Working on LaTeX rendering issues and improving dark/light theme responsiveness.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Statistical Tests Module</td>
+                                    <td><div class="progress-bar" style="--progress: 80%;">80%</div></td>
+                                    <td>
+                                        <p>Further improvements ongoing — working on test recommendations logic and styling issues.</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="demo-links">
+                            <p><strong>Module Demos:</strong></p>
+                            <div class="link-badges">
+                                <a href="https://visvikbharti-confidence-intervals-explorer.streamlit.app/" target="_blank" class="demo-badge">
+                                    <i class="fas fa-chart-line"></i> Confidence Intervals Explorer
+                                </a>
+                                <a href="https://visvikbharti-pca-tool.streamlit.app/" target="_blank" class="demo-badge">
+                                    <i class="fas fa-chart-pie"></i> PCA Tool App
+                                </a>
+                                <a href="https://visvikbharti-probability-distributions-tool.streamlit.app/" target="_blank" class="demo-badge">
+                                    <i class="fas fa-calculator"></i> Probability Distributions Tool App
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="pi-feedback-section">
+                            <h4><i class="fas fa-comments"></i> PI Feedback:</h4>
+                            <div class="feedback-container">
+                                <div id="previous-feedback-stickforstats" class="previous-feedback">
+                                    <!-- Previous feedback will be loaded here -->
+                                </div>
+                                <div class="new-feedback-input">
+                                    <textarea id="pi-feedback-stickforstats" placeholder="Dr. Debojyoti Chakraborty Sir: Add your feedback or comments here..." class="pi-feedback-textarea"></textarea>
+                                    <div class="feedback-actions">
+                                        <select id="pi-feedback-status-stickforstats" class="pi-status-select">
+                                            <option value="approved">Approve Direction</option>
+                                            <option value="changes">Request Changes</option>
+                                            <option value="question">Ask Question</option>
+                                        </select>
+                                        <button class="save-feedback-btn" data-project="stickforstats"><i class="fas fa-save"></i> Save Feedback</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="weekly-summary editable-section">
+                        <h3><i class="fas fa-flag"></i> Weekly Summary</h3>
+                        <div contenteditable="true" class="editable-content" data-storage-key="week15-summary">
+                            <p>This week focused on two main areas: (1) analyzing the SRA data from Shin et al. (2020) and discovering its limitations, and (2) completing the Confidence Intervals Explorer module for the StickForStats platform.</p>
+                            <p>The major challenge was discovering that the SRA data contains only barcode sequences and not the actual gene expression reads. I've planned to contact the study authors to request the processed data matrices to continue the analysis.</p>
+                            <p>On the StickForStats front, I've made substantial progress with the Confidence Intervals Explorer module now live. I'm continuing to improve the Statistical Tests module, with a target of 100% completion by next week.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Content for Week 14 (hidden by default) -->
+                <div id="content-week-14-2025" style="display: none;">
+                    <div class="progress-section">
+                        <h3><i class="fas fa-dna"></i> Gene Expression Analysis Project</h3>
+                        <p><strong>Project Goal:</strong> Analyze the <strong>477 genes</strong> of interest in single-cell RNA sequencing data from Shin et al. (2020).</p>
+                        
+                        <table class="progress-table">
+                            <thead>
+                                <tr>
+                                    <th width="15%">Date</th>
+                                    <th width="25%">Task</th>
+                                    <th width="60%">Details / Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mon - Thu</td>
+                                    <td>Reading Paper & Creating Pipeline</td>
+                                    <td>
+                                        <p>Thoroughly read the Shin et al. (2020) paper and outlined a data analysis pipeline.</p>
+                                        <p>Drafted an HTML workflow for single-cell data analysis steps.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Fri</td>
+                                    <td>SRA Toolkit Setup</td>
+                                    <td>
+                                        <p>Installed <code>sratoolkit</code> via Homebrew to handle large SRA downloads.</p>
+                                        <p>Tried downloading the data on my local system (MAC M1) as well as on my external HDD, but encountered connection issues (weak internet).</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sat - Sun</td>
+                                    <td>Attempted SRA Downloads</td>
+                                    <td>
+                                        <p>Tried downloading <strong>SRR12554204</strong> (∼22.5 GB) and others <strong>SRR12554205</strong>, and <strong>SRR12554206</strong> (additional ∼48 GB).</p>
+                                        <p>Encountered institute-wide Wi-Fi downtime; cannot fully download large files via mobile hotspot.</p>
+                                        <p>Verified partial attempts, but postponed full downloads until Wi-Fi is restored.</p>
+                                        <p>Plan to move downloads & processing to HPC <strong>once HPC access is stable</strong>.</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="progress-challenges">
+                            <h4><i class="fas fa-exclamation-triangle"></i> Challenges:</h4>
+                            <ul>
+                                <li>Institute Wi-Fi downtime - still not resolved</li>
+                                <li>Large file sizes make downloads impractical on mobile hotspot</li>
+                                <li>HPC access needs to be renewed</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="progress-next-steps">
+                            <h4><i class="fas fa-arrow-right"></i> Next Steps:</h4>
+                            <ul>
+                                <li>Follow up on Wi-Fi restoration timeline</li>
+                                <li>Renew HPC access credentials</li>
+                                <li>Try alternative data sources or request processed data matrices from authors</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Content for Week 13 (hidden by default) -->
+                <div id="content-week-13-2025" style="display: none;">
+                    <div class="progress-section">
+                        <h3><i class="fas fa-book"></i> Project Planning and Literature Review</h3>
+                        <p>Week focused on literature review and project planning for the gene expression analysis.</p>
+                        
+                        <table class="progress-table">
+                            <thead>
+                                <tr>
+                                    <th width="15%">Date</th>
+                                    <th width="25%">Task</th>
+                                    <th width="60%">Details / Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mon - Wed</td>
+                                    <td>Literature Review</td>
+                                    <td>
+                                        <p>Reviewed key papers on single-cell RNA sequencing analysis including Shin et al. (2020).</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Thu - Fri</td>
+                                    <td>Dataset Selection</td>
+                                    <td>
+                                        <p>Identified potential datasets for analysis and repository information.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sat - Sun</td>
+                                    <td>Analysis Planning</td>
+                                    <td>
+                                        <p>Drafted comprehensive analysis workflow for the project.</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sidebar">
+            <!-- Illustration -->
+            <img src="img/progress-tracker-illustration.jpg" class="sidebar-image" alt="Research Progress Tracker">
+            
+            <!-- Development Plan -->
+            <div class="project-section">
+                <h3><i class="fas fa-tasks"></i> Development Plan</h3>
+                
+                <div class="timeline-item">
+                    <div class="timeline-title">Short-term Goals (April-May 2025)</div>
+                    <ul>
+                        <li>Complete educational modules</li>
+                        <li>Develop test recommendation system</li>
+                        <li>Create integration framework</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-title">Medium-term Goals (June-Sep 2025)</div>
+                    <ul>
+                        <li>Integrate all core modules</li>
+                        <li>Implement user authentication</li>
+                        <li>Beta test with researchers</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-title">Long-term Vision (Oct 2025+)</div>
+                    <ul>
+                        <li>Add genomics modules</li>
+                        <li>Develop collaborative features</li>
+                        <li>Create educational resources</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Previous Reports -->
+            <div class="project-section">
+                <h3><i class="fas fa-history"></i> Previous Reports</h3>
+                
+                <div class="archive-list">
+                    <div class="archive-item" data-week="14" data-year="2025">
+                        <div class="archive-header">
+                            <div class="archive-title">Week 14, 2025 (April 1 - April 7)</div>
+                            <i class="fas fa-chevron-down archive-toggle"></i>
+                        </div>
+                        <div class="archive-content">
+                            <p><strong>Focus:</strong> SRA toolkit setup and initial download attempts</p>
+                            <p><strong>Key accomplishments:</strong></p>
+                            <ul>
+                                <li>Read Shin et al. (2020) paper</li>
+                                <li>Created analysis pipeline outline</li>
+                                <li>Started data retrieval process</li>
+                            </ul>
+                            <button class="view-report-btn nav-button" data-week="14" data-year="2025">View Full Report</button>
+                        </div>
+                    </div>
+                    
+                    <div class="archive-item" data-week="13" data-year="2025">
+                        <div class="archive-header">
+                            <div class="archive-title">Week 13, 2025 (Mar 24 - Mar 31)</div>
+                            <i class="fas fa-chevron-down archive-toggle"></i>
+                        </div>
+                        <div class="archive-content">
+                            <p><strong>Focus:</strong> Project planning and literature review</p>
+                            <p><strong>Key accomplishments:</strong></p>
+                            <ul>
+                                <li>Reviewed 5 key papers</li>
+                                <li>Identified potential datasets</li>
+                                <li>Drafted analysis workflow</li>
+                            </ul>
+                            <button class="view-report-btn nav-button" data-week="13" data-year="2025">View Full Report</button>
+                        </div>
+                    </div>
+                    
+                    <div class="archive-item" data-week="12" data-year="2025">
+                        <div class="archive-header">
+                            <div class="archive-title">Week 12, 2025 (Mar 17 - Mar 23)</div>
+                            <i class="fas fa-chevron-down archive-toggle"></i>
+                        </div>
+                        <div class="archive-content">
+                            <p><strong>Focus:</strong> StickForStats initial planning</p>
+                            <button class="view-report-btn nav-button" data-week="12" data-year="2025">View Full Report</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Special content for archive weeks - hidden but accessible by JS -->
+<div id="archive-week-14-2025" style="display: none;">
+    <div class="progress-section">
+        <h3>Week 14, 2025 (April 1 - April 7)</h3>
+        <p>This week focused on setting up the SRA toolkit and initial exploration of the Shin et al. (2020) dataset.</p>
+        
+        <div class="progress-section">
+            <h4>Key Accomplishments:</h4>
+            <ul>
+                <li>Thoroughly read and analyzed the Shin et al. (2020) paper</li>
+                <li>Installed SRA toolkit and prepared for data downloads</li>
+                <li>Drafted the analysis pipeline for processing the single-cell RNA-seq data</li>
+                <li>Encountered institute-wide Wi-Fi issues which limited download progress</li>
+            </ul>
+        </div>
+        
+        <div class="progress-section">
+            <h4>Next Steps:</h4>
+            <ul>
+                <li>Follow up on Wi-Fi restoration timeline</li>
+                <li>Attempt downloads using HPC infrastructure</li>
+                <li>Prepare analysis scripts for the downloaded data</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Load the weekly progress script at the end of the file -->
+<script src="js/weekly-navigation-fix.js"></script>

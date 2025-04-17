@@ -1,0 +1,25 @@
+/* Color system */
+:root {
+    --clr-bg-dark: #141414;
+    --clr-bg-light: #f5f5f5;
+    --clr-purple: #a878ff;
+    --clr-pink:   #ff56c8;
+    --clr-neon:   #00e38c;
+    --clr-gray-300:#c4c4c4;
+  
+    /* Typography scale (fluid between 320‑1440 px) */
+    --fs-xl: clamp(3rem, 6vw + 1rem, 9rem);
+    --fs-lg: clamp(2.25rem, 4vw + 1rem, 6rem);
+    --fs-md: clamp(1.125rem, 1.2vw + .8rem, 2rem);
+    --fs-sm: 0.875rem;
+  
+    --fw-regular: 400;
+    --fw-bold: 600;
+  }
+  
+  /* Dark‑mode toggle later if desired */
+  [data-theme="dark"] {
+    --clr-bg-dark: #000;
+    --clr-bg-light:#fff;
+  }
+  

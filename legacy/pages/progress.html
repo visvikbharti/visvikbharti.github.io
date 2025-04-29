@@ -7,6 +7,63 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/progress-login.css">
+    <!-- Add custom CSS for report download button -->
+    <style>
+        .download-report {
+            margin: 1.5rem 0;
+            padding: 1.2rem;
+            background-color: rgba(25, 118, 210, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid #1976d2;
+        }
+
+        .report-download-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            background-color: #1976d2;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0.5rem 0;
+            transition: background-color 0.2s;
+        }
+
+        .report-download-btn:hover {
+            background-color: #1565c0;
+            text-decoration: none;
+        }
+
+        .report-download-btn i {
+            margin-right: 0.5rem;
+        }
+
+        .report-description {
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            color: #666;
+            max-width: 80%;
+        }
+
+        /* Dark mode styles */
+        .dark-mode .download-report {
+            background-color: rgba(66, 165, 245, 0.1);
+            border-left: 4px solid #42a5f5;
+        }
+
+        .dark-mode .report-download-btn {
+            background-color: #42a5f5;
+        }
+
+        .dark-mode .report-download-btn:hover {
+            background-color: #2196f3;
+        }
+
+        .dark-mode .report-description {
+            color: #aaa;
+        }
+    </style>
 </head>
 <body>
 <script src="../js/progress-protection.js"></script>
@@ -19,8 +76,8 @@
     <div class="week-selector">
         <button id="prev-week" class="progress-nav-button" aria-label="Previous week"><i class="fas fa-chevron-left"></i> Previous Week</button>
         <div class="week-info">
-            <div id="week-display" class="week-display">Week 16, 2025</div>
-            <div id="week-range" class="week-range">April 15 - April 21, 2025</div>
+            <div id="week-display" class="week-display">Week 17, 2025</div>
+            <div id="week-range" class="week-range">April 22 - April 28, 2025</div>
         </div>
         <div class="week-buttons">
             <button id="current-week" class="progress-nav-button" aria-label="Current week">Current Week</button>
@@ -32,8 +89,212 @@
         <div class="main-content">
             <!-- Week content container -->
             <div id="week-content" class="progress-content active">
-                <!-- Content for Week 16 (Current Week) -->
-                <div id="content-week-16-2025">
+                <!-- Content for Week 17 (Current Week - April 22 to April 28, 2025) -->
+                <div id="content-week-17-2025">
+                    <!-- Muscle HDR-scRNA Analysis Pipeline Section -->
+                    <div class="progress-section">
+                        <h3><i class="fas fa-dna"></i> Muscle HDR-scRNA Analysis Pipeline</h3>
+                        <p><strong>Project Goal:</strong> Develop a computational pipeline for analyzing single-cell RNA sequencing data from muscle tissue, with a focus on Homology-Directed Repair (HDR) gene expression patterns across different cell populations.</p>
+                        
+                        <table class="progress-table">
+                            <thead>
+                                <tr>
+                                    <th width="15%">Date</th>
+                                    <th width="25%">Task</th>
+                                    <th width="60%">Details / Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mon - Wed</td>
+                                    <td>Pipeline Development & Debugging</td>
+                                    <td>
+                                        <p>Completed Snakemake workflow implementation with modular rule structure.</p>
+                                        <p>Fixed integration issues between Harmony and scVI modules.</p>
+                                        <p>Optimized ortholog mapping utility for cross-species analysis.</p>
+                                        <p>Implemented comprehensive error handling in processing scripts.</p>
+                                        <p>Added detailed logging for all pipeline stages.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Thu - Fri</td>
+                                    <td>Streamlit App Development</td>
+                                    <td>
+                                        <p>Developed comprehensive interactive dashboard for analyzing HDR gene expression.</p>
+                                        <p>Implemented UMAP visualization with multiple coloring options.</p>
+                                        <p>Created specialized HDR gene expression analysis modules.</p>
+                                        <p>Added cell type annotation functionality using marker genes.</p>
+                                        <p>Implemented quality control visualization components.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sat - Sun</td>
+                                    <td>Testing & Documentation</td>
+                                    <td>
+                                        <p>Conducted end-to-end testing with human (GSE130646) and mouse (GSE138707) datasets.</p>
+                                        <p>Identified and documented issues in the Streamlit app.</p>
+                                        <p>Created comprehensive README with installation and usage instructions.</p>
+                                        <p>Prepared HPC deployment scripts for SLURM.</p>
+                                        <p>Created detailed documentation of pipeline parameters and configuration options.</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="progress-challenges editable-section">
+                            <h4><i class="fas fa-exclamation-triangle"></i> Challenges:</h4>
+                            <div contenteditable="true" class="editable-content" data-storage-key="week17-challenges-muscle-hdr">
+                                <ul>
+                                    <li>HDR Gene Differential Expression visualization shows KeyError related to Pandas styling with non-unique indices.</li>
+                                    <li>Cell type annotation feature doesn't show results for Mouse data (GSE138707).</li>
+                                    <li>Mitochondrial content visualization appears empty for Mouse data due to different gene nomenclature.</li>
+                                    <li>Cross-species integration required careful handling of gene nomenclature differences.</li>
+                                    <li>Memory optimization needed for large datasets on resource-constrained environments.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-next-steps editable-section">
+                            <h4><i class="fas fa-arrow-right"></i> Next Steps:</h4>
+                            <div contenteditable="true" class="editable-content" data-storage-key="week17-nextsteps-muscle-hdr">
+                                <ul>
+                                    <li>Implement fixes for identified Streamlit app issues with robust error handling.</li>
+                                    <li>Enhance cell type annotation with species-specific marker genes.</li>
+                                    <li>Add comprehensive help text and interpretation guidance in the dashboard.</li>
+                                    <li>Create additional preprocessing options for different input data formats.</li>
+                                    <li>Implement feature for comparative analysis between human and mouse datasets.</li>
+                                    <li>Add RNA velocity analysis for trajectory inference.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="download-report">
+                            <h4><i class="fas fa-file-pdf"></i> Detailed Technical Report:</h4>
+                            <a href="#" class="report-download-btn" data-project="muscle-hdr-scrna" data-section="content-week-17-2025">
+                                <i class="fas fa-download"></i> Download Complete Project Report (PDF)
+                            </a>
+                            <p class="report-description">A comprehensive technical report containing detailed analysis, code snippets, implementation details, and troubleshooting guidance for the Muscle HDR-scRNA pipeline.</p>
+                        </div>
+                        
+                        <div class="pi-feedback-section">
+                            <h4><i class="fas fa-comments"></i> PI Feedback:</h4>
+                            <div class="feedback-container">
+                                <div id="previous-feedback-muscle-hdr" class="previous-feedback">
+                                    <!-- Previous feedback will be loaded here -->
+                                </div>
+                                <div class="new-feedback-input">
+                                    <textarea id="pi-feedback-muscle-hdr" placeholder="Dr. Debojyoti Chakraborty Sir: Add your feedback or comments here..." class="pi-feedback-textarea"></textarea>
+                                    <div class="feedback-actions">
+                                        <select id="pi-feedback-status-muscle-hdr" class="pi-status-select">
+                                            <option value="approved">Approve Direction</option>
+                                            <option value="changes">Request Changes</option>
+                                            <option value="question">Ask Question</option>
+                                        </select>
+                                        <button class="save-feedback-btn" data-project="muscle-hdr"><i class="fas fa-save"></i> Save Feedback</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- StickForStats Integration Section -->
+                    <div class="progress-section">
+                        <h3><i class="fas fa-chart-bar"></i> StickForStats Integration</h3>
+                        <p><strong>Project Goal:</strong> Integrate biological data analysis tools with the broader StickForStats platform.</p>
+                        
+                        <table class="progress-table">
+                            <thead>
+                                <tr>
+                                    <th width="15%">Component</th>
+                                    <th width="15%">Progress</th>
+                                    <th width="70%">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Data Structure</td>
+                                    <td><div class="progress-bar" style="--progress: 75%;">75%</div></td>
+                                    <td>
+                                        <p>Created consistent data structure for single-cell expression matrices.</p>
+                                        <p>Implemented data format conversion utilities between AnnData and standard formats.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Visualization</td>
+                                    <td><div class="progress-bar" style="--progress: 80%;">80%</div></td>
+                                    <td>
+                                        <p>Developed unified visualization components for gene expression data.</p>
+                                        <p>Implemented consistent color schemes for cell type and gene expression visualization.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Analysis Tools</td>
+                                    <td><div class="progress-bar" style="--progress: 60%;">60%</div></td>
+                                    <td>
+                                        <p>Developed core analysis modules for gene expression statistics.</p>
+                                        <p>Integrated differential expression analysis with the statistical testing framework.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Documentation</td>
+                                    <td><div class="progress-bar" style="--progress: 40%;">40%</div></td>
+                                    <td>
+                                        <p>Started documentation for API integration with StickForStats.</p>
+                                        <p>Created initial user guides for the Muscle HDR-scRNA module.</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="demo-links">
+                            <p><strong>Related Modules:</strong></p>
+                            <div class="link-badges">
+                                <a href="#" target="_blank" class="demo-badge">
+                                    <i class="fas fa-dna"></i> Muscle HDR-scRNA Analysis
+                                </a>
+                                <a href="https://visvikbharti-biotech-doe-suite.streamlit.app/" target="_blank" class="demo-badge">
+                                    <i class="fas fa-flask"></i> Biotech DOE Mastery Suite
+                                </a>
+                                <a href="https://visvikbharti-confidence-intervals-explorer.streamlit.app/" target="_blank" class="demo-badge">
+                                    <i class="fas fa-chart-line"></i> Confidence Intervals Explorer
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="pi-feedback-section">
+                            <h4><i class="fas fa-comments"></i> PI Feedback:</h4>
+                            <div class="feedback-container">
+                                <div id="previous-feedback-integration-2" class="previous-feedback">
+                                    <!-- Previous feedback will be loaded here -->
+                                </div>
+                                <div class="new-feedback-input">
+                                    <textarea id="pi-feedback-integration-2" placeholder="Dr. Debojyoti Chakraborty Sir: Add your feedback or comments here..." class="pi-feedback-textarea"></textarea>
+                                    <div class="feedback-actions">
+                                        <select id="pi-feedback-status-integration-2" class="pi-status-select">
+                                            <option value="approved">Approve Direction</option>
+                                            <option value="changes">Request Changes</option>
+                                            <option value="question">Ask Question</option>
+                                        </select>
+                                        <button class="save-feedback-btn" data-project="integration-2"><i class="fas fa-save"></i> Save Feedback</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="weekly-summary editable-section">
+                        <h3><i class="fas fa-flag"></i> Weekly Summary</h3>
+                        <div contenteditable="true" class="editable-content" data-storage-key="week17-summary">
+                            <p>This week focused on developing a computational pipeline for analyzing single-cell RNA sequencing data from muscle tissue, with particular emphasis on Homology-Directed Repair (HDR) gene expression patterns. The pipeline successfully integrates data processing, cross-species integration, and interactive visualization components.</p>
+                            <p>The Snakemake workflow implementation allows for reproducible analysis with configurable parameters. Key features include automated quality control, cluster identification, cell type annotation, and focused analysis of 477 HDR-related genes. The cross-species integration capabilities enable comparison between human and mouse datasets through automated ortholog mapping.</p>
+                            <p>The interactive Streamlit dashboard provides an intuitive interface for exploring the analysis results, with specialized visualizations for HDR gene expression patterns. Several issues were identified during testing, including differential expression visualization errors and species-specific cell type annotation challenges. Solutions have been developed and will be implemented in the next development cycle.</p>
+                            <p>Next week will focus on fixing the identified dashboard issues, enhancing the visualization components, and adding comprehensive help text for interpretation guidance. Additionally, work will begin on implementing RNA velocity analysis for trajectory inference and creating comparative analysis features for human and mouse datasets.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Content for Week 16 (Previous Week) -->
+                <div id="content-week-16-2025" style="display: none;">
                     <!-- Biotech DOE Mastery Suite Section -->
                     <div class="progress-section">
                         <h3><i class="fas fa-flask"></i> Biotech DOE Mastery Suite</h3>
@@ -229,7 +490,7 @@
                     </div>
                 </div>
                 
-                <!-- Content for Week 15 (Previous Week) -->
+                <!-- Content for Week 15 (hidden by default) -->
                 <div id="content-week-15-2025" style="display: none;">
                     <!-- Gene Expression Analysis Project Section -->
                     <div class="progress-section">
@@ -352,111 +613,6 @@
                         <p>On the StickForStats front, I've made substantial progress with the Confidence Intervals Explorer module now live. I'm continuing to improve the Statistical Tests module, with a target of 100% completion by next week.</p>
                     </div>
                 </div>
-                
-                <!-- Content for Week 14 (hidden by default) -->
-                <div id="content-week-14-2025" style="display: none;">
-                    <div class="progress-section">
-                        <h3><i class="fas fa-dna"></i> Gene Expression Analysis Project</h3>
-                        <p><strong>Project Goal:</strong> Analyze the <strong>477 genes</strong> of interest in single-cell RNA sequencing data from Shin et al. (2020).</p>
-                        
-                        <table class="progress-table">
-                            <thead>
-                                <tr>
-                                    <th width="15%">Date</th>
-                                    <th width="25%">Task</th>
-                                    <th width="60%">Details / Notes</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Mon - Thu</td>
-                                    <td>Reading Paper & Creating Pipeline</td>
-                                    <td>
-                                        <p>Thoroughly read the Shin et al. (2020) paper and outlined a data analysis pipeline.</p>
-                                        <p>Drafted an HTML workflow for single-cell data analysis steps.</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Fri</td>
-                                    <td>SRA Toolkit Setup</td>
-                                    <td>
-                                        <p>Installed <code>sratoolkit</code> via Homebrew to handle large SRA downloads.</p>
-                                        <p>Tried downloading the data on my local system (MAC M1) as well as on my external HDD, but encountered connection issues (weak internet).</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Sat - Sun</td>
-                                    <td>Attempted SRA Downloads</td>
-                                    <td>
-                                        <p>Tried downloading <strong>SRR12554204</strong> (∼22.5 GB) and others <strong>SRR12554205</strong>, and <strong>SRR12554206</strong> (additional ∼48 GB).</p>
-                                        <p>Encountered institute-wide Wi-Fi downtime; cannot fully download large files via mobile hotspot.</p>
-                                        <p>Verified partial attempts, but postponed full downloads until Wi-Fi is restored.</p>
-                                        <p>Plan to move downloads & processing to HPC <strong>once HPC access is stable</strong>.</p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        
-                        <div class="progress-challenges">
-                            <h4><i class="fas fa-exclamation-triangle"></i> Challenges:</h4>
-                            <ul>
-                                <li>Institute Wi-Fi downtime - still not resolved</li>
-                                <li>Large file sizes make downloads impractical on mobile hotspot</li>
-                                <li>HPC access needs to be renewed</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="progress-next-steps">
-                            <h4><i class="fas fa-arrow-right"></i> Next Steps:</h4>
-                            <ul>
-                                <li>Follow up on Wi-Fi restoration timeline</li>
-                                <li>Renew HPC access credentials</li>
-                                <li>Try alternative data sources or request processed data matrices from authors</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Content for Week 13 (hidden by default) -->
-                <div id="content-week-13-2025" style="display: none;">
-                    <div class="progress-section">
-                        <h3><i class="fas fa-book"></i> Project Planning and Literature Review</h3>
-                        <p>Week focused on literature review and project planning for the gene expression analysis.</p>
-                        
-                        <table class="progress-table">
-                            <thead>
-                                <tr>
-                                    <th width="15%">Date</th>
-                                    <th width="25%">Task</th>
-                                    <th width="60%">Details / Notes</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Mon - Wed</td>
-                                    <td>Literature Review</td>
-                                    <td>
-                                        <p>Reviewed key papers on single-cell RNA sequencing analysis including Shin et al. (2020).</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Thu - Fri</td>
-                                    <td>Dataset Selection</td>
-                                    <td>
-                                        <p>Identified potential datasets for analysis and repository information.</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Sat - Sun</td>
-                                    <td>Analysis Planning</td>
-                                    <td>
-                                        <p>Drafted comprehensive analysis workflow for the project.</p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
             </div>
         </div>
         
@@ -469,31 +625,31 @@
                 <h3><i class="fas fa-tasks"></i> Development Plan</h3>
                 
                 <div class="timeline-item">
-                    <div class="timeline-title">Short-term Goals (April 2025)</div>
+                    <div class="timeline-title">Short-term Goals (April-May 2025)</div>
                     <ul>
-                        <li>Complete Biotech DOE Mastery Suite deployment</li>
-                        <li>Develop test recommendation system</li>
-                        <li>Create integration framework</li>
-                        <li>Complete Statistical Quality Control (SQC) module</li>
+                        <li>Fix Streamlit dashboard issues in Muscle HDR-scRNA</li>
+                        <li>Enhance cross-species gene expression analysis</li>
+                        <li>Complete species-aware cell type annotation</li>
+                        <li>Develop RNA velocity analysis module</li>
                     </ul>
                 </div>
                 
                 <div class="timeline-item">
                     <div class="timeline-title">Medium-term Goals (May-June 2025)</div>
                     <ul>
-                        <li>Integrate all core modules</li>
-                        <li>Implement user authentication</li>
-                        <li>Beta test with researchers</li>
-                        <li>Research paper publication (ResearchSquare/biorxiv)</li>
+                        <li>Integrate with StickForStats platform</li>
+                        <li>Add advanced visualization components</li>
+                        <li>Implement differential expression analysis</li>
+                        <li>Prepare manuscript for publication</li>
                     </ul>
                 </div>
                 
                 <div class="timeline-item">
-                    <div class="timeline-title">Long-term Vision (Aug 2025+)</div>
+                    <div class="timeline-title">Long-term Vision (July 2025+)</div>
                     <ul>
-                        <li>Add genomics modules</li>
-                        <li>Develop collaborative features</li>
-                        <li>Create educational resources</li>
+                        <li>Extend to additional tissue types</li>
+                        <li>Develop regulatory network analysis</li>
+                        <li>Create educational tools for teaching</li>
                     </ul>
                 </div>
             </div>
@@ -503,6 +659,23 @@
                 <h3><i class="fas fa-history"></i> Previous Reports</h3>
                 
                 <div class="archive-list">
+                    <div class="archive-item" data-week="16" data-year="2025">
+                        <div class="archive-header">
+                            <div class="archive-title">Week 16, 2025 (April 15 - April 21)</div>
+                            <i class="fas fa-chevron-down archive-toggle"></i>
+                        </div>
+                        <div class="archive-content">
+                            <p><strong>Focus:</strong> Biotech DOE Mastery Suite development</p>
+                            <p><strong>Key accomplishments:</strong></p>
+                            <ul>
+                                <li>Built comprehensive DOE educational platform</li>
+                                <li>Created interactive design matrix generator</li>
+                                <li>Developed experimental design planning tool</li>
+                            </ul>
+                            <button class="view-report-btn nav-button" data-week="16" data-year="2025">View Full Report</button>
+                        </div>
+                    </div>
+                    
                     <div class="archive-item" data-week="15" data-year="2025">
                         <div class="archive-header">
                             <div class="archive-title">Week 15, 2025 (April 8 - April 14)</div>
@@ -520,9 +693,7 @@
                         </div>
                     </div>
                     
-                    <div class="archive-item" data-week="14" data-year="2025">
-                        <div class="archive-header">
-                            <div class="archive-title">Week 14, 2025 (April 1 - April 7)</div>
+                    <div class="archive-title">Week 14, 2025 (April 1 - April 7)</div>
                             <i class="fas fa-chevron-down archive-toggle"></i>
                         </div>
                         <div class="archive-content">
@@ -553,17 +724,6 @@
                             <button class="view-report-btn nav-button" data-week="13" data-year="2025">View Full Report</button>
                         </div>
                     </div>
-                    
-                    <div class="archive-item" data-week="12" data-year="2025">
-                        <div class="archive-header">
-                            <div class="archive-title">Week 12, 2025 (Mar 17 - Mar 23)</div>
-                            <i class="fas fa-chevron-down archive-toggle"></i>
-                        </div>
-                        <div class="archive-content">
-                            <p><strong>Focus:</strong> StickForStats initial planning</p>
-                            <button class="view-report-btn nav-button" data-week="12" data-year="2025">View Full Report</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -574,6 +734,128 @@
 <button class="dark-mode-toggle" id="dark-mode-toggle" aria-label="Toggle dark mode">
     <i class="fas fa-moon"></i>
 </button>
+
+<!-- Load html2pdf.js for PDF generation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<!-- Custom JavaScript for PDF generation -->
+<script>
+// Function to generate PDF from the specified section
+function generatePDF(element, filename) {
+    // Show loading indicator
+    const loadingEl = document.createElement('div');
+    loadingEl.className = 'pdf-loading';
+    loadingEl.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
+    loadingEl.style.position = 'fixed';
+    loadingEl.style.top = '50%';
+    loadingEl.style.left = '50%';
+    loadingEl.style.transform = 'translate(-50%, -50%)';
+    loadingEl.style.padding = '20px';
+    loadingEl.style.background = 'rgba(0,0,0,0.7)';
+    loadingEl.style.color = 'white';
+    loadingEl.style.borderRadius = '5px';
+    loadingEl.style.zIndex = '9999';
+    document.body.appendChild(loadingEl);
+    
+    // Clone the element to avoid modifying the original
+    const clonedElement = element.cloneNode(true);
+    
+    // Remove elements we don't want in the PDF
+    const elementsToRemove = clonedElement.querySelectorAll('.feedback-container, .editable-section button, .pi-feedback-section');
+    elementsToRemove.forEach(el => el.parentNode.removeChild(el));
+    
+    // Make editable content non-editable
+    const editableContent = clonedElement.querySelectorAll('[contenteditable="true"]');
+    editableContent.forEach(el => el.removeAttribute('contenteditable'));
+    
+    // Add a title to the PDF
+    const title = document.createElement('div');
+    title.classList.add('pdf-title');
+    title.innerHTML = `<h1>Muscle HDR-scRNA Analysis Pipeline</h1>
+                       <h2>Weekly Technical Report</h2>
+                       <h3>${getCurrentDateRange()}</h3>
+                       <p>Prepared by: Vishal Bharti</p>
+                       <p>Project Associate-II at IGIB CSIR</p>`;
+    title.style.textAlign = 'center';
+    title.style.marginBottom = '30px';
+    clonedElement.insertBefore(title, clonedElement.firstChild);
+
+    // Configure html2pdf options
+    const opt = {
+        margin: [10, 10, 10, 10],
+        filename: `${filename}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { 
+            scale: 2,
+            useCORS: true,
+            logging: false
+        },
+        jsPDF: { 
+            unit: 'mm', 
+            format: 'a4', 
+            orientation: 'portrait'
+        },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+    };
+
+    // Generate PDF
+    html2pdf().set(opt).from(clonedElement).toPdf().get('pdf').then(function(pdf) {
+        // Add header and footer to each page
+        const totalPages = pdf.internal.getNumberOfPages();
+        for (let i = 1; i <= totalPages; i++) {
+            pdf.setPage(i);
+            // Footer with page number
+            pdf.setFontSize(8);
+            pdf.setTextColor(100);
+            const footerText = `Page ${i} of ${totalPages} - Vishal Bharti - IGIB CSIR`;
+            pdf.text(footerText, pdf.internal.pageSize.getWidth() / 2, pdf.internal.pageSize.getHeight() - 5, {align: 'center'});
+        }
+        return pdf;
+    }).save().then(function() {
+        // Remove loading indicator
+        document.body.removeChild(loadingEl);
+    });
+}
+
+function getCurrentDateRange() {
+    // Get current week info from the page
+    const weekDisplay = document.getElementById('week-display');
+    const weekRange = document.getElementById('week-range');
+    
+    if (weekDisplay && weekRange) {
+        return `${weekDisplay.textContent} (${weekRange.textContent})`;
+    }
+    
+    // Fallback to current date
+    const now = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return now.toLocaleDateString(undefined, options);
+}
+
+// Set up event listeners for PDF generation
+document.addEventListener('DOMContentLoaded', function() {
+    const downloadButtons = document.querySelectorAll('.report-download-btn');
+    
+    downloadButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const projectId = this.getAttribute('data-project') || 'muscle-hdr-scrna';
+            const sectionId = this.getAttribute('data-section') || 'content-week-17-2025';
+            
+            const section = document.getElementById(sectionId) || 
+                           this.closest('.progress-section') || 
+                           document.querySelector('.progress-section');
+            
+            if (section) {
+                generatePDF(section, projectId);
+            } else {
+                console.error('Could not find section to generate PDF from');
+            }
+        });
+    });
+});
+</script>
 
 <!-- Load the weekly progress script at the end of the file -->
 <script src="../js/weekly-navigation-fix.js"></script>

@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize the time allocation chart
     initializeTimeAllocationChart();
+    
+    // Set up PDF generation
+    setupPDFGeneration();
 });
 
 /**
@@ -214,6 +217,9 @@ function displayWeekData(week, year) {
     
     // Update next/prev week buttons state
     updateNavigationButtonsState(week, year);
+    
+    // Re-setup PDF generation after week change
+    setupPDFGeneration();
 }
 
 /**
@@ -249,6 +255,8 @@ function setupFeedbackSystem() {
     // Load previous feedback first
     loadPreviousFeedback('genexp');
     loadPreviousFeedback('stickforstats');
+    loadPreviousFeedback('muscle-hdr');
+    loadPreviousFeedback('integration-2');
     
     const saveButtons = document.querySelectorAll('.save-feedback-btn');
     
@@ -605,3 +613,304 @@ function formatDate(date) {
     const options = { month: 'short', day: 'numeric', year: 'numeric' };
     return date.toLocaleDateString('en-US', options);
 }
+
+/**
+ * Set up PDF generation functionality
+ */
+function setupPDFGeneration() {
+    // Check if html2pdf.js is already loaded
+    if (typeof html2pdf === 'undefined') {
+        // Load html2pdf.js dynamically if not already loaded
+        const scriptExists = document.querySelector('script[src*="html2pdf"]');
+        if (!scriptExists) {
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+            script.async = true;
+            script.onload = () => setupReportGenerationListeners();
+            document.head.appendChild(script);
+        } else {
+            // If script exists but hasn't loaded yet, wait for it
+            setTimeout(setupReportGenerationListeners, 500);
+        }
+    } else {
+        // If html2pdf is already loaded, set up listeners directly
+        setupReportGenerationListeners();
+    }
+}
+
+/**
+ * Set up event listeners for report generation
+ */
+function setupReportGenerationListeners() {
+    // Check if the download buttons exist and add listeners
+    const downloadButtons = document.querySelectorAll('.report-download-btn');
+    
+    downloadButtons.forEach(button => {
+        if (button.getAttribute('data-listener') !== 'true') {
+            button.setAttribute('data-listener', 'true');
+            
+            button.addEventListener('click', function(e) {
+                // Prevent the default download behavior to generate PDF first
+                e.preventDefault();
+                
+                // Get the project identifier from the button's data attribute
+                const projectId = this.getAttribute('data-project') || 'project-report';
+                
+                // Find the relevant section to capture
+                const sectionId = this.getAttribute('data-section') || 
+                               this.closest('.progress-section').id || 
+                               document.querySelector('.progress-content.active').firstElementChild.id;
+                
+                const section = document.getElementById(sectionId) || 
+                              this.closest('.progress-section') || 
+                              document.querySelector('.progress-section');
+                
+                if (section) {
+                    generatePDF(section, projectId);
+                } else {
+                    console.error('Could not find section to generate PDF from');
+                    alert('Error: Could not find the content section to generate PDF. Please try again.');
+                }
+            });
+        }
+    });
+}
+
+/**
+ * Generate PDF from the provided content
+ * @param {HTMLElement} element - HTML element to convert to PDF
+ * @param {string} filename - Name for the PDF file
+ */
+function generatePDF(element, filename) {
+    // Show loading indicator
+    const loadingEl = document.createElement('div');
+    loadingEl.className = 'pdf-loading';
+    loadingEl.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
+    loadingEl.style.position = 'fixed';
+    loadingEl.style.top = '50%';
+    loadingEl.style.left = '50%';
+    loadingEl.style.transform = 'translate(-50%, -50%)';
+    loadingEl.style.padding = '20px';
+    loadingEl.style.background = 'rgba(0,0,0,0.7)';
+    loadingEl.style.color = 'white';
+    loadingEl.style.borderRadius = '5px';
+    loadingEl.style.zIndex = '9999';
+    document.body.appendChild(loadingEl);
+    
+    // Clone the element to avoid modifying the original
+    const clonedElement = element.cloneNode(true);
+    
+    // Remove elements we don't want in the PDF
+    const elementsToRemove = clonedElement.querySelectorAll('.feedback-container, .editable-section button, .pi-feedback-section, .download-report');
+    elementsToRemove.forEach(el => el.parentNode.removeChild(el));
+    
+    // Make editable content non-editable
+    const editableContent = clonedElement.querySelectorAll('[contenteditable="true"]');
+    editableContent.forEach(el => el.removeAttribute('contenteditable'));
+    
+    // Add a title to the PDF
+    const title = document.createElement('div');
+    title.classList.add('pdf-title');
+    title.innerHTML = `<h1>Muscle HDR-scRNA Analysis Pipeline</h1>
+                       <h2>Weekly Technical Report</h2>
+                       <h3>${getCurrentDateRange()}</h3>
+                       <p>Prepared by: Vishal Bharti</p>
+                       <p>Project Associate-II at IGIB CSIR</p>`;
+    title.style.textAlign = 'center';
+    title.style.marginBottom = '30px';
+    clonedElement.insertBefore(title, clonedElement.firstChild);
+    
+    // Add project information
+    const projectInfo = document.createElement('div');
+    projectInfo.classList.add('project-info');
+    projectInfo.innerHTML = `
+        <div style="margin-bottom: 20px; padding: 10px; border-left: 4px solid #1976d2; background-color: #f5f5f5;">
+            <p><strong>Project:</strong> Muscle HDR-scRNA Analysis Pipeline</p>
+            <p><strong>PI:</strong> Dr. Debojyoti Chakraborty</p>
+            <p><strong>Institution:</strong> Institute of Genomics and Integrative Biology (CSIR-IGIB)</p>
+        </div>
+    `;
+    clonedElement.insertBefore(projectInfo, title.nextSibling);
+
+    // Page style for PDF
+    const pageStyle = `
+        @page {
+            margin: 1cm;
+            size: A4;
+        }
+        body {
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.5;
+            color: #333;
+        }
+        .pdf-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .pdf-title h1 {
+            color: #1976d2;
+            margin-bottom: 5px;
+        }
+        .pdf-title h2 {
+            color: #555;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .pdf-title h3 {
+            color: #777;
+            font-weight: normal;
+            margin-top: 0;
+        }
+        .progress-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 10pt;
+        }
+        .progress-table th, .progress-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .progress-table th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        .progress-table td p {
+            margin: 5px 0;
+        }
+        h3 {
+            color: #1976d2;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+            margin-top: 25px;
+        }
+        h4 {
+            color: #2196f3;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        ul {
+            margin-top: 5px;
+        }
+        .project-info {
+            margin-bottom: 20px;
+        }
+    `;
+
+    // Configure html2pdf options
+    const opt = {
+        margin: [15, 15, 20, 15], // top, right, bottom, left
+        filename: `${filename}_report.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { 
+            scale: 2,
+            useCORS: true,
+            logging: false
+        },
+        jsPDF: { 
+            unit: 'mm', 
+            format: 'a4', 
+            orientation: 'portrait'
+        },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+    };
+
+    // Generate PDF
+    html2pdf().set(opt).from(clonedElement).toPdf().get('pdf').then(function(pdf) {
+        // Add header and footer to each page
+        const totalPages = pdf.internal.getNumberOfPages();
+        for (let i = 1; i <= totalPages; i++) {
+            pdf.setPage(i);
+            
+            // Header with logo or text (simplified for now)
+            pdf.setFontSize(8);
+            pdf.setTextColor(100);
+            const headerText = "CSIR-IGIB | Muscle HDR-scRNA Analysis Pipeline";
+            pdf.text(headerText, 15, 10);
+            
+            // Footer with page number
+            pdf.setFontSize(8);
+            pdf.setTextColor(100);
+            const footerText = `Page ${i} of ${totalPages} | Generated on ${new Date().toLocaleDateString()}`;
+            pdf.text(footerText, pdf.internal.pageSize.getWidth() - 15, pdf.internal.pageSize.getHeight() - 10, {align: 'right'});
+            
+            // Add author info to footer
+            const authorText = "Vishal Bharti | Project Associate-II at IGIB CSIR";
+            pdf.text(authorText, 15, pdf.internal.pageSize.getHeight() - 10);
+        }
+        return pdf;
+    }).save().then(function() {
+        // Remove loading indicator
+        document.body.removeChild(loadingEl);
+        
+        // Show success message
+        const successMsg = document.createElement('div');
+        successMsg.className = 'pdf-success';
+        successMsg.innerHTML = '<i class="fas fa-check-circle"></i> PDF generated successfully!';
+        successMsg.style.position = 'fixed';
+        successMsg.style.top = '10%';
+        successMsg.style.left = '50%';
+        successMsg.style.transform = 'translateX(-50%)';
+        successMsg.style.padding = '15px 25px';
+        successMsg.style.background = 'rgba(46, 204, 113, 0.9)';
+        successMsg.style.color = 'white';
+        successMsg.style.borderRadius = '5px';
+        successMsg.style.zIndex = '9999';
+        document.body.appendChild(successMsg);
+        
+        // Remove success message after 3 seconds
+        setTimeout(() => {
+            document.body.removeChild(successMsg);
+        }, 3000);
+    }).catch(function(error) {
+        // Remove loading indicator
+        document.body.removeChild(loadingEl);
+        
+        // Show error message
+        console.error('PDF generation error:', error);
+        alert('Error generating PDF: ' + (error.message || 'Unknown error'));
+    });
+}
+
+/**
+ * Get current date range for reporting
+ * @returns {string} Formatted date range string
+ */
+function getCurrentDateRange() {
+    // Get current week info from the page
+    const weekDisplay = document.getElementById('week-display');
+    const weekRange = document.getElementById('week-range');
+    
+    if (weekDisplay && weekRange) {
+        return `${weekDisplay.textContent} (${weekRange.textContent})`;
+    }
+    
+    // Fallback to current date
+    const now = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return now.toLocaleDateString(undefined, options);
+}
+
+// Setup observer to call setupPDFGeneration when DOM changes
+function setupObserver() {
+    // Options for the observer (which mutations to observe)
+    const config = { childList: true, subtree: true };
+    
+    // Callback function to execute when mutations are observed
+    const callback = function(mutationsList, observer) {
+        for (let mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+                setupPDFGeneration();
+            }
+        }
+    };
+    
+    // Create an observer instance linked to the callback function
+    const observer = new MutationObserver(callback);
+    
+    // Start observing the target node for configured mutations
+    observer.observe(document.querySelector('#week-content') || document.body, config);
+}
+
+// Call the setup observer function on page load
+window.addEventListener('load', setupObserver);

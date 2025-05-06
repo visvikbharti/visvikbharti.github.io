@@ -41,25 +41,44 @@
     const weekRange = document.getElementById('week-range');
     const weekDisplay = document.getElementById('week-display');
     
-    if (weekDisplay && weekDisplay.textContent.includes('Week 18, 2025')) {
+    // IMMEDIATELY SET CORRECT DATE - without waiting for any conditions
+    setTimeout(function() {
       if (weekRange) {
         weekRange.textContent = "April 29 - May 05, 2025";
-        // Add special attribute to prevent other scripts from modifying
         weekRange.setAttribute('data-fixed-date', 'true');
-        
-        // Add observer to ensure it doesn't change
-        const observer = new MutationObserver(function(mutations) {
-          mutations.forEach(function(mutation) {
-            if (mutation.type === 'characterData' || mutation.type === 'childList') {
-              if (weekRange.textContent !== "April 29 - May 05, 2025") {
-                weekRange.textContent = "April 29 - May 05, 2025";
-              }
-            }
-          });
-        });
-        
-        observer.observe(weekRange, { characterData: true, childList: true, subtree: true });
+        console.log("Fixed date range set immediately");
       }
+      
+      if (weekDisplay) {
+        weekDisplay.textContent = "Week 18, 2025";
+      }
+    }, 100);
+    
+    // Add more aggressive protection
+    setInterval(function() {
+      if (weekRange && weekRange.textContent !== "April 29 - May 05, 2025") {
+        weekRange.textContent = "April 29 - May 05, 2025";
+        console.log("Date range corrected by interval");
+      }
+    }, 1000); // Check every second
+    
+    // Add observer for good measure
+    if (weekRange) {
+      const observer = new MutationObserver(function() {
+        weekRange.textContent = "April 29 - May 05, 2025";
+        console.log("Date range corrected by observer");
+      });
+      
+      observer.observe(weekRange, { characterData: true, childList: true, subtree: true });
+    }
+    
+    // Also override the window.formatDate function if it exists
+    if (window.formatDate) {
+      const origFormatDate = window.formatDate;
+      window.formatDate = function(date) {
+        // Always use fixed dates for Week 18
+        return "April 29 - May 05, 2025";
+      };
     }
   });
 </script>

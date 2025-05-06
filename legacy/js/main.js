@@ -50,7 +50,14 @@ function loadTabContent(tabId) {
     // Show loading indicator
     contentContainer.innerHTML = '<div class="loading">Loading content...</div>';
     
-    // Fetch the tab content
+    // Special case for progress tab - redirect to full URL instead of AJAX loading
+    if (tabId === 'progress') {
+        // Use window.location to navigate to the full progress page URL
+        window.location.href = `pages/${tabId}.html?t=${new Date().getTime()}`;
+        return; // Don't continue with AJAX loading
+    }
+    
+    // For all other tabs, fetch via AJAX as usual
     fetch(`pages/${tabId}.html`)
         .then(response => {
             if (!response.ok) {

@@ -1,9 +1,77 @@
 <!-- Weekly Progress Tracker Page with Improved Navigation -->
-<!-- Removing password protection for PI access -->
+<!-- Simple password protection -->
 <script>
-  // Override the protection script by adding authenticated flag
-  if (typeof sessionStorage !== 'undefined') {
-    sessionStorage.setItem('progressAuth', 'true');
+  // Only show content if authenticated
+  document.addEventListener('DOMContentLoaded', function() {
+    // Check if already authenticated in this session
+    if (!sessionStorage.getItem('progressAuth')) {
+      // Create login overlay
+      showLoginPrompt();
+    }
+  });
+  
+  function showLoginPrompt() {
+    // Hide content first
+    document.querySelector('.progress-wrapper').style.display = 'none';
+    
+    // Create login form
+    const loginDiv = document.createElement('div');
+    loginDiv.style.cssText = `
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    `;
+    
+    loginDiv.innerHTML = `
+      <h2>Weekly Progress Access</h2>
+      <p>Enter the password to view the weekly progress report.</p>
+      <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+        <input type="password" id="progress-password" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+        <button id="autofill-btn" style="background: #27ae60; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">Auto-fill</button>
+      </div>
+      <button id="login-btn" style="background: #3498db; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; width: 100%;">Access Report</button>
+      <p id="error-msg" style="color: red; display: none;">Incorrect password. Please try again.</p>
+      <p style="margin-top: 15px; font-size: 0.9em; color: #777;">For Dr. Debojyoti Chakraborty Sir: Click the "Auto-fill" button above</p>
+      <p style="font-size: 0.8em; color: #777;">Please bookmark this direct URL for easier access next time.</p>
+    `;
+    
+    // Insert before the main content
+    document.body.insertBefore(loginDiv, document.querySelector('.progress-wrapper'));
+    
+    // Add event listeners
+    document.getElementById('login-btn').addEventListener('click', checkPassword);
+    document.getElementById('progress-password').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        checkPassword();
+      }
+    });
+    
+    // Auto-fill functionality for PI
+    document.getElementById('autofill-btn').addEventListener('click', function() {
+      document.getElementById('progress-password').value = "IGIB-CSIR-2025";
+      checkPassword();
+    });
+  }
+  
+  function checkPassword() {
+    const password = document.getElementById('progress-password').value;
+    const correctPassword = "IGIB-CSIR-2025"; // Your password
+    
+    if (password === correctPassword) {
+      // Set authentication in session storage
+      sessionStorage.setItem('progressAuth', 'true');
+      
+      // Show content and remove login form
+      document.querySelector('.progress-wrapper').style.display = 'block';
+      document.body.removeChild(document.body.firstElementChild);
+    } else {
+      // Show error message
+      document.getElementById('error-msg').style.display = 'block';
+    }
   }
 </script>
 

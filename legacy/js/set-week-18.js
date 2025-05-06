@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const weekRange = document.getElementById('week-range');
     
     if (weekDisplay) weekDisplay.textContent = "Week 18, 2025";
-    if (weekRange) weekRange.textContent = "May 4 - May 10, 2025";
+    if (weekRange) weekRange.textContent = "April 29 - May 05, 2025";
     
     // Find and show Week 18 content
     const week17Content = document.getElementById('content-week-17-2025');

@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="progress-section">
         <h3>Week ${week}, ${year}</h3>
         <p>Progress report for this week is not available yet.</p>
-        <p>Please navigate to Week 18, 2025 (May 4 - May 10, 2025) to view the current progress report.</p>
+        <p>Please navigate to Week 18, 2025 (April 29 - May 05, 2025) to view the current progress report.</p>
         <button class="nav-button" onclick="displayWeekData(18, 2025)">Go to Current Week (Week 18)</button>
       </div>
     `;

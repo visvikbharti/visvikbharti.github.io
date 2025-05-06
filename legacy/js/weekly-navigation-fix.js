@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Setup archive interactions
     initializeArchiveSystem();
+    
+    // Show Week 18 by default when the page loads
+    setTimeout(function() {
+      displayWeekData(18, 2025);
+    }, 100);
   });
   
   /**
@@ -93,9 +98,8 @@ document.addEventListener('DOMContentLoaded', function() {
     e.preventDefault();
     console.log("Navigating to current week");
     
-    // For testing purposes, we're using Week 15, 2025 as the "current" week
-    // In a production environment, you would calculate the actual current week
-    displayWeekData(15, 2025);
+    // Update to show Week 18, 2025 as the current week
+    displayWeekData(18, 2025);
   }
   
   /**
@@ -224,8 +228,9 @@ document.addEventListener('DOMContentLoaded', function() {
     placeholder.innerHTML = `
       <div class="progress-section">
         <h3>Week ${week}, ${year}</h3>
-        <p>Progress report for this week is not available.</p>
-        <p>Please navigate to Week 15, 2025 to view the current progress report.</p>
+        <p>Progress report for this week is not available yet.</p>
+        <p>Please navigate to Week 18, 2025 (May 4 - May 10, 2025) to view the current progress report.</p>
+        <button class="nav-button" onclick="displayWeekData(18, 2025)">Go to Current Week (Week 18)</button>
       </div>
     `;
     
@@ -279,12 +284,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (!currentWeekBtn) return;
     
-    // For this example, we'll consider Week 15, 2025 as the "current" week
-    // In a production environment, you would calculate the actual current week
-    if (week === 15 && year === 2025) {
+    // Update to consider Week 18, 2025 as the "current" week
+    if (week === 18 && year === 2025) {
       currentWeekBtn.disabled = true;
+      currentWeekBtn.setAttribute('title', 'Currently viewing Week 18');
     } else {
       currentWeekBtn.disabled = false;
+      currentWeekBtn.setAttribute('title', 'Return to current week (Week 18)');
     }
   }
   

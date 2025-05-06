@@ -1,163 +1,106 @@
-<!-- Weekly Progress Tracker Page with Improved Navigation -->
-<!-- Simple password protection -->
-<!-- Ultra-aggressive cache busting -->
-<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate, max-age=0" />
-<meta http-equiv="expires" content="0" />
-<meta http-equiv="pragma" content="no-cache" />
-<!-- Force cache busting with unique timestamp -->
-<script>
-  // Function to clear all browser caches
-  function clearBrowserCache() {
-    // Clear localStorage cache of any saved dates
-    localStorage.removeItem('currentDisplayedWeek');
-    localStorage.removeItem('currentDisplayedYear');
-    
-    // Attempt to clear application cache if available
-    if (window.applicationCache && window.applicationCache.swapCache) {
-      try {
-        window.applicationCache.swapCache();
-      } catch (e) {
-        console.log('Application cache swap failed, likely not in updating state');
-      }
-    }
-    
-    // Add unique timestamp to force cache refresh of this page
-    if (window.location.href.indexOf('t=') === -1) {
-      const timestamp = new Date().getTime();
-      if (window.location.href.indexOf('?') === -1) {
-        window.location.href = window.location.href + '?t=' + timestamp;
-      } else {
-        window.location.href = window.location.href + '&t=' + timestamp;
-      }
-    }
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly Progress - Vishal Bharti</title>
+  <!-- Basic styles from main site -->
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/enhanced-styles.css">
+  <link rel="stylesheet" href="../css/progress-login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   
-  // Call immediately on page load
-  clearBrowserCache();
-  
-  // Also add a special date override for Week 18
-  document.addEventListener('DOMContentLoaded', function() {
-    // Force Week 18 date range to be correct, regardless of JavaScript calculations
-    const weekRange = document.getElementById('week-range');
-    const weekDisplay = document.getElementById('week-display');
-    
-    // IMMEDIATELY SET CORRECT DATE - without waiting for any conditions
-    setTimeout(function() {
-      if (weekRange) {
-        weekRange.textContent = "April 29 - May 05, 2025";
-        weekRange.setAttribute('data-fixed-date', 'true');
-        console.log("Fixed date range set immediately");
-      }
-      
-      if (weekDisplay) {
-        weekDisplay.textContent = "Week 18, 2025";
-      }
-    }, 100);
-    
-    // Add more aggressive protection
-    setInterval(function() {
-      if (weekRange && weekRange.textContent !== "April 29 - May 05, 2025") {
-        weekRange.textContent = "April 29 - May 05, 2025";
-        console.log("Date range corrected by interval");
-      }
-    }, 1000); // Check every second
-    
-    // Add observer for good measure
-    if (weekRange) {
-      const observer = new MutationObserver(function() {
-        weekRange.textContent = "April 29 - May 05, 2025";
-        console.log("Date range corrected by observer");
-      });
-      
-      observer.observe(weekRange, { characterData: true, childList: true, subtree: true });
-    }
-    
-    // Also override the window.formatDate function if it exists
-    if (window.formatDate) {
-      const origFormatDate = window.formatDate;
-      window.formatDate = function(date) {
-        // Always use fixed dates for Week 18
-        return "April 29 - May 05, 2025";
-      };
-    }
-  });
-</script>
+  <!-- Cache control headers -->
+  <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate, max-age=0" />
+  <meta http-equiv="expires" content="0" />
+  <meta http-equiv="pragma" content="no-cache" />
+</head>
+<body>
+
 <script>
-  // Only show content if authenticated
+  // Simplified authentication check
   document.addEventListener('DOMContentLoaded', function() {
     // Check if already authenticated in this session
     if (!sessionStorage.getItem('progressAuth')) {
-      // Create login overlay
-      showLoginPrompt();
+      // Will show login form first
+      document.getElementById('progress-content').style.display = 'none';
+    } else {
+      // Already authenticated
+      document.getElementById('login-container').style.display = 'none';
+      
+      // Set the correct week data after authentication
+      setTimeout(function() {
+        // Force correct date display
+        document.getElementById('week-range').textContent = "April 29 - May 05, 2025";
+        document.getElementById('week-display').textContent = "Week 18, 2025";
+        
+        // Show Week 18 content
+        document.getElementById('content-week-18-2025').style.display = 'block';
+        document.getElementById('content-week-17-2025').style.display = 'none';
+      }, 200);
     }
   });
   
-  function showLoginPrompt() {
-    // Hide content first
-    document.querySelector('.progress-wrapper').style.display = 'none';
-    
-    // Create login form
-    const loginDiv = document.createElement('div');
-    loginDiv.style.cssText = `
-      max-width: 400px;
-      margin: 100px auto;
-      padding: 20px;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      text-align: center;
-    `;
-    
-    loginDiv.innerHTML = `
-      <h2>Weekly Progress Access</h2>
-      <p>Enter the password to view the weekly progress report.</p>
-      <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-        <input type="password" id="progress-password" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
-        <button id="autofill-btn" style="background: #27ae60; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">Auto-fill</button>
-      </div>
-      <button id="login-btn" style="background: #3498db; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; width: 100%;">Access Report</button>
-      <p id="error-msg" style="color: red; display: none;">Incorrect password. Please try again.</p>
-      <p style="margin-top: 15px; font-size: 0.9em; color: #777;">For Dr. Debojyoti Chakraborty Sir: Click the "Auto-fill" button above</p>
-      <p style="font-size: 0.8em; color: #777;">Please bookmark this direct URL for easier access next time.</p>
-    `;
-    
-    // Insert before the main content
-    document.body.insertBefore(loginDiv, document.querySelector('.progress-wrapper'));
-    
-    // Add event listeners
-    document.getElementById('login-btn').addEventListener('click', checkPassword);
-    document.getElementById('progress-password').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        checkPassword();
-      }
-    });
-    
-    // Auto-fill functionality for PI
-    document.getElementById('autofill-btn').addEventListener('click', function() {
-      document.getElementById('progress-password').value = "IGIB-CSIR-2025";
-      checkPassword();
-    });
-  }
-  
+  // Password handling
   function checkPassword() {
     const password = document.getElementById('progress-password').value;
-    const correctPassword = "IGIB-CSIR-2025"; // Your password
+    const correctPassword = "IGIB-CSIR-2025";
     
     if (password === correctPassword) {
       // Set authentication in session storage
       sessionStorage.setItem('progressAuth', 'true');
       
-      // Show content and remove login form
-      document.querySelector('.progress-wrapper').style.display = 'block';
-      document.body.removeChild(document.body.firstElementChild);
+      // Show content and hide login form
+      document.getElementById('progress-content').style.display = 'block';
+      document.getElementById('login-container').style.display = 'none';
+      
+      // Set the correct week data after authentication
+      setTimeout(function() {
+        // Force correct date display
+        document.getElementById('week-range').textContent = "April 29 - May 05, 2025";
+        document.getElementById('week-display').textContent = "Week 18, 2025";
+        
+        // Show Week 18 content
+        document.getElementById('content-week-18-2025').style.display = 'block';
+        document.getElementById('content-week-17-2025').style.display = 'none';
+      }, 200);
     } else {
       // Show error message
       document.getElementById('error-msg').style.display = 'block';
     }
   }
+  
+  // Auto-fill functionality
+  function autoFillPassword() {
+    document.getElementById('progress-password').value = "IGIB-CSIR-2025";
+    checkPassword();
+  }
+  
+  // Return to main site
+  function returnToMain() {
+    window.location.href = "../index.html";
+  }
 </script>
 
-<div class="progress-wrapper">
+<!-- Login Container -->
+<div id="login-container" class="login-container">
+  <div class="login-box">
+    <h2>Weekly Progress Access</h2>
+    <p>Enter the password to view the weekly progress report.</p>
+    <div class="password-input">
+      <input type="password" id="progress-password" placeholder="Enter password">
+      <button id="autofill-btn" onclick="autoFillPassword()">Auto-fill</button>
+    </div>
+    <button id="login-btn" onclick="checkPassword()">Access Report</button>
+    <p id="error-msg" style="color: red; display: none;">Incorrect password. Please try again.</p>
+    <p class="login-note">For Dr. Debojyoti Chakraborty Sir: Click the "Auto-fill" button above</p>
+    <p class="login-tip">Please bookmark this direct URL for easier access next time.</p>
+    <button class="return-btn" onclick="returnToMain()"><i class="fas fa-arrow-left"></i> Return to Main Site</button>
+  </div>
+</div>
+
+<div id="progress-content" class="progress-wrapper">
   <h2>Weekly Research Progress Tracker</h2>
   <p>This is my centralized system for tracking research and development progress. I update this weekly to share with my PI and collaborators.</p>
   

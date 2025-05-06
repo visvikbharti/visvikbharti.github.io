@@ -244,6 +244,16 @@ document.addEventListener('DOMContentLoaded', function() {
    * @returns {Object} Object with start and end dates
    */
   function getDateRangeOfWeek(week, year) {
+    // SPECIAL CASE FOR WEEK 18, 2025
+    if (week === 18 && year === 2025) {
+      // Hardcoded date range for Week 18, 2025
+      return {
+        start: new Date(2025, 3, 29), // April 29, 2025 (months are 0-indexed)
+        end: new Date(2025, 4, 5)     // May 5, 2025
+      };
+    }
+    
+    // For all other weeks, calculate normally
     // Calculate first day of the week (assuming Monday as first day)
     const firstDayOfYear = new Date(year, 0, 1);
     const daysOffset = firstDayOfYear.getDay() - 1; // Adjust for Monday

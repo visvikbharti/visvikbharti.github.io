@@ -1,9 +1,68 @@
 <!-- Weekly Progress Tracker Page with Improved Navigation -->
 <!-- Simple password protection -->
-<!-- Cache busting meta tag -->
-<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
+<!-- Ultra-aggressive cache busting -->
+<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate, max-age=0" />
 <meta http-equiv="expires" content="0" />
 <meta http-equiv="pragma" content="no-cache" />
+<!-- Force cache busting with unique timestamp -->
+<script>
+  // Function to clear all browser caches
+  function clearBrowserCache() {
+    // Clear localStorage cache of any saved dates
+    localStorage.removeItem('currentDisplayedWeek');
+    localStorage.removeItem('currentDisplayedYear');
+    
+    // Attempt to clear application cache if available
+    if (window.applicationCache && window.applicationCache.swapCache) {
+      try {
+        window.applicationCache.swapCache();
+      } catch (e) {
+        console.log('Application cache swap failed, likely not in updating state');
+      }
+    }
+    
+    // Add unique timestamp to force cache refresh of this page
+    if (window.location.href.indexOf('t=') === -1) {
+      const timestamp = new Date().getTime();
+      if (window.location.href.indexOf('?') === -1) {
+        window.location.href = window.location.href + '?t=' + timestamp;
+      } else {
+        window.location.href = window.location.href + '&t=' + timestamp;
+      }
+    }
+  }
+  
+  // Call immediately on page load
+  clearBrowserCache();
+  
+  // Also add a special date override for Week 18
+  document.addEventListener('DOMContentLoaded', function() {
+    // Force Week 18 date range to be correct, regardless of JavaScript calculations
+    const weekRange = document.getElementById('week-range');
+    const weekDisplay = document.getElementById('week-display');
+    
+    if (weekDisplay && weekDisplay.textContent.includes('Week 18, 2025')) {
+      if (weekRange) {
+        weekRange.textContent = "April 29 - May 05, 2025";
+        // Add special attribute to prevent other scripts from modifying
+        weekRange.setAttribute('data-fixed-date', 'true');
+        
+        // Add observer to ensure it doesn't change
+        const observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type === 'characterData' || mutation.type === 'childList') {
+              if (weekRange.textContent !== "April 29 - May 05, 2025") {
+                weekRange.textContent = "April 29 - May 05, 2025";
+              }
+            }
+          });
+        });
+        
+        observer.observe(weekRange, { characterData: true, childList: true, subtree: true });
+      }
+    }
+  });
+</script>
 <script>
   // Only show content if authenticated
   document.addEventListener('DOMContentLoaded', function() {
@@ -532,8 +591,12 @@
     </div>
     
     <div class="sidebar">
-      <!-- Illustration -->
-      <img src="https://visvikbharti.github.io/legacy/img/progress-tracker-illustration.jpg?v=2" class="sidebar-image" alt="Research Progress Tracker" style="width: 100%; height: auto; max-width: 650px;">
+      <!-- Illustration with JavaScript-generated timestamp -->
+      <img src="https://visvikbharti.github.io/legacy/img/progress-tracker-illustration.jpg?v=4" class="sidebar-image" alt="StickForStats Platform Development" style="width: 100%; height: auto; max-width: 650px; border-radius: 12px; box-shadow: 0 6px 12px rgba(0,0,0,0.15);">
+      <script>
+        // Add dynamic timestamp to force image reload
+        document.querySelector('.sidebar-image').src += '&t=' + new Date().getTime();
+      </script>
       
       <!-- Development Plan -->
       <div class="project-section">

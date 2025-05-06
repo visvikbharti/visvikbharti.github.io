@@ -62,12 +62,12 @@ The weekly progress report system is designed for sharing research updates with 
 
 ### Password Protection
 
-The weekly progress report is protected with a password:
+The weekly progress report is protected with a strict password system:
 
-- Password: `[Contact Vishal Bharti for access]` 
-- Auto-fill button for designated PI access only
-- Sessions persist until browser is closed
-- Authentication tokens stored in sessionStorage
+- Password shared with authorized users via secure channels
+- No auto-fill functionality for maximum security
+- Sessions persist until browser is closed (using sessionStorage)
+- Clean, minimalist login interface
 
 ### Adding New Weekly Reports
 

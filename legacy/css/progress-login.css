@@ -43,40 +43,23 @@ body {
 }
 
 .password-input {
-  display: flex;
-  gap: 10px;
   margin-bottom: 15px;
 }
 
 #progress-password {
-  flex: 1;
+  width: 100%;
   padding: 12px 15px;
   border: 1px solid #ddd;
   border-radius: 6px;
   font-size: 16px;
   transition: border-color 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
 }
 
 #progress-password:focus {
   border-color: #3498db;
   box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
   outline: none;
-}
-
-#autofill-btn {
-  background-color: #27ae60;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.2s;
-  font-weight: 500;
-}
-
-#autofill-btn:hover {
-  background-color: #219a52;
 }
 
 #login-btn {

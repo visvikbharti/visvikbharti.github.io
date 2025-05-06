@@ -71,18 +71,7 @@
     }
   }
   
-  // Auto-fill functionality with verification
-  function autoFillPassword() {
-    // Only allow autofill from specific referrers or for authorized users
-    const isPI = confirm("This button is intended for Dr. Debojyoti Chakraborty only. Are you the authorized PI?");
-    
-    if (isPI) {
-      document.getElementById('progress-password').value = "IGIB-CSIR-2025";
-      checkPassword();
-    } else {
-      alert("Please contact Vishal Bharti for the correct password.");
-    }
-  }
+  // Removing auto-fill functionality entirely for better security
   
   // Return to main site
   function returnToMain() {
@@ -96,12 +85,11 @@
     <h2>Weekly Progress Access</h2>
     <p>Enter the password to view the weekly progress report.</p>
     <div class="password-input">
-      <input type="password" id="progress-password" placeholder="Enter password">
-      <button id="autofill-btn" onclick="autoFillPassword()">PI Access</button>
+      <input type="password" id="progress-password" placeholder="Enter password" onkeypress="if(event.key === 'Enter') checkPassword()">
     </div>
     <button id="login-btn" onclick="checkPassword()">Access Report</button>
     <p id="error-msg" style="color: red; display: none;">Incorrect password. Please try again.</p>
-    <p class="login-note">For Dr. Debojyoti Chakraborty Sir: Click the "Auto-fill" button above</p>
+    <p class="login-note">For authorized users only. Password shared via secure channels.</p>
     <p class="login-tip">Please bookmark this direct URL for easier access next time.</p>
     <button class="return-btn" onclick="returnToMain()"><i class="fas fa-arrow-left"></i> Return to Main Site</button>
   </div>

@@ -71,10 +71,17 @@
     }
   }
   
-  // Auto-fill functionality
+  // Auto-fill functionality with verification
   function autoFillPassword() {
-    document.getElementById('progress-password').value = "IGIB-CSIR-2025";
-    checkPassword();
+    // Only allow autofill from specific referrers or for authorized users
+    const isPI = confirm("This button is intended for Dr. Debojyoti Chakraborty only. Are you the authorized PI?");
+    
+    if (isPI) {
+      document.getElementById('progress-password').value = "IGIB-CSIR-2025";
+      checkPassword();
+    } else {
+      alert("Please contact Vishal Bharti for the correct password.");
+    }
   }
   
   // Return to main site
@@ -90,7 +97,7 @@
     <p>Enter the password to view the weekly progress report.</p>
     <div class="password-input">
       <input type="password" id="progress-password" placeholder="Enter password">
-      <button id="autofill-btn" onclick="autoFillPassword()">Auto-fill</button>
+      <button id="autofill-btn" onclick="autoFillPassword()">PI Access</button>
     </div>
     <button id="login-btn" onclick="checkPassword()">Access Report</button>
     <p id="error-msg" style="color: red; display: none;">Incorrect password. Please try again.</p>

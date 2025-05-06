@@ -64,9 +64,10 @@ The weekly progress report system is designed for sharing research updates with 
 
 The weekly progress report is protected with a password:
 
-- Password: `IGIB-CSIR-2025`
-- Auto-fill button for easy PI access
+- Password: `[Contact Vishal Bharti for access]` 
+- Auto-fill button for designated PI access only
 - Sessions persist until browser is closed
+- Authentication tokens stored in sessionStorage
 
 ### Adding New Weekly Reports
 

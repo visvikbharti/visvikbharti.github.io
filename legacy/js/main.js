@@ -84,6 +84,36 @@ function initializeLoadedContent(tabId) {
     // Initialize checkboxes for progress tracking if on the progress tab
     if (tabId === 'progress') {
         initializeCheckboxes();
+        
+        // Force Week 18 to be shown as the current week - increased priority
+        setTimeout(function() {
+            if (typeof displayWeekData === 'function') {
+                console.log("Setting Week 18, 2025 as current week");
+                displayWeekData(18, 2025);
+                
+                // Also try to force content visibility in case it's still hidden
+                const week18Content = document.getElementById('content-week-18-2025');
+                const week17Content = document.getElementById('content-week-17-2025');
+                
+                if (week18Content) {
+                    week18Content.style.display = 'block';
+                    console.log("Forcing Week 18 content display");
+                }
+                
+                if (week17Content) {
+                    week17Content.style.display = 'none';
+                    console.log("Hiding Week 17 content");
+                }
+            }
+        }, 500);
+        
+        // Second attempt with longer delay to ensure it works
+        setTimeout(function() {
+            if (typeof displayWeekData === 'function') {
+                console.log("Second attempt: Setting Week 18, 2025 as current week");
+                displayWeekData(18, 2025);
+            }
+        }, 1500);
     }
     
     // Initialize form validation if on the contact tab

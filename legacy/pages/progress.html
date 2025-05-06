@@ -1,4 +1,12 @@
 <!-- Weekly Progress Tracker Page with Improved Navigation -->
+<!-- Removing password protection for PI access -->
+<script>
+  // Override the protection script by adding authenticated flag
+  if (typeof sessionStorage !== 'undefined') {
+    sessionStorage.setItem('progressAuth', 'true');
+  }
+</script>
+
 <div class="progress-wrapper">
   <h2>Weekly Research Progress Tracker</h2>
   <p>This is my centralized system for tracking research and development progress. I update this weekly to share with my PI and collaborators.</p>
@@ -20,7 +28,7 @@
     <div class="main-content">
       <!-- Week content container -->
       <div id="week-content" class="progress-content active">
-        <!-- Content for Week 18 (Current Week - April 29 to May 05, 2025) -->
+        <!-- Content for Week 18 (Current Week - May 4 to May 10, 2025) -->
         <div id="content-week-18-2025">
           <!-- StickForStats Platform Development Section -->
           <div class="progress-section">
@@ -382,7 +390,7 @@
             
             <div class="progress-challenges editable-section">
               <h4><i class="fas fa-exclamation-triangle"></i> Challenges:</h4>
-              <div contenteditable="true" class="editable-content" data-storage-key="week17-challenges-muscle-hdr">
+              <div contenteditable="false" class="editable-content" data-storage-key="week17-challenges-muscle-hdr">
                 <ul>
                   <li>HDR Gene Differential Expression visualization shows KeyError related to Pandas styling with non-unique indices.</li>
                   <li>Cell type annotation feature doesn't show results for Mouse data (GSE138707).</li>
@@ -395,7 +403,7 @@
             
             <div class="progress-next-steps editable-section">
               <h4><i class="fas fa-arrow-right"></i> Next Steps:</h4>
-              <div contenteditable="true" class="editable-content" data-storage-key="week17-nextsteps-muscle-hdr">
+              <div contenteditable="false" class="editable-content" data-storage-key="week17-nextsteps-muscle-hdr">
                 <ul>
                   <li>Implement fixes for identified Streamlit app issues with robust error handling.</li>
                   <li>Enhance cell type annotation with species-specific marker genes.</li>
@@ -440,7 +448,7 @@
           
           <div class="weekly-summary editable-section">
             <h3><i class="fas fa-flag"></i> Weekly Summary</h3>
-            <div contenteditable="true" class="editable-content" data-storage-key="week17-summary">
+            <div contenteditable="false" class="editable-content" data-storage-key="week17-summary">
               <p>This week focused on developing a computational pipeline for analyzing single-cell RNA sequencing data from muscle tissue, with particular emphasis on Homology-Directed Repair (HDR) gene expression patterns. The pipeline successfully integrates data processing, cross-species integration, and interactive visualization components.</p>
               <p>The Snakemake workflow implementation allows for reproducible analysis with configurable parameters. Key features include automated quality control, cluster identification, cell type annotation, and focused analysis of 477 HDR-related genes. The cross-species integration capabilities enable comparison between human and mouse datasets through automated ortholog mapping.</p>
               <p>The interactive Streamlit dashboard provides an intuitive interface for exploring the analysis results, with specialized visualizations for HDR gene expression patterns. Several issues were identified during testing, including differential expression visualization errors and species-specific cell type annotation challenges. Solutions have been developed and will be implemented in the next development cycle.</p>

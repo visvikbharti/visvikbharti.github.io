@@ -62,20 +62,16 @@ function setupWeekNavigation() {
  * Load current week's data
  */
 function loadCurrentWeekData() {
-    // Get current date information
-    const now = new Date();
-    const currentWeek = getWeekNumber(now);
-    const currentYear = now.getFullYear();
+    // Always show Week 18, 2025 regardless of date or stored values
+    const currentWeek = 18;
+    const currentYear = 2025;
     
-    // Load from localStorage or use default
-    const storedWeek = localStorage.getItem('currentDisplayedWeek');
-    const storedYear = localStorage.getItem('currentDisplayedYear');
+    // Force Week 18, 2025 to be displayed
+    displayWeekData(currentWeek, currentYear);
     
-    if (storedWeek && storedYear) {
-        displayWeekData(parseInt(storedWeek), parseInt(storedYear));
-    } else {
-        displayWeekData(currentWeek, currentYear);
-    }
+    // Also store it in localStorage
+    localStorage.setItem('currentDisplayedWeek', currentWeek);
+    localStorage.setItem('currentDisplayedYear', currentYear);
 }
 
 /**
@@ -119,9 +115,9 @@ function navigateWeeks(direction) {
  * Navigate to current week
  */
 function navigateToCurrentWeek() {
-    const now = new Date();
-    const currentWeek = getWeekNumber(now);
-    const currentYear = now.getFullYear();
+    // Instead of current week, always show Week 18, 2025
+    const currentWeek = 18;
+    const currentYear = 2025;
     
     console.log(`Navigating to current week: Week ${currentWeek}, ${currentYear}`);
     displayWeekData(currentWeek, currentYear);

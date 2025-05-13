@@ -81,10 +81,10 @@
   // Password handling
   function checkPassword() {
     const password = document.getElementById('progress-password').value;
-    const correctPassword = "IGIB-CSIR-2025"; // The full correct password
+    const correctPassword = "qwerty"; // The correct password
     
-    // Check for exact match OR the shortened version you mentioned
-    if (password === correctPassword || password === "GIB-CSIR-2025") {
+    // Check for exact match
+    if (password === correctPassword) {
       // Set authentication in session storage
       sessionStorage.setItem('progressAuth', 'true');
       

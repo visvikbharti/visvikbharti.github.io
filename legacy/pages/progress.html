@@ -49,6 +49,41 @@
         margin-top: 15px;
         color: #666;
     }
+    /* Fix for two-column layout */
+    .two-column-layout {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .main-content {
+        flex: 1;
+        min-width: 65%;
+    }
+    .sidebar {
+        flex: 0 0 30%;
+        min-width: 300px;
+        padding: 20px;
+        border-left: 1px solid #eee;
+    }
+    .sidebar-image {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        margin-bottom: 20px;
+    }
+    @media (max-width: 1024px) {
+        .two-column-layout {
+            flex-direction: column;
+        }
+        .sidebar {
+            border-left: none;
+            border-top: 1px solid #eee;
+            margin-top: 30px;
+            padding-top: 30px;
+        }
+    }
   </style>
 </head>
 <body>
@@ -532,8 +567,8 @@
           </div>
           
           <!-- Navigation buttons -->
-          <div class="navigation-buttons" style="margin-top: 30px; display: flex; gap: 15px; justify-content: center;">
-            <a href="../pages/progress.html" class="btn" style="background-color: #3498db; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; display: inline-flex; align-items: center; font-weight: bold;">
+          <div class="navigation-buttons" style="margin-top: 30px; margin-bottom: 30px; display: flex; gap: 15px; justify-content: center;">
+            <a href="progress.html" class="btn" style="background-color: #3498db; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; display: inline-flex; align-items: center; font-weight: bold;">
               <i class="fas fa-arrow-left" style="margin-right: 8px;"></i> Back to Progress Tracker
             </a>
             <a href="../index.html" class="btn" style="background-color: #2ecc71; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; display: inline-flex; align-items: center; font-weight: bold;">
@@ -667,10 +702,10 @@
     
     <div class="sidebar">
       <!-- Illustration with JavaScript-generated timestamp -->
-      <img src="https://visvikbharti.github.io/legacy/img/progress-tracker-illustration.jpg?v=4" class="sidebar-image" alt="StickForStats Platform Development" style="width: 100%; height: auto; max-width: 650px; border-radius: 12px; box-shadow: 0 6px 12px rgba(0,0,0,0.15);">
+      <img src="../img/progress-tracker-illustration.jpg" class="sidebar-image" alt="StickForStats Platform Development">
       <script>
         // Add dynamic timestamp to force image reload
-        document.querySelector('.sidebar-image').src += '&t=' + new Date().getTime();
+        document.querySelector('.sidebar-image').src += '?t=' + new Date().getTime();
       </script>
       
       <!-- Development Plan -->

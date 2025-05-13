@@ -32,11 +32,12 @@
       // Set the correct week data after authentication
       setTimeout(function() {
         // Force correct date display
-        document.getElementById('week-range').textContent = "April 29 - May 05, 2025";
-        document.getElementById('week-display').textContent = "Week 18, 2025";
+        document.getElementById('week-range').textContent = "May 6 - May 12, 2025";
+        document.getElementById('week-display').textContent = "Week 19, 2025";
         
-        // Show Week 18 content
-        document.getElementById('content-week-18-2025').style.display = 'block';
+        // Show Week 19 content
+        document.getElementById('content-week-19-2025').style.display = 'block';
+        document.getElementById('content-week-18-2025').style.display = 'none';
         document.getElementById('content-week-17-2025').style.display = 'none';
       }, 200);
     }
@@ -45,9 +46,10 @@
   // Password handling
   function checkPassword() {
     const password = document.getElementById('progress-password').value;
-    const correctPassword = "IGIB-CSIR-2025";
+    const correctPassword = "IGIB-CSIR-2025"; // The full correct password
     
-    if (password === correctPassword) {
+    // Check for exact match OR the shortened version you mentioned
+    if (password === correctPassword || password === "GIB-CSIR-2025") {
       // Set authentication in session storage
       sessionStorage.setItem('progressAuth', 'true');
       
@@ -58,11 +60,12 @@
       // Set the correct week data after authentication
       setTimeout(function() {
         // Force correct date display
-        document.getElementById('week-range').textContent = "April 29 - May 05, 2025";
-        document.getElementById('week-display').textContent = "Week 18, 2025";
+        document.getElementById('week-range').textContent = "May 6 - May 12, 2025";
+        document.getElementById('week-display').textContent = "Week 19, 2025";
         
-        // Show Week 18 content
-        document.getElementById('content-week-18-2025').style.display = 'block';
+        // Show Week 19 content
+        document.getElementById('content-week-19-2025').style.display = 'block';
+        document.getElementById('content-week-18-2025').style.display = 'none';
         document.getElementById('content-week-17-2025').style.display = 'none';
       }, 200);
     } else {
@@ -116,8 +119,8 @@
     <div class="main-content">
       <!-- Week content container -->
       <div id="week-content" class="progress-content active">
-        <!-- Content for Week 18 (Current Week - May 4 to May 10, 2025) -->
-        <div id="content-week-18-2025">
+        <!-- Content for Week 19 (Current Week - May 6 to May 12, 2025) -->
+        <div id="content-week-19-2025">
           <!-- StickForStats Platform Development Section -->
           <div class="progress-section">
             <h3><i class="fas fa-chart-bar"></i> StickForStats Platform Development</h3>
@@ -595,6 +598,24 @@
         <h3><i class="fas fa-history"></i> Previous Reports</h3>
         
         <div class="archive-list">
+          <div class="archive-item" data-week="18" data-year="2025">
+            <div class="archive-header">
+              <div class="archive-title">Week 18, 2025 (April 29 - May 05)</div>
+              <i class="fas fa-chevron-down archive-toggle"></i>
+            </div>
+            <div class="archive-content">
+              <p><strong>Focus:</strong> StickForStats Platform Development</p>
+              <p><strong>Key accomplishments:</strong></p>
+              <ul>
+                <li>Completed architectural migration to Flask-based web application</li>
+                <li>Implemented RAG system for contextual AI assistance</li>
+                <li>Developed tiered subscription model for sustainable AI features</li>
+                <li>Integrated core statistical modules with standardized data exchange</li>
+              </ul>
+              <button class="view-report-btn nav-button" data-week="18" data-year="2025">View Full Report</button>
+            </div>
+          </div>
+          
           <div class="archive-item" data-week="17" data-year="2025">
             <div class="archive-header">
               <div class="archive-title">Week 17, 2025 (April 22 - April 28)</div>
@@ -675,3 +696,4 @@
 
 <!-- Load html2pdf.js and weekly navigation -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="../js/set-week-19.js"></script>

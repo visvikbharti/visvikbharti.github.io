@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 19, 2025 (May 6 - May 12) | Vishal Bharti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/progress-login.css">
+    <style>
+        .certificate-list {
+            margin-top: 12px;
+            list-style-type: none;
+            padding-left: 10px;
+        }
+        .certificate-list li {
+            margin-bottom: 10px;
+        }
+        .certificate-list a {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
+        }
+        .certificate-list a:hover {
+            background-color: #e0e0e0;
+            border-color: #aaa;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+        }
+        .certificate-list i {
+            color: #e74c3c;
+            margin-right: 8px;
+        }
+        .certification-note-small {
+            font-size: 0.9em;
+            margin-top: 15px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <h2>Weekly Research Progress Report</h2>
+        <p class="report-date">Week 19, 2025 (May 6 - May 12)</p>
+        
+        <!-- StickForStats Platform Development Section -->
+        <div class="progress-section">
+            <h3><i class="fas fa-chart-bar"></i> StickForStats Platform Development</h3>
+            <p><strong>Project Goal:</strong> Transform StickForStats from a collection of individual Streamlit modules into a cohesive, integrated web application using Django/React with advanced AI capabilities.</p>
+            
+            <table class="progress-table">
+                <thead>
+                    <tr>
+                        <th width="15%">Component</th>
+                        <th width="15%">Progress</th>
+                        <th width="70%">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Framework Migration</td>
+                        <td><div class="progress-bar" style="--progress: 85%;">85%</div></td>
+                        <td>
+                            <p>Completed architectural migration from Streamlit to Django/React with PostgreSQL backend.</p>
+                            <p>Implemented comprehensive API configuration with standardized endpoints and authentication.</p>
+                            <p>Added real-time capabilities with WebSockets for live updates and Celery for asynchronous processing.</p>
+                            <p>Integrated pgvector extension for efficient similarity searching in the RAG system.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>RAG System</td>
+                        <td><div class="progress-bar" style="--progress: 95%;">95%</div></td>
+                        <td>
+                            <p>Enhanced Retrieval Augmented Generation system with context-aware guidance capabilities.</p>
+                            <p>Created comprehensive knowledge base with domain-specific statistical terminology embeddings.</p>
+                            <p>Implemented specialized embedding service, retrieval service, and generation service for AI assistance.</p>
+                            <p>Developed intelligent content discovery system to proactively suggest related statistical concepts.</p>
+                            <p>Successfully completed RAG system verification with 100% validation of core functionality.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Module Integration</td>
+                        <td><div class="progress-bar" style="--progress: 92%;">92%</div></td>
+                        <td>
+                            <p>Implemented comprehensive module registry system enabling seamless interaction between all statistical modules.</p>
+                            <p>Created standardized data exchange formats with module-specific adapters for cross-module data sharing.</p>
+                            <p>Added workflow management services with dependency tracking and asynchronous execution capabilities.</p>
+                            <p>Developed unified visualization layer with consistent theming across all modules (SQC, DOE, PCA, etc.).</p>
+                            <p>Successfully completed verification of all modules with 90-100% validation of core functionality.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Frontend Development</td>
+                        <td><div class="progress-bar" style="--progress: 78%;">78%</div></td>
+                        <td>
+                            <p>Fixed MathJax integration for rendering complex mathematical formulas in educational components.</p>
+                            <p>Implemented centralized API services for consistent authentication and endpoint management.</p>
+                            <p>Created specialized React hooks (useWorkflowAPI, useReportAPI) for backend communication.</p>
+                            <p>Fixed numerous component issues including Unicode escape sequences, missing imports, and undefined variables.</p>
+                            <p>Addressed integration challenges between frontend and backend, particularly in API services and WebSocket handling.</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="progress-challenges">
+                <h4><i class="fas fa-exclamation-triangle"></i> Challenges:</h4>
+                <ul>
+                    <li>Overcoming API endpoint inconsistencies with different base URL formats and authentication token formats.</li>
+                    <li>Addressing complex WebSocket connection issues, particularly with authentication and reconnection logic.</li>
+                    <li>Configuring optimal webpack settings for complex mathematical visualization components.</li>
+                    <li>Integrating MathJax with React components, which required custom rendering solutions and lifecycle management.</li>
+                    <li>Converting Streamlit's reactive programming model to Django/React's request-response architecture.</li>
+                    <li>Maintaining high performance for statistical calculations with large datasets while providing real-time updates.</li>
+                    <li>Ensuring consistent data exchange formats between different modules with varying data structure requirements.</li>
+                </ul>
+            </div>
+            
+            <div class="progress-next-steps">
+                <h4><i class="fas fa-arrow-right"></i> Next Steps:</h4>
+                <ul>
+                    <li>Complete verification of PCA module (currently at 85%) with validation of advanced interpretation features.</li>
+                    <li>Implement comprehensive performance optimization plan:
+                        <ul>
+                            <li>Add caching for frequently accessed data</li>
+                            <li>Implement database indexing for common queries</li>
+                            <li>Profile and optimize React components</li>
+                            <li>Add lazy loading for visualization libraries</li>
+                            <li>Conduct load testing with large datasets</li>
+                        </ul>
+                    </li>
+                    <li>Prepare for production deployment:
+                        <ul>
+                            <li>Finalize Kubernetes configuration</li>
+                            <li>Set up CI/CD pipeline</li>
+                            <li>Configure monitoring and logging</li>
+                            <li>Implement backup and disaster recovery</li>
+                        </ul>
+                    </li>
+                    <li>Complete documentation for API endpoints, user guides, and system architecture.</li>
+                    <li>Create strategic rollout plan with staged release approach.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Research Integrity Training Section -->
+        <div class="progress-section">
+            <h3><i class="fas fa-award"></i> Research Integrity Training</h3>
+            <p><strong>Accomplishment:</strong> Completed Epigeum Research Integrity, Second Edition course.</p>
+            
+            <table class="progress-table">
+                <thead>
+                    <tr>
+                        <th width="15%">Date</th>
+                        <th width="25%">Module</th>
+                        <th width="60%">Details / Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>May 6-7</td>
+                        <td>Core Research Integrity Principles</td>
+                        <td>
+                            <p>Completed modules on research design, methodology, and ethical considerations.</p>
+                            <p>Studied frameworks for addressing research misconduct and questionable practices.</p>
+                            <p>Reviewed case studies on research integrity violations and their consequences.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>May 8-9</td>
+                        <td>Data Management & Publication</td>
+                        <td>
+                            <p>Completed modules on data collection, storage, and management best practices.</p>
+                            <p>Studied ethical considerations in scientific publication and authorship.</p>
+                            <p>Reviewed procedures for handling conflicts of interest in research.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>May 10-12</td>
+                        <td>Collaborative Research Ethics</td>
+                        <td>
+                            <p>Completed modules on responsible collaboration in research teams.</p>
+                            <p>Studied international standards for research integrity across disciplines.</p>
+                            <p>Obtained certification confirming course completion and competency.</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="certification-note">
+                <h4><i class="fas fa-certificate"></i> Certification:</h4>
+                <p>Successfully completed the Epigeum Research Integrity, Second Edition course, which provides a comprehensive overview of how researchers in the UK can meet their responsibilities, setting out the key principles and practices of good research conduct, and guiding learners through the lifecycle of a research project.</p>
+                <p>Certificates available for download:</p>
+                <ul class="certificate-list">
+                    <li><a href="../../epigeum_certificates/Certificate%20Prog2925430090.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Research Integrity Program Certificate</a></li>
+                    <li><a href="../../epigeum_certificates/Certificate%202925430383.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Core Research Integrity Module Certificate</a></li>
+                    <li><a href="../../epigeum_certificates/Certificate%202925430384.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Advanced Research Ethics Certificate</a></li>
+                </ul>
+                <p class="certification-note-small">All certificates are also available in the <code>epigeum_certificates</code> directory.</p>
+            </div>
+        </div>
+        
+        <div class="weekly-summary">
+            <h3><i class="fas fa-flag"></i> Weekly Summary</h3>
+            <p>This week marked significant progress in two key areas: the StickForStats platform migration and professional development in research integrity. The StickForStats migration project reached major milestones with the completion of several integration fixes and enhanced functionality across all modules.</p>
+            
+            <p>The migration from Streamlit to Django/React architecture is now at an advanced stage, with all core modules (SQC, DOE, PCA, Probability Distributions, Confidence Intervals) successfully migrated and verified. The migration has transformed the platform from a collection of individual Streamlit modules into a cohesive, integrated web application with a modern architecture featuring:</p>
+            <ul>
+                <li>Backend: Django with REST API endpoints, PostgreSQL database, and Celery for asynchronous tasks</li>
+                <li>Frontend: React SPA with component-based architecture and Material-UI components</li>
+                <li>Real-time features: WebSockets for live updates during analysis operations</li>
+                <li>Cross-module integration: Central registry system with standardized data exchange formats</li>
+                <li>Authentication: Token-based with JWT authentication and secure session management</li>
+            </ul>
+            
+            <p>Key achievements this week included implementing a centralized API configuration to resolve endpoint inconsistencies, creating a unified API service for standardized authentication, and enhancing WebSocket connection reliability with proper authentication and reconnection logic. The RAG system has been significantly improved and achieved 100% verification, with specialized embedding, retrieval, and generation services for AI-assisted analysis.</p>
+            
+            <p>Frontend development focused on fixing numerous component issues, particularly with MathJax integration for mathematical formula rendering, which required custom rendering solutions and lifecycle management. The implementation of specialized React hooks for API communication has streamlined data retrieval and submission across the application.</p>
+            
+            <p>In parallel with the technical development, I completed the Epigeum Research Integrity, Second Edition course, which provided valuable insights into research ethics, data management best practices, and responsible collaboration in research teams. This training will inform my approach to data handling and collaborative work in the StickForStats platform.</p>
+            
+            <p>Next steps include completing verification of the PCA module, implementing a comprehensive performance optimization plan, and preparing for production deployment with Kubernetes configuration and CI/CD pipeline setup. The project is on track for completion by late May, with a phased rollout strategy to follow.</p>
+        </div>
+        
+        <!-- Navigation back to progress tracker -->
+        <div class="back-navigation">
+            <a href="../progress.html" class="btn"><i class="fas fa-arrow-left"></i> Back to Progress Tracker</a>
+        </div>
+    </div>
+</body>
+</html>

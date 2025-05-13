@@ -15,6 +15,41 @@
   <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate, max-age=0" />
   <meta http-equiv="expires" content="0" />
   <meta http-equiv="pragma" content="no-cache" />
+  <style>
+    .certificate-list {
+        margin-top: 12px;
+        list-style-type: none;
+        padding-left: 10px;
+    }
+    .certificate-list li {
+        margin-bottom: 10px;
+    }
+    .certificate-list a {
+        display: inline-block;
+        padding: 8px 15px;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #333;
+        border: 1px solid #ddd;
+        transition: all 0.3s ease;
+    }
+    .certificate-list a:hover {
+        background-color: #e0e0e0;
+        border-color: #aaa;
+        transform: translateY(-2px);
+        box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+    }
+    .certificate-list i {
+        color: #e74c3c;
+        margin-right: 8px;
+    }
+    .certification-note-small {
+        font-size: 0.9em;
+        margin-top: 15px;
+        color: #666;
+    }
+  </style>
 </head>
 <body>
 
@@ -415,14 +450,84 @@
             </div>
           </div>
           
+          <!-- Research Integrity Training Section -->
+          <div class="progress-section">
+            <h3><i class="fas fa-award"></i> Research Integrity Training</h3>
+            <p><strong>Accomplishment:</strong> Completed Epigeum Research Integrity, Second Edition course.</p>
+            
+            <table class="progress-table">
+                <thead>
+                    <tr>
+                        <th width="15%">Date</th>
+                        <th width="25%">Module</th>
+                        <th width="60%">Details / Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>May 6-7</td>
+                        <td>Core Research Integrity Principles</td>
+                        <td>
+                            <p>Completed modules on research design, methodology, and ethical considerations.</p>
+                            <p>Studied frameworks for addressing research misconduct and questionable practices.</p>
+                            <p>Reviewed case studies on research integrity violations and their consequences.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>May 8-9</td>
+                        <td>Data Management & Publication</td>
+                        <td>
+                            <p>Completed modules on data collection, storage, and management best practices.</p>
+                            <p>Studied ethical considerations in scientific publication and authorship.</p>
+                            <p>Reviewed procedures for handling conflicts of interest in research.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>May 10-12</td>
+                        <td>Collaborative Research Ethics</td>
+                        <td>
+                            <p>Completed modules on responsible collaboration in research teams.</p>
+                            <p>Studied international standards for research integrity across disciplines.</p>
+                            <p>Obtained certification confirming course completion and competency.</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="certification-note">
+                <h4><i class="fas fa-certificate"></i> Certification:</h4>
+                <p>Successfully completed the Epigeum Research Integrity, Second Edition course, which provides a comprehensive overview of how researchers in the UK can meet their responsibilities, setting out the key principles and practices of good research conduct, and guiding learners through the lifecycle of a research project.</p>
+                <p>Certificates available for download:</p>
+                <ul class="certificate-list">
+                    <li><a href="../../epigeum_certificates/Certificate%20Prog2925430090.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Research Integrity Program Certificate</a></li>
+                    <li><a href="../../epigeum_certificates/Certificate%202925430383.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Core Research Integrity Module Certificate</a></li>
+                    <li><a href="../../epigeum_certificates/Certificate%202925430384.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Advanced Research Ethics Certificate</a></li>
+                </ul>
+                <p class="certification-note-small">All certificates are also available in the <code>epigeum_certificates</code> directory.</p>
+            </div>
+          </div>
+          
           <div class="weekly-summary editable-section">
             <h3><i class="fas fa-flag"></i> Weekly Summary</h3>
-            <div contenteditable="false" class="editable-content" data-storage-key="week18-summary">
-              <p>This week marked significant advancements in the StickForStats platform development, transforming it from a collection of individual Streamlit modules into a cohesive, integrated web application with advanced AI capabilities. Major achievements include complete architectural refactoring to a Flask-based web application, implementation of a Retrieval Augmented Generation (RAG) system for contextual AI assistance, development of a tiered subscription model for premium AI features, establishment of a unified visual identity, integration of core statistical modules, and implementation of authentication and database management.</p>
-              <p>The architectural migration to a Flask-based application provides numerous benefits including unified session management, improved performance, enhanced customization options, and a flexible API-driven architecture. This migration, while challenging, has positioned us to rapidly implement advanced features that would have been impossible within the constraints of the previous framework.</p>
-              <p>The implementation of the RAG system represents a major enhancement to the platform's educational value, providing contextual AI assistance that adapts to user activities and knowledge levels. This system leverages SentenceTransformers for efficient similarity searching and connects to a comprehensive knowledge base of statistical concepts and methods.</p>
-              <p>The development of a tiered subscription model (Basic, Premium, Enterprise) establishes a sustainable framework for providing AI features while ensuring value for all users. The basic tier provides vector-based search and retrieval without requiring an API key, while the premium tier offers enhanced LLM-powered responses and context-aware guidance.</p>
-              <p>Next steps will focus on expanding the RAG knowledge base, completing module integration, developing interactive visualizations for complex statistical concepts, and creating adaptive learning pathways based on user interaction patterns. The long-term vision includes building a community platform for sharing analyses, developing educational partnerships, and integrating with popular data science tools.</p>
+            <div contenteditable="false" class="editable-content" data-storage-key="week19-summary">
+              <p>This week marked significant progress in two key areas: the StickForStats platform migration and professional development in research integrity. The StickForStats migration project reached major milestones with the completion of several integration fixes and enhanced functionality across all modules.</p>
+            
+              <p>The migration from Streamlit to Django/React architecture is now at an advanced stage, with all core modules (SQC, DOE, PCA, Probability Distributions, Confidence Intervals) successfully migrated and verified. The migration has transformed the platform from a collection of individual Streamlit modules into a cohesive, integrated web application with a modern architecture featuring:</p>
+              <ul>
+                <li>Backend: Django with REST API endpoints, PostgreSQL database, and Celery for asynchronous tasks</li>
+                <li>Frontend: React SPA with component-based architecture and Material-UI components</li>
+                <li>Real-time features: WebSockets for live updates during analysis operations</li>
+                <li>Cross-module integration: Central registry system with standardized data exchange formats</li>
+                <li>Authentication: Token-based with JWT authentication and secure session management</li>
+              </ul>
+            
+              <p>Key achievements this week included implementing a centralized API configuration to resolve endpoint inconsistencies, creating a unified API service for standardized authentication, and enhancing WebSocket connection reliability with proper authentication and reconnection logic. The RAG system has been significantly improved and achieved 100% verification, with specialized embedding, retrieval, and generation services for AI-assisted analysis.</p>
+            
+              <p>Frontend development focused on fixing numerous component issues, particularly with MathJax integration for mathematical formula rendering, which required custom rendering solutions and lifecycle management. The implementation of specialized React hooks for API communication has streamlined data retrieval and submission across the application.</p>
+            
+              <p>In parallel with the technical development, I completed the Epigeum Research Integrity, Second Edition course, which provided valuable insights into research ethics, data management best practices, and responsible collaboration in research teams. This comprehensive training covered core research integrity principles, data management and publication ethics, and collaborative research standards. The certification from this program will enhance my approach to data handling and collaborative work in all research projects.</p>
+            
+              <p>Next steps include completing verification of the PCA module, implementing a comprehensive performance optimization plan, and preparing for production deployment with Kubernetes configuration and CI/CD pipeline setup. The project is on track for completion by late May, with a phased rollout strategy to follow.</p>
             </div>
           </div>
         </div>

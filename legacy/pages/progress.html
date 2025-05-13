@@ -16,14 +16,81 @@
   <meta http-equiv="expires" content="0" />
   <meta http-equiv="pragma" content="no-cache" />
   <style>
+    /* Basic progress content layout */
+    .progress-wrapper {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: white;
+    }
+    
+    /* Week navigation */
+    .week-selector {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        padding: 15px;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+    }
+    
+    /* Simplified two-column layout */
+    .two-column-layout {
+        display: block; /* Changed from flex to block */
+    }
+    
+    .main-content {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .sidebar {
+        width: 100%;
+        padding: 20px;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+    }
+    
+    /* Progress section */
+    .progress-section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: white;
+        border: 1px solid #eee;
+        border-radius: 5px;
+    }
+    
+    /* Progress table - simplified */
+    .progress-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+    }
+    
+    .progress-table th, 
+    .progress-table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+    
+    .progress-table th {
+        background-color: #f5f5f5;
+    }
+    
+    /* Certificate list styling */
     .certificate-list {
         margin-top: 12px;
         list-style-type: none;
         padding-left: 10px;
     }
+    
     .certificate-list li {
         margin-bottom: 10px;
     }
+    
     .certificate-list a {
         display: inline-block;
         padding: 8px 15px;
@@ -32,56 +99,36 @@
         text-decoration: none;
         color: #333;
         border: 1px solid #ddd;
-        transition: all 0.3s ease;
     }
-    .certificate-list a:hover {
-        background-color: #e0e0e0;
-        border-color: #aaa;
-        transform: translateY(-2px);
-        box-shadow: 0 3px 5px rgba(0,0,0,0.1);
-    }
+    
     .certificate-list i {
         color: #e74c3c;
         margin-right: 8px;
     }
+    
     .certification-note-small {
         font-size: 0.9em;
         margin-top: 15px;
         color: #666;
     }
-    /* Fix for two-column layout */
-    .two-column-layout {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
+    
+    /* Remove ALL animations and transitions for better performance */
+    * {
+        transition: none !important;
+        animation: none !important;
+        transform: none !important;
     }
-    .main-content {
-        flex: 1;
-        min-width: 65%;
-    }
-    .sidebar {
-        flex: 0 0 30%;
-        min-width: 300px;
-        padding: 20px;
-        border-left: 1px solid #eee;
-    }
-    .sidebar-image {
-        width: 100%;
-        height: auto;
-        max-width: 100%;
-        border-radius: 12px;
-        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        margin-bottom: 20px;
-    }
-    @media (max-width: 1024px) {
+    
+    /* Responsive adjustments */
+    @media (min-width: 768px) {
         .two-column-layout {
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
         }
+        
         .sidebar {
-            border-left: none;
-            border-top: 1px solid #eee;
-            margin-top: 30px;
-            padding-top: 30px;
+            padding: 0 0 0 20px;
         }
     }
   </style>
@@ -89,7 +136,7 @@
 <body>
 
 <script>
-  // Simplified authentication check
+  // Simplified authentication check without timeouts or complex logic
   document.addEventListener('DOMContentLoaded', function() {
     // Check if already authenticated in this session
     if (!sessionStorage.getItem('progressAuth')) {
@@ -99,52 +146,37 @@
       // Already authenticated
       document.getElementById('login-container').style.display = 'none';
       
-      // Set the correct week data after authentication
-      setTimeout(function() {
-        // Force correct date display
-        document.getElementById('week-range').textContent = "May 6 - May 12, 2025";
-        document.getElementById('week-display').textContent = "Week 19, 2025";
-        
-        // Show Week 19 content
-        document.getElementById('content-week-19-2025').style.display = 'block';
-        document.getElementById('content-week-18-2025').style.display = 'none';
-        document.getElementById('content-week-17-2025').style.display = 'none';
-      }, 200);
+      // Show Week 19 content immediately
+      document.getElementById('content-week-19-2025').style.display = 'block';
+      document.getElementById('content-week-18-2025').style.display = 'none';
+      document.getElementById('content-week-17-2025').style.display = 'none';
+      document.getElementById('week-range').textContent = "May 6 - May 12, 2025";
+      document.getElementById('week-display').textContent = "Week 19, 2025";
     }
   });
   
-  // Password handling
+  // Simplified password handling
   function checkPassword() {
     const password = document.getElementById('progress-password').value;
     const correctPassword = "qwerty"; // The correct password
     
-    // Check for exact match
     if (password === correctPassword) {
-      // Set authentication in session storage
+      // Set authentication and show content immediately
       sessionStorage.setItem('progressAuth', 'true');
-      
-      // Show content and hide login form
       document.getElementById('progress-content').style.display = 'block';
       document.getElementById('login-container').style.display = 'none';
       
-      // Set the correct week data after authentication
-      setTimeout(function() {
-        // Force correct date display
-        document.getElementById('week-range').textContent = "May 6 - May 12, 2025";
-        document.getElementById('week-display').textContent = "Week 19, 2025";
-        
-        // Show Week 19 content
-        document.getElementById('content-week-19-2025').style.display = 'block';
-        document.getElementById('content-week-18-2025').style.display = 'none';
-        document.getElementById('content-week-17-2025').style.display = 'none';
-      }, 200);
+      // Set week 19 as current
+      document.getElementById('content-week-19-2025').style.display = 'block';
+      document.getElementById('content-week-18-2025').style.display = 'none';
+      document.getElementById('content-week-17-2025').style.display = 'none';
+      document.getElementById('week-range').textContent = "May 6 - May 12, 2025";
+      document.getElementById('week-display').textContent = "Week 19, 2025";
     } else {
       // Show error message
       document.getElementById('error-msg').style.display = 'block';
     }
   }
-  
-  // Removing auto-fill functionality entirely for better security
   
   // Return to main site
   function returnToMain() {
@@ -169,6 +201,11 @@
 </div>
 
 <div id="progress-content" class="progress-wrapper">
+  <div style="background-color: #e8f4f8; padding: 15px; margin-bottom: 20px; border-radius: 5px; border-left: 5px solid #3498db;">
+    <p style="margin: 0; font-weight: bold; color: #2980b9;">Performance Optimization Mode</p>
+    <p style="margin: 5px 0 0 0; color: #333;">This page is currently running in performance optimization mode with reduced animations and effects to prevent freezing.</p>
+  </div>
+  
   <h2>Weekly Research Progress Tracker</h2>
   <p>This is my centralized system for tracking research and development progress. I update this weekly to share with my PI and collaborators.</p>
   
@@ -273,12 +310,10 @@
               </div>
             </div>
             
-            <div class="download-report">
+            <!-- PDF generation disabled to improve performance -->
+            <div class="report-link">
               <h4><i class="fas fa-file-pdf"></i> Detailed Technical Report:</h4>
-              <a href="#" class="report-download-btn" data-project="stickforstats-platform" data-section="content-week-18-2025">
-                <i class="fas fa-download"></i> Download Complete Project Report (PDF)
-              </a>
-              <p class="report-description">A comprehensive technical report containing detailed analysis, architecture diagrams, implementation details, and future development roadmap for the StickForStats platform.</p>
+              <p>Report download is temporarily disabled for performance optimization.</p>
             </div>
             
             <div class="pi-feedback-section">
@@ -701,12 +736,8 @@
     </div>
     
     <div class="sidebar">
-      <!-- Illustration with JavaScript-generated timestamp -->
+      <!-- Static illustration with no dynamic loading -->
       <img src="../img/progress-tracker-illustration.jpg" class="sidebar-image" alt="StickForStats Platform Development">
-      <script>
-        // Add dynamic timestamp to force image reload
-        document.querySelector('.sidebar-image').src += '?t=' + new Date().getTime();
-      </script>
       
       <!-- Development Plan -->
       <div class="project-section">
@@ -844,6 +875,5 @@
   <i class="fas fa-moon"></i>
 </div>
 
-<!-- Load html2pdf.js and weekly navigation -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<!-- Load only essential scripts -->
 <script src="../js/set-week-19.js"></script>

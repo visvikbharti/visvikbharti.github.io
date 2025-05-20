@@ -232,10 +232,108 @@
         <div id="content-week-20-2025">
           <!-- RNA Lab Navigator Project Development Section -->
           <div class="progress-section">
-            <h3><i class="fas fa-flask"></i> RNA Lab Navigator Development</h3>
-            <p><strong>Project Goal:</strong> Build a private, retrieval-augmented assistant for our RNA-biology lab that can answer protocol, thesis, and paper questions with citations in under 5 seconds.</p>
+            <h3 style="color: #2980b9; font-size: 24px; margin-bottom: 10px;"><i class="fas fa-flask"></i> RNA Lab Navigator Development</h3>
+            <p style="font-size: 17px; margin-bottom: 25px; color: #333; border-left: 4px solid #3498db; padding-left: 15px; font-style: italic;"><strong>Project Goal:</strong> Build a private, retrieval-augmented assistant for our RNA-biology lab that can answer protocol, thesis, and paper questions with citations in under 5 seconds.</p>
             
-            <table class="progress-table">
+            <!-- System Architecture Diagram -->
+            <div style="background: linear-gradient(135deg, #f6f9fc 0%, #eef6fd 100%); border-radius: 10px; padding: 20px; margin-bottom: 30px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);">
+              <h4 style="color: #2c3e50; text-align: center; margin-bottom: 20px; font-size: 20px; text-transform: uppercase; letter-spacing: 1px;">System Architecture</h4>
+              
+              <div style="display: flex; flex-direction: column; align-items: center;">
+                <div style="display: flex; justify-content: space-between; width: 100%; margin-bottom: 20px;">
+                  <div style="border: none; border-radius: 8px; padding: 15px; width: 25%; text-align: center; background: linear-gradient(145deg, #3498db 0%, #2980b9 100%); color: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <div style="font-weight: bold; font-size: 16px; margin-bottom: 5px;">Frontend</div>
+                    <div>React + Tailwind</div>
+                  </div>
+                  <div style="display: flex; align-items: center; color: #7f8c8d;">
+                    <i class="fas fa-long-arrow-alt-right fa-lg"></i>
+                  </div>
+                  <div style="border: none; border-radius: 8px; padding: 15px; width: 25%; text-align: center; background: linear-gradient(145deg, #e74c3c 0%, #c0392b 100%); color: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <div style="font-weight: bold; font-size: 16px; margin-bottom: 5px;">Backend API</div>
+                    <div>Django + DRF</div>
+                  </div>
+                  <div style="display: flex; align-items: center; color: #7f8c8d;">
+                    <i class="fas fa-long-arrow-alt-right fa-lg"></i>
+                  </div>
+                  <div style="border: none; border-radius: 8px; padding: 15px; width: 25%; text-align: center; background: linear-gradient(145deg, #2ecc71 0%, #27ae60 100%); color: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <div style="font-weight: bold; font-size: 16px; margin-bottom: 5px;">Response</div>
+                    <div>Answer + Citations</div>
+                  </div>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; width: 100%; margin-bottom: 10px;">
+                  <div style="border: none; border-radius: 8px; padding: 15px; width: 30%; text-align: center; background: linear-gradient(145deg, #9b59b6 0%, #8e44ad 100%); color: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <div style="font-weight: bold; font-size: 16px; margin-bottom: 5px;">Vector DB</div>
+                    <div>Weaviate</div>
+                    <div style="font-size: 12px;">(Document chunks + meta)</div>
+                  </div>
+                  <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 30%;">
+                    <div style="border: none; border-radius: 8px; padding: 10px; width: 100%; text-align: center; margin-bottom: 10px; background: linear-gradient(145deg, #f39c12 0%, #d35400 100%); color: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                      <div style="font-weight: bold; font-size: 16px;">Cross-Encoder</div>
+                      <div style="font-size: 12px;">MiniLM (CPU)</div>
+                    </div>
+                    <div style="border: none; border-radius: 8px; padding: 10px; width: 100%; text-align: center; background: linear-gradient(145deg, #f39c12 0%, #e67e22 100%); color: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                      <div style="font-weight: bold; font-size: 16px;">OpenAI</div>
+                      <div style="font-size: 12px;">GPT-4o + Ada-002</div>
+                    </div>
+                  </div>
+                  <div style="border: none; border-radius: 8px; padding: 15px; width: 30%; text-align: center; background: linear-gradient(145deg, #16a085 0%, #1abc9c 100%); color: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <div style="font-weight: bold; font-size: 16px; margin-bottom: 5px;">Celery Workers</div>
+                    <div>BioRxiv Fetch</div>
+                    <div>PDF Processing</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+              
+            <!-- RAG Pipeline Flow -->
+            <div style="background: linear-gradient(135deg, #f6f9fc 0%, #ecf4fb 100%); border-radius: 10px; padding: 20px; margin-bottom: 30px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);">
+              <h4 style="color: #2c3e50; text-align: center; margin-bottom: 20px; font-size: 20px; text-transform: uppercase; letter-spacing: 1px;">RAG Implementation Workflow</h4>
+              
+              <div style="display: flex; flex-direction: column; align-items: center;">
+                <div style="display: flex; justify-content: space-between; width: 100%; margin-bottom: 15px;">
+                  <div style="width: 22%; text-align: center;">
+                    <div style="border: none; border-radius: 8px; padding: 15px; background: linear-gradient(145deg, #3498db 0%, #2980b9 100%); color: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                      <div style="font-weight: bold; font-size: 16px; margin-bottom: 5px;">1. Query Processing</div>
+                      <div style="font-size: 13px;">Expansion & Preprocessing</div>
+                    </div>
+                  </div>
+                  <div style="display: flex; align-items: center; color: #7f8c8d;">
+                    <i class="fas fa-arrow-right"></i>
+                  </div>
+                  <div style="width: 22%; text-align: center;">
+                    <div style="border: none; border-radius: 8px; padding: 15px; background: linear-gradient(145deg, #e74c3c 0%, #c0392b 100%); color: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                      <div style="font-weight: bold; font-size: 16px; margin-bottom: 5px;">2. Vector Search</div>
+                      <div style="font-size: 13px;">HNSW + BM25 Hybrid</div>
+                    </div>
+                  </div>
+                  <div style="display: flex; align-items: center; color: #7f8c8d;">
+                    <i class="fas fa-arrow-right"></i>
+                  </div>
+                  <div style="width: 22%; text-align: center;">
+                    <div style="border: none; border-radius: 8px; padding: 15px; background: linear-gradient(145deg, #9b59b6 0%, #8e44ad 100%); color: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                      <div style="font-weight: bold; font-size: 16px; margin-bottom: 5px;">3. Reranking</div>
+                      <div style="font-size: 13px;">Cross-Encoder Scoring</div>
+                    </div>
+                  </div>
+                  <div style="display: flex; align-items: center; color: #7f8c8d;">
+                    <i class="fas fa-arrow-right"></i>
+                  </div>
+                  <div style="width: 22%; text-align: center;">
+                    <div style="border: none; border-radius: 8px; padding: 15px; background: linear-gradient(145deg, #2ecc71 0%, #27ae60 100%); color: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                      <div style="font-weight: bold; font-size: 16px; margin-bottom: 5px;">4. LLM Synthesis</div>
+                      <div style="font-size: 13px;">GPT-4o with Citations</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div style="margin-top: 15px; text-align: center; font-size: 14px; color: #34495e; background-color: white; padding: 10px; border-radius: 20px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); display: inline-block;">
+                  <span style="font-weight: bold;">End-to-end latency target:</span> ≤5 seconds | <span style="font-weight: bold;">Answer quality target:</span> ≥85% on test bank
+                </div>
+              </div>
+            </div>
+            
+            <table class="progress-table" style="box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08); border-radius: 8px; overflow: hidden;">
               <thead>
                 <tr>
                   <th width="15%">Component</th>
@@ -486,101 +584,29 @@
             </table>
             
             <div class="demo-links">
-              <p><strong>System Architecture Diagram:</strong></p>
-              <div style="background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; padding: 15px; margin: 15px 0;">
-                <div style="display: flex; flex-direction: column; align-items: center;">
-                  <div style="font-weight: bold; margin-bottom: 15px; font-size: 16px;">RNA Lab Navigator Architecture</div>
-                  <div style="display: flex; justify-content: space-between; width: 100%; margin-bottom: 20px;">
-                    <div style="border: 2px solid #3498db; border-radius: 5px; padding: 10px; width: 25%; text-align: center; background-color: #e8f4f8;">
-                      <div style="font-weight: bold;">Frontend</div>
-                      <div>React + Tailwind</div>
-                    </div>
-                    <div style="display: flex; align-items: center;">
-                      <i class="fas fa-arrow-right"></i>
-                    </div>
-                    <div style="border: 2px solid #e74c3c; border-radius: 5px; padding: 10px; width: 25%; text-align: center; background-color: #fef5f5;">
-                      <div style="font-weight: bold;">Backend API</div>
-                      <div>Django + DRF</div>
-                    </div>
-                    <div style="display: flex; align-items: center;">
-                      <i class="fas fa-arrow-right"></i>
-                    </div>
-                    <div style="border: 2px solid #2ecc71; border-radius: 5px; padding: 10px; width: 25%; text-align: center; background-color: #f0fff0;">
-                      <div style="font-weight: bold;">Response</div>
-                      <div>Answer + Citations</div>
-                    </div>
+              <p><strong>Performance Metrics & Resources:</strong></p>
+              <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 15px; margin-top: 15px;">
+                <a href="#" class="demo-badge" style="background: linear-gradient(145deg, #3498db 0%, #2980b9 100%); color: white; border: none; padding: 12px 15px; border-radius: 8px; flex: 1; min-width: 180px; display: flex; align-items: center; justify-content: center; gap: 10px; transition: transform 0.2s; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                  <i class="fas fa-chart-line fa-lg"></i> 
+                  <div>
+                    <div style="font-weight: bold;">Performance Dashboard</div>
+                    <div style="font-size: 12px;">Latency & Quality Metrics</div>
                   </div>
-                  
-                  <div style="display: flex; justify-content: space-between; width: 100%; margin-bottom: 10px;">
-                    <div style="border: 2px solid #9b59b6; border-radius: 5px; padding: 10px; width: 30%; text-align: center; background-color: #f5f0f7;">
-                      <div style="font-weight: bold;">Vector DB</div>
-                      <div>Weaviate</div>
-                      <div style="font-size: 12px;">(Document chunks + meta)</div>
-                    </div>
-                    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 30%;">
-                      <div style="border: 2px solid #f39c12; border-radius: 5px; padding: 5px; width: 100%; text-align: center; margin-bottom: 5px; background-color: #fff9f0;">
-                        <div style="font-weight: bold;">Cross-Encoder</div>
-                        <div style="font-size: 12px;">MiniLM (CPU)</div>
-                      </div>
-                      <div style="border: 2px solid #f39c12; border-radius: 5px; padding: 5px; width: 100%; text-align: center; background-color: #fff9f0;">
-                        <div style="font-weight: bold;">OpenAI</div>
-                        <div style="font-size: 12px;">GPT-4o + Ada-002</div>
-                      </div>
-                    </div>
-                    <div style="border: 2px solid #16a085; border-radius: 5px; padding: 10px; width: 30%; text-align: center; background-color: #f0f7f7;">
-                      <div style="font-weight: bold;">Celery Workers</div>
-                      <div>BioRxiv Fetch</div>
-                      <div>PDF Processing</div>
-                    </div>
+                </a>
+                <a href="#" class="demo-badge" style="background: linear-gradient(145deg, #9b59b6 0%, #8e44ad 100%); color: white; border: none; padding: 12px 15px; border-radius: 8px; flex: 1; min-width: 180px; display: flex; align-items: center; justify-content: center; gap: 10px; transition: transform 0.2s; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                  <i class="fas fa-flask fa-lg"></i>
+                  <div>
+                    <div style="font-weight: bold;">Query Test Results</div>
+                    <div style="font-size: 12px;">20-Question Benchmark</div>
                   </div>
-                </div>
-              </div>
-              
-              <p><strong>RAG Pipeline Flow:</strong></p>
-              <div style="background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; padding: 15px; margin: 15px 0;">
-                <div style="display: flex; flex-direction: column; align-items: center;">
-                  <div style="font-weight: bold; margin-bottom: 15px; font-size: 16px;">RAG Implementation Workflow</div>
-                  
-                  <div style="display: flex; justify-content: space-between; width: 100%; margin-bottom: 15px;">
-                    <div style="width: 22%; text-align: center;">
-                      <div style="border: 2px solid #3498db; border-radius: 5px; padding: 10px; background-color: #e8f4f8;">
-                        <div style="font-weight: bold;">1. Query Processing</div>
-                        <div style="font-size: 12px;">Expansion & Preprocessing</div>
-                      </div>
-                    </div>
-                    <div style="display: flex; align-items: center;">
-                      <i class="fas fa-arrow-right"></i>
-                    </div>
-                    <div style="width: 22%; text-align: center;">
-                      <div style="border: 2px solid #e74c3c; border-radius: 5px; padding: 10px; background-color: #fef5f5;">
-                        <div style="font-weight: bold;">2. Vector Search</div>
-                        <div style="font-size: 12px;">HNSW + BM25 Hybrid</div>
-                      </div>
-                    </div>
-                    <div style="display: flex; align-items: center;">
-                      <i class="fas fa-arrow-right"></i>
-                    </div>
-                    <div style="width: 22%; text-align: center;">
-                      <div style="border: 2px solid #9b59b6; border-radius: 5px; padding: 10px; background-color: #f5f0f7;">
-                        <div style="font-weight: bold;">3. Reranking</div>
-                        <div style="font-size: 12px;">Cross-Encoder Scoring</div>
-                      </div>
-                    </div>
-                    <div style="display: flex; align-items: center;">
-                      <i class="fas fa-arrow-right"></i>
-                    </div>
-                    <div style="width: 22%; text-align: center;">
-                      <div style="border: 2px solid #2ecc71; border-radius: 5px; padding: 10px; background-color: #f0fff0;">
-                        <div style="font-weight: bold;">4. LLM Synthesis</div>
-                        <div style="font-size: 12px;">GPT-4o with Citations</div>
-                      </div>
-                    </div>
+                </a>
+                <a href="#" class="demo-badge" style="background: linear-gradient(145deg, #2ecc71 0%, #27ae60 100%); color: white; border: none; padding: 12px 15px; border-radius: 8px; flex: 1; min-width: 180px; display: flex; align-items: center; justify-content: center; gap: 10px; transition: transform 0.2s; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                  <i class="fas fa-book fa-lg"></i>
+                  <div>
+                    <div style="font-weight: bold;">Documentation</div>
+                    <div style="font-size: 12px;">User & Developer Guides</div>
                   </div>
-                  
-                  <div style="margin-top: 15px; text-align: center; font-size: 13px; color: #666;">
-                    End-to-end latency target: ≤5 seconds | Answer quality target: ≥85% on test bank
-                  </div>
-                </div>
+                </a>
               </div>
             </div>
             

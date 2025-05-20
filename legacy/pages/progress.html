@@ -146,12 +146,13 @@
       // Already authenticated
       document.getElementById('login-container').style.display = 'none';
       
-      // Show Week 19 content immediately
-      document.getElementById('content-week-19-2025').style.display = 'block';
+      // Show Week 20 content immediately
+      document.getElementById('content-week-20-2025').style.display = 'block';
+      document.getElementById('content-week-19-2025').style.display = 'none';
       document.getElementById('content-week-18-2025').style.display = 'none';
       document.getElementById('content-week-17-2025').style.display = 'none';
-      document.getElementById('week-range').textContent = "May 6 - May 12, 2025";
-      document.getElementById('week-display').textContent = "Week 19, 2025";
+      document.getElementById('week-range').textContent = "May 13 - May 19, 2025";
+      document.getElementById('week-display').textContent = "Week 20, 2025";
     }
   });
   
@@ -166,12 +167,13 @@
       document.getElementById('progress-content').style.display = 'block';
       document.getElementById('login-container').style.display = 'none';
       
-      // Set week 19 as current
-      document.getElementById('content-week-19-2025').style.display = 'block';
+      // Set week 20 as current
+      document.getElementById('content-week-20-2025').style.display = 'block';
+      document.getElementById('content-week-19-2025').style.display = 'none';
       document.getElementById('content-week-18-2025').style.display = 'none';
       document.getElementById('content-week-17-2025').style.display = 'none';
-      document.getElementById('week-range').textContent = "May 6 - May 12, 2025";
-      document.getElementById('week-display').textContent = "Week 19, 2025";
+      document.getElementById('week-range').textContent = "May 13 - May 19, 2025";
+      document.getElementById('week-display').textContent = "Week 20, 2025";
     } else {
       // Show error message
       document.getElementById('error-msg').style.display = 'block';
@@ -213,8 +215,8 @@
   <div class="week-selector">
     <button id="prev-week" class="progress-nav-button" aria-label="Previous week"><i class="fas fa-chevron-left"></i> Previous Week</button>
     <div class="week-info">
-      <div id="week-display" class="week-display">Week 18, 2025</div>
-      <div id="week-range" class="week-range">April 29 - May 05, 2025</div>
+      <div id="week-display" class="week-display">Week 20, 2025</div>
+      <div id="week-range" class="week-range">May 13 - May 19, 2025</div>
     </div>
     <div class="week-buttons">
       <button id="current-week" class="progress-nav-button" aria-label="Current week">Current Week</button>
@@ -226,8 +228,329 @@
     <div class="main-content">
       <!-- Week content container -->
       <div id="week-content" class="progress-content active">
-        <!-- Content for Week 19 (Current Week - May 6 to May 12, 2025) -->
-        <div id="content-week-19-2025">
+        <!-- Content for Week 20 (Current Week - May 13 to May 19, 2025) -->
+        <div id="content-week-20-2025">
+          <!-- RNA Lab Navigator Project Development Section -->
+          <div class="progress-section">
+            <h3><i class="fas fa-flask"></i> RNA Lab Navigator Development</h3>
+            <p><strong>Project Goal:</strong> Build a private, retrieval-augmented assistant for Dr Debojyoti Chakraborty's RNA-biology lab that can answer protocol, thesis, and paper questions with citations in under 5 seconds.</p>
+            
+            <table class="progress-table">
+              <thead>
+                <tr>
+                  <th width="15%">Component</th>
+                  <th width="15%">Progress</th>
+                  <th width="70%">Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Backend Infrastructure</td>
+                  <td><div class="progress-bar" style="--progress: 85%;">85%</div></td>
+                  <td>
+                    <p>Completed initial Django + DRF setup with PostgreSQL, Redis, and Weaviate integration.</p>
+                    <p>Implemented core models for QueryHistory, ThesisMeta, and document metadata.</p>
+                    <p>Set up Celery workers and beat scheduler for background tasks.</p>
+                    <p>Created comprehensive API endpoints with JWT authentication.</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>RAG Pipeline</td>
+                  <td><div class="progress-bar" style="--progress: 80%;">80%</div></td>
+                  <td>
+                    <p>Developed document ingestion pipeline for theses and protocols with metadata extraction.</p>
+                    <p>Implemented chunking logic (400±50 words, 100-word overlap) with thesis-specific chapter detection.</p>
+                    <p>Set up vector embeddings workflow using OpenAI Ada-002.</p>
+                    <p>Created cross-encoder reranking system using MiniLM for improved chunk relevance.</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>LLM Integration</td>
+                  <td><div class="progress-bar" style="--progress: 90%;">90%</div></td>
+                  <td>
+                    <p>Integrated OpenAI GPT-4o model with configurable parameters and caching.</p>
+                    <p>Designed prompt templates with strict citation requirements and confidence scoring.</p>
+                    <p>Implemented isolation layer for secure API communication and error handling.</p>
+                    <p>Added comprehensive logging system to track token usage and query performance.</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Frontend Interface</td>
+                  <td><div class="progress-bar" style="--progress: 75%;">75%</div></td>
+                  <td>
+                    <p>Created React components for ChatBox, AnswerCard, DocumentPreview, and FilterChips.</p>
+                    <p>Implemented responsive design with Tailwind CSS for desktop and mobile use.</p>
+                    <p>Added citation highlighting and document preview functionality.</p>
+                    <p>Integrated real-time feedback collection for continuous improvement.</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <div class="progress-challenges editable-section">
+              <h4><i class="fas fa-exclamation-triangle"></i> Challenges:</h4>
+              <div contenteditable="false" class="editable-content" data-storage-key="week20-challenges-rnalab">
+                <ul>
+                  <li>Optimizing query latency to meet the 5-second target for end-to-end response time.</li>
+                  <li>Handling PDF ingestion edge cases with unusual formatting or embedded images.</li>
+                  <li>Balancing OpenAI token usage to stay within the $30/month budget constraint.</li>
+                  <li>Implementing effective error handling for API timeouts and network issues.</li>
+                  <li>Ensuring consistent data schema across different document types (theses, protocols, papers).</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="progress-next-steps editable-section">
+              <h4><i class="fas fa-arrow-right"></i> Next Steps:</h4>
+              <div contenteditable="false" class="editable-content" data-storage-key="week20-nextsteps-rnalab">
+                <ul>
+                  <li>Integrate automated figure extraction from PDFs to enhance answer quality.</li>
+                  <li>Implement reagent inventory tracking with CSV import functionality.</li>
+                  <li>Develop admin dashboard for monitoring usage metrics and performance statistics.</li>
+                  <li>Add comprehensive testing suite with at least 20 test queries to evaluate answer quality.</li>
+                  <li>Deploy initial prototype on Railway and Vercel for limited user testing.</li>
+                </ul>
+              </div>
+            </div>
+            
+            <!-- PDF generation disabled to improve performance -->
+            <div class="report-link">
+              <h4><i class="fas fa-file-pdf"></i> Implementation Documents:</h4>
+              <p>Report download is temporarily disabled for performance optimization.</p>
+            </div>
+            
+            <div class="pi-feedback-section">
+              <h4><i class="fas fa-comments"></i> PI Feedback:</h4>
+              <div class="feedback-container">
+                <div id="previous-feedback-rnalab" class="previous-feedback">
+                  <!-- Previous feedback will be loaded here -->
+                </div>
+                <div class="new-feedback-input">
+                  <textarea id="pi-feedback-rnalab" placeholder="Dr. Debojyoti Chakraborty Sir: Add your feedback or comments here..." class="pi-feedback-textarea"></textarea>
+                  <div class="feedback-actions">
+                    <select id="pi-feedback-status-rnalab" class="pi-status-select">
+                      <option value="approved">Approve Direction</option>
+                      <option value="changes">Request Changes</option>
+                      <option value="question">Ask Question</option>
+                    </select>
+                    <button class="save-feedback-btn" data-project="rnalab"><i class="fas fa-save"></i> Save Feedback</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Document Ingestion Pipeline Section -->
+          <div class="progress-section">
+            <h3><i class="fas fa-file-import"></i> Document Ingestion Pipeline</h3>
+            <p><strong>Project Goal:</strong> Create a robust pipeline for ingesting and processing various document types (theses, protocols, papers) with proper chunking and metadata extraction.</p>
+            
+            <table class="progress-table">
+              <thead>
+                <tr>
+                  <th width="15%">Date</th>
+                  <th width="25%">Task</th>
+                  <th width="60%">Details / Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mon - Wed</td>
+                  <td>PDF Extraction & Chunking</td>
+                  <td>
+                    <p>Implemented advanced PDF text extraction with PyPDF2 and pdfplumber for handling complex layouts.</p>
+                    <p>Developed specialized chunking algorithm with 400±50 word chunks and 100-word overlap.</p>
+                    <p>Created custom regex patterns for identifying CHAPTER headings in thesis documents.</p>
+                    <p>Added text cleaning utilities to handle common PDF extraction artifacts and formatting issues.</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Thu - Fri</td>
+                  <td>Embedding Generation</td>
+                  <td>
+                    <p>Set up OpenAI Ada-002 embedding generation with rate limiting and error handling.</p>
+                    <p>Implemented chunk metadata enrichment with document type, author, year, and source location.</p>
+                    <p>Created Weaviate schema with appropriate index configuration for hybrid search.</p>
+                    <p>Developed batch processing system to optimize embedding API calls and reduce costs.</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Sat - Sun</td>
+                  <td>Testing & Optimization</td>
+                  <td>
+                    <p>Tested ingestion pipeline with various PDF formats including scanned documents and complex layouts.</p>
+                    <p>Implemented figure extraction functionality to identify and store image references.</p>
+                    <p>Created comprehensive logging system to track ingestion progress and identify failures.</p>
+                    <p>Optimized memory usage for handling large documents with limited resources.</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <div class="progress-challenges editable-section">
+              <h4><i class="fas fa-exclamation-triangle"></i> Challenges:</h4>
+              <div contenteditable="false" class="editable-content" data-storage-key="week20-challenges-ingestion">
+                <ul>
+                  <li>Extracting clean text from complex multi-column PDF layouts with embedded figures.</li>
+                  <li>Handling inconsistent chapter and section formatting across different thesis documents.</li>
+                  <li>Optimizing memory usage when processing large PDF files (300+ pages).</li>
+                  <li>Managing OpenAI API rate limits during bulk ingestion of large document sets.</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="progress-next-steps editable-section">
+              <h4><i class="fas fa-arrow-right"></i> Next Steps:</h4>
+              <div contenteditable="false" class="editable-content" data-storage-key="week20-nextsteps-ingestion">
+                <ul>
+                  <li>Implement citation extraction to link references within extracted text chunks.</li>
+                  <li>Develop automated OCR pipeline for handling scanned document PDFs.</li>
+                  <li>Create user interface for uploading and monitoring document ingestion progress.</li>
+                  <li>Add support for additional document formats (DOCX, PPTX, HTML).</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="pi-feedback-section">
+              <h4><i class="fas fa-comments"></i> PI Feedback:</h4>
+              <div class="feedback-container">
+                <div id="previous-feedback-ingestion" class="previous-feedback">
+                  <!-- Previous feedback will be loaded here -->
+                </div>
+                <div class="new-feedback-input">
+                  <textarea id="pi-feedback-ingestion" placeholder="Dr. Debojyoti Chakraborty Sir: Add your feedback or comments here..." class="pi-feedback-textarea"></textarea>
+                  <div class="feedback-actions">
+                    <select id="pi-feedback-status-ingestion" class="pi-status-select">
+                      <option value="approved">Approve Direction</option>
+                      <option value="changes">Request Changes</option>
+                      <option value="question">Ask Question</option>
+                    </select>
+                    <button class="save-feedback-btn" data-project="ingestion"><i class="fas fa-save"></i> Save Feedback</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- RAG System Implementation Section -->
+          <div class="progress-section">
+            <h3><i class="fas fa-robot"></i> RAG System Implementation</h3>
+            <p><strong>Project Goal:</strong> Implement a Retrieval Augmented Generation system for accurate, cited answers to lab-specific questions with low latency.</p>
+            
+            <table class="progress-table">
+              <thead>
+                <tr>
+                  <th width="15%">Component</th>
+                  <th width="15%">Progress</th>
+                  <th width="70%">Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Vector Retrieval</td>
+                  <td><div class="progress-bar" style="--progress: 90%;">90%</div></td>
+                  <td>
+                    <p>Implemented Weaviate vector store with hybrid search capabilities (HNSW + BM25).</p>
+                    <p>Developed query preprocessing and expansion strategies for improved recall.</p>
+                    <p>Optimized index settings for optimal performance with our document collection.</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Cross-Encoder Reranking</td>
+                  <td><div class="progress-bar" style="--progress: 85%;">85%</div></td>
+                  <td>
+                    <p>Integrated MiniLM cross-encoder for reranking initial vector search results.</p>
+                    <p>Implemented configurable threshold and top-k parameters for result filtering.</p>
+                    <p>Created caching layer to speed up repeated queries with similar results.</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>LLM Answer Generation</td>
+                  <td><div class="progress-bar" style="--progress: 95%;">95%</div></td>
+                  <td>
+                    <p>Designed carefully engineered prompts to enforce citation requirements.</p>
+                    <p>Implemented confidence scoring system to flag uncertain responses.</p>
+                    <p>Created citation formatting utilities for consistent output presentation.</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Performance Optimization</td>
+                  <td><div class="progress-bar" style="--progress: 75%;">75%</div></td>
+                  <td>
+                    <p>Implemented parallel processing for retrieval and reranking steps.</p>
+                    <p>Created efficient caching mechanisms for query results and embeddings.</p>
+                    <p>Optimized database access patterns for reduced latency.</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <div class="demo-links">
+              <p><strong>Related Resources:</strong></p>
+              <div class="link-badges">
+                <a href="#" class="demo-badge">
+                  <i class="fas fa-chart-line"></i> System Architecture Diagram
+                </a>
+                <a href="#" class="demo-badge">
+                  <i class="fas fa-flask"></i> Sample Query Test Results
+                </a>
+                <a href="#" class="demo-badge">
+                  <i class="fas fa-chart-pie"></i> Performance Metrics Dashboard
+                </a>
+              </div>
+            </div>
+            
+            <div class="pi-feedback-section">
+              <h4><i class="fas fa-comments"></i> PI Feedback:</h4>
+              <div class="feedback-container">
+                <div id="previous-feedback-rag" class="previous-feedback">
+                  <!-- Previous feedback will be loaded here -->
+                </div>
+                <div class="new-feedback-input">
+                  <textarea id="pi-feedback-rag" placeholder="Dr. Debojyoti Chakraborty Sir: Add your feedback or comments here..." class="pi-feedback-textarea"></textarea>
+                  <div class="feedback-actions">
+                    <select id="pi-feedback-status-rag" class="pi-status-select">
+                      <option value="approved">Approve Direction</option>
+                      <option value="changes">Request Changes</option>
+                      <option value="question">Ask Question</option>
+                    </select>
+                    <button class="save-feedback-btn" data-project="rag"><i class="fas fa-save"></i> Save Feedback</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="weekly-summary editable-section">
+            <h3><i class="fas fa-flag"></i> Weekly Summary</h3>
+            <div contenteditable="false" class="editable-content" data-storage-key="week20-summary">
+              <p>This week marked significant progress on the RNA Lab Navigator project, with substantial advancements across multiple components. The backend infrastructure is now 85% complete, with Django, PostgreSQL, Redis, and Weaviate successfully integrated. The core models and API endpoints are functional, and Celery workers have been set up for background tasks.</p>
+            
+              <p>The document ingestion pipeline is operational, with custom chunking logic (400±50 words, 100-word overlap) and thesis-specific chapter detection. We've implemented PDF text extraction with PyPDF2 and pdfplumber, supporting complex layouts and multi-column documents. The OpenAI Ada-002 embedding generation system is working with proper rate limiting and error handling, and we've set up a Weaviate schema for hybrid search capabilities.</p>
+              
+              <p>The RAG system implementation has made excellent progress. Vector retrieval with Weaviate is 90% complete, featuring hybrid search (HNSW + BM25) and query preprocessing techniques. The cross-encoder reranking component (85% complete) successfully improves result relevance using MiniLM, and our LLM answer generation (95% complete) incorporates carefully engineered prompts that enforce citation requirements and confidence scoring.</p>
+              
+              <p>The frontend interface has reached 75% completion, with React components for ChatBox, AnswerCard, DocumentPreview, and FilterChips implemented using Tailwind CSS. We've added citation highlighting, document preview functionality, and real-time feedback collection.</p>
+              
+              <p>Key challenges include optimizing query latency to meet the 5-second target, handling PDF ingestion edge cases, balancing OpenAI token usage to stay within budget, implementing effective error handling, and ensuring data schema consistency across document types. Our next steps will focus on integrating figure extraction, implementing reagent inventory tracking, developing an admin dashboard, expanding our testing suite, and deploying the initial prototype.</p>
+              
+              <p>The project is on track to meet its core objectives: achieving ≥85% good or okay responses on a 20-question test bank, maintaining ≤5s median end-to-end latency, ingesting ≥10 SOPs + 1 thesis + daily preprints, keeping first-month OpenAI spend ≤$30, and engaging ≥5 active lab members as users.</p>
+            </div>
+          </div>
+          
+          <!-- Navigation buttons -->
+          <div class="navigation-buttons" style="margin-top: 30px; margin-bottom: 30px; display: flex; gap: 15px; justify-content: center;">
+            <a href="progress.html" class="btn" style="background-color: #3498db; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; display: inline-flex; align-items: center; font-weight: bold;">
+              <i class="fas fa-arrow-left" style="margin-right: 8px;"></i> Back to Progress Tracker
+            </a>
+            <a href="../index.html" class="btn" style="background-color: #2ecc71; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; display: inline-flex; align-items: center; font-weight: bold;">
+              <i class="fas fa-home" style="margin-right: 8px;"></i> Return to Home
+            </a>
+          </div>
+        </div>
+        
+        <!-- Content for Week 19 (Previous Week - May 6 to May 12, 2025) -->
+        <div id="content-week-19-2025" style="display: none;">
           <!-- StickForStats Platform Development Section -->
           <div class="progress-section">
             <h3><i class="fas fa-chart-bar"></i> StickForStats Platform Development</h3>
@@ -746,30 +1069,30 @@
         <div class="timeline-item">
           <div class="timeline-title">Short-term Goals (May-June 2025)</div>
           <ul>
-            <li>Expand RAG knowledge base with specialized content</li>
-            <li>Develop interactive visualizations for complex concepts</li>
-            <li>Create biotech-specific case studies and examples</li>
-            <li>Implement adaptive learning pathways</li>
+            <li>Complete core RAG chatbot implementation</li>
+            <li>Deploy functional prototype on Railway/Vercel</li>
+            <li>Conduct initial testing with 5+ lab members</li>
+            <li>Optimize response time to ≤5 seconds</li>
           </ul>
         </div>
         
         <div class="timeline-item">
           <div class="timeline-title">Medium-term Goals (June-July 2025)</div>
           <ul>
-            <li>Build community platform for sharing analyses</li>
-            <li>Develop educational partnerships with institutions</li>
-            <li>Create plugin system for community contributions</li>
-            <li>Integrate with popular data science tools</li>
+            <li>Implement protocol uploader with version tracking</li>
+            <li>Add reagent inventory and integration</li>
+            <li>Develop admin dashboard for analytics</li>
+            <li>Expand document corpus to 20+ protocols, 3+ theses</li>
           </ul>
         </div>
         
         <div class="timeline-item">
           <div class="timeline-title">Long-term Vision (August 2025+)</div>
           <ul>
-            <li>Scale platform for enterprise use</li>
-            <li>Launch certified training program</li>
-            <li>Develop industry-specific modules</li>
-            <li>Create comprehensive documentation system</li>
+            <li>Implement knowledge graph visualization</li>
+            <li>Create feedback loop for continuous improvement</li>
+            <li>Explore on-prem LLM options for sensitive data</li>
+            <li>Develop lab equipment API integrations</li>
           </ul>
         </div>
       </div>
@@ -779,6 +1102,24 @@
         <h3><i class="fas fa-history"></i> Previous Reports</h3>
         
         <div class="archive-list">
+          <div class="archive-item" data-week="19" data-year="2025">
+            <div class="archive-header">
+              <div class="archive-title">Week 19, 2025 (May 6 - May 12)</div>
+              <i class="fas fa-chevron-down archive-toggle"></i>
+            </div>
+            <div class="archive-content">
+              <p><strong>Focus:</strong> StickForStats Platform Development</p>
+              <p><strong>Key accomplishments:</strong></p>
+              <ul>
+                <li>Completed architectural migration to Flask-based web application</li>
+                <li>Implemented RAG system for contextual AI assistance</li>
+                <li>Developed tiered subscription model for sustainable AI features</li>
+                <li>Integrated core statistical modules with standardized data exchange</li>
+              </ul>
+              <button class="view-report-btn nav-button" data-week="19" data-year="2025">View Full Report</button>
+            </div>
+          </div>
+          
           <div class="archive-item" data-week="18" data-year="2025">
             <div class="archive-header">
               <div class="archive-title">Week 18, 2025 (April 29 - May 05)</div>
@@ -876,4 +1217,4 @@
 </div>
 
 <!-- Load only essential scripts -->
-<script src="../js/set-week-19.js"></script>
+<script src="../js/set-week-20.js"></script>

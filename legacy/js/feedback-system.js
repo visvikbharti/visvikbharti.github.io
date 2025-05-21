@@ -19,7 +19,47 @@ document.addEventListener('DOMContentLoaded', function() {
       saveFeedback(projectId);
     });
   });
+  
+  // Add export/import controls
+  addFeedbackControls();
 });
+
+/**
+ * Add export/import controls to each feedback section
+ */
+function addFeedbackControls() {
+  // Find all feedback containers
+  const feedbackContainers = document.querySelectorAll('.previous-feedback');
+  
+  feedbackContainers.forEach(container => {
+    const containerId = container.id;
+    if (containerId.startsWith('previous-feedback-')) {
+      const projectId = containerId.replace('previous-feedback-', '');
+      
+      // Create toolbar element
+      const toolbar = document.createElement('div');
+      toolbar.className = 'feedback-toolbar';
+      toolbar.innerHTML = `
+        <button class="export-feedback-btn" onclick="exportFeedback('${projectId}')">
+          <i class="fas fa-file-export"></i> Export
+        </button>
+        <button class="import-feedback-btn" onclick="showImportDialog('${projectId}')">
+          <i class="fas fa-file-import"></i> Import
+        </button>
+        <button class="email-feedback-btn" onclick="emailFeedback('${projectId}')">
+          <i class="fas fa-envelope"></i> Email
+        </button>
+      `;
+      
+      // Insert toolbar at the beginning of the container
+      if (container.firstChild) {
+        container.insertBefore(toolbar, container.firstChild);
+      } else {
+        container.appendChild(toolbar);
+      }
+    }
+  });
+}
 
 /**
  * Save feedback for a specific project
@@ -98,8 +138,24 @@ function loadFeedback(projectId) {
   // Clear current content
   feedbackContainer.innerHTML = '';
   
+  // Add toolbar for export/import
+  const toolbar = document.createElement('div');
+  toolbar.className = 'feedback-toolbar';
+  toolbar.innerHTML = `
+    <button class="export-feedback-btn" onclick="exportFeedback('${projectId}')">
+      <i class="fas fa-file-export"></i> Export
+    </button>
+    <button class="import-feedback-btn" onclick="showImportDialog('${projectId}')">
+      <i class="fas fa-file-import"></i> Import
+    </button>
+    <button class="email-feedback-btn" onclick="emailFeedback('${projectId}')">
+      <i class="fas fa-envelope"></i> Email
+    </button>
+  `;
+  feedbackContainer.appendChild(toolbar);
+  
   if (projectFeedback.length === 0) {
-    feedbackContainer.innerHTML = '<p class="no-feedback">No feedback has been provided yet.</p>';
+    feedbackContainer.innerHTML += '<p class="no-feedback">No feedback has been provided yet.</p>';
     return;
   }
   
@@ -150,6 +206,159 @@ function deleteFeedback(projectId, feedbackId) {
     
     showNotification('Feedback deleted successfully!', 'success');
   }
+}
+
+/**
+ * Export feedback for a specific project
+ */
+function exportFeedback(projectId) {
+  const projectFeedback = getProjectFeedback(projectId);
+  
+  if (projectFeedback.length === 0) {
+    showNotification('No feedback to export.', 'error');
+    return;
+  }
+  
+  // Create export object with metadata
+  const exportData = {
+    version: '1.0',
+    timestamp: new Date().toISOString(),
+    project: projectId,
+    feedback: projectFeedback
+  };
+  
+  // Convert to JSON string with pretty formatting
+  const jsonData = JSON.stringify(exportData, null, 2);
+  
+  // Create download link
+  const blob = new Blob([jsonData], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `feedback_${projectId}_${new Date().toISOString().slice(0,10)}.json`;
+  document.body.appendChild(a);
+  a.click();
+  
+  // Clean up
+  setTimeout(() => {
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }, 0);
+  
+  showNotification('Feedback exported successfully!', 'success');
+}
+
+/**
+ * Show import dialog
+ */
+function showImportDialog(projectId) {
+  // Create dialog overlay
+  const overlay = document.createElement('div');
+  overlay.className = 'dialog-overlay';
+  document.body.appendChild(overlay);
+  
+  // Create dialog
+  const dialog = document.createElement('div');
+  dialog.className = 'import-dialog';
+  dialog.innerHTML = `
+    <h3>Import Feedback</h3>
+    <p>Paste the exported JSON feedback data below:</p>
+    <textarea class="import-textarea" id="import-data" placeholder='{
+  "version": "1.0",
+  "project": "${projectId}",
+  "feedback": [...]
+}'></textarea>
+    <div class="import-buttons">
+      <button class="import-cancel">Cancel</button>
+      <button class="import-confirm">Import</button>
+    </div>
+  `;
+  document.body.appendChild(dialog);
+  
+  // Add event listeners
+  dialog.querySelector('.import-cancel').addEventListener('click', () => {
+    document.body.removeChild(overlay);
+    document.body.removeChild(dialog);
+  });
+  
+  dialog.querySelector('.import-confirm').addEventListener('click', () => {
+    const importText = dialog.querySelector('#import-data').value;
+    importFeedback(projectId, importText);
+    document.body.removeChild(overlay);
+    document.body.removeChild(dialog);
+  });
+}
+
+/**
+ * Import feedback from JSON
+ */
+function importFeedback(projectId, jsonData) {
+  try {
+    // Parse JSON data
+    const importedData = JSON.parse(jsonData);
+    
+    // Validate import data structure
+    if (!importedData.feedback || !Array.isArray(importedData.feedback)) {
+      throw new Error('Invalid feedback data format');
+    }
+    
+    // Get current feedback
+    let currentFeedback = getProjectFeedback(projectId);
+    
+    // Add imported feedback entries
+    importedData.feedback.forEach(feedback => {
+      // Make sure each feedback has a unique ID
+      if (!feedback.id) {
+        feedback.id = Date.now() + Math.floor(Math.random() * 1000);
+      }
+      
+      // Add to current feedback
+      currentFeedback.push(feedback);
+    });
+    
+    // Save merged feedback
+    localStorage.setItem(`feedback_${projectId}`, JSON.stringify(currentFeedback));
+    
+    // Reload display
+    loadFeedback(projectId);
+    
+    showNotification(`Imported ${importedData.feedback.length} feedback entries.`, 'success');
+  } catch (error) {
+    showNotification(`Import failed: ${error.message}`, 'error');
+  }
+}
+
+/**
+ * Email feedback (opens email client)
+ */
+function emailFeedback(projectId) {
+  const projectFeedback = getProjectFeedback(projectId);
+  
+  if (projectFeedback.length === 0) {
+    showNotification('No feedback to email.', 'error');
+    return;
+  }
+  
+  // Format feedback into text
+  let feedbackText = `RNA Lab Navigator Feedback - ${projectId}\n\n`;
+  
+  projectFeedback.forEach(feedback => {
+    const date = new Date(feedback.date).toLocaleString();
+    feedbackText += `Date: ${date}\n`;
+    feedbackText += `Status: ${formatStatus(feedback.status)}\n`;
+    feedbackText += `From: ${feedback.author}\n`;
+    feedbackText += "Feedback:\n";
+    feedbackText += `${feedback.text}\n\n`;
+    feedbackText += "-----------------------------------\n\n";
+  });
+  
+  // Create mailto link
+  const subject = encodeURIComponent(`RNA Lab Navigator Feedback - ${projectId}`);
+  const body = encodeURIComponent(feedbackText);
+  const mailtoLink = `mailto:?subject=${subject}&body=${body}`;
+  
+  // Open email client
+  window.open(mailtoLink);
 }
 
 /**
@@ -220,6 +429,46 @@ function addFeedbackStyles() {
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     }
     
+    .feedback-toolbar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 15px;
+    }
+    
+    .export-feedback-btn,
+    .import-feedback-btn,
+    .email-feedback-btn {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      font-size: 0.9em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .export-feedback-btn {
+      background-color: #2ecc71;
+    }
+    
+    .import-feedback-btn {
+      background-color: #3498db;
+    }
+    
+    .email-feedback-btn {
+      background-color: #9b59b6;
+    }
+    
+    .export-feedback-btn:hover,
+    .import-feedback-btn:hover,
+    .email-feedback-btn:hover {
+      opacity: 0.9;
+    }
+    
     .feedback-header {
       display: flex;
       justify-content: space-between;
@@ -265,6 +514,7 @@ function addFeedbackStyles() {
       color: #95a5a6;
       font-style: italic;
       text-align: center;
+      margin-top: 15px;
     }
     
     .feedback-actions {
@@ -342,10 +592,69 @@ function addFeedbackStyles() {
       justify-content: space-between;
       align-items: center;
     }
+    
+    /* Import Dialog Styles */
+    .import-dialog {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      max-width: 500px;
+      width: 90%;
+    }
+    
+    .import-dialog h3 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+    
+    .import-textarea {
+      width: 100%;
+      min-height: 150px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin: 10px 0;
+      font-family: monospace;
+    }
+    
+    .import-buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .import-buttons button {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .import-confirm {
+      background-color: #2ecc71;
+      color: white;
+    }
+    
+    .import-cancel {
+      background-color: #e74c3c;
+      color: white;
+    }
+    
+    .dialog-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
   `;
   
   document.head.appendChild(style);
 }
-</script>
-</content>
-</invoke>

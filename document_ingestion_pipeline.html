@@ -4,6 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RNA Lab Navigator - Document Ingestion Pipeline</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((block) => {
+        hljs.highlightBlock(block);
+      });
+      
+      // Table of contents scroll handling
+      const tocLinks = document.querySelectorAll('.toc-link');
+      tocLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        });
+      });
+    });
+  </script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,6 +36,88 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 20px;
+    }
+    
+    /* Navigation header */
+    .nav-header {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+      padding: 15px 20px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+    
+    .nav-header h2 {
+      color: white;
+      margin: 0;
+      font-size: 20px;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .nav-link:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Table of contents */
+    .toc-container {
+      background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f5 100%);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    }
+    
+    .toc-title {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #2c3e50;
+      font-size: 18px;
+    }
+    
+    .toc-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    
+    .toc-link {
+      display: inline-block;
+      padding: 8px 15px;
+      border-radius: 30px;
+      text-decoration: none;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .toc-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     }
     
     h1, h2, h3, h4 {
@@ -230,6 +336,41 @@
   </style>
 </head>
 <body>
+  <!-- Navigation Header -->
+  <div class="nav-header">
+    <h2><i class="fas fa-file-import"></i> RNA Lab Navigator: Document Pipeline</h2>
+    <div class="nav-links">
+      <a href="detailed_rag_pipeline.html" class="nav-link">
+        <i class="fas fa-project-diagram"></i> RAG Pipeline
+      </a>
+      <a href="temp_repo/legacy/pages/progress.html" class="nav-link">
+        <i class="fas fa-chart-line"></i> Weekly Progress
+      </a>
+    </div>
+  </div>
+  
+  <!-- Table of Contents -->
+  <div class="toc-container">
+    <h3 class="toc-title"><i class="fas fa-list"></i> Quick Navigation</h3>
+    <div class="toc-list">
+      <a href="#doc-flow" class="toc-link" style="background: linear-gradient(145deg, #3498db 0%, #2980b9 100%);">
+        Document Workflow
+      </a>
+      <a href="#doc-types" class="toc-link" style="background: linear-gradient(145deg, #e74c3c 0%, #c0392b 100%);">
+        Document Types
+      </a>
+      <a href="#impl-details" class="toc-link" style="background: linear-gradient(145deg, #9b59b6 0%, #8e44ad 100%);">
+        Implementation
+      </a>
+      <a href="#perf-metrics" class="toc-link" style="background: linear-gradient(145deg, #2ecc71 0%, #27ae60 100%);">
+        Performance Metrics
+      </a>
+      <a href="#future-enhance" class="toc-link" style="background: linear-gradient(145deg, #f39c12 0%, #e67e22 100%);">
+        Future Enhancements
+      </a>
+    </div>
+  </div>
+  
   <h1>RNA Lab Navigator: Document Ingestion Pipeline</h1>
   
   <div class="container">
@@ -239,10 +380,21 @@
       document provides a detailed technical overview of the ingestion process, focusing on the specialized 
       handling of different document types and optimization strategies.
     </p>
+    
+    <p>
+      <strong>Key Features:</strong>
+      <ul>
+        <li>Type-specific document processing for protocols, theses, and research papers</li>
+        <li>Intelligent chunking with 400±50 words and 100-word overlap</li>
+        <li>Comprehensive metadata extraction for enhanced retrieval and filtering</li>
+        <li>Efficient document updating and versioning for evolving content</li>
+        <li>Optimized batch processing for reduced API costs and improved throughput</li>
+      </ul>
+    </p>
   </div>
   
   <!-- Document Ingestion Flow Diagram -->
-  <div class="pipeline-diagram">
+  <div id="doc-flow" class="pipeline-diagram">
     <h2 style="text-align: center; margin-bottom: 30px;">Document Ingestion Workflow</h2>
     
     <div class="flow-diagram">
@@ -306,7 +458,7 @@
   </div>
   
   <!-- Document Source Types -->
-  <div class="container">
+  <div id="doc-types" class="container">
     <h2>Document Source Handling</h2>
     <p>The ingestion pipeline employs specialized handling for different document types:</p>
     
@@ -372,7 +524,7 @@
   </div>
   
   <!-- Technical Implementation Details -->
-  <div class="pipeline-diagram">
+  <div id="impl-details" class="pipeline-diagram">
     <h2 style="text-align: center; margin-bottom: 20px;">Technical Implementation</h2>
     
     <div class="pipeline-detail">
@@ -833,7 +985,7 @@ def analyze_pdf_structure(pdf_path):
   </div>
   
   <!-- Performance Metrics -->
-  <div class="container">
+  <div id="perf-metrics" class="container">
     <h2>Pipeline Performance Metrics</h2>
     
     <div class="metrics">
@@ -874,7 +1026,7 @@ def analyze_pdf_structure(pdf_path):
   </div>
   
   <!-- Ongoing Improvements -->
-  <div class="pipeline-diagram">
+  <div id="future-enhance" class="pipeline-diagram">
     <h2 style="text-align: center; margin-bottom: 20px;">In-Progress Enhancements</h2>
     
     <div class="two-column">
@@ -929,6 +1081,23 @@ def analyze_pdf_structure(pdf_path):
           <p>This will optimize processing for frequently updated protocols.</p>
         </div>
       </div>
+    </div>
+  </div>
+  <!-- Footer navigation -->
+  <div style="background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f5 100%); border-radius: 8px; padding: 20px; margin-top: 40px; text-align: center; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);">
+    <p style="margin-bottom: 15px; font-weight: bold;">RNA Lab Navigator Technical Documentation</p>
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+      <a href="detailed_rag_pipeline.html" style="text-decoration: none; color: #2980b9; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+        <i class="fas fa-project-diagram"></i> RAG Pipeline Architecture
+      </a>
+      <span style="color: #bdc3c7;">|</span>
+      <a href="temp_repo/legacy/pages/progress.html" style="text-decoration: none; color: #2980b9; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+        <i class="fas fa-chart-line"></i> Weekly Progress Report
+      </a>
+      <span style="color: #bdc3c7;">|</span>
+      <a href="#" style="text-decoration: none; color: #2980b9; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+        <i class="fas fa-arrow-up"></i> Back to Top
+      </a>
     </div>
   </div>
 </body>

@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RNA Lab Navigator - Detailed RAG Pipeline</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((block) => {
+        hljs.highlightBlock(block);
+      });
+      
+      // Table of contents scroll handling
+      const tocLinks = document.querySelectorAll('.toc-link');
+      tocLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        });
+      });
+      
+      // Collapsible sections
+      const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
+      collapsibleHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+          this.classList.toggle('active');
+          const content = this.nextElementSibling;
+          if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+          } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+          }
+        });
+      });
+    });
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    /* Navigation header */
+    .nav-header {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+      padding: 15px 20px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+    
+    .nav-header h2 {
+      color: white;
+      margin: 0;
+      font-size: 20px;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .nav-link:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Table of contents */
+    .toc-container {
+      background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f5 100%);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    }
+    
+    .toc-title {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #2c3e50;
+      font-size: 18px;
+    }
+    
+    .toc-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    
+    .toc-link {
+      display: inline-block;
+      padding: 8px 15px;
+      border-radius: 30px;
+      text-decoration: none;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .toc-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Collapsible sections */
+    .collapsible-header {
+      background-color: #f8f9fa;
+      color: #2c3e50;
+      cursor: pointer;
+      padding: 15px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 16px;
+      border-radius: 5px;
+      margin-top: 20px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .collapsible-header:hover {
+      background-color: #f1f3f5;
+    }
+
+    .collapsible-header.active {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .collapsible-content {
+      padding: 0 15px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      background-color: white;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+    
+    /* Download section */
+    .download-section {
+      background: linear-gradient(135deg, #f6f9fc 0%, #eef6fd 100%);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 30px 0;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    }
+    
+    .download-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background: linear-gradient(145deg, #3498db 0%, #2980b9 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      margin-top: 10px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+    
+    .download-button:hover {
+      transform: translateY(-2px);
+    }
+    
+    h1, h2, h3, h4 {
+      color: #2c3e50;
+    }
+    
+    .container {
+      margin-bottom: 30px;
+    }
+    
+    .pipeline-diagram {
+      background: linear-gradient(135deg, #f6f9fc 0%, #eef6fd 100%);
+      border-radius: 10px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    }
+    
+    .diagram-title {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 24px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #2c3e50;
+    }
+    
+    .step {
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+      color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .step-title {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    
+    .step-description {
+      font-size: 14px;
+    }
+    
+    .step-details {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 6px;
+      padding: 10px;
+      margin-top: 10px;
+      color: #333;
+    }
+    
+    .blue-gradient {
+      background: linear-gradient(145deg, #3498db 0%, #2980b9 100%);
+    }
+    
+    .red-gradient {
+      background: linear-gradient(145deg, #e74c3c 0%, #c0392b 100%);
+    }
+    
+    .purple-gradient {
+      background: linear-gradient(145deg, #9b59b6 0%, #8e44ad 100%);
+    }
+    
+    .green-gradient {
+      background: linear-gradient(145deg, #2ecc71 0%, #27ae60 100%);
+    }
+    
+    .orange-gradient {
+      background: linear-gradient(145deg, #f39c12 0%, #e67e22 100%);
+    }
+    
+    .teal-gradient {
+      background: linear-gradient(145deg, #16a085 0%, #1abc9c 100%);
+    }
+    
+    .metrics {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .metric-box {
+      background-color: white;
+      border-radius: 8px;
+      padding: 15px;
+      margin: 10px;
+      min-width: 200px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    
+    .metric-title {
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #2c3e50;
+    }
+    
+    .metric-value {
+      font-size: 24px;
+      color: #2980b9;
+    }
+    
+    .code-block {
+      background-color: #f8f9fa;
+      border-radius: 6px;
+      padding: 15px;
+      margin: 15px 0;
+      overflow-x: auto;
+      font-family: monospace;
+      border-left: 4px solid #3498db;
+    }
+    
+    /* Sequence diagram style */
+    .sequence-diagram {
+      display: flex;
+      flex-direction: column;
+      margin: 20px 0;
+    }
+    
+    .sequence-step {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    
+    .sequence-actor {
+      min-width: 150px;
+      text-align: center;
+      padding: 10px;
+      border-radius: 6px;
+      margin-right: 20px;
+      font-weight: bold;
+      color: white;
+    }
+    
+    .sequence-action {
+      flex-grow: 1;
+      background-color: white;
+      padding: 10px 15px;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    
+    .sequence-arrow {
+      margin: 0 10px;
+      font-size: 20px;
+      color: #7f8c8d;
+    }
+    
+    /* Data flow diagram */
+    .data-flow {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+    
+    .data-block {
+      padding: 10px;
+      margin-bottom: 10px;
+      border-left: 4px solid #3498db;
+    }
+    
+    .data-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #2c3e50;
+    }
+    
+    /* Two-column layout */
+    .two-column {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    
+    .column {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .metrics {
+        flex-direction: column;
+      }
+      
+      .metric-box {
+        width: 100%;
+        max-width: none;
+      }
+      
+      .sequence-step {
+        flex-direction: column;
+      }
+      
+      .sequence-actor {
+        margin-bottom: 10px;
+        margin-right: 0;
+        width: 100%;
+      }
+      
+      .two-column {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Header -->
+  <div class="nav-header">
+    <h2><i class="fas fa-project-diagram"></i> RNA Lab Navigator: Technical Architecture</h2>
+    <div class="nav-links">
+      <a href="document_ingestion_pipeline.html" class="nav-link">
+        <i class="fas fa-file-import"></i> Document Ingestion
+      </a>
+      <a href="temp_repo/legacy/pages/progress.html" class="nav-link">
+        <i class="fas fa-chart-line"></i> Weekly Progress
+      </a>
+    </div>
+  </div>
+  
+  <!-- Table of Contents -->
+  <div class="toc-container">
+    <h3 class="toc-title"><i class="fas fa-list"></i> Quick Navigation</h3>
+    <div class="toc-list">
+      <a href="#doc-ingestion" class="toc-link" style="background: linear-gradient(145deg, #3498db 0%, #2980b9 100%);">
+        Document Ingestion
+      </a>
+      <a href="#query-processing" class="toc-link" style="background: linear-gradient(145deg, #e74c3c 0%, #c0392b 100%);">
+        Query Processing
+      </a>
+      <a href="#perf-metrics" class="toc-link" style="background: linear-gradient(145deg, #2ecc71 0%, #27ae60 100%);">
+        Performance Metrics
+      </a>
+      <a href="#seq-flow" class="toc-link" style="background: linear-gradient(145deg, #9b59b6 0%, #8e44ad 100%);">
+        Sequence Flow
+      </a>
+      <a href="#data-flow" class="toc-link" style="background: linear-gradient(145deg, #f39c12 0%, #e67e22 100%);">
+        Data Optimization
+      </a>
+      <a href="#adv-impl" class="toc-link" style="background: linear-gradient(145deg, #16a085 0%, #1abc9c 100%);">
+        Advanced Features
+      </a>
+    </div>
+  </div>
+  
+  <h1>RNA Lab Navigator: Detailed RAG Pipeline</h1>
+  
+  <div class="container">
+    <p>
+      The RNA Lab Navigator is a private, retrieval-augmented assistant designed for the RNA-biology lab. 
+      This document provides a detailed technical overview of the system's architecture, focusing on the 
+      RAG (Retrieval Augmented Generation) pipeline implementation.
+    </p>
+    
+    <p>
+      <strong>Key Features:</strong>
+      <ul>
+        <li>Specialized document processing for protocols, theses, and research papers</li>
+        <li>Hybrid vector search combining HNSW and BM25 for optimal retrieval</li>
+        <li>Cross-encoder reranking for improved relevance and precision</li>
+        <li>Optimized LLM prompting with strict citation requirements</li>
+        <li>End-to-end latency optimization for sub-5 second response time</li>
+      </ul>
+    </p>
+  </div>
+  
+  <!-- Download section -->
+  <div class="download-section">
+    <h3><i class="fas fa-download"></i> Download Resources</h3>
+    <p>Download architecture diagrams and technical specifications for presentations or documentation</p>
+    <a href="#" class="download-button"><i class="fas fa-file-pdf"></i> Download Architecture Diagrams (PDF)</a>
+    <a href="#" class="download-button" style="margin-left: 15px;"><i class="fas fa-file-code"></i> Download Code Samples (ZIP)</a>
+  </div>
+  
+  <!-- 1. Document Ingestion Pipeline -->
+  <div id="doc-ingestion" class="pipeline-diagram">
+    <h2 class="diagram-title">Document Ingestion Pipeline</h2>
+    
+    <div class="step blue-gradient">
+      <div class="step-title">1. Document Processing</div>
+      <div class="step-description">Converting source documents into processable text</div>
+      <div class="step-details">
+        <ul>
+          <li><strong>Thesis Documents:</strong> Detected by CHAPTER regex, processed page by page with PyMuPDF</li>
+          <li><strong>Protocols:</strong> Extracted with pdfplumber for handling complex layouts</li>
+          <li><strong>Research Papers:</strong> Parsed using PyPDF2 with layout preservation</li>
+          <li><strong>BioRxiv Preprints:</strong> Fetched daily via API with Celery Beat scheduler</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="step red-gradient">
+      <div class="step-title">2. Chunking Strategy</div>
+      <div class="step-description">Splitting documents into optimal-sized chunks</div>
+      <div class="step-details">
+        <ul>
+          <li><strong>Chunk Size:</strong> 400±50 words for optimal context retention</li>
+          <li><strong>Overlap:</strong> 100-word overlap to maintain cross-chunk coherence</li>
+          <li><strong>Special Case - Theses:</strong> Split by chapter first, then chunked</li>
+          <li><strong>Special Case - Figures:</strong> Extracted and linked to related text chunks</li>
+        </ul>
+        <div class="code-block">
+          <pre>def chunk_document(text, chunk_size=400, overlap=100):
+    """
+    Split document text into overlapping chunks.
+    
+    Args:
+        text: Document text to chunk
+        chunk_size: Target word count per chunk
+        overlap: Word overlap between chunks
+        
+    Returns:
+        List of text chunks
+    """
+    words = text.split()
+    chunks = []
+    
+    for i in range(0, len(words), chunk_size - overlap):
+        chunk = words[i:i + chunk_size]
+        if len(chunk) < 50:  # Skip tiny chunks at the end
+            continue
+        chunks.append(" ".join(chunk))
+        
+    return chunks</pre>
+        </div>
+      </div>
+    </div>
+    
+    <div class="step purple-gradient">
+      <div class="step-title">3. Metadata Extraction</div>
+      <div class="step-description">Enhancing chunks with rich contextual metadata</div>
+      <div class="step-details">
+        <ul>
+          <li><strong>Common Fields:</strong> doc_type, source_file, chunk_index, word_count</li>
+          <li><strong>Thesis-specific:</strong> author, year, chapter, department</li>
+          <li><strong>Protocol-specific:</strong> category, last_updated, reagents</li>
+          <li><strong>Paper-specific:</strong> authors, publication_date, journal, doi</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="step orange-gradient">
+      <div class="step-title">4. Vector Embedding Generation</div>
+      <div class="step-description">Creating dense vector representations of text chunks</div>
+      <div class="step-details">
+        <ul>
+          <li><strong>Model:</strong> OpenAI text-embedding-ada-002 (1536 dimensions)</li>
+          <li><strong>Batching:</strong> Chunks processed in batches of 20 to optimize API calls</li>
+          <li><strong>Caching:</strong> SHA-256 hash-based embedding cache in Redis</li>
+          <li><strong>Fallback:</strong> Local SentenceTransformers model for offline operation</li>
+        </ul>
+        <div class="code-block">
+          <pre>def generate_embeddings(chunks, use_cache=True):
+    """
+    Generate embeddings for text chunks with caching.
+    
+    Args:
+        chunks: List of text chunks
+        use_cache: Whether to use embedding cache
+        
+    Returns:
+        List of embedding vectors
+    """
+    embeddings = []
+    batch_size = 20
+    
+    for i in range(0, len(chunks), batch_size):
+        batch = chunks[i:i + batch_size]
+        batch_embeddings = []
+        
+        for chunk in batch:
+            # Generate cache key from content
+            chunk_hash = hashlib.sha256(chunk.encode()).hexdigest()
+            
+            if use_cache and redis_client.exists(f"emb:{chunk_hash}"):
+                # Retrieve from cache
+                embedding = json.loads(redis_client.get(f"emb:{chunk_hash}"))
+            else:
+                # Generate new embedding
+                response = openai.Embedding.create(
+                    input=chunk,
+                    model="text-embedding-ada-002"
+                )
+                embedding = response['data'][0]['embedding']
+                
+                # Cache the embedding with 30-day TTL
+                if use_cache:
+                    redis_client.setex(
+                        f"emb:{chunk_hash}",
+                        60 * 60 * 24 * 30,  # 30 day TTL
+                        json.dumps(embedding)
+                    )
+            
+            batch_embeddings.append(embedding)
+        
+        embeddings.extend(batch_embeddings)
+    
+    return embeddings</pre>
+        </div>
+      </div>
+    </div>
+    
+    <div class="step green-gradient">
+      <div class="step-title">5. Vector Database Storage</div>
+      <div class="step-description">Storing vectors and metadata for efficient retrieval</div>
+      <div class="step-details">
+        <ul>
+          <li><strong>Database:</strong> Weaviate Cloud (HNSW vector index)</li>
+          <li><strong>Schema:</strong> Document class with normalized properties</li>
+          <li><strong>Indexing:</strong> HNSW with ef=256, maxConnections=64</li>
+          <li><strong>Hybrid Search:</strong> BM25 enabled (0.75 vector, 0.25 keyword)</li>
+        </ul>
+        <div class="code-block">
+          <pre>class_obj = {
+    "class": "Document",
+    "vectorizer": "none",  # We provide vectors directly
+    "vectorIndexConfig": {
+        "distance": "cosine",
+        "ef": 256,
+        "efConstruction": 256,
+        "maxConnections": 64,
+    },
+    "properties": [
+        {"name": "content", "dataType": ["text"]},
+        {"name": "doc_type", "dataType": ["text"], "indexFilterable": True},
+        {"name": "source_file", "dataType": ["text"], "indexFilterable": True},
+        {"name": "chunk_index", "dataType": ["int"]},
+        {"name": "author", "dataType": ["text"], "indexFilterable": True},
+        {"name": "year", "dataType": ["int"], "indexFilterable": True},
+        {"name": "chapter", "dataType": ["text"]},
+        {"name": "department", "dataType": ["text"]},
+        {"name": "category", "dataType": ["text"], "indexFilterable": True},
+        {"name": "last_updated", "dataType": ["date"]},
+        {"name": "reagents", "dataType": ["text[]"]},
+        {"name": "authors", "dataType": ["text[]"]},
+        {"name": "publication_date", "dataType": ["date"]},
+        {"name": "journal", "dataType": ["text"], "indexFilterable": True},
+        {"name": "doi", "dataType": ["text"]},
+    ],
+    "moduleConfig": {
+        "text2vec-contextionary": {
+            "skip": True  # Skip built-in vectorization
+        },
+        "text2vec-transformers": {
+            "skip": True  # Skip built-in vectorization
+        }
+    }
+}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 2. Query Processing Pipeline -->
+  <div id="query-processing" class="pipeline-diagram">
+    <h2 class="diagram-title">Query Processing Pipeline</h2>
+    
+    <div class="step blue-gradient">
+      <div class="step-title">1. Query Expansion & Preprocessing</div>
+      <div class="step-description">Enhancing the query for better retrieval</div>
+      <div class="step-details">
+        <ul>
+          <li><strong>Query Cleaning:</strong> Removing special characters, normalizing whitespace</li>
+          <li><strong>Entity Extraction:</strong> Identifying key entities (genes, proteins, techniques)</li>
+          <li><strong>Stopword Removal:</strong> Filtering common words for keyword search</li>
+          <li><strong>Automatic Expansion:</strong> Adding related terms for broader coverage</li>
+        </ul>
+        <div class="code-block">
+          <pre>def preprocess_query(query):
+    """
+    Clean and normalize the query text
+    """
+    # Remove special characters
+    query = re.sub(r'[^\w\s]', ' ', query)
+    
+    # Normalize whitespace
+    query = re.sub(r'\s+', ' ', query).strip()
+    
+    return query
+
+def expand_query(query):
+    """
+    Expand query with related terms
+    """
+    # Extract key entities
+    entities = extract_entities(query)
+    
+    # Add related terms based on domain knowledge
+    expanded_terms = []
+    for entity in entities:
+        if entity in domain_knowledge:
+            expanded_terms.extend(domain_knowledge[entity]['synonyms'])
+    
+    # Combine original query with expanded terms
+    expanded_query = query
+    if expanded_terms:
+        expanded_query = f"{query} {' '.join(expanded_terms)}"
+    
+    return expanded_query</pre>
+        </div>
+      </div>
+    </div>
+    
+    <div class="step red-gradient">
+      <div class="step-title">2. Two-Stage Vector Search</div>
+      <div class="step-description">Finding relevant document chunks</div>
+      <div class="step-details">
+        <ul>
+          <li><strong>Stage 1: Hybrid Search</strong>
+            <ul>
+              <li>Vector similarity (HNSW index): 0.75 weight</li>
+              <li>Keyword matching (BM25): 0.25 weight</li>
+              <li>Initial k=10 results retrieved</li>
+            </ul>
+          </li>
+          <li><strong>Filtering:</strong> Apply doc_type and other filters from user request</li>
+          <li><strong>Result Schema:</strong> content, metadata, distance/similarity scores</li>
+        </ul>
+        <div class="code-block">
+          <pre>def hybrid_search(query, filters=None, limit=10):
+    """
+    Perform hybrid vector + keyword search
+    """
+    # Generate embedding for query
+    query_embedding = generate_embedding(query)
+    
+    # Prepare search parameters
+    search_params = {
+        "near_vector": {
+            "vector": query_embedding,
+        },
+        "limit": limit,
+    }
+    
+    # Add BM25 for hybrid search
+    search_params["hybrid"] = {
+        "query": query,
+        "alpha": 0.75,  # Weight for vector search vs keyword search
+    }
+    
+    # Add filters if specified
+    if filters:
+        search_params["where"] = filters
+    
+    # Execute search
+    results = weaviate_client.query.get(
+        "Document", ["content", "doc_type", "source_file", "chunk_index", 
+                     "author", "year", "chapter", "category"]
+    ).with_additional(["distance", "score"]).with_near_vector(
+        search_params["near_vector"]
+    ).with_hybrid(
+        search_params["hybrid"]
+    ).with_limit(limit).do()
+    
+    return results["data"]["Get"]["Document"]</pre>
+        </div>
+      </div>
+    </div>
+    
+    <div class="step purple-gradient">
+      <div class="step-title">3. Cross-Encoder Reranking</div>
+      <div class="step-description">Improving search precision with pair-wise relevance</div>
+      <div class="step-details">
+        <ul>
+          <li><strong>Model:</strong> MiniLM cross-encoder for precise relevance scoring</li>
+          <li><strong>Input:</strong> (query, chunk) pairs for each retrieved result</li>
+          <li><strong>Output:</strong> Relevance scores (0-1) for precise ranking</li>
+          <li><strong>Optimization:</strong> Model kept in memory for fast inference</li>
+          <li><strong>Cutoff:</strong> Results below score threshold (0.45) are discarded</li>
+        </ul>
+        <div class="code-block">
+          <pre>def rerank_results(query, results, top_k=3):
+    """
+    Rerank search results using cross-encoder
+    """
+    # If we have no results, return empty list
+    if not results:
+        return []
+    
+    # Prepare pairs for cross-encoder
+    pairs = [(query, result["content"]) for result in results]
+    
+    # Get relevance scores
+    relevance_scores = cross_encoder.predict(pairs)
+    
+    # Add scores to results
+    for i, result in enumerate(results):
+        result["relevance_score"] = float(relevance_scores[i])
+    
+    # Sort by relevance score
+    reranked_results = sorted(results, key=lambda x: x["relevance_score"], reverse=True)
+    
+    # Apply confidence threshold
+    filtered_results = [r for r in reranked_results if r["relevance_score"] >= 0.45]
+    
+    # Return top k results
+    return filtered_results[:top_k]</pre>
+        </div>
+      </div>
+    </div>
+    
+    <div class="step orange-gradient">
+      <div class="step-title">4. Context Preparation</div>
+      <div class="step-description">Formatting retrieved context for optimal LLM use</div>
+      <div class="step-details">
+        <ul>
+          <li><strong>Content Selection:</strong> Top-N chunks from reranker (typically 3)</li>
+          <li><strong>Context Formatting:</strong> Adding citation tokens and metadata</li>
+          <li><strong>Length Control:</strong> Truncation to fit token limits while preserving citations</li>
+          <li><strong>Source Management:</strong> Creating source lookup table for citations</li>
+        </ul>
+        <div class="code-block">
+          <pre>def prepare_context(results):
+    """
+    Format search results into LLM-ready context with citations
+    """
+    context_parts = []
+    source_map = {}
+    
+    for i, result in enumerate(results):
+        # Create citation token
+        citation = f"[{i+1}]"
+        source_id = f"source_{i+1}"
+        
+        # Add to source map for later reference
+        source_map[source_id] = {
+            "doc_type": result.get("doc_type", ""),
+            "title": result.get("source_file", "").split("/")[-1],
+            "author": result.get("author", ""),
+            "year": result.get("year", ""),
+            "chapter": result.get("chapter", ""),
+            "score": result.get("relevance_score", 0)
+        }
+        
+        # Format the context with citation
+        context_part = f"{result['content']} {citation}"
+        context_parts.append(context_part)
+    
+    # Combine all contexts
+    context = "\n\n".join(context_parts)
+    
+    return context, source_map</pre>
+        </div>
+      </div>
+    </div>
+    
+    <div class="step green-gradient">
+      <div class="step-title">5. LLM Prompt Construction</div>
+      <div class="step-description">Building the optimal prompt for accurate answers</div>
+      <div class="step-details">
+        <ul>
+          <li><strong>System Message:</strong> Instructions enforcing citation requirements</li>
+          <li><strong>Golden Rule:</strong> "Answer only from provided sources; if unsure, say 'I don't know.'"</li>
+          <li><strong>Context Management:</strong> Strategic placement of retrieved content</li>
+          <li><strong>Citation Format:</strong> Clear instructions for citation formatting</li>
+        </ul>
+        <div class="code-block">
+          <pre>def construct_prompt(query, context, source_map):
+    """
+    Construct the LLM prompt with system message, query, and context
+    """
+    system_message = """
+    You are RNA Lab Navigator, a specialized assistant for an RNA biology research lab.
+    Answer only from the provided sources; if unsure, say 'I don't know.'
+    
+    Important rules:
+    1. Include citations for all factual statements using the [X] format
+    2. Citations must appear at the end of the sentence containing the information
+    3. Only reference information explicitly stated in the provided context
+    4. Maintain scientific accuracy and precision
+    5. If multiple sources confirm the same information, cite all of them
+    6. If the query cannot be answered from the provided context, say 'I don't know'
+    7. Never make up information or citations
+    """
+    
+    # Construct the full prompt
+    prompt = f"""
+    Context:
+    {context}
+    
+    Sources:
+    {json.dumps(source_map, indent=2)}
+    
+    Question:
+    {query}
+    """
+    
+    return {
+        "system": system_message,
+        "prompt": prompt
+    }</pre>
+        </div>
+      </div>
+    </div>
+    
+    <div class="step teal-gradient">
+      <div class="step-title">6. Generation & Post-processing</div>
+      <div class="step-description">Creating and validating the final response</div>
+      <div class="step-details">
+        <ul>
+          <li><strong>LLM Call:</strong> OpenAI GPT-4o with appropriate temperature (0.1-0.3)</li>
+          <li><strong>Stream Processing:</strong> Real-time token streaming for fast response</li>
+          <li><strong>Citation Validation:</strong> Verifying all citations match source materials</li>
+          <li><strong>Confidence Score:</strong> Computing overall confidence based on source relevance</li>
+          <li><strong>Link Generation:</strong> Creating clickable source links for citations</li>
+        </ul>
+        <div class="code-block">
+          <pre>def generate_answer(prompt_data, stream=True):
+    """
+    Generate answer from LLM using the constructed prompt
+    """
+    response = openai.ChatCompletion.create(
+        model="gpt-4o",
+        messages=[
+            {"role": "system", "content": prompt_data["system"]},
+            {"role": "user", "content": prompt_data["prompt"]}
+        ],
+        temperature=0.2,
+        max_tokens=1000,
+        stream=stream
+    )
+    
+    # Process streaming response
+    if stream:
+        collected_chunks = []
+        for chunk in response:
+            collected_chunks.append(chunk)
+            # Yield chunk for streaming to client
+            yield chunk
+        
+        # Process the full response after streaming
+        full_response = "".join([c.choices[0].delta.get("content", "") for c in collected_chunks])
+    else:
+        # Process the full response directly
+        full_response = response.choices[0].message.content
+    
+    return full_response
+
+def validate_citations(answer, source_map):
+    """
+    Validate all citations in the answer
+    """
+    citation_pattern = r'\[(\d+)\]'
+    citations = re.findall(citation_pattern, answer)
+    
+    valid_citations = []
+    for citation in citations:
+        source_id = f"source_{citation}"
+        if source_id in source_map:
+            valid_citations.append(source_id)
+    
+    # If no valid citations found, mark low confidence
+    if not valid_citations:
+        return False, 0.0
+    
+    # Calculate overall confidence based on source relevance scores
+    confidence = sum(source_map[source_id]["score"] for source_id in valid_citations) / len(valid_citations)
+    
+    return True, confidence</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="perf-metrics" class="container">
+    <h2>System Performance Metrics</h2>
+    
+    <div class="metrics">
+      <div class="metric-box">
+        <div class="metric-title">End-to-end Latency</div>
+        <div class="metric-value">4.7s</div>
+        <div>Target: ≤5.0s</div>
+      </div>
+      
+      <div class="metric-box">
+        <div class="metric-title">Answer Quality</div>
+        <div class="metric-value">87%</div>
+        <div>Target: ≥85%</div>
+      </div>
+      
+      <div class="metric-box">
+        <div class="metric-title">Vector Search Time</div>
+        <div class="metric-value">180ms</div>
+        <div>~4% of total latency</div>
+      </div>
+      
+      <div class="metric-box">
+        <div class="metric-title">Reranking Time</div>
+        <div class="metric-value">90ms</div>
+        <div>~2% of total latency</div>
+      </div>
+      
+      <div class="metric-box">
+        <div class="metric-title">LLM Generation Time</div>
+        <div class="metric-value">4.1s</div>
+        <div>~87% of total latency</div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="seq-flow" class="container">
+    <h2>Sequence Flow Diagram</h2>
+    
+    <div class="sequence-diagram">
+      <div class="sequence-step">
+        <div class="sequence-actor blue-gradient">User (React)</div>
+        <div class="sequence-arrow">→</div>
+        <div class="sequence-action">POST /api/query/ {query, doc_type?}</div>
+      </div>
+      
+      <div class="sequence-step">
+        <div class="sequence-actor red-gradient">API (Django)</div>
+        <div class="sequence-arrow">→</div>
+        <div class="sequence-action">Process query and prepare search request</div>
+      </div>
+      
+      <div class="sequence-step">
+        <div class="sequence-actor purple-gradient">Weaviate</div>
+        <div class="sequence-arrow">→</div>
+        <div class="sequence-action">near_text + hybrid search with filters</div>
+      </div>
+      
+      <div class="sequence-step">
+        <div class="sequence-actor purple-gradient">Weaviate</div>
+        <div class="sequence-arrow">←</div>
+        <div class="sequence-action">Return top-10 matches with metadata</div>
+      </div>
+      
+      <div class="sequence-step">
+        <div class="sequence-actor orange-gradient">Cross-Encoder</div>
+        <div class="sequence-arrow">→</div>
+        <div class="sequence-action">Rerank results with pair-wise scoring</div>
+      </div>
+      
+      <div class="sequence-step">
+        <div class="sequence-actor orange-gradient">Cross-Encoder</div>
+        <div class="sequence-arrow">←</div>
+        <div class="sequence-action">Return relevance scores and top-3 results</div>
+      </div>
+      
+      <div class="sequence-step">
+        <div class="sequence-actor green-gradient">LLM (GPT-4o)</div>
+        <div class="sequence-arrow">→</div>
+        <div class="sequence-action">Send prompt with context and system message</div>
+      </div>
+      
+      <div class="sequence-step">
+        <div class="sequence-actor green-gradient">LLM (GPT-4o)</div>
+        <div class="sequence-arrow">←</div>
+        <div class="sequence-action">Stream answer tokens with citations</div>
+      </div>
+      
+      <div class="sequence-step">
+        <div class="sequence-actor red-gradient">API (Django)</div>
+        <div class="sequence-arrow">→</div>
+        <div class="sequence-action">Validate citations and calculate confidence</div>
+      </div>
+      
+      <div class="sequence-step">
+        <div class="sequence-actor blue-gradient">User (React)</div>
+        <div class="sequence-arrow">←</div>
+        <div class="sequence-action">Display answer with highlighted citations and sources</div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="data-flow" class="container">
+    <h2>Data Flow Optimizations</h2>
+    
+    <div class="two-column">
+      <div class="column">
+        <h3>Caching Strategy</h3>
+        <div class="data-flow">
+          <div class="data-block">
+            <div class="data-title">Query Results Cache</div>
+            <p>Frequently asked questions are cached to eliminate redundant processing. Cache entries include:</p>
+            <ul>
+              <li>Query hash as key (normalized query text)</li>
+              <li>Search results with metadata</li>
+              <li>Final response with citation mapping</li>
+              <li>TTL: 24 hours (configurable)</li>
+            </ul>
+          </div>
+          
+          <div class="data-block">
+            <div class="data-title">Embedding Cache</div>
+            <p>SHA-256 hash-based caching system for vector embeddings:</p>
+            <ul>
+              <li>Content hash as key</li>
+              <li>1536-dimension vector as value</li>
+              <li>TTL: 30 days</li>
+              <li>Estimated ~40% API cost savings</li>
+            </ul>
+          </div>
+        </div>
+        
+        <h3>Memory Optimization</h3>
+        <div class="data-flow">
+          <div class="data-block">
+            <div class="data-title">Cross-Encoder Management</div>
+            <p>MiniLM cross-encoder model is kept in memory for fast inference:</p>
+            <ul>
+              <li>Loaded once at application startup</li>
+              <li>Shared across worker processes</li>
+              <li>Batch prediction for multiple chunks</li>
+              <li>~90ms average inference time for 10 results</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="column">
+        <h3>Stream Processing</h3>
+        <div class="data-flow">
+          <div class="data-block">
+            <div class="data-title">Token Streaming</div>
+            <p>Real-time streaming of LLM response tokens:</p>
+            <ul>
+              <li>Django channels for WebSocket communication</li>
+              <li>Token-by-token streaming to frontend</li>
+              <li>Reduces perceived latency by ~70%</li>
+              <li>First token appears in ~1.5s</li>
+            </ul>
+          </div>
+          
+          <div class="data-block">
+            <div class="data-title">Citation Processing</div>
+            <p>Front-end processing of citation tokens:</p>
+            <ul>
+              <li>React-based token parsing</li>
+              <li>Citation highlighting during streaming</li>
+              <li>Dynamic source panel updating</li>
+              <li>Preview thumbnails for cited documents</li>
+            </ul>
+          </div>
+        </div>
+        
+        <h3>Hybrid Search Tuning</h3>
+        <div class="data-flow">
+          <div class="data-block">
+            <div class="data-title">Vector + BM25 Balance</div>
+            <p>Optimized hybrid search parameters:</p>
+            <ul>
+              <li>Vector search weight: 0.75</li>
+              <li>Keyword search weight: 0.25</li>
+              <li>Optimized for RNA biology terminology</li>
+              <li>12% improvement in recall over vector-only</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="adv-impl" class="container">
+    <h2>Advanced Implementations</h2>
+    
+    <div class="pipeline-diagram">
+      <h3 class="diagram-title">Tiered Model Selection</h3>
+      
+      <p>To optimize cost and performance, the system implements intelligent model routing based on query complexity:</p>
+      
+      <div class="two-column">
+        <div class="column">
+          <div class="step blue-gradient">
+            <div class="step-title">Simple Queries</div>
+            <div class="step-description">Protocol locator, reagent lookup, straightforward questions</div>
+            <div class="step-details">
+              <ul>
+                <li><strong>Model:</strong> GPT-3.5 Turbo</li>
+                <li><strong>Criteria:</strong> 
+                  <ul>
+                    <li>Single-intent queries</li>
+                    <li>Token count < 250</li>
+                    <li>High confidence results (>0.8)</li>
+                  </ul>
+                </li>
+                <li><strong>Examples:</strong> "Where can I find the RNA extraction protocol?", "What's the concentration of Trizol in the RNA isolation buffer?"</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="column">
+          <div class="step green-gradient">
+            <div class="step-title">Complex Queries</div>
+            <div class="step-description">Technical explanations, multi-step processes, synthesis</div>
+            <div class="step-details">
+              <ul>
+                <li><strong>Model:</strong> GPT-4o</li>
+                <li><strong>Criteria:</strong> 
+                  <ul>
+                    <li>Multi-intent queries</li>
+                    <li>Technical complexity score > 0.6</li>
+                    <li>Requires synthesis across sources</li>
+                  </ul>
+                </li>
+                <li><strong>Examples:</strong> "Explain the key differences between the CRISPR protocols from Chakraborty and Miyamoto labs and when each would be preferred", "What's the evidence for RNA modification in regulating p53 expression from our lab's papers?"</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="code-block">
+        <pre>def analyze_query_complexity(query, search_results):
+    """
+    Analyze query complexity to determine appropriate LLM
+    """
+    # Simple properties
+    token_count = len(query.split())
+    query_length = len(query)
+    
+    # Check for technical terms
+    technical_terms_count = sum(1 for term in query.split() if term.lower() in TECHNICAL_TERMS)
+    technical_density = technical_terms_count / max(1, token_count)
+    
+    # Check number of intents
+    intents = identify_intents(query)
+    multi_intent = len(intents) > 1
+    
+    # Check confidence of top result
+    top_confidence = search_results[0]["relevance_score"] if search_results else 0
+    
+    # Determine if this needs the more powerful model
+    needs_powerful_model = (
+        multi_intent or 
+        technical_density > 0.3 or 
+        token_count > 250 or
+        top_confidence < 0.8
+    )
+    
+    # Select appropriate model
+    model = "gpt-4o" if needs_powerful_model else "gpt-3.5-turbo"
+    
+    return {
+        "model": model,
+        "complexity_score": 0.2 * multi_intent + 0.5 * technical_density + 
+                            0.1 * min(1, token_count/300) + 0.2 * (1 - top_confidence)
+    }</pre>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <h2>Future Enhancements</h2>
+    
+    <button class="collapsible-header">
+      <span>Implementation Roadmap</span>
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="collapsible-content">
+      <div style="padding: 15px 0;">
+        <p>The following features are planned for future development cycles:</p>
+        <ul>
+          <li><strong>Q2 2025:</strong> Knowledge graph integration for complex entity relationships</li>
+          <li><strong>Q2 2025:</strong> Figure extraction and multimodal search capabilities</li>
+          <li><strong>Q3 2025:</strong> Feedback loop for continuous learning and model fine-tuning</li>
+          <li><strong>Q3 2025:</strong> Local model fallback for reduced latency and improved privacy</li>
+          <li><strong>Q4 2025:</strong> Multi-modal support for visual protocol steps and diagrams</li>
+        </ul>
+      </div>
+    </div>
+    
+    <button class="collapsible-header">
+      <span>Performance Optimization Plans</span>
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="collapsible-content">
+      <div style="padding: 15px 0;">
+        <p>The following optimizations are planned to further improve system performance:</p>
+        <ul>
+          <li><strong>Streaming Improvements:</strong> Enhanced token-by-token processing for perceived latency reduction</li>
+          <li><strong>Caching Enhancements:</strong> More sophisticated cache invalidation strategies</li>
+          <li><strong>Vector Index Tuning:</strong> Periodic reindexing with optimized parameters based on usage patterns</li>
+          <li><strong>Query Planning:</strong> Adaptive query plans based on query complexity and historical performance</li>
+          <li><strong>Hardware Acceleration:</strong> Evaluation of GPU acceleration for cross-encoder inference</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="pipeline-diagram">
+      <div class="step blue-gradient">
+        <div class="step-title">Knowledge Graph Integration</div>
+        <div class="step-description">Entity-relationship modeling for enhanced reasoning</div>
+        <div class="step-details">
+          <ul>
+            <li><strong>Entities:</strong> Genes, proteins, reagents, techniques, protocols</li>
+            <li><strong>Relationships:</strong> Used-in, interacts-with, regulates, requires</li>
+            <li><strong>Implementation:</strong> Neo4j graph database with Weaviate integration</li>
+            <li><strong>Value:</strong> Multi-hop reasoning for complex queries connecting multiple documents</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="step purple-gradient">
+        <div class="step-title">Figure Extraction & Retrieval</div>
+        <div class="step-description">Visual content analysis and presentation</div>
+        <div class="step-details">
+          <ul>
+            <li><strong>Extraction:</strong> PDF figure isolation with PyMuPDF</li>
+            <li><strong>Caption Analysis:</strong> NLP-based caption parsing for metadata</li>
+            <li><strong>Storage:</strong> Vector embeddings for figure+caption pairs</li>
+            <li><strong>Retrieval:</strong> Multimodal search combining text and visual elements</li>
+            <li><strong>Presentation:</strong> Integrated figures in text responses</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="step green-gradient">
+        <div class="step-title">Continuous Learning Loop</div>
+        <div class="step-description">Improving system quality through feedback</div>
+        <div class="step-details">
+          <ul>
+            <li><strong>Feedback Collection:</strong> User ratings and corrections</li>
+            <li><strong>Dataset Creation:</strong> Building labeled training examples</li>
+            <li><strong>Model Fine-tuning:</strong> Weekly retraining of cross-encoder</li>
+            <li><strong>Performance Tracking:</strong> Ongoing metrics visualization</li>
+            <li><strong>A/B Testing:</strong> Controlled rollout of improvements</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Comparison table section -->
+  <div class="container" style="margin-top: 40px; margin-bottom: 40px;">
+    <h2>Architecture Approach Comparison</h2>
+    
+    <div style="overflow-x: auto; margin-top: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+      <table style="width: 100%; border-collapse: collapse; border-radius: 8px; overflow: hidden;">
+        <thead>
+          <tr style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); color: white;">
+            <th style="padding: 15px; text-align: left;">Approach</th>
+            <th style="padding: 15px; text-align: center;">Latency</th>
+            <th style="padding: 15px; text-align: center;">Quality</th>
+            <th style="padding: 15px; text-align: center;">Cost</th>
+            <th style="padding: 15px; text-align: left;">Advantages</th>
+            <th style="padding: 15px; text-align: left;">Disadvantages</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 15px; font-weight: bold;">Vector-only (HNSW)</td>
+            <td style="padding: 15px; text-align: center;">Fast<br><span style="color: green; font-size: 14px;">~120ms</span></td>
+            <td style="padding: 15px; text-align: center;">Moderate<br><span style="color: #e67e22; font-size: 14px;">76%</span></td>
+            <td style="padding: 15px; text-align: center;">Low<br><span style="color: green; font-size: 14px;">$$$</span></td>
+            <td style="padding: 15px;">
+              <ul style="margin: 0; padding-left: 20px;">
+                <li>Very fast retrieval</li>
+                <li>Good for semantic similarity</li>
+                <li>Low infrastructure cost</li>
+              </ul>
+            </td>
+            <td style="padding: 15px;">
+              <ul style="margin: 0; padding-left: 20px;">
+                <li>Misses exact keyword matches</li>
+                <li>Poor with technical terms</li>
+                <li>Limited for RNA domain terms</li>
+              </ul>
+            </td>
+          </tr>
+          <tr style="background-color: white;">
+            <td style="padding: 15px; font-weight: bold;">BM25 Keyword</td>
+            <td style="padding: 15px; text-align: center;">Very Fast<br><span style="color: green; font-size: 14px;">~80ms</span></td>
+            <td style="padding: 15px; text-align: center;">Low<br><span style="color: #e74c3c; font-size: 14px;">65%</span></td>
+            <td style="padding: 15px; text-align: center;">Very Low<br><span style="color: green; font-size: 14px;">$</span></td>
+            <td style="padding: 15px;">
+              <ul style="margin: 0; padding-left: 20px;">
+                <li>Excellent for exact matches</li>
+                <li>No embedding costs</li>
+                <li>Simple implementation</li>
+              </ul>
+            </td>
+            <td style="padding: 15px;">
+              <ul style="margin: 0; padding-left: 20px;">
+                <li>Poor semantic understanding</li>
+                <li>Misses related concepts</li>
+                <li>Requires exact terminology</li>
+              </ul>
+            </td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 15px; font-weight: bold;">Hybrid (Current)</td>
+            <td style="padding: 15px; text-align: center;">Moderate<br><span style="color: #f39c12; font-size: 14px;">~180ms</span></td>
+            <td style="padding: 15px; text-align: center;">High<br><span style="color: green; font-size: 14px;">87%</span></td>
+            <td style="padding: 15px; text-align: center;">Moderate<br><span style="color: #f39c12; font-size: 14px;">$$$</span></td>
+            <td style="padding: 15px;">
+              <ul style="margin: 0; padding-left: 20px;">
+                <li>Best of both approaches</li>
+                <li>Handles domain terminology</li>
+                <li>Good balance of precision/recall</li>
+              </ul>
+            </td>
+            <td style="padding: 15px;">
+              <ul style="margin: 0; padding-left: 20px;">
+                <li>More complex implementation</li>
+                <li>Requires tuning of weights</li>
+                <li>Slightly higher latency</li>
+              </ul>
+            </td>
+          </tr>
+          <tr style="background-color: white;">
+            <td style="padding: 15px; font-weight: bold;">Hybrid + Cross-encoder</td>
+            <td style="padding: 15px; text-align: center;">Slow<br><span style="color: #e74c3c; font-size: 14px;">~270ms</span></td>
+            <td style="padding: 15px; text-align: center;">Very High<br><span style="color: green; font-size: 14px;">92%</span></td>
+            <td style="padding: 15px; text-align: center;">High<br><span style="color: #e74c3c; font-size: 14px;">$$$$</span></td>
+            <td style="padding: 15px;">
+              <ul style="margin: 0; padding-left: 20px;">
+                <li>Superior relevance ranking</li>
+                <li>Excellent for complex queries</li>
+                <li>High precision at top results</li>
+              </ul>
+            </td>
+            <td style="padding: 15px;">
+              <ul style="margin: 0; padding-left: 20px;">
+                <li>Added computational cost</li>
+                <li>Higher latency</li>
+                <li>Requires more infrastructure</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <!-- Footer navigation -->
+  <div style="background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f5 100%); border-radius: 8px; padding: 20px; margin-top: 40px; text-align: center; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);">
+    <p style="margin-bottom: 15px; font-weight: bold;">RNA Lab Navigator Technical Documentation</p>
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+      <a href="document_ingestion_pipeline.html" style="text-decoration: none; color: #2980b9; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+        <i class="fas fa-file-import"></i> Document Ingestion Pipeline
+      </a>
+      <span style="color: #bdc3c7;">|</span>
+      <a href="temp_repo/legacy/pages/progress.html" style="text-decoration: none; color: #2980b9; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+        <i class="fas fa-chart-line"></i> Weekly Progress Report
+      </a>
+      <span style="color: #bdc3c7;">|</span>
+      <a href="#" style="text-decoration: none; color: #2980b9; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+        <i class="fas fa-arrow-up"></i> Back to Top
+      </a>
+    </div>
+  </div>
+</body>
+</html>

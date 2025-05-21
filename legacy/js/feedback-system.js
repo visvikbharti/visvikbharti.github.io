@@ -6,36 +6,60 @@
  * with server-side storage.
  */
 
-document.addEventListener('DOMContentLoaded', function() {
-  // Check localStorage availability first
-  if (!isStorageAvailable('localStorage')) {
-    console.error('localStorage is not available. Feedback system will not work properly.');
-    showErrorBanner('Your browser does not support local storage. Feedback features will not work properly.');
-    return;
-  }
+// Initialize feedback system on page load
+(function() {
+  console.log('Feedback system script loaded, waiting for DOMContentLoaded event');
+  
+  // Function to initialize the feedback system
+  function initFeedbackSystem() {
+    console.log('DOMContentLoaded event fired, initializing feedback system');
+    
+    // Check localStorage availability first
+    if (!isStorageAvailable('localStorage')) {
+      console.error('localStorage is not available. Feedback system will not work properly.');
+      showErrorBanner('Your browser does not support local storage. Feedback features will not work properly.');
+      return;
+    }
+    
+    console.log('localStorage is available');
 
-  // Make sure we have valid author information
-  ensureAuthorInfo();
-  
-  // Load all saved feedback when the page loads
-  loadAllFeedback();
-  
-  // Initialize all save feedback buttons
-  const saveButtons = document.querySelectorAll('.save-feedback-btn');
-  
-  saveButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      const projectId = this.getAttribute('data-project');
-      saveFeedback(projectId);
+    // Make sure we have valid author information
+    ensureAuthorInfo();
+    
+    // Load all saved feedback when the page loads
+    loadAllFeedback();
+    
+    // Initialize all save feedback buttons
+    const saveButtons = document.querySelectorAll('.save-feedback-btn');
+    console.log('Found save buttons:', saveButtons.length);
+    
+    saveButtons.forEach(button => {
+      const projectId = button.getAttribute('data-project');
+      console.log('Adding click listener to button for project:', projectId);
+      
+      button.addEventListener('click', function() {
+        console.log('Save button clicked for project:', projectId);
+        saveFeedback(projectId);
+      });
     });
-  });
+    
+    // Add export/import controls
+    addFeedbackControls();
+    
+    // Add auto-save functionality for feedback text
+    addAutoSave();
+    
+    console.log('Feedback system initialization complete');
+  }
   
-  // Add export/import controls
-  addFeedbackControls();
-  
-  // Add auto-save functionality for feedback text
-  addAutoSave();
-});
+  // If the DOM is already loaded, initialize immediately
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFeedbackSystem);
+  } else {
+    console.log('Document already loaded, initializing feedback system immediately');
+    initFeedbackSystem();
+  }
+})();
 
 /**
  * Detect localStorage availability

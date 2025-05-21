@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback System Test</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <h1>Feedback System Test</h1>
+  
+  <div class="pi-feedback-section">
+    <h4><i class="fas fa-comments"></i> PI Feedback:</h4>
+    <div class="feedback-container">
+      <div id="previous-feedback-test" class="previous-feedback">
+        <!-- Previous feedback will be loaded here -->
+      </div>
+      <div class="new-feedback-input">
+        <textarea id="pi-feedback-test" placeholder="Dr. Debojyoti Chakraborty Sir: Add your feedback or comments here..." class="pi-feedback-textarea"></textarea>
+        <div class="feedback-actions">
+          <select id="pi-feedback-status-test" class="pi-status-select">
+            <option value="approved">Approve Direction</option>
+            <option value="changes">Request Changes</option>
+            <option value="question">Ask Question</option>
+          </select>
+          <button class="save-feedback-btn" data-project="test"><i class="fas fa-save"></i> Save Feedback</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Debug Console -->
+  <div style="margin-top: 30px; border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
+    <h3>Debug Console</h3>
+    <div id="debug-output" style="background-color: #f9f9f9; padding: 10px; border-radius: 3px; font-family: monospace; height: 300px; overflow-y: auto;"></div>
+    <button onclick="clearDebug()" style="margin-top: 10px;">Clear Debug</button>
+  </div>
+
+  <script>
+    // Override console methods for debugging
+    const debugOutput = document.getElementById('debug-output');
+    const originalConsole = {
+      log: console.log,
+      error: console.error,
+      warn: console.warn,
+      info: console.info
+    };
+
+    console.log = function(...args) {
+      originalConsole.log(...args);
+      appendToDebug('LOG', args);
+    };
+
+    console.error = function(...args) {
+      originalConsole.error(...args);
+      appendToDebug('ERROR', args, 'red');
+    };
+
+    console.warn = function(...args) {
+      originalConsole.warn(...args);
+      appendToDebug('WARN', args, 'orange');
+    };
+
+    console.info = function(...args) {
+      originalConsole.info(...args);
+      appendToDebug('INFO', args, 'blue');
+    };
+
+    function appendToDebug(type, args, color = 'black') {
+      const timestamp = new Date().toLocaleTimeString();
+      const message = args.map(arg => {
+        if (typeof arg === 'object') {
+          try {
+            return JSON.stringify(arg);
+          } catch (e) {
+            return String(arg);
+          }
+        } else {
+          return String(arg);
+        }
+      }).join(' ');
+
+      const logEntry = document.createElement('div');
+      logEntry.innerHTML = `<span style="color: gray;">[${timestamp}]</span> <span style="color: ${color};">${type}:</span> ${message}`;
+      debugOutput.appendChild(logEntry);
+      debugOutput.scrollTop = debugOutput.scrollHeight;
+    }
+
+    function clearDebug() {
+      debugOutput.innerHTML = '';
+    }
+
+    // Log page load
+    console.log('Test page loaded');
+    
+    // Log localStorage test
+    try {
+      localStorage.setItem('test_key', 'test_value');
+      console.log('localStorage is available');
+      localStorage.removeItem('test_key');
+    } catch (e) {
+      console.error('localStorage test failed:', e);
+    }
+
+    window.onerror = function(message, source, lineno, colno, error) {
+      console.error('GLOBAL ERROR:', message, 'at', source, 'line', lineno);
+      return false;
+    };
+  </script>
+  
+  <!-- Load the feedback system script -->
+  <script src="legacy/js/feedback-system.js"></script>
+</body>
+</html>

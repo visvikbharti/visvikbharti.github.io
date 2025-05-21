@@ -1,0 +1,202 @@
+/* 
+ * Theme CSS for Vishal Bharti Portfolio v2
+ * 
+ * This file contains color variables and theme-specific styles.
+ * Light and dark mode are both defined here.
+ */
+
+/* ======= Light Mode Colors (Default) ======= */
+:root {
+  /* Main colors */
+  --color-primary: #2563eb;
+  --color-accent: #3b82f6;
+  --color-accent-light: #dbeafe;
+  --color-accent-dark: #1d4ed8;
+  
+  /* Background colors */
+  --color-background: #ffffff;
+  --color-bg-alt: #f8fafc;
+  --color-bg-hover: #f1f5f9;
+  --color-card-bg: #ffffff;
+  --color-bg-footer: #0f172a;
+  
+  /* Text colors */
+  --color-text: #1e293b;
+  --color-text-muted: #64748b;
+  --color-text-inverse: #ffffff;
+  --color-text-footer: #e2e8f0;
+  
+  /* Border colors */
+  --color-border: #e2e8f0;
+  
+  /* Shadow colors */
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-color-intense: rgba(0, 0, 0, 0.2);
+  
+  /* Success/Error colors */
+  --color-success: #22c55e;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+  --color-info: #3b82f6;
+}
+
+/* ======= Dark Mode Colors ======= */
+.dark-mode {
+  /* Main colors */
+  --color-primary: #60a5fa;
+  --color-accent: #3b82f6;
+  --color-accent-light: #1e3a8a;
+  --color-accent-dark: #93c5fd;
+  
+  /* Background colors */
+  --color-background: #0f172a;
+  --color-bg-alt: #1e293b;
+  --color-bg-hover: #334155;
+  --color-card-bg: #1e293b;
+  --color-bg-footer: #0f172a;
+  
+  /* Text colors */
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-text-inverse: #0f172a;
+  --color-text-footer: #e2e8f0;
+  
+  /* Border colors */
+  --color-border: #334155;
+  
+  /* Shadow colors */
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --shadow-color-intense: rgba(0, 0, 0, 0.7);
+  
+  /* Success/Error colors - slightly desaturated for dark mode */
+  --color-success: #4ade80;
+  --color-error: #f87171;
+  --color-warning: #fbbf24;
+  --color-info: #60a5fa;
+}
+
+/* ======= Theme-specific Styles ======= */
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode icon toggle */
+.theme-toggle i.fa-moon {
+  display: block;
+}
+
+.theme-toggle i.fa-sun {
+  display: none;
+}
+
+.dark-mode .theme-toggle i.fa-moon {
+  display: none;
+}
+
+.dark-mode .theme-toggle i.fa-sun {
+  display: block;
+}
+
+/* Accessible focus styles */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 0.2rem solid var(--color-accent);
+  outline-offset: 0.2rem;
+}
+
+/* Better link contrast in dark mode */
+.dark-mode a:not(.btn):not(.nav-link):not(.social-link) {
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+}
+
+/* Make sure code blocks are readable in both themes */
+code, pre {
+  font-family: 'IBM Plex Mono', monospace;
+  background-color: var(--color-bg-alt);
+  border-radius: 0.4rem;
+  padding: 0.2rem 0.4rem;
+}
+
+pre {
+  padding: 1.5rem;
+  overflow-x: auto;
+}
+
+/* Improve form elements in dark mode */
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select {
+  background-color: var(--color-bg-alt);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+/* Ensure good contrast for disabled elements */
+button:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled {
+  opacity: 0.6;
+}
+
+/* Add some visual enhancement to blockquotes */
+blockquote {
+  border-left: 0.4rem solid var(--color-accent);
+  padding-left: 2rem;
+  font-style: italic;
+  color: var(--color-text-muted);
+  margin: 2rem 0;
+}
+
+/* Enhance tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+}
+
+th, td {
+  border: 0.1rem solid var(--color-border);
+  padding: 1rem;
+  text-align: left;
+}
+
+th {
+  background-color: var(--color-bg-alt);
+  font-weight: 600;
+}
+
+/* Status indicators */
+.status-badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border-radius: 2rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.status-success {
+  background-color: var(--color-success);
+  color: var(--color-text-inverse);
+}
+
+.status-error {
+  background-color: var(--color-error);
+  color: var(--color-text-inverse);
+}
+
+.status-warning {
+  background-color: var(--color-warning);
+  color: var(--color-text-inverse);
+}
+
+.status-info {
+  background-color: var(--color-info);
+  color: var(--color-text-inverse);
+}

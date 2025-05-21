@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vishal Bharti Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      color: #f1f5f9;
+      padding: 2rem;
+    }
+    
+    .launcher {
+      max-width: 600px;
+      padding: 4rem;
+      background-color: rgba(30, 41, 59, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 1rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+    
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    
+    p {
+      margin-bottom: 3rem;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      font-size: 1.1rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      min-width: 200px;
+    }
+    
+    .btn-v2 {
+      background-color: #3b82f6;
+      color: white;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+    
+    .btn-v2:hover {
+      background-color: #2563eb;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+    }
+    
+    .btn-legacy {
+      background-color: transparent;
+      color: #f1f5f9;
+      border: 2px solid #f1f5f9;
+    }
+    
+    .btn-legacy:hover {
+      background-color: rgba(241, 245, 249, 0.1);
+      transform: translateY(-3px);
+    }
+    
+    .version-tag {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 2rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+    
+    .tag-new {
+      background-color: #22c55e;
+      color: white;
+    }
+    
+    .footer {
+      margin-top: 4rem;
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+    
+    @media (max-width: 500px) {
+      .launcher {
+        padding: 2.5rem;
+      }
+      
+      .buttons {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+      
+      h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="launcher">
+    <h1>Vishal Bharti Portfolio</h1>
+    <p>Choose which version of the portfolio you'd like to explore. The modern version includes enhanced features and improved navigation, while the legacy version preserves the original design.</p>
+    
+    <div class="buttons">
+      <a href="v2/index.html" class="btn btn-v2">
+        Modern Portfolio <span class="version-tag tag-new">NEW</span>
+      </a>
+      <a href="index.html" class="btn btn-legacy">
+        Legacy Portfolio
+      </a>
+    </div>
+    
+    <div class="footer">
+      &copy; 2025 Vishal Bharti. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>

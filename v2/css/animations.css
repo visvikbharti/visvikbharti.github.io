@@ -1,0 +1,322 @@
+/* 
+ * Animations CSS for Vishal Bharti Portfolio v2
+ * 
+ * This file contains all animations, transitions, and motion effects.
+ * Animations can be disabled via CSS variables for reduced motion preferences.
+ */
+
+/* ======= Animation Variables ======= */
+:root {
+  --animation-speed-slow: 1s;
+  --animation-speed-medium: 0.5s;
+  --animation-speed-fast: 0.3s;
+  --animation-curve-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --animation-curve-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --animation-curve-sharp: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* ======= Respect Reduced Motion Preferences ======= */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ======= Fade Animations ======= */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ======= Scale Animations ======= */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleInBounce {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ======= Special Animations ======= */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ======= Text Animations ======= */
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes cursor {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--color-text);
+  }
+}
+
+/* ======= Loading Animation ======= */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  width: 3rem;
+  height: 3rem;
+  border: 0.3rem solid var(--color-bg-alt);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: rotate 1s linear infinite;
+}
+
+/* ======= Apply Animations to Elements ======= */
+/* Apply these classes to elements you want to animate */
+
+.fade-in {
+  animation: fadeIn var(--animation-speed-medium) var(--animation-curve-smooth) forwards;
+}
+
+.fade-in-up {
+  animation: fadeInUp var(--animation-speed-medium) var(--animation-curve-smooth) forwards;
+}
+
+.fade-in-down {
+  animation: fadeInDown var(--animation-speed-medium) var(--animation-curve-smooth) forwards;
+}
+
+.fade-in-left {
+  animation: fadeInLeft var(--animation-speed-medium) var(--animation-curve-smooth) forwards;
+}
+
+.fade-in-right {
+  animation: fadeInRight var(--animation-speed-medium) var(--animation-curve-smooth) forwards;
+}
+
+.scale-in {
+  animation: scaleIn var(--animation-speed-medium) var(--animation-curve-smooth) forwards;
+}
+
+.scale-bounce {
+  animation: scaleInBounce var(--animation-speed-medium) var(--animation-curve-bounce) forwards;
+}
+
+.pulse {
+  animation: pulse 2s var(--animation-curve-smooth) infinite;
+}
+
+.float {
+  animation: float 3s var(--animation-curve-smooth) infinite;
+}
+
+.shake {
+  animation: shake 0.5s var(--animation-curve-sharp);
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+.blink {
+  animation: blink 1.5s infinite;
+}
+
+/* ======= Staggered Animations ======= */
+.stagger-children > * {
+  opacity: 0;
+}
+
+.stagger-children > *:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.stagger-children > *:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.stagger-children > *:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.stagger-children > *:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.stagger-children > *:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.stagger-children > *:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+/* ======= Page Transitions ======= */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+/* ======= Scroll Reveal Animations ======= */
+.reveal {
+  opacity: 0;
+  transition: all 1s var(--animation-curve-smooth);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-bottom {
+  transform: translateY(50px);
+}
+
+.reveal-left {
+  transform: translateX(-50px);
+}
+
+.reveal-right {
+  transform: translateX(50px);
+}

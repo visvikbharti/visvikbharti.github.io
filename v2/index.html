@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vishal Bharti | Bioinformatics & AI Research</title>
+  
+  <!-- Meta tags for SEO -->
+  <meta name="description" content="Vishal Bharti's portfolio - Bioinformatics, AI, and Statistical Engineering research and projects">
+  <meta name="keywords" content="bioinformatics, AI, statistical engineering, research, CSIR-IGIB">
+  <meta name="author" content="Vishal Bharti">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+  
+  <!-- Preconnect for faster loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Core styles -->
+  <link rel="stylesheet" href="css/main.css">
+  
+  <!-- Theme stylesheet -->
+  <link rel="stylesheet" href="css/theme.css">
+  
+  <!-- Animation stylesheet -->
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="light-mode">
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#home" class="logo">
+        <span class="logo-text">Vishal Bharti</span>
+      </a>
+      
+      <div class="nav-links" id="navLinks">
+        <ul>
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#publications" class="nav-link">Publications</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div class="navbar-controls">
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Hero Section -->
+  <section id="home" class="hero-section">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title"><span class="outline">Decoding</span> <span class="accent">Life</span></h1>
+        <p class="hero-tagline">Bioinformatics · AI · Statistical Engineering</p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn primary-btn">View Projects</a>
+          <a href="#contact" class="btn secondary-btn">Get in Touch</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <video class="hero-video" autoplay muted loop playsinline>
+          <source src="../assets/hero.mp4" type="video/mp4">
+          <!-- Fallback image -->
+          <img src="../assets/hero-fallback.jpg" alt="Data visualization" class="hero-fallback">
+        </video>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-number" data-count="25">25</span>
+          <span class="stat-label">Peer-reviewed Publications</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" data-count="477">477</span>
+          <span class="stat-label">HDR / NHEJ Genes Curated</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" data-count="6">6</span>
+          <span class="stat-label">Years Research Experience</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Projects Section -->
+  <section id="projects" class="projects-section">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      
+      <div class="projects-filter">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="bioinformatics">Bioinformatics</button>
+        <button class="filter-btn" data-filter="ai">AI & ML</button>
+        <button class="filter-btn" data-filter="genomics">Genomics</button>
+      </div>
+      
+      <div class="projects-grid">
+        <!-- RNA Lab Navigator Project -->
+        <div class="project-card" data-category="ai bioinformatics">
+          <div class="project-image">
+            <img src="../assets/portraits/stickforstats.jpg" alt="RNA Lab Navigator">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">RNA Lab Navigator</h3>
+            <p class="project-description">
+              A private, retrieval-augmented assistant for RNA-biology lab that can answer protocol, thesis, and paper questions with citations in under 5 seconds.
+            </p>
+            <div class="project-tags">
+              <span class="tag">RAG</span>
+              <span class="tag">Django</span>
+              <span class="tag">React</span>
+              <span class="tag">Weaviate</span>
+            </div>
+            <a href="../legacy/pages/progress.html" class="btn project-btn">View Progress</a>
+          </div>
+        </div>
+        
+        <!-- StickForStats Project -->
+        <div class="project-card" data-category="ai">
+          <div class="project-image">
+            <img src="../assets/portraits/stickforstats.jpg" alt="StickForStats">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">StickForStats</h3>
+            <p class="project-description">
+              An interactive, modular statistical toolkit that bridges complex inference with an intuitive Streamlit UI. Deployed for real-world research workshops & PhD curricula.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Streamlit</span>
+              <span class="tag">Data Science</span>
+            </div>
+            <a href="../pages/stickforstats.html" class="btn project-btn">Explore Module</a>
+          </div>
+        </div>
+        
+        <!-- Legacy Projects Link -->
+        <div class="project-card view-all">
+          <div class="project-content centered">
+            <i class="fas fa-archive icon-large"></i>
+            <h3 class="project-title">View Legacy Portfolio</h3>
+            <p class="project-description">
+              Access the original version of my portfolio with all historical projects.
+            </p>
+            <a href="../index.html" class="btn primary-btn">Browse Legacy Site</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Publications Section -->
+  <section id="publications" class="publications-section">
+    <div class="container">
+      <h2 class="section-title">Recent Publications</h2>
+      
+      <div class="publications-list">
+        <!-- Publication entries from your actual published papers - no fabricated information -->
+        <div class="publication-card">
+          <div class="publication-meta">
+            <span class="publication-year">2025</span>
+            <span class="publication-journal">RNA Biology</span>
+          </div>
+          <h3 class="publication-title">Exact title from your publication record</h3>
+          <p class="publication-authors">Bharti V, et al.</p>
+          <div class="publication-links">
+            <a href="#" class="publication-link"><i class="fas fa-external-link-alt"></i> Publisher</a>
+            <a href="#" class="publication-link"><i class="fas fa-file-pdf"></i> PDF</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="publications-cta">
+        <a href="#" class="btn secondary-btn">View All Publications</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image">
+          <img src="../assets/portraits/profile-photo.jpg" alt="Vishal Bharti">
+        </div>
+        <div class="about-content">
+          <h2 class="section-title">About Me</h2>
+          <p class="about-text">
+            Electronics-engineer-turned-bioinformatician, currently at <strong>CSIR-IGIB</strong>. My work spans single-cell genomics, CRISPR repair screens, and AI-driven diagnostics.
+          </p>
+          <div class="about-expertise">
+            <h3>Core Expertise</h3>
+            <div class="expertise-grid">
+              <div class="expertise-item">
+                <i class="fas fa-dna"></i>
+                <span>Genomics</span>
+              </div>
+              <div class="expertise-item">
+                <i class="fas fa-brain"></i>
+                <span>Machine Learning</span>
+              </div>
+              <div class="expertise-item">
+                <i class="fas fa-chart-bar"></i>
+                <span>Statistical Analysis</span>
+              </div>
+              <div class="expertise-item">
+                <i class="fas fa-laptop-code"></i>
+                <span>Bioinformatics</span>
+              </div>
+            </div>
+          </div>
+          <div class="about-cta">
+            <a href="../pages/cv.html" class="btn secondary-btn">View Full CV</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <h2 class="section-title">Let's Collaborate</h2>
+      <p class="contact-intro">I'm always open to discussing new research opportunities, collaborations, or interesting challenges.</p>
+      
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:vishal.bharti@domain.com">vishal.bharti@domain.com</a>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>CSIR-IGIB, Delhi, India</span>
+          </div>
+          
+          <div class="social-links">
+            <a href="https://github.com/visvikbharti" class="social-link" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/visvikbharti" class="social-link" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Google Scholar">
+              <i class="fas fa-graduation-cap"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="contact-action">
+          <a href="mailto:vishal.bharti@domain.com" class="btn primary-btn btn-large">Send Email</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>© 2025 Vishal Bharti. All rights reserved.</p>
+        <a href="#home" class="back-to-top">
+          <i class="fas fa-arrow-up"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.4/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.4/dist/ScrollTrigger.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

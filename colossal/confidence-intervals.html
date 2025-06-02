@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Confidence Intervals Explorer | Vishal Bharti</title>
+
+  <link rel="stylesheet" href="../css/vars.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+  <!-- copy your existing header/nav here -->
+  <header class="nav">
+    <!-- … -->
+  </header>
+
+  <main>
+
+    <!-- HERO PANEL -->
+    <section class="panel hero">
+      <div class="hero__content">
+        <h1>
+          <span class="outline">Confidence</span>
+          <span class="neon">Intervals</span>
+        </h1>
+        <p class="tagline">Explore Statistical Inference</p>
+      </div>
+    </section>
+
+    <!-- ABOUT + LAUNCH BUTTONS -->
+    <section class="panel about">
+      <div class="container">
+        <h2>Confidence Intervals Explorer</h2>
+        <p class="paragraph">
+          A comprehensive educational tool for understanding statistical inference.  
+          Bridge theory and practice with live simulations and step‑by‑step derivations.
+        </p>
+        <div class="button-group">
+          <a href="https://visvikbharti-confidence-intervals‑explorer.streamlit.app/"
+             target="_blank"
+             class="btn big">
+            Launch Confidence Intervals Explorer
+          </a>
+          <a href="https://github.com/visvikbharti/"
+             target="_blank"
+             class="btn alt">
+            View Source Code
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO PANEL -->
+    <section class="panel video">
+      <div class="container">
+        <h2>Interactive Learning Experience</h2>
+        <div class="video-wrapper">
+          <iframe
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+            title="Demo"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <p class="video-caption">
+          Demonstration of the Explorer’s interactive features and educational value.
+        </p>
+      </div>
+    </section>
+
+    <!-- FEATURES GRID -->
+    <section class="panel features">
+      <div class="container">
+        <h2>Key Features</h2>
+        <div class="grid--3">
+          <div class="feature-card">
+            <i class="fas fa-book-open feature-icon"></i>
+            <h3>Theoretical Foundations</h3>
+            <p>Step‑by‑step derivations of CI formulas and interpretations.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-laptop-code feature-icon"></i>
+            <h3>Interactive Simulations</h3>
+            <p>Live generation of CIs—tweak sample size, confidence level, see coverage.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-chart-line feature-icon"></i>
+            <h3>Advanced Methods</h3>
+            <p>Bayesian credible intervals, profile‐likelihood bands, and more.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-briefcase feature-icon"></i>
+            <h3>Real‑World Applications</h3>
+            <p>Clinical trials, A/B tests, environmental monitoring, manufacturing QC.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-square-root-alt feature-icon"></i>
+            <h3>Mathematical Proofs</h3>
+            <p>Formal derivations with dynamic visualizations of sampling distributions.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-graduation-cap feature-icon"></i>
+            <h3>Comprehensive References</h3>
+            <p>Curated textbooks, papers, and online resources for deeper study.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATIONAL VALUE -->
+    <section class="panel education">
+      <div class="container two-column">
+        <div>
+          <h2>Educational Value</h2>
+          <ul class="checklist">
+            <li><strong>Conceptual Understanding</strong>: Intuition about sampling distributions.</li>
+            <li><strong>Practical Application</strong>: CIs in real‑world decision making.</li>
+            <li><strong>Technical Skill</strong>: Implementation details in Python/R.</li>
+            <li><strong>Research Support</strong>: References and guidance for scholars.</li>
+            <li><strong>Decision Making</strong>: How uncertainty informs choices.</li>
+          </ul>
+        </div>
+        <div class="math-block">
+          <pre><code>
+CI₁₋α = x̄ ± tₙ₋₁, 1₋α/₂ · (s / √n)
+          </code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER CTA -->
+    <section class="panel cta-footer">
+      <div class="container">
+        <p>Ready to deepen your understanding?</p>
+        <a href="https://visvikbharti-confidence-intervals‑explorer.streamlit.app/"
+           target="_blank"
+           class="btn big">
+          Launch Explorer
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="../js/main.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.panel').forEach(panel => {
+      ScrollTrigger.create({
+        trigger: panel,
+        start: 'top top',
+        pin: true,
+        pinSpacing: false,
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 17, 2025 (April 22 - April 28) | Vishal Bharti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/progress-login.css">
+</head>
+<body>
+    <div class="section">
+        <h2>Weekly Research Progress Report</h2>
+        <p class="report-date">Week 17, 2025 (April 22 - April 28)</p>
+        
+        <!-- Muscle HDR-scRNA Analysis Pipeline Section -->
+        <div class="progress-section">
+            <h3><i class="fas fa-dna"></i> Muscle HDR-scRNA Analysis Pipeline</h3>
+            <p><strong>Project Goal:</strong> Develop a computational pipeline for analyzing single-cell RNA sequencing data from muscle tissue, with a focus on Homology-Directed Repair (HDR) gene expression patterns across different cell populations.</p>
+            
+            <table class="progress-table">
+                <thead>
+                    <tr>
+                        <th width="15%">Date</th>
+                        <th width="25%">Task</th>
+                        <th width="60%">Details / Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mon - Wed</td>
+                        <td>Pipeline Development & Debugging</td>
+                        <td>
+                            <p>Completed Snakemake workflow implementation with modular rule structure.</p>
+                            <p>Fixed integration issues between Harmony and scVI modules.</p>
+                            <p>Optimized ortholog mapping utility for cross-species analysis.</p>
+                            <p>Implemented comprehensive error handling in processing scripts.</p>
+                            <p>Added detailed logging for all pipeline stages.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Thu - Fri</td>
+                        <td>Streamlit App Development</td>
+                        <td>
+                            <p>Developed comprehensive interactive dashboard for analyzing HDR gene expression.</p>
+                            <p>Implemented UMAP visualization with multiple coloring options.</p>
+                            <p>Created specialized HDR gene expression analysis modules.</p>
+                            <p>Added cell type annotation functionality using marker genes.</p>
+                            <p>Implemented quality control visualization components.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Sat - Sun</td>
+                        <td>Testing & Documentation</td>
+                        <td>
+                            <p>Conducted end-to-end testing with human (GSE130646) and mouse (GSE138707) datasets.</p>
+                            <p>Identified and documented issues in the Streamlit app.</p>
+                            <p>Created comprehensive README with installation and usage instructions.</p>
+                            <p>Prepared HPC deployment scripts for SLURM.</p>
+                            <p>Created detailed documentation of pipeline parameters and configuration options.</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="progress-challenges">
+                <h4><i class="fas fa-exclamation-triangle"></i> Challenges:</h4>
+                <ul>
+                    <li>HDR Gene Differential Expression visualization shows KeyError related to Pandas styling with non-unique indices.</li>
+                    <li>Cell type annotation feature doesn't show results for Mouse data (GSE138707).</li>
+                    <li>Mitochondrial content visualization appears empty for Mouse data due to different gene nomenclature.</li>
+                    <li>Cross-species integration required careful handling of gene nomenclature differences.</li>
+                    <li>Memory optimization needed for large datasets on resource-constrained environments.</li>
+                </ul>
+            </div>
+            
+            <div class="progress-next-steps">
+                <h4><i class="fas fa-arrow-right"></i> Next Steps:</h4>
+                <ul>
+                    <li>Implement fixes for identified Streamlit app issues with robust error handling.</li>
+                    <li>Enhance cell type annotation with species-specific marker genes.</li>
+                    <li>Add comprehensive help text and interpretation guidance in the dashboard.</li>
+                    <li>Create additional preprocessing options for different input data formats.</li>
+                    <li>Implement feature for comparative analysis between human and mouse datasets.</li>
+                    <li>Add RNA velocity analysis for trajectory inference.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- StickForStats Integration Section -->
+        <div class="progress-section">
+            <h3><i class="fas fa-chart-bar"></i> StickForStats Integration</h3>
+            <p><strong>Project Goal:</strong> Integrate biological data analysis tools with the broader StickForStats platform.</p>
+            
+            <table class="progress-table">
+                <thead>
+                    <tr>
+                        <th width="15%">Component</th>
+                        <th width="15%">Progress</th>
+                        <th width="70%">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Data Structure</td>
+                        <td><div class="progress-bar" style="--progress: 75%;">75%</div></td>
+                        <td>
+                            <p>Created consistent data structure for single-cell expression matrices.</p>
+                            <p>Implemented data format conversion utilities between AnnData and standard formats.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Visualization</td>
+                        <td><div class="progress-bar" style="--progress: 80%;">80%</div></td>
+                        <td>
+                            <p>Developed unified visualization components for gene expression data.</p>
+                            <p>Implemented consistent color schemes for cell type and gene expression visualization.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Analysis Tools</td>
+                        <td><div class="progress-bar" style="--progress: 60%;">60%</div></td>
+                        <td>
+                            <p>Developed core analysis modules for gene expression statistics.</p>
+                            <p>Integrated differential expression analysis with the statistical testing framework.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Documentation</td>
+                        <td><div class="progress-bar" style="--progress: 40%;">40%</div></td>
+                        <td>
+                            <p>Started documentation for API integration with StickForStats.</p>
+                            <p>Created initial user guides for the Muscle HDR-scRNA module.</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="demo-links">
+                <p><strong>Related Modules:</strong></p>
+                <div class="link-badges">
+                    <a href="#" target="_blank" class="demo-badge">
+                        <i class="fas fa-dna"></i> Muscle HDR-scRNA Analysis
+                    </a>
+                    <a href="https://visvikbharti-biotech-doe-suite.streamlit.app/" target="_blank" class="demo-badge">
+                        <i class="fas fa-flask"></i> Biotech DOE Mastery Suite
+                    </a>
+                    <a href="https://visvikbharti-confidence-intervals-explorer.streamlit.app/" target="_blank" class="demo-badge">
+                        <i class="fas fa-chart-line"></i> Confidence Intervals Explorer
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="weekly-summary">
+            <h3><i class="fas fa-flag"></i> Weekly Summary</h3>
+            <p>This week focused on developing a computational pipeline for analyzing single-cell RNA sequencing data from muscle tissue, with particular emphasis on Homology-Directed Repair (HDR) gene expression patterns. The pipeline successfully integrates data processing, cross-species integration, and interactive visualization components.</p>
+            <p>The Snakemake workflow implementation allows for reproducible analysis with configurable parameters. Key features include automated quality control, cluster identification, cell type annotation, and focused analysis of 477 HDR-related genes. The cross-species integration capabilities enable comparison between human and mouse datasets through automated ortholog mapping.</p>
+            <p>The interactive Streamlit dashboard provides an intuitive interface for exploring the analysis results, with specialized visualizations for HDR gene expression patterns. Several issues were identified during testing, including differential expression visualization errors and species-specific cell type annotation challenges. Solutions have been developed and will be implemented in the next development cycle.</p>
+            <p>Next week will focus on fixing the identified dashboard issues, enhancing the visualization components, and adding comprehensive help text for interpretation guidance. Additionally, work will begin on implementing RNA velocity analysis for trajectory inference and creating comparative analysis features for human and mouse datasets.</p>
+        </div>
+        
+        <!-- Navigation back to progress tracker -->
+        <div class="back-navigation">
+            <a href="../progress.html" class="btn"><i class="fas fa-arrow-left"></i> Back to Progress Tracker</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StickForStats - Vishal Bharti</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="StickForStats - Advanced statistical analysis platform with user-friendly interface designed for researchers without extensive statistical knowledge.">
+  <meta name="keywords" content="statistics, data analysis, streamlit, python, research tools, bioinformatics">
+  <meta name="author" content="Vishal Bharti">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=IBM+Plex+Mono:wght@400;600&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- Core styles -->
+  <link rel="stylesheet" href="../css/vars.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/project.css" />
+
+  <!-- GSAP + ScrollTrigger -->
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Portfolio logic -->
+  <script defer src="../js/main.js"></script>
+</head>
+
+<body class="project-page">
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <a href="../index.html" class="nav-logo">VB</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#research">Research</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+      <li><a href="../legacy/pages/progress.html" class="nav-highlight">Weekly Progress</a></li>
+    </ul>
+  </nav>
+
+  <!-- ================= Project Hero ================= -->
+  <section class="project-hero">
+    <div class="container">
+      <h1 class="project-title">StickForStats</h1>
+      <div class="project-meta">
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Streamlit</span>
+          <span class="tech-tag">Statistics</span>
+          <span class="tech-tag">Data Visualization</span>
+          <span class="tech-tag">Education</span>
+        </div>
+        <div class="project-links">
+          <a href="https://visvikbharti-stickforstats.streamlit.app/" target="_blank" class="btn">Live Demo</a>
+          <a href="https://github.com/visvikbharti/stickforstats" target="_blank" class="btn alt">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Project Overview ================= -->
+  <section class="project-section">
+    <div class="container">
+      <h2>Project Overview</h2>
+      <p>
+        StickForStats is an advanced, modular statistical toolkit designed to bridge the gap between complex
+        statistical inference and researchers with minimal statistical background. Built using Python and Streamlit,
+        the platform provides an intuitive interface for performing various statistical analyses with proper
+        guidance on test selection, assumption verification, and result interpretation.
+      </p>
+      <p>
+        The project originated from a need identified during laboratory collaborations at CSIR-IGIB, where many researchers
+        struggled with choosing appropriate statistical methods for their experiments. StickForStats makes advanced 
+        statistical approaches more accessible while maintaining mathematical rigor.
+      </p>
+
+      <div class="project-features">
+        <div class="feature">
+          <div class="feature-icon"><i class="fas fa-brain"></i></div>
+          <h3>Intelligent Test Selection</h3>
+          <p>Recommends appropriate statistical tests based on data characteristics and research questions</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
+          <h3>Assumption Verification</h3>
+          <p>Automatically checks test assumptions and suggests alternatives when assumptions are violated</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon"><i class="fas fa-chart-bar"></i></div>
+          <h3>Interactive Visualizations</h3>
+          <p>Generates publication-ready visualizations with customizable options</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon"><i class="fas fa-graduation-cap"></i></div>
+          <h3>Educational Component</h3>
+          <p>Explains statistical concepts and test selection logic for better understanding</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Modules ================= -->
+  <section class="project-section alt-bg">
+    <div class="container">
+      <h2>Core Modules</h2>
+
+      <div class="module-grid">
+        <div class="module-card">
+          <h3>Confidence Intervals Explorer</h3>
+          <p>
+            Interactive tutorial and visualization tool for understanding confidence intervals through
+            simulations and practical applications. Helps researchers understand the nuances of statistical
+            inference through direct manipulation of parameters.
+          </p>
+          <a href="https://visvikbharti-confidence-intervals-explorer.streamlit.app/" target="_blank" class="module-link">
+            <i class="fas fa-external-link-alt"></i> View Demo
+          </a>
+        </div>
+
+        <div class="module-card">
+          <h3>Statistical Quality Control</h3>
+          <p>
+            Comprehensive tools for monitoring and analyzing process quality, including control charts,
+            process capability analysis, and measurement systems analysis. Particularly useful for
+            biotechnology lab quality control.
+          </p>
+        </div>
+
+        <div class="module-card">
+          <h3>Principal Component Analysis</h3>
+          <p>
+            Interactive PCA tool with detailed visualizations, step-by-step guides, and intuitive 
+            interpretation help. Features interactive biplots and scree plots with direct manipulation.
+          </p>
+          <a href="https://visvikbharti-pca-tool.streamlit.app/" target="_blank" class="module-link">
+            <i class="fas fa-external-link-alt"></i> View Demo
+          </a>
+        </div>
+
+        <div class="module-card">
+          <h3>Probability Distributions</h3>
+          <p>
+            Educational tool for exploring statistical distributions and their properties with
+            interactive visualizations and practical examples from biological sciences.
+          </p>
+          <a href="https://visvikbharti-probability-distributions-tool.streamlit.app/" target="_blank" class="module-link">
+            <i class="fas fa-external-link-alt"></i> View Demo
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Development Journey ================= -->
+  <section class="project-section">
+    <div class="container">
+      <h2>Development Journey</h2>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <h3>April 2024 - Present</h3>
+            <h4>Platform Development</h4>
+            <p>
+              Architectural refactoring from individual Streamlit modules to a cohesive, integrated Flask-based
+              web application with comprehensive project structure, API endpoints, and authentication system.
+            </p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <h3>October 2023 - March 2024</h3>
+            <h4>Module Development</h4>
+            <p>
+              Creation of individual statistical modules (Confidence Intervals, PCA, SQC, Probability)
+              with standardized interfaces and educational components. Focus on intuitive design and
+              proper statistical guidance.
+            </p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <h3>June 2023 - September 2023</h3>
+            <h4>Research & Prototyping</h4>
+            <p>
+              Initial research on statistical education needs among researchers, technology selection,
+              and prototyping of core concepts. Surveyed researchers at CSIR-IGIB to identify key
+              statistical pain points.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RAG System ================= -->
+  <section class="project-section alt-bg">
+    <div class="container">
+      <h2>RAG System Implementation</h2>
+      <p>
+        The latest addition to StickForStats is a Retrieval Augmented Generation (RAG) system for contextual
+        AI assistance in statistical analysis. This system provides intelligent guidance tailored to each
+        user's specific analysis context.
+      </p>
+      
+      <div class="rag-components">
+        <div class="rag-component">
+          <h3>Vector Store</h3>
+          <p>
+            Implemented efficient vector storage using SentenceTransformers for similarity searching,
+            optimized for statistical terminology and concepts.
+          </p>
+          <div class="progress-bar">
+            <div class="progress" style="width: 100%;"></div>
+            <span>100%</span>
+          </div>
+        </div>
+        
+        <div class="rag-component">
+          <h3>Knowledge Base</h3>
+          <p>
+            Comprehensive knowledge items for all statistical domains with module-component relationships
+            for contextual suggestions.
+          </p>
+          <div class="progress-bar">
+            <div class="progress" style="width: 90%;"></div>
+            <span>90%</span>
+          </div>
+        </div>
+        
+        <div class="rag-component">
+          <h3>Context Tracker</h3>
+          <p>
+            System to monitor user activity and provide relevant assistance based on current module
+            and actions, enabling intelligent content discovery.
+          </p>
+          <div class="progress-bar">
+            <div class="progress" style="width: 85%;"></div>
+            <span>85%</span>
+          </div>
+        </div>
+        
+        <div class="rag-component">
+          <h3>Subscription Model</h3>
+          <p>
+            Tiered access approach (Basic, Premium, Enterprise) with secure API key management for
+            premium features.
+          </p>
+          <div class="progress-bar">
+            <div class="progress" style="width: 95%;"></div>
+            <span>95%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Technical Details ================= -->
+  <section class="project-section">
+    <div class="container">
+      <h2>Technical Details</h2>
+      
+      <div class="tech-details">
+        <div class="tech-detail">
+          <h3>Backend</h3>
+          <ul>
+            <li><strong>Python 3.9+</strong> - Core language for statistical implementations</li>
+            <li><strong>Flask</strong> - Web framework for integrated platform</li>
+            <li><strong>SciPy & NumPy</strong> - Scientific computing and array operations</li>
+            <li><strong>Pandas</strong> - Data manipulation and analysis</li>
+            <li><strong>scikit-learn</strong> - Machine learning algorithms for PCA and clustering</li>
+            <li><strong>statsmodels</strong> - Advanced statistical modeling</li>
+          </ul>
+        </div>
+        
+        <div class="tech-detail">
+          <h3>Frontend</h3>
+          <ul>
+            <li><strong>Streamlit</strong> - Initial UI framework for individual modules</li>
+            <li><strong>JavaScript</strong> - Enhanced interactive visualizations in integrated platform</li>
+            <li><strong>Plotly</strong> - Interactive data visualization</li>
+            <li><strong>Bootstrap</strong> - Responsive design components</li>
+            <li><strong>Flask Templates</strong> - Server-side rendering</li>
+          </ul>
+        </div>
+        
+        <div class="tech-detail">
+          <h3>RAG System</h3>
+          <ul>
+            <li><strong>SentenceTransformers</strong> - Text embeddings for similarity search</li>
+            <li><strong>FAISS</strong> - Vector similarity search</li>
+            <li><strong>Custom Knowledge Base</strong> - JSON-based hierarchical structure</li>
+            <li><strong>Session Management</strong> - Flask sessions for context persistence</li>
+          </ul>
+        </div>
+        
+        <div class="tech-detail">
+          <h3>Deployment</h3>
+          <ul>
+            <li><strong>Streamlit Cloud</strong> - Initial module deployment</li>
+            <li><strong>Docker</strong> - Containerization for integrated platform</li>
+            <li><strong>RESTful API</strong> - Stateless service architecture</li>
+            <li><strong>Environment Variables</strong> - Configuration management</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Future Development ================= -->
+  <section class="project-section alt-bg">
+    <div class="container">
+      <h2>Future Development</h2>
+      <p>
+        StickForStats is an ongoing project with several exciting developments planned for the future:
+      </p>
+      
+      <div class="future-plans">
+        <div class="future-item">
+          <h3>Short-term Goals (May-June 2025)</h3>
+          <ul>
+            <li>Expand RAG knowledge base with specialized content</li>
+            <li>Develop interactive visualizations for complex concepts</li>
+            <li>Create biotech-specific case studies and examples</li>
+            <li>Implement adaptive learning pathways</li>
+          </ul>
+        </div>
+        
+        <div class="future-item">
+          <h3>Medium-term Goals (June-July 2025)</h3>
+          <ul>
+            <li>Build community platform for sharing analyses</li>
+            <li>Develop educational partnerships with institutions</li>
+            <li>Create plugin system for community contributions</li>
+            <li>Integrate with popular data science tools</li>
+          </ul>
+        </div>
+        
+        <div class="future-item">
+          <h3>Long-term Vision (August 2025+)</h3>
+          <ul>
+            <li>Scale platform for enterprise use</li>
+            <li>Launch certified training program</li>
+            <li>Develop industry-specific modules</li>
+            <li>Create comprehensive documentation system</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Contact ================= -->
+  <section class="project-section contact-section">
+    <div class="container">
+      <h2>Interested in StickForStats?</h2>
+      <p>
+        Whether you're interested in using StickForStats for your research, collaborating on its development,
+        or have questions about the platform, I'd love to hear from you.
+      </p>
+      <div class="contact-buttons">
+        <a href="mailto:vishalvikashbharti@gmail.com?subject=StickForStats%20Inquiry" class="btn">Email Me</a>
+        <a href="https://github.com/visvikbharti/" target="_blank" class="btn alt">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Footer ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 Vishal Bharti. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#research">Research</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="../legacy/">Legacy Site</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

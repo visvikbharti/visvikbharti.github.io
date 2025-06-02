@@ -62,11 +62,11 @@ function setupWeekNavigation() {
  * Load current week's data
  */
 function loadCurrentWeekData() {
-    // Always show Week 19, 2025 regardless of date or stored values
-    const currentWeek = 19;
+    // Always show Week 22, 2025 regardless of date or stored values
+    const currentWeek = 22;
     const currentYear = 2025;
     
-    // Force Week 19, 2025 to be displayed
+    // Force Week 22, 2025 to be displayed
     displayWeekData(currentWeek, currentYear);
     
     // Also store it in localStorage

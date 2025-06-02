@@ -1,0 +1,209 @@
+/* CV/About page specific styles */
+.cv-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.cv-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.cv-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.action-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--clr-purple);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+
+.action-button:hover {
+  background: var(--clr-pink);
+  text-decoration: none;
+}
+
+.section {
+  margin-bottom: 4rem;
+}
+
+.section h2 {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.section h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--clr-neon);
+}
+
+/* Timeline styling */
+.timeline {
+  position: relative;
+  margin-left: 20px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 2rem;
+  padding-bottom: 2.5rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--clr-purple);
+}
+
+.timeline-date {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--clr-neon);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-title {
+  color: white;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-subtitle {
+  color: var(--clr-gray-300);
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-content {
+  color: var(--clr-gray-300);
+}
+
+.timeline-content ul {
+  margin-top: 0.5rem;
+  padding-left: 1.25rem;
+}
+
+.timeline-content ul li {
+  margin-bottom: 0.5rem;
+}
+
+/* Publications list */
+.publications-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.publications-list li {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.publications-list li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Skills section */
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.skill-category h3 {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.skill-item {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50px;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+
+.skill-item:hover {
+  background: rgba(168, 120, 255, 0.2);
+}
+
+/* List styles */
+.awards-list, 
+.training-list,
+.projects-list,
+.responsibility-list {
+  padding-left: 1.25rem;
+}
+
+.awards-list li,
+.training-list li,
+.projects-list li,
+.responsibility-list li {
+  margin-bottom: 0.75rem;
+  position: relative;
+}
+
+/* Interests section */
+.interests {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .skills-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .cv-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}

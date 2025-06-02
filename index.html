@@ -3,10 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vishal Bharti · Bioinformatics & AI Research</title>
+  <title>Vishal Bharti · Bioinformatics & Computational Biology</title>
 
-  <!-- Google Fonts -->
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Vishal Bharti - Bioinformatician specializing in RNA biology, computational genomics, and statistical tool development. View research, publications, and projects.">
+  <meta name="keywords" content="bioinformatics, computational biology, RNA biology, genomics, G-quadruplexes, triple helices, TRIPinRNA, StickForStats, statistics, data analysis">
+  <meta name="author" content="Vishal Bharti">
+  
+  <!-- Open Graph tags for better social media sharing -->
+  <meta property="og:title" content="Vishal Bharti | Bioinformatics & Computational Biology">
+  <meta property="og:description" content="Portfolio of Vishal Bharti, a Bioinformatician specializing in RNA biology, computational genomics, and statistical tool development.">
+  <meta property="og:image" content="assets/portraits/profile-photo.jpg">
+  <meta property="og:url" content="https://visvikbharti.github.io">
+
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=IBM+Plex+Mono:wght@400;600&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <!-- Core styles -->
   <link rel="stylesheet" href="css/vars.css" />
@@ -21,6 +35,18 @@
 </head>
 
 <body>
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <a href="#hero" class="nav-logo">VB</a>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="legacy/pages/progress.html" class="nav-highlight">Weekly Progress</a></li>
+    </ul>
+  </nav>
 
   <!-- ================= Hero ================= -->
   <section id="hero" class="panel hero">
@@ -32,14 +58,18 @@
 
     <div class="hero__content">
       <h1><span class="outline">Decoding</span> <span class="neon">Life</span></h1>
-      <p class="tagline">Bioinformatics · AI · Statistical Engineering</p>
+      <p class="tagline">Bioinformatics · AI · Statistical Engineering</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn">View Projects</a>
+        <a href="#research" class="btn alt">Research</a>
+      </div>
     </div>
   </section>
 
   <!-- ================= Stats strip ================= -->
   <section id="stats" class="panel stats">
     <div class="stat">
-      <span class="num" data-count="25">0</span>
+      <span class="num" data-count="4">0</span>
       <span class="label">Peer‑reviewed<br>Publications</span>
     </div>
     <div class="stat">
@@ -47,8 +77,12 @@
       <span class="label">HDR / NHEJ Genes<br>Curated</span>
     </div>
     <div class="stat">
-      <span class="num" data-count="6">0</span>
-      <span class="label">Years Research<br>Experience</span>
+      <span class="num" data-count="5">0</span>
+      <span class="label">Major Research<br>Projects</span>
+    </div>
+    <div class="stat">
+      <span class="num" data-count="2">0</span>
+      <span class="label">Tools<br>Developed</span>
     </div>
   </section>
 
@@ -63,24 +97,98 @@
           inference with an intuitive Streamlit UI. Deployed for real‑world
           research workshops &amp; PhD curricula.
         </p>
+        <p>
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Streamlit</span>
+          <span class="tech-tag">Statistics</span>
+        </p>
         <a class="btn" href="pages/stickforstats.html">Explore Module</a>
       </div>
     </div>
 
-    <!-- Duplicate `.split` blocks for additional projects -->
+    <div class="split">
+      <div class="split__img" style="background-image:url('assets/portraits/tripinrna.jpg')"></div>
+      <div class="split__copy">
+        <h2 class="section-title">TRIPinRNA</h2>
+        <p>
+          In silico platform for predicting intramolecular RNA triple helix structures with applications in
+          understanding X chromosome inactivation and gene regulation mechanisms.
+        </p>
+        <p>
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">RNA Biology</span>
+          <span class="tech-tag">Bioinformatics</span>
+        </p>
+        <a class="btn" href="pages/tripinrna.html">See Research</a>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="split__img" style="background-image:url('assets/portraits/dna-repair.jpg')"></div>
+      <div class="split__copy">
+        <h2 class="section-title">DNA Repair Analysis</h2>
+        <p>
+          Developed a three-layer computational pipeline to decipher repair factor requirements in 
+          staggered versus blunt-end DNA breaks using scRNA-seq data and advanced statistical methods.
+        </p>
+        <p>
+          <span class="tech-tag">R</span>
+          <span class="tech-tag">scRNA-seq</span>
+          <span class="tech-tag">Genomics</span>
+        </p>
+        <a class="btn" href="pages/dna-repair.html">View Project</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Research ================= -->
+  <section id="research" class="panel research">
+    <h2 class="section-title">Recent Publications</h2>
+    
+    <div class="publications-grid">
+      <div class="publication-card">
+        <h3>Development of an In Silico Platform (TRIPinRNA) for the Identification of Novel RNA Intramolecular Triple Helices</h3>
+        <p class="authors">Isha Rakheja*, <strong>Vishal Bharti*</strong>, et al. (* Equal contribution)</p>
+        <p class="journal">Biochemistry (2024)</p>
+        <div class="publication-links">
+          <a href="https://pubs.acs.org/doi/10.1021/acs.biochem.4c00334" target="_blank" class="pub-link">View Paper</a>
+        </div>
+      </div>
+      
+      <div class="publication-card">
+        <h3>IGF2BP1-Mediated Regulation of CCN1 Expression by Specific Binding to G-Quadruplex Structure in its 3´UTR</h3>
+        <p class="authors">Rana, P., Rajat, U., <strong>Bharti, V.</strong>, et al.</p>
+        <p class="journal">Biochemistry (2024)</p>
+        <div class="publication-links">
+          <a href="https://doi.org/10.1021/acs.biochem.4c00172" target="_blank" class="pub-link">View Paper</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="center mt-2">
+      <a href="#" class="btn alt">View All Research</a>
+    </div>
   </section>
 
   <!-- ================= About ================= -->
   <section id="about" class="panel about">
     <div class="about__grid">
       <div>
-        <h2 class="section-title">About Me</h2>
+        <h2 class="section-title">About Me</h2>
         <p>
-          Electronics‑engineer‑turned‑bioinformatician, currently at
-          <strong>CSIR‑IGIB</strong>. My work spans single‑cell genomics,
-          CRISPR repair screens, and AI‑driven diagnostics.
+          Electronics-engineer-turned-bioinformatician, currently working as a Project Associate-II at
+          <strong>CSIR-IGIB</strong> under Dr. Debojyoti Chakraborty. My work spans single-cell genomics,
+          RNA structure analysis, CRISPR repair screens, and AI-driven statistical tools.
         </p>
-        <a class="btn alt" href="pages/cv.html">Read CV</a>
+        <p>
+          I hold an MTech in Biotechnology from <strong>IIT Guwahati</strong> and a BTech in Electronics
+          and Communication from IEM Kolkata. My research focuses on developing computational methods for
+          analyzing complex biological data.
+        </p>
+        <div class="about-links">
+          <a class="btn alt" href="pages/cv.html">View CV</a>
+          <a class="btn alt" href="https://scholar.google.com/citations?user=-DGZzX8AAAAJ&hl=en" target="_blank">Google Scholar</a>
+        </div>
       </div>
       <img src="assets/portraits/profile-photo.jpg" alt="Vishal Bharti profile photo" />
     </div>
@@ -88,15 +196,24 @@
 
   <!-- ================= Contact ================= -->
   <section id="contact" class="panel contact">
-    <h2 class="section-title neon">Let’s Collaborate</h2>
+    <h2 class="section-title neon">Let's Collaborate</h2>
+    <p class="contact-text">
+      I'm open to research collaborations, consulting opportunities, and discussions about bioinformatics, 
+      statistical tools, and computational biology.
+    </p>
     <p class="center">
-      <a href="mailto:vishal.bharti@domain.com" class="btn big">Say Hello</a>
+      <a href="mailto:vishalvikashbharti@gmail.com" class="btn big">Email Me</a>
     </p>
     <ul class="social">
-      <li><a href="https://github.com/visvikbharti" aria-label="GitHub"><i class="icon icon-github"></i></a></li>
-      <li><a href="https://linkedin.com/in/visvikbharti" aria-label="LinkedIn"><i class="icon icon-linkedin"></i></a></li>
-      <!-- Add icons of your choice -->
+      <li><a href="https://github.com/visvikbharti/" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
+      <li><a href="https://www.linkedin.com/in/the-vishal-bharti/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
+      <li><a href="https://x.com/vish18031995" target="_blank" aria-label="X (Twitter)"><i class="fab fa-twitter"></i></a></li>
+      <li><a href="https://scholar.google.com/citations?user=-DGZzX8AAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a></li>
+      <li><a href="https://orcid.org/0009-0003-1431-4457" target="_blank" aria-label="ORCID"><i class="fab fa-orcid"></i></a></li>
     </ul>
+    <p class="copyright">
+      © 2025 Vishal Bharti. All rights reserved. <a href="legacy/">Legacy Site</a>
+    </p>
   </section>
 
 </body>

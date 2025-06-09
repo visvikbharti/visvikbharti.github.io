@@ -3,6 +3,24 @@
  * For Vishal Bharti's Portfolio
  */
 
+// Define available weeks data
+const AVAILABLE_WEEKS = {
+    17: { year: 2025, range: "April 21 - April 27, 2025" },
+    18: { year: 2025, range: "April 28 - May 4, 2025" },
+    19: { year: 2025, range: "May 5 - May 11, 2025" },
+    20: { year: 2025, range: "May 12 - May 18, 2025" },
+    22: { year: 2025, range: "May 26 - June 1, 2025" },
+    23: { year: 2025, range: "June 2 - June 8, 2025" }
+};
+
+// Current week should be Week 23
+const CURRENT_WEEK = 23;
+const CURRENT_YEAR = 2025;
+
+// Make these available globally
+window.CURRENT_WEEK = CURRENT_WEEK;
+window.CURRENT_YEAR = CURRENT_YEAR;
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize the progress tracker
     initializeProgressTracker();
@@ -62,11 +80,17 @@ function setupWeekNavigation() {
  * Load current week's data
  */
 function loadCurrentWeekData() {
-    // Always show Week 22, 2025 regardless of date or stored values
-    const currentWeek = 22;
-    const currentYear = 2025;
+    // Always show Week 23, 2025 regardless of date or stored values
+    const currentWeek = CURRENT_WEEK;
+    const currentYear = CURRENT_YEAR;
     
-    // Force Week 22, 2025 to be displayed
+    // First, hide ALL week content divs
+    const allWeekContents = document.querySelectorAll('[id^="content-week-"]');
+    allWeekContents.forEach(content => {
+        content.style.display = 'none';
+    });
+    
+    // Force Week 23, 2025 to be displayed
     displayWeekData(currentWeek, currentYear);
     
     // Also store it in localStorage
@@ -115,9 +139,9 @@ function navigateWeeks(direction) {
  * Navigate to current week
  */
 function navigateToCurrentWeek() {
-    // Instead of current week, always show Week 19, 2025
-    const currentWeek = 19;
-    const currentYear = 2025;
+    // Instead of current week, always show Week 23, 2025
+    const currentWeek = CURRENT_WEEK;
+    const currentYear = CURRENT_YEAR;
     
     console.log(`Navigating to current week: Week ${currentWeek}, ${currentYear}`);
     displayWeekData(currentWeek, currentYear);
@@ -148,6 +172,22 @@ function displayWeekData(week, year) {
     
     if (weekRangeDisplay) {
         weekRangeDisplay.textContent = `${formatDate(weekRange.start)} - ${formatDate(weekRange.end)}`;
+    }
+    
+    // Hide all week content divs first
+    const allWeekContents = document.querySelectorAll('[id^="content-week-"]');
+    allWeekContents.forEach(content => {
+        content.style.display = 'none';
+    });
+    
+    // Show the specific week content
+    const weekContentId = `content-week-${week}-${year}`;
+    const weekContent = document.getElementById(weekContentId);
+    if (weekContent) {
+        weekContent.style.display = 'block';
+        console.log(`Showing content for ${weekContentId}`);
+    } else {
+        console.log(`Week content not found: ${weekContentId}`);
     }
     
     // Find the content container

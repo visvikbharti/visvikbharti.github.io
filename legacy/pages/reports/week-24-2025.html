@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 24, 2025 (June 10 - June 16) | Vishal Bharti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/progress-login.css">
+    <style>
+        .deployment-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            margin-left: 10px;
+            background-color: #27ae60;
+            color: white;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .tech-badge {
+            padding: 5px 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            font-size: 0.9em;
+            border: 1px solid #bdc3c7;
+        }
+        .url-list {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        .url-list li {
+            margin: 8px 0;
+            font-family: 'Courier New', monospace;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-live {
+            background-color: #27ae60;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <h2>Weekly Research Progress Report</h2>
+        <p class="report-date">Week 24, 2025 (June 10 - June 16)</p>
+        
+        <!-- StickForStats Platform Deployment Section -->
+        <div class="progress-section">
+            <h3><i class="fas fa-rocket"></i> StickForStats Platform Deployment <span class="deployment-badge">LIVE</span></h3>
+            <p><strong>Achievement:</strong> Successfully deployed the complete StickForStats platform to production with frontend on Vercel and backend on HPC infrastructure.</p>
+            
+            <table class="progress-table">
+                <thead>
+                    <tr>
+                        <th width="20%">Component</th>
+                        <th width="15%">Progress</th>
+                        <th width="65%">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Frontend Deployment</td>
+                        <td><div class="progress-bar" style="--progress: 100%;">100%</div></td>
+                        <td>
+                            <p>Successfully deployed React frontend to Vercel after resolving critical memory issues during build process.</p>
+                            <p>Implemented memory optimization strategies including increased Node.js heap size allocation.</p>
+                            <p>Fixed critical theme configuration issues causing runtime errors with Material-UI components.</p>
+                            <p>Configured production environment variables for API connectivity.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge">React 18</span>
+                                <span class="tech-badge">Material-UI</span>
+                                <span class="tech-badge">Vercel</span>
+                                <span class="tech-badge">Node.js</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Backend Deployment</td>
+                        <td><div class="progress-bar" style="--progress: 100%;">100%</div></td>
+                        <td>
+                            <p>Deployed Django backend on IGIB HPC infrastructure with full functionality.</p>
+                            <p>Configured CORS settings for cross-origin requests from Vercel frontend.</p>
+                            <p>Set up persistent server running with proper session management.</p>
+                            <p>Implemented public tunnel using localtunnel for external accessibility.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge">Django 4.2</span>
+                                <span class="tech-badge">PostgreSQL</span>
+                                <span class="tech-badge">HPC Linux</span>
+                                <span class="tech-badge">Gunicorn</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Integration & Testing</td>
+                        <td><div class="progress-bar" style="--progress: 100%;">100%</div></td>
+                        <td>
+                            <p>Established secure connection between frontend and backend using SSH tunneling.</p>
+                            <p>Configured public tunnel for HPC backend accessibility from Vercel.</p>
+                            <p>Verified all 13 modules working correctly in production environment.</p>
+                            <p>Created comprehensive deployment documentation and scripts.</p>
+                            <div class="url-list">
+                                <strong>Live URLs:</strong>
+                                <ul>
+                                    <li><span class="status-indicator status-live"></span>Frontend: https://build-ef30wbmaq-vishal-bhartis-projects-0646964d.vercel.app</li>
+                                    <li><span class="status-indicator status-live"></span>Backend API: https://stickforstats-hpc.loca.lt/api/v1/</li>
+                                    <li><span class="status-indicator status-live"></span>Admin Panel: https://stickforstats-hpc.loca.lt/admin/</li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p><strong>Deployment Challenges Resolved:</strong></p>
+            <ul>
+                <li>Fixed "JavaScript heap out of memory" errors during React build by optimizing webpack configuration</li>
+                <li>Resolved Django settings module import errors on HPC by correcting module paths</li>
+                <li>Fixed Material-UI theme configuration issues causing "Cannot read properties of undefined" errors</li>
+                <li>Implemented automated deployment scripts for both frontend and backend</li>
+            </ul>
+        </div>
+        
+        <!-- Branchpoint Splicing Event Prediction Section -->
+        <div class="progress-section">
+            <h3><i class="fas fa-dna"></i> Branchpoint Splicing Event Prediction for DMD</h3>
+            <p><strong>Collaborator:</strong> Mahima (DMD splicing analysis project)</p>
+            <p><strong>Duration:</strong> 2 days (Friday-Saturday, June 14-15)</p>
+            
+            <table class="progress-table">
+                <thead>
+                    <tr>
+                        <th width="20%">Component</th>
+                        <th width="15%">Progress</th>
+                        <th width="65%">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pipeline Development</td>
+                        <td><div class="progress-bar" style="--progress: 100%;">100%</div></td>
+                        <td>
+                            <p>Developed comprehensive branchpoint prediction pipeline for Duchenne Muscular Dystrophy (DMD) gene analysis.</p>
+                            <p>Integrated LaBranchoR deep learning model for accurate branchpoint prediction.</p>
+                            <p>Created automated scripts for processing multiple splice variants.</p>
+                            <p>Implemented downstream analysis tools for functional interpretation.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">LaBranchoR</span>
+                                <span class="tech-badge">BioPython</span>
+                                <span class="tech-badge">Pandas</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Analysis Tools</td>
+                        <td><div class="progress-bar" style="--progress: 100%;">100%</div></td>
+                        <td>
+                            <p>Created visualization tools for branchpoint location analysis relative to exon boundaries.</p>
+                            <p>Developed verification scripts to validate predicted branchpoints against known databases.</p>
+                            <p>Implemented interactive reporting system with network visualization capabilities.</p>
+                            <p>Added batch processing support for analyzing multiple DMD mutations simultaneously.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Documentation</td>
+                        <td><div class="progress-bar" style="--progress: 100%;">100%</div></td>
+                        <td>
+                            <p>Created comprehensive documentation for pipeline usage and interpretation.</p>
+                            <p>Developed improvement plan for future enhancements including additional ML models.</p>
+                            <p>Prepared detailed analysis reports for DMD splice variants.</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Module Integration Updates -->
+        <div class="progress-section">
+            <h3><i class="fas fa-puzzle-piece"></i> StickForStats Module Verification</h3>
+            <p><strong>Status:</strong> All modules successfully deployed and verified in production</p>
+            
+            <table class="progress-table">
+                <thead>
+                    <tr>
+                        <th width="30%">Module</th>
+                        <th width="20%">Status</th>
+                        <th width="50%">Features Verified</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Confidence Intervals</td>
+                        <td><span style="color: #27ae60;">✓ Operational</span></td>
+                        <td>Mean, proportion, variance calculations with multiple confidence levels</td>
+                    </tr>
+                    <tr>
+                        <td>Design of Experiments (DOE)</td>
+                        <td><span style="color: #27ae60;">✓ Operational</span></td>
+                        <td>Factorial designs, response surface methodology, optimization</td>
+                    </tr>
+                    <tr>
+                        <td>Principal Component Analysis</td>
+                        <td><span style="color: #27ae60;">✓ Operational</span></td>
+                        <td>Dimensionality reduction, scree plots, biplot visualization</td>
+                    </tr>
+                    <tr>
+                        <td>Statistical Quality Control</td>
+                        <td><span style="color: #27ae60;">✓ Operational</span></td>
+                        <td>Control charts, capability analysis, measurement system analysis</td>
+                    </tr>
+                    <tr>
+                        <td>Probability Distributions</td>
+                        <td><span style="color: #27ae60;">✓ Operational</span></td>
+                        <td>Parameter estimation, distribution fitting, visualization</td>
+                    </tr>
+                    <tr>
+                        <td>Advanced Statistics</td>
+                        <td><span style="color: #27ae60;">✓ Operational</span></td>
+                        <td>Time series, survival analysis, Bayesian methods</td>
+                    </tr>
+                    <tr>
+                        <td>Machine Learning</td>
+                        <td><span style="color: #27ae60;">✓ Operational</span></td>
+                        <td>AutoML, model registry, deep learning integration</td>
+                    </tr>
+                    <tr>
+                        <td>RAG System with LLM</td>
+                        <td><span style="color: #27ae60;">✓ Operational</span></td>
+                        <td>Context-aware assistance, knowledge retrieval, intelligent suggestions</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="weekly-summary">
+            <h3><i class="fas fa-flag"></i> Weekly Summary</h3>
+            <p>This week marked a major milestone with the successful production deployment of the StickForStats platform. The deployment process involved overcoming significant technical challenges including memory constraints during frontend builds, module path issues on HPC infrastructure, and theme configuration problems. All issues were systematically resolved, resulting in a fully operational platform accessible globally.</p>
+            
+            <p>The deployment architecture leverages modern cloud infrastructure with the frontend hosted on Vercel's global CDN and the backend running on IGIB's HPC infrastructure. This hybrid approach provides optimal performance for users while maintaining computational resources for intensive statistical analyses. The implementation of secure tunneling ensures reliable connectivity between components.</p>
+            
+            <p>In parallel, I completed a focused 2-day project developing a branchpoint prediction pipeline for DMD gene analysis. This bioinformatics tool integrates state-of-the-art deep learning models for splice site prediction, addressing a critical need in understanding DMD mutations. The pipeline includes comprehensive analysis tools, visualization capabilities, and batch processing support.</p>
+            
+            <p>Key technical achievements this week:</p>
+            <ul>
+                <li>Resolved complex deployment issues including memory optimization and cross-origin resource sharing</li>
+                <li>Implemented automated deployment workflows reducing deployment time from hours to minutes</li>
+                <li>Created comprehensive documentation ensuring maintainability and knowledge transfer</li>
+                <li>Established monitoring and logging systems for production environment</li>
+                <li>Developed specialized bioinformatics tools for splice site analysis</li>
+            </ul>
+            
+            <p>The StickForStats platform is now fully operational with all 13 modules verified and functioning correctly. The platform serves as a comprehensive statistical analysis suite with advanced AI capabilities, ready for use by researchers and data scientists. Next steps include performance optimization, user onboarding, and planning for additional feature development based on user feedback.</p>
+        </div>
+        
+        <!-- Navigation back to progress tracker -->
+        <div class="back-navigation">
+            <a href="../progress.html" class="btn"><i class="fas fa-arrow-left"></i> Back to Progress Tracker</a>
+        </div>
+    </div>
+</body>
+</html>

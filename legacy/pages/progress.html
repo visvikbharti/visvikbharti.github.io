@@ -152,10 +152,10 @@
         content.style.display = 'none';
       });
       
-      // Show Week 23 content immediately
-      document.getElementById('content-week-23-2025').style.display = 'block';
-      document.getElementById('week-range').textContent = "June 2 - June 8, 2025";
-      document.getElementById('week-display').textContent = "Week 23, 2025";
+      // Show Week 24 content immediately
+      document.getElementById('content-week-24-2025').style.display = 'block';
+      document.getElementById('week-range').textContent = "June 10 - June 16, 2025";
+      document.getElementById('week-display').textContent = "Week 24, 2025";
     }
   });
   
@@ -176,10 +176,10 @@
         content.style.display = 'none';
       });
       
-      // Set week 23 as current
-      document.getElementById('content-week-23-2025').style.display = 'block';
-      document.getElementById('week-range').textContent = "June 2 - June 8, 2025";
-      document.getElementById('week-display').textContent = "Week 23, 2025";
+      // Set week 24 as current
+      document.getElementById('content-week-24-2025').style.display = 'block';
+      document.getElementById('week-range').textContent = "June 10 - June 16, 2025";
+      document.getElementById('week-display').textContent = "Week 24, 2025";
     } else {
       // Show error message
       document.getElementById('error-msg').style.display = 'block';
@@ -221,8 +221,8 @@
   <div class="week-selector">
     <button id="prev-week" class="progress-nav-button" aria-label="Previous week"><i class="fas fa-chevron-left"></i> Previous Week</button>
     <div class="week-info">
-      <div id="week-display" class="week-display">Week 23, 2025</div>
-      <div id="week-range" class="week-range">June 2 - June 8, 2025</div>
+      <div id="week-display" class="week-display">Week 24, 2025</div>
+      <div id="week-range" class="week-range">June 10 - June 16, 2025</div>
     </div>
     <div class="week-buttons">
       <button id="current-week" class="progress-nav-button" aria-label="Current week">Current Week</button>
@@ -684,6 +684,31 @@
               <i class="fas fa-home" style="margin-right: 8px;"></i> Return to Home
             </a>
           </div>
+        </div>
+        
+        <!-- Content for Week 24, 2025 -->
+        <div id="content-week-24-2025" style="display: none;">
+            <!-- Week 24 report link -->
+            <div class="progress-section">
+                <h3><i class="fas fa-rocket"></i> Week 24: StickForStats Production Deployment & DMD Analysis</h3>
+                <p><strong>Period:</strong> June 10 - June 16, 2025</p>
+                <p>This week marked a major milestone with the successful production deployment of the StickForStats platform and the development of a specialized branchpoint prediction pipeline for DMD gene analysis.</p>
+                
+                <div style="margin: 30px 0;">
+                    <a href="reports/week-24-2025.html" class="btn" style="background-color: #e74c3c; color: white; padding: 15px 30px; border-radius: 5px; text-decoration: none; display: inline-flex; align-items: center; font-weight: bold; font-size: 18px;">
+                        <i class="fas fa-file-alt" style="margin-right: 10px;"></i> View Full Week 24 Report
+                    </a>
+                </div>
+                
+                <p><strong>Key Achievements:</strong></p>
+                <ul>
+                    <li>Successfully deployed StickForStats frontend to Vercel cloud platform</li>
+                    <li>Deployed backend on IGIB HPC infrastructure with public accessibility</li>
+                    <li>Resolved critical deployment issues including memory optimization and theme configuration</li>
+                    <li>Verified all 13 modules operational in production environment</li>
+                    <li>Developed comprehensive branchpoint prediction pipeline for DMD gene splicing analysis</li>
+                </ul>
+            </div>
         </div>
         
         <!-- Content for Week 22, 2025 -->
@@ -1659,6 +1684,24 @@
             </div>
           </div>
           
+          <div class="archive-item" data-week="24" data-year="2025">
+            <div class="archive-header">
+              <div class="archive-title">Week 24, 2025 (June 10 - June 16)</div>
+              <i class="fas fa-chevron-down archive-toggle"></i>
+            </div>
+            <div class="archive-content">
+              <p><strong>Focus:</strong> StickForStats Production Deployment & DMD Branchpoint Analysis</p>
+              <p><strong>Key accomplishments:</strong></p>
+              <ul>
+                <li>Successfully deployed StickForStats to production (Vercel frontend + HPC backend)</li>
+                <li>Resolved critical deployment issues including memory optimization and theme configuration</li>
+                <li>Verified all 13 modules operational in production environment</li>
+                <li>Developed branchpoint prediction pipeline for DMD gene splicing analysis</li>
+              </ul>
+              <button class="view-report-btn nav-button" data-week="24" data-year="2025">View Full Report</button>
+            </div>
+          </div>
+          
           <div class="archive-item" data-week="22" data-year="2025">
             <div class="archive-header">
               <div class="archive-title">Week 22, 2025 (May 26 - June 1)</div>
@@ -1813,19 +1856,19 @@
         week.style.visibility = 'hidden';
     });
     
-    // Show only Week 23
-    const week23 = document.getElementById('content-week-23-2025');
-    if (week23) {
-        week23.style.display = 'block';
-        week23.style.visibility = 'visible';
-        week23.style.opacity = '1';
+    // Show only Week 24
+    const week24 = document.getElementById('content-week-24-2025');
+    if (week24) {
+        week24.style.display = 'block';
+        week24.style.visibility = 'visible';
+        week24.style.opacity = '1';
         
-        // Also ensure the header shows Week 23
+        // Also ensure the header shows Week 24
         const weekDisplay = document.getElementById('week-display');
-        if (weekDisplay) weekDisplay.textContent = 'Week 23, 2025';
+        if (weekDisplay) weekDisplay.textContent = 'Week 24, 2025';
         
         const weekRange = document.getElementById('week-range');
-        if (weekRange) weekRange.textContent = 'June 2 - June 8, 2025';
+        if (weekRange) weekRange.textContent = 'June 10 - June 16, 2025';
     }
 })();
 </script>

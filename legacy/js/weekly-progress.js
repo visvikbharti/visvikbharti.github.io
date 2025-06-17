@@ -10,11 +10,12 @@ const AVAILABLE_WEEKS = {
     19: { year: 2025, range: "May 5 - May 11, 2025" },
     20: { year: 2025, range: "May 12 - May 18, 2025" },
     22: { year: 2025, range: "May 26 - June 1, 2025" },
-    23: { year: 2025, range: "June 2 - June 8, 2025" }
+    23: { year: 2025, range: "June 2 - June 8, 2025" },
+    24: { year: 2025, range: "June 10 - June 16, 2025" }
 };
 
-// Current week should be Week 23
-const CURRENT_WEEK = 23;
+// Current week should be Week 24
+const CURRENT_WEEK = 24;
 const CURRENT_YEAR = 2025;
 
 // Make these available globally
@@ -80,7 +81,7 @@ function setupWeekNavigation() {
  * Load current week's data
  */
 function loadCurrentWeekData() {
-    // Always show Week 23, 2025 regardless of date or stored values
+    // Always show Week 24, 2025 regardless of date or stored values
     const currentWeek = CURRENT_WEEK;
     const currentYear = CURRENT_YEAR;
     
@@ -90,7 +91,7 @@ function loadCurrentWeekData() {
         content.style.display = 'none';
     });
     
-    // Force Week 23, 2025 to be displayed
+    // Force Week 24, 2025 to be displayed
     displayWeekData(currentWeek, currentYear);
     
     // Also store it in localStorage
@@ -139,7 +140,7 @@ function navigateWeeks(direction) {
  * Navigate to current week
  */
 function navigateToCurrentWeek() {
-    // Instead of current week, always show Week 23, 2025
+    // Instead of current week, always show Week 24, 2025
     const currentWeek = CURRENT_WEEK;
     const currentYear = CURRENT_YEAR;
     

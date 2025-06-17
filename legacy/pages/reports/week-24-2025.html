@@ -66,8 +66,8 @@
         
         <!-- StickForStats Platform Deployment Section -->
         <div class="progress-section">
-            <h3><i class="fas fa-rocket"></i> StickForStats Platform Deployment <span class="deployment-badge">LIVE</span></h3>
-            <p><strong>Achievement:</strong> Successfully deployed the complete StickForStats platform to production with frontend on Vercel and backend on HPC infrastructure.</p>
+            <h3><i class="fas fa-rocket"></i> StickForStats Platform Deployment <span class="deployment-badge" style="background-color: #f39c12;">IN PROGRESS</span></h3>
+            <p><strong>Status:</strong> Actively working on deploying the StickForStats platform to production. Made significant progress with frontend on Vercel and backend on HPC infrastructure, currently resolving integration issues.</p>
             
             <table class="progress-table">
                 <thead>
@@ -80,12 +80,12 @@
                 <tbody>
                     <tr>
                         <td>Frontend Deployment</td>
-                        <td><div class="progress-bar" style="--progress: 100%;">100%</div></td>
+                        <td><div class="progress-bar" style="--progress: 85%;">85%</div></td>
                         <td>
-                            <p>Successfully deployed React frontend to Vercel after resolving critical memory issues during build process.</p>
+                            <p>Deployed React frontend to Vercel after resolving critical memory issues during build process.</p>
                             <p>Implemented memory optimization strategies including increased Node.js heap size allocation.</p>
                             <p>Fixed critical theme configuration issues causing runtime errors with Material-UI components.</p>
-                            <p>Configured production environment variables for API connectivity.</p>
+                            <p>Working on: Resolving API connectivity issues between frontend and backend.</p>
                             <div class="tech-stack">
                                 <span class="tech-badge">React 18</span>
                                 <span class="tech-badge">Material-UI</span>
@@ -96,12 +96,12 @@
                     </tr>
                     <tr>
                         <td>Backend Deployment</td>
-                        <td><div class="progress-bar" style="--progress: 100%;">100%</div></td>
+                        <td><div class="progress-bar" style="--progress: 90%;">90%</div></td>
                         <td>
-                            <p>Deployed Django backend on IGIB HPC infrastructure with full functionality.</p>
+                            <p>Deployed Django backend on IGIB HPC infrastructure.</p>
                             <p>Configured CORS settings for cross-origin requests from Vercel frontend.</p>
-                            <p>Set up persistent server running with proper session management.</p>
-                            <p>Implemented public tunnel using localtunnel for external accessibility.</p>
+                            <p>Set up server running with session management.</p>
+                            <p>Challenges: Public tunnel stability issues, working on permanent solution.</p>
                             <div class="tech-stack">
                                 <span class="tech-badge">Django 4.2</span>
                                 <span class="tech-badge">PostgreSQL</span>
@@ -112,18 +112,18 @@
                     </tr>
                     <tr>
                         <td>Integration & Testing</td>
-                        <td><div class="progress-bar" style="--progress: 100%;">100%</div></td>
+                        <td><div class="progress-bar" style="--progress: 70%;">70%</div></td>
                         <td>
-                            <p>Established secure connection between frontend and backend using SSH tunneling.</p>
-                            <p>Configured public tunnel for HPC backend accessibility from Vercel.</p>
-                            <p>Verified all 13 modules working correctly in production environment.</p>
-                            <p>Created comprehensive deployment documentation and scripts.</p>
+                            <p>Established connection between frontend and backend using SSH tunneling.</p>
+                            <p>Testing public tunnel configuration for HPC backend accessibility.</p>
+                            <p>In Progress: Verifying module functionality in production environment.</p>
+                            <p>Created deployment documentation and automation scripts.</p>
                             <div class="url-list">
-                                <strong>Live URLs:</strong>
+                                <strong>Deployment URLs (Testing):</strong>
                                 <ul>
-                                    <li><span class="status-indicator status-live"></span>Frontend: https://build-ef30wbmaq-vishal-bhartis-projects-0646964d.vercel.app</li>
-                                    <li><span class="status-indicator status-live"></span>Backend API: https://stickforstats-hpc.loca.lt/api/v1/</li>
-                                    <li><span class="status-indicator status-live"></span>Admin Panel: https://stickforstats-hpc.loca.lt/admin/</li>
+                                    <li><span class="status-indicator" style="background-color: #f39c12;"></span>Frontend: https://build-ef30wbmaq-vishal-bhartis-projects-0646964d.vercel.app (partial functionality)</li>
+                                    <li><span class="status-indicator" style="background-color: #e74c3c;"></span>Backend API: Integration in progress</li>
+                                    <li><span class="status-indicator" style="background-color: #e74c3c;"></span>Admin Panel: Access pending stable connection</li>
                                 </ul>
                             </div>
                         </td>
@@ -131,12 +131,14 @@
                 </tbody>
             </table>
             
-            <p><strong>Deployment Challenges Resolved:</strong></p>
+            <p><strong>Current Challenges & Progress:</strong></p>
             <ul>
-                <li>Fixed "JavaScript heap out of memory" errors during React build by optimizing webpack configuration</li>
-                <li>Resolved Django settings module import errors on HPC by correcting module paths</li>
-                <li>Fixed Material-UI theme configuration issues causing "Cannot read properties of undefined" errors</li>
-                <li>Implemented automated deployment scripts for both frontend and backend</li>
+                <li>✅ Resolved: "JavaScript heap out of memory" errors during React build by optimizing webpack configuration</li>
+                <li>✅ Resolved: Django settings module import errors on HPC by correcting module paths</li>
+                <li>✅ Resolved: Material-UI theme configuration issues</li>
+                <li>🔄 In Progress: Establishing stable connection between frontend and backend</li>
+                <li>🔄 In Progress: Configuring persistent public access to HPC backend</li>
+                <li>📋 Pending: Full integration testing of all modules</li>
             </ul>
         </div>
         
@@ -254,7 +256,7 @@
         
         <div class="weekly-summary">
             <h3><i class="fas fa-flag"></i> Weekly Summary</h3>
-            <p>This week marked a major milestone with the successful production deployment of the StickForStats platform. The deployment process involved overcoming significant technical challenges including memory constraints during frontend builds, module path issues on HPC infrastructure, and theme configuration problems. All issues were systematically resolved, resulting in a fully operational platform accessible globally.</p>
+            <p>This week focused on deploying the StickForStats platform to production. The deployment process involved significant technical challenges including memory constraints during frontend builds, module path issues on HPC infrastructure, and theme configuration problems. While substantial progress was made with frontend deployment on Vercel and backend setup on HPC, integration between the two components remains in progress.</p>
             
             <p>The deployment architecture leverages modern cloud infrastructure with the frontend hosted on Vercel's global CDN and the backend running on IGIB's HPC infrastructure. This hybrid approach provides optimal performance for users while maintaining computational resources for intensive statistical analyses. The implementation of secure tunneling ensures reliable connectivity between components.</p>
             
@@ -269,7 +271,7 @@
                 <li>Developed specialized bioinformatics tools for splice site analysis</li>
             </ul>
             
-            <p>The StickForStats platform is now fully operational with all 13 modules verified and functioning correctly. The platform serves as a comprehensive statistical analysis suite with advanced AI capabilities, ready for use by researchers and data scientists. Next steps include performance optimization, user onboarding, and planning for additional feature development based on user feedback.</p>
+            <p>The StickForStats platform deployment is actively progressing with the frontend successfully deployed to Vercel and backend running on HPC infrastructure. Current focus is on resolving integration challenges to ensure stable connectivity between components. Once complete, the platform will serve as a comprehensive statistical analysis suite with advanced AI capabilities for researchers and data scientists. Immediate next steps include establishing stable frontend-backend communication, implementing a permanent public access solution for the HPC backend, and conducting comprehensive integration testing of all modules.</p>
         </div>
         
         <!-- Navigation back to progress tracker -->

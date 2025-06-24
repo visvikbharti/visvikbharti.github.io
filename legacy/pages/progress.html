@@ -152,10 +152,10 @@
         content.style.display = 'none';
       });
       
-      // Show Week 24 content immediately
-      document.getElementById('content-week-24-2025').style.display = 'block';
-      document.getElementById('week-range').textContent = "June 10 - June 16, 2025";
-      document.getElementById('week-display').textContent = "Week 24, 2025";
+      // Show Week 25 content immediately
+      document.getElementById('content-week-25-2025').style.display = 'block';
+      document.getElementById('week-range').textContent = "June 17 - June 23, 2025";
+      document.getElementById('week-display').textContent = "Week 25, 2025";
     }
   });
   
@@ -176,10 +176,10 @@
         content.style.display = 'none';
       });
       
-      // Set week 24 as current
-      document.getElementById('content-week-24-2025').style.display = 'block';
-      document.getElementById('week-range').textContent = "June 10 - June 16, 2025";
-      document.getElementById('week-display').textContent = "Week 24, 2025";
+      // Set week 25 as current
+      document.getElementById('content-week-25-2025').style.display = 'block';
+      document.getElementById('week-range').textContent = "June 17 - June 23, 2025";
+      document.getElementById('week-display').textContent = "Week 25, 2025";
     } else {
       // Show error message
       document.getElementById('error-msg').style.display = 'block';
@@ -221,8 +221,8 @@
   <div class="week-selector">
     <button id="prev-week" class="progress-nav-button" aria-label="Previous week"><i class="fas fa-chevron-left"></i> Previous Week</button>
     <div class="week-info">
-      <div id="week-display" class="week-display">Week 24, 2025</div>
-      <div id="week-range" class="week-range">June 10 - June 16, 2025</div>
+      <div id="week-display" class="week-display">Week 25, 2025</div>
+      <div id="week-range" class="week-range">June 17 - June 23, 2025</div>
     </div>
     <div class="week-buttons">
       <button id="current-week" class="progress-nav-button" aria-label="Current week">Current Week</button>
@@ -687,7 +687,7 @@
         </div>
         
         <!-- Content for Week 24, 2025 -->
-        <div id="content-week-24-2025" style="display: block;">
+        <div id="content-week-24-2025" style="display: none;">
             <!-- Week 24 report link -->
             <div class="progress-section">
                 <h3><i class="fas fa-rocket"></i> Week 24: StickForStats Production Deployment & DMD Analysis</h3>
@@ -1110,6 +1110,40 @@
                         <button class="save-feedback-btn" onclick="saveFeedback('week23')">Save Feedback</button>
                     </div>
                 </div>
+            </div>
+        </div>
+        
+        <!-- Content for Week 25, 2025 -->
+        <div id="content-week-25-2025" style="display: block;">
+            <!-- Week 25 report link -->
+            <div class="progress-section">
+                <h3><i class="fas fa-rocket"></i> Week 25: RNA Lab Navigator Enhancement & StickForStats Deployment Success</h3>
+                <p><strong>Period:</strong> June 17 - June 23, 2025</p>
+                <p>This week marked significant achievements with the RNA Lab Navigator platform enhancement (clean UI transformation, enhanced RAG, multi-agent system) and successful StickForStats frontend deployment to Vercel.</p>
+                
+                <div style="margin: 30px 0;">
+                    <a href="reports/week-25-2025.html" class="btn" style="background-color: #27ae60; color: white; padding: 15px 30px; border-radius: 5px; text-decoration: none; display: inline-flex; align-items: center; font-weight: bold; font-size: 18px;">
+                        <i class="fas fa-file-alt" style="margin-right: 10px;"></i> View Full Week 25 Report
+                    </a>
+                </div>
+                
+                <p><strong>Key Progress & Achievements:</strong></p>
+                <ul>
+                    <li><strong>RNA Lab Navigator:</strong> Complete UI overhaul from animated to clean ChatGPT-like interface</li>
+                    <li><strong>Enhanced RAG System:</strong> Production-ready retrieval augmented generation with research intelligence</li>
+                    <li><strong>Multi-Agent Architecture:</strong> Specialized agents for literature analysis, hypothesis generation, protocol design</li>
+                    <li><strong>StickForStats Deployment:</strong> Successfully deployed frontend to Vercel after fixing 20+ critical errors</li>
+                    <li><strong>Technical Documentation:</strong> Created comprehensive session context for future deployments</li>
+                </ul>
+                
+                <p><strong>Technical Highlights:</strong></p>
+                <ul>
+                    <li>Replaced problematic 3D animations with professional chat interface</li>
+                    <li>Implemented multi-hop reasoning for complex research queries</li>
+                    <li>Fixed React/MUI compatibility issues by downgrading from v7 beta to v5</li>
+                    <li>Resolved memory optimization challenges during build process</li>
+                    <li>Created systematic approach for deploying inherited codebases</li>
+                </ul>
             </div>
         </div>
         
@@ -1702,6 +1736,25 @@
             </div>
           </div>
           
+          <div class="archive-item" data-week="25" data-year="2025">
+            <div class="archive-header">
+              <div class="archive-title">Week 25, 2025 (June 17 - June 23)</div>
+              <i class="fas fa-chevron-down archive-toggle"></i>
+            </div>
+            <div class="archive-content">
+              <p><strong>Focus:</strong> RNA Lab Navigator Enhancement & StickForStats Deployment Success</p>
+              <p><strong>Key accomplishments:</strong></p>
+              <ul>
+                <li>Transformed RNA Lab Navigator UI from animated to clean ChatGPT-like interface</li>
+                <li>Implemented production-ready RAG with multi-agent research intelligence</li>
+                <li>Successfully deployed StickForStats frontend to Vercel (live)</li>
+                <li>Fixed 20+ deployment errors including React/MUI compatibility issues</li>
+                <li>Created comprehensive documentation for future deployments</li>
+              </ul>
+              <button class="view-report-btn nav-button" data-week="25" data-year="2025">View Full Report</button>
+            </div>
+          </div>
+          
           <div class="archive-item" data-week="22" data-year="2025">
             <div class="archive-header">
               <div class="archive-title">Week 22, 2025 (May 26 - June 1)</div>
@@ -1856,19 +1909,19 @@
         week.style.visibility = 'hidden';
     });
     
-    // Show only Week 24
-    const week24 = document.getElementById('content-week-24-2025');
-    if (week24) {
-        week24.style.display = 'block';
-        week24.style.visibility = 'visible';
-        week24.style.opacity = '1';
+    // Show only Week 25
+    const week25 = document.getElementById('content-week-25-2025');
+    if (week25) {
+        week25.style.display = 'block';
+        week25.style.visibility = 'visible';
+        week25.style.opacity = '1';
         
-        // Also ensure the header shows Week 24
+        // Also ensure the header shows Week 25
         const weekDisplay = document.getElementById('week-display');
-        if (weekDisplay) weekDisplay.textContent = 'Week 24, 2025';
+        if (weekDisplay) weekDisplay.textContent = 'Week 25, 2025';
         
         const weekRange = document.getElementById('week-range');
-        if (weekRange) weekRange.textContent = 'June 10 - June 16, 2025';
+        if (weekRange) weekRange.textContent = 'June 17 - June 23, 2025';
     }
 })();
 </script>

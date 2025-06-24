@@ -6,12 +6,12 @@
 (function() {
     'use strict';
     
-    const TARGET_WEEK = 24;
+    const TARGET_WEEK = 25;
     const TARGET_YEAR = 2025;
-    const TARGET_RANGE = "June 10 - June 16, 2025";
+    const TARGET_RANGE = "June 17 - June 23, 2025";
     
-    function absoluteForceWeek24() {
-        console.log('[Week 24 Override] Forcing Week 24 display...');
+    function absoluteForceWeek25() {
+        console.log('[Week 25 Override] Forcing Week 25 display...');
         
         // Strategy 1: Direct DOM manipulation
         const weekDisplay = document.getElementById('week-display');
@@ -34,10 +34,10 @@
             el.classList.remove('active', 'show', 'visible');
         });
         
-        const week24Content = document.getElementById('content-week-24-2025');
-        if (week24Content) {
-            week24Content.style.cssText = 'display: block !important; visibility: visible !important;';
-            week24Content.classList.add('active', 'show', 'visible');
+        const week25Content = document.getElementById('content-week-25-2025');
+        if (week25Content) {
+            week25Content.style.cssText = 'display: block !important; visibility: visible !important;';
+            week25Content.classList.add('active', 'show', 'visible');
         }
         
         // Strategy 3: Override localStorage
@@ -72,7 +72,7 @@
         if (selector === '#week-display' && result) {
             setTimeout(() => {
                 if (result.textContent !== `Week ${TARGET_WEEK}, ${TARGET_YEAR}`) {
-                    absoluteForceWeek24();
+                    absoluteForceWeek25();
                 }
             }, 0);
         }
@@ -80,22 +80,22 @@
     };
     
     // Run immediately
-    absoluteForceWeek24();
+    absoluteForceWeek25();
     
     // Run when DOM is ready
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', absoluteForceWeek24);
+        document.addEventListener('DOMContentLoaded', absoluteForceWeek25);
     } else {
-        setTimeout(absoluteForceWeek24, 0);
+        setTimeout(absoluteForceWeek25, 0);
     }
     
     // Run when window loads
-    window.addEventListener('load', absoluteForceWeek24);
+    window.addEventListener('load', absoluteForceWeek25);
     
     // Run multiple times with delays
     const delays = [10, 50, 100, 200, 500, 1000, 1500, 2000];
     delays.forEach(delay => {
-        setTimeout(absoluteForceWeek24, delay);
+        setTimeout(absoluteForceWeek25, delay);
     });
     
     // Monitor for changes
@@ -106,7 +106,7 @@
         const observer = new MutationObserver((mutations) => {
             const weekDisplay = document.getElementById('week-display');
             if (weekDisplay && weekDisplay.textContent !== `Week ${TARGET_WEEK}, ${TARGET_YEAR}`) {
-                absoluteForceWeek24();
+                absoluteForceWeek25();
             }
         });
         

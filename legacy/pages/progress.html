@@ -152,10 +152,10 @@
         content.style.display = 'none';
       });
       
-      // Show Week 25 content immediately
-      document.getElementById('content-week-25-2025').style.display = 'block';
-      document.getElementById('week-range').textContent = "June 17 - June 23, 2025";
-      document.getElementById('week-display').textContent = "Week 25, 2025";
+      // Show Week 26 content immediately
+      document.getElementById('content-week-26-2025').style.display = 'block';
+      document.getElementById('week-range').textContent = "July 1 - July 7, 2025";
+      document.getElementById('week-display').textContent = "Week 26, 2025";
     }
   });
   
@@ -176,10 +176,10 @@
         content.style.display = 'none';
       });
       
-      // Set week 25 as current
-      document.getElementById('content-week-25-2025').style.display = 'block';
-      document.getElementById('week-range').textContent = "June 17 - June 23, 2025";
-      document.getElementById('week-display').textContent = "Week 25, 2025";
+      // Set week 26 as current
+      document.getElementById('content-week-26-2025').style.display = 'block';
+      document.getElementById('week-range').textContent = "July 1 - July 7, 2025";
+      document.getElementById('week-display').textContent = "Week 26, 2025";
     } else {
       // Show error message
       document.getElementById('error-msg').style.display = 'block';
@@ -221,8 +221,8 @@
   <div class="week-selector">
     <button id="prev-week" class="progress-nav-button" aria-label="Previous week"><i class="fas fa-chevron-left"></i> Previous Week</button>
     <div class="week-info">
-      <div id="week-display" class="week-display">Week 25, 2025</div>
-      <div id="week-range" class="week-range">June 17 - June 23, 2025</div>
+      <div id="week-display" class="week-display">Week 26, 2025</div>
+      <div id="week-range" class="week-range">July 1 - July 7, 2025</div>
     </div>
     <div class="week-buttons">
       <button id="current-week" class="progress-nav-button" aria-label="Current week">Current Week</button>
@@ -1073,6 +1073,7 @@
                     <div contenteditable="false" class="editable-content" data-storage-key="week23-nextsteps-rna">
                         <ul>
                             <li>Week 24: Complete production deployment on Railway/Vercel</li>
+                            <li>Week 26: RNA Lab Navigator deployment and testing</li>
                             <li>Week 25: Begin HPC cluster integration testing</li>
                             <li>Week 26: Full lab onboarding (21 members)</li>
                             <li>Week 27: Performance optimization based on usage patterns</li>
@@ -1143,6 +1144,67 @@
                     <li>Fixed React/MUI compatibility issues by downgrading from v7 beta to v5</li>
                     <li>Resolved memory optimization challenges during build process</li>
                     <li>Created systematic approach for deploying inherited codebases</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Content for Week 26, 2025 -->
+        <div id="content-week-26-2025" style="display: block;">
+            <!-- Week 26 report link -->
+            <div class="progress-section">
+                <h3><i class="fas fa-server"></i> Week 26: RNA Lab Navigator Production Deployment Challenges</h3>
+                <p><strong>Period:</strong> July 1 - July 7, 2025</p>
+                <p>This week involved intensive deployment efforts across multiple platforms to establish a production-ready environment for lab beta testing. Critical authentication and CORS issues resolved, awaiting final backend configuration update.</p>
+                
+                <div style="margin: 30px 0;">
+                    <a href="reports/week-26-2025.html" class="btn" style="background-color: #f39c12; color: white; padding: 15px 30px; border-radius: 5px; text-decoration: none; display: inline-flex; align-items: center; font-weight: bold; font-size: 18px;">
+                        <i class="fas fa-file-alt" style="margin-right: 10px;"></i> View Full Week 26 Report
+                    </a>
+                </div>
+                
+                <p><strong>Key Progress & Challenges:</strong></p>
+                <ul>
+                    <li><strong>Platform Migration Journey:</strong> Railway → Render → PythonAnywhere due to various constraints</li>
+                    <li><strong>Authentication Issues:</strong> Fixed token naming inconsistency (authToken vs access_token)</li>
+                    <li><strong>CORS Configuration:</strong> Resolved cross-origin blocks between Vercel frontend and PythonAnywhere backend</li>
+                    <li><strong>Beta Testing Delayed:</strong> Due to critical deployment infrastructure issues</li>
+                    <li><strong>Security Implementation:</strong> JWT auth, data isolation, OpenAI integration safeguards</li>
+                </ul>
+                
+                <p><strong>Deployment Status (95% Complete):</strong></p>
+                <ul>
+                    <li>✅ Frontend successfully deployed on Vercel</li>
+                    <li>✅ Backend API running on PythonAnywhere</li>
+                    <li>✅ Authentication system fully configured</li>
+                    <li>✅ Security layers implemented and tested</li>
+                    <li>✅ RAG pipeline optimized for <5s responses</li>
+                    <li>⏳ Awaiting: PythonAnywhere CORS configuration reload</li>
+                </ul>
+                
+                <div style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 15px 0; border-radius: 4px;">
+                    <strong>⚠️ Beta Testing Delay:</strong> The planned beta testing with lab members has been postponed due to critical deployment infrastructure issues requiring stable authentication and data security before release.
+                </div>
+            </div>
+            
+            <!-- Development Plan -->
+            <div class="sidebar">
+                <h3><i class="fas fa-tasks"></i> Development Plan</h3>
+                <h4>Short-term Goals (July 2025)</h4>
+                <ul>
+                    <li>✅ Complete final CORS configuration update</li>
+                    <li>✅ Conduct thorough system testing</li>
+                    <li>Create user onboarding guide for lab members</li>
+                    <li>Schedule beta testing session for next week</li>
+                    <li>Prepare feedback collection mechanism</li>
+                </ul>
+                
+                <h4>Platform Architecture</h4>
+                <ul>
+                    <li><strong>Frontend:</strong> Vercel (React + Vite)</li>
+                    <li><strong>Backend:</strong> PythonAnywhere (Django + DRF)</li>
+                    <li><strong>Database:</strong> PostgreSQL</li>
+                    <li><strong>Vector DB:</strong> Weaviate (simplified)</li>
+                    <li><strong>Security:</strong> JWT + CORS + Rate Limiting</li>
                 </ul>
             </div>
         </div>
@@ -1736,6 +1798,25 @@
             </div>
           </div>
           
+          <div class="archive-item" data-week="26" data-year="2025">
+            <div class="archive-header">
+              <div class="archive-title">Week 26, 2025 (July 1 - July 7)</div>
+              <i class="fas fa-chevron-down archive-toggle"></i>
+            </div>
+            <div class="archive-content">
+              <p><strong>Focus:</strong> RNA Lab Navigator Production Deployment Challenges</p>
+              <p><strong>Key accomplishments:</strong></p>
+              <ul>
+                <li>Navigated platform migration: Railway → Render → PythonAnywhere</li>
+                <li>Resolved critical authentication token inconsistency issues</li>
+                <li>Fixed CORS configuration blocking frontend-backend communication</li>
+                <li>Implemented comprehensive security architecture with JWT and data isolation</li>
+                <li>Documented deployment complexity delaying beta testing (95% complete)</li>
+              </ul>
+              <button class="view-report-btn nav-button" data-week="26" data-year="2025">View Full Report</button>
+            </div>
+          </div>
+          
           <div class="archive-item" data-week="25" data-year="2025">
             <div class="archive-header">
               <div class="archive-title">Week 25, 2025 (June 17 - June 23)</div>
@@ -1909,19 +1990,19 @@
         week.style.visibility = 'hidden';
     });
     
-    // Show only Week 25
-    const week25 = document.getElementById('content-week-25-2025');
-    if (week25) {
-        week25.style.display = 'block';
-        week25.style.visibility = 'visible';
-        week25.style.opacity = '1';
+    // Show only Week 26
+    const week26 = document.getElementById('content-week-26-2025');
+    if (week26) {
+        week26.style.display = 'block';
+        week26.style.visibility = 'visible';
+        week26.style.opacity = '1';
         
-        // Also ensure the header shows Week 25
+        // Also ensure the header shows Week 26
         const weekDisplay = document.getElementById('week-display');
-        if (weekDisplay) weekDisplay.textContent = 'Week 25, 2025';
+        if (weekDisplay) weekDisplay.textContent = 'Week 26, 2025';
         
         const weekRange = document.getElementById('week-range');
-        if (weekRange) weekRange.textContent = 'June 17 - June 23, 2025';
+        if (weekRange) weekRange.textContent = 'July 1 - July 7, 2025';
     }
 })();
 </script>

@@ -2034,12 +2034,12 @@
   console.log('Progress page loaded, preparing to initialize feedback system');
 </script>
 <script src="../js/feedback-system.js"></script>
-<!-- Ultimate Week 23 Override - Load this last to ensure Week 23 is displayed -->
+<!-- Ultimate Week 27 Override - Load this last to ensure Week 27 is displayed -->
 <script src="../js/week-23-override.js"></script>
 
-<!-- Final inline script to ensure Week 23 is visible -->
+<!-- Final inline script to ensure Week 27 is visible -->
 <script>
-// Absolute final override to show Week 23
+// Absolute final override to show Week 27
 (function() {
     // Hide all week content divs
     const allWeeks = document.querySelectorAll('[id^="content-week-"]');
@@ -2052,7 +2052,7 @@
     const week27 = document.getElementById('content-week-27-2025');
     if (week27) {
         week27.style.display = 'block';
-        week26.style.visibility = 'visible';
+        week27.style.visibility = 'visible';
         week27.style.opacity = '1';
         
         // Also ensure the header shows Week 27

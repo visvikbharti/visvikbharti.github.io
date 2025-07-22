@@ -77,68 +77,19 @@
             margin: 15px 0;
             border: 1px solid #dee2e6;
         }
-        .error-fix {
-            background-color: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 10px 15px;
-            margin: 10px 0;
-            border-radius: 4px;
-        }
-        .deployment-timeline {
+        .deployment-notice {
             background-color: #e8f5e9;
             border-left: 4px solid #4caf50;
             padding: 15px;
             margin: 15px 0;
             border-radius: 4px;
         }
-        .security-notice {
-            background-color: #e3f2fd;
-            border-left: 4px solid #2196f3;
-            padding: 15px;
-            margin: 15px 0;
+        .pending-item {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px 15px;
+            margin: 10px 0;
             border-radius: 4px;
-        }
-        .issue-tracker {
-            background-color: #ffebee;
-            border-left: 4px solid #f44336;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 4px;
-        }
-        .platform-comparison {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-        }
-        .platform-comparison th {
-            background-color: #f8f9fa;
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #dee2e6;
-        }
-        .platform-comparison td {
-            padding: 10px;
-            border: 1px solid #dee2e6;
-        }
-        .checkmark {
-            color: #27ae60;
-        }
-        .cross {
-            color: #e74c3c;
-        }
-        .beta-success {
-            background-color: #d4edda;
-            border-left: 4px solid #28a745;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 4px;
-        }
-        .feedback-item {
-            background-color: #f8f9fa;
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 5px;
-            border-left: 3px solid #007bff;
         }
     </style>
 </head>
@@ -147,14 +98,10 @@
         <h2>Weekly Research Progress Report</h2>
         <p class="report-date">Week 27, 2025 (July 15 - July 21)</p>
         
-        <!-- RNA Lab Navigator Local Deployment & Beta Testing Section -->
+        <!-- RNA Lab Navigator Local Deployment Section -->
         <div class="progress-section">
-            <h3><i class="fas fa-rocket"></i> RNA Lab Navigator Beta Testing Launch <span class="deployment-badge badge-success">LIVE</span></h3>
-            <p><strong>Status:</strong> Successfully deployed RNA Lab Navigator on local MacBook server and launched beta testing with lab members via institute network.</p>
-            
-            <div class="beta-success">
-                <strong>🎉 Beta Testing Milestone Achieved:</strong> The RNA Lab Navigator is now live and accessible to all lab members through the institute's network. Initial feedback has been positive with active usage from research teams.
-            </div>
+            <h3><i class="fas fa-server"></i> RNA Lab Navigator Local Deployment <span class="deployment-badge badge-success">DEPLOYED</span></h3>
+            <p><strong>Status:</strong> Successfully deployed RNA Lab Navigator on local MacBook server and made accessible to lab members via institute network.</p>
             
             <table class="progress-table">
                 <thead>
@@ -166,171 +113,77 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Local Server Deployment</td>
+                        <td>Local Server Setup</td>
                         <td><div class="progress-bar" style="--progress: 100%;">100%</div></td>
                         <td>
                             <p><strong>MacBook Local Server Configuration:</strong></p>
-                            <div class="deployment-timeline">
-                                <strong>Active Server URLs:</strong>
+                            <div class="deployment-notice">
+                                <strong>Server Access Points:</strong>
                                 <ul>
                                     <li><span class="status-indicator status-live"></span><strong>Local:</strong> http://localhost:3000</li>
                                     <li><span class="status-indicator status-live"></span><strong>Network:</strong> http://192.168.41.91:3000</li>
                                 </ul>
                             </div>
                             
-                            <p><strong>Docker Deployment Architecture:</strong></p>
+                            <p><strong>Docker Architecture:</strong></p>
                             <ul>
-                                <li>Frontend container (rna-lab-frontend) running on port 3000</li>
-                                <li>Backend container (rna-lab-django) with API services</li>
-                                <li>PostgreSQL database (rna_postgres) for data persistence</li>
-                                <li>Weaviate vector database (rna_weaviate) for semantic search</li>
-                                <li>Redis container (rna_redis) for caching and session management</li>
+                                <li>Frontend container (rna-lab-frontend)</li>
+                                <li>Backend container (rna-lab-django)</li>
+                                <li>PostgreSQL database (rna_postgres)</li>
+                                <li>Weaviate vector database (rna_weaviate)</li>
+                                <li>Redis container (rna_redis)</li>
                             </ul>
                             
-                            <p><strong>Screen Session Management:</strong></p>
-                            <div class="tech-stack">
-                                <span class="tech-badge">Docker Compose</span>
-                                <span class="tech-badge">GNU Screen</span>
-                                <span class="tech-badge">macOS Server</span>
-                            </div>
+                            <p><strong>Management:</strong> Using GNU Screen sessions for persistent operation</p>
                         </td>
                     </tr>
                     <tr>
-                        <td>Data Ingestion & Enhancement</td>
+                        <td>Data Ingestion</td>
                         <td><div class="progress-bar" style="--progress: 100%;">100%</div></td>
                         <td>
-                            <p><strong>Research Document Corpus:</strong></p>
+                            <p><strong>Research Documents Ingested:</strong></p>
                             <ul>
-                                <li>✅ 8 PhD theses successfully ingested</li>
-                                <li>✅ 45+ research papers indexed</li>
-                                <li>✅ Lab protocols and standard procedures added</li>
-                                <li>✅ Conference proceedings and presentations included</li>
+                                <li>✅ 7 PhD theses successfully processed</li>
+                                <li>✅ 18 research papers indexed</li>
+                                <li>✅ Total documents: 25</li>
                             </ul>
                             
                             <div class="architecture-diagram">
-                                <strong>Enhanced RAG-LLM Capabilities:</strong>
+                                <strong>RAG-LLM System Features:</strong>
                                 <ul>
-                                    <li><strong>Improved Chunking:</strong> Context-aware splitting for better retrieval accuracy</li>
-                                    <li><strong>Citation Tracking:</strong> Automatic reference extraction and linking</li>
-                                    <li><strong>Multi-document QA:</strong> Cross-thesis information synthesis</li>
-                                    <li><strong>Specialized Embeddings:</strong> Domain-specific vectors for RNA research terminology</li>
+                                    <li>Document chunking and embedding generation</li>
+                                    <li>Vector search using Weaviate</li>
+                                    <li>Question-answering with citations</li>
+                                    <li>Cross-document information retrieval</li>
                                 </ul>
                             </div>
-                            
-                            <p><strong>Performance Metrics:</strong></p>
-                            <ul>
-                                <li>Total documents: 53</li>
-                                <li>Total chunks: 12,847</li>
-                                <li>Average query response time: 2.8 seconds</li>
-                                <li>Retrieval accuracy: 89% (based on manual evaluation)</li>
-                            </ul>
                         </td>
                     </tr>
                     <tr>
-                        <td>Beta Testing Feedback</td>
-                        <td><div class="progress-bar" style="--progress: 85%;">85%</div></td>
+                        <td>Beta Testing Status</td>
+                        <td><div class="progress-bar" style="--progress: 50%;">50%</div></td>
                         <td>
-                            <p><strong>Active Beta Testers:</strong> 12 lab members (8 PhD students, 3 postdocs, 1 PI)</p>
-                            
-                            <p><strong>Feedback Summary:</strong></p>
-                            
-                            <div class="feedback-item">
-                                <strong>✓ Positive Feedback:</strong>
-                                <ul>
-                                    <li>Fast and accurate answers to research questions</li>
-                                    <li>Helpful for finding relevant methods across multiple theses</li>
-                                    <li>Citation feature saves significant literature review time</li>
-                                    <li>Interface is intuitive and easy to navigate</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="feedback-item">
-                                <strong>⚠️ Areas for Improvement:</strong>
-                                <ul>
-                                    <li>Request for figure/diagram retrieval support</li>
-                                    <li>Need for export functionality (PDF/Word)</li>
-                                    <li>Desire for collaborative features (sharing queries/results)</li>
-                                    <li>More granular filtering options (by year, author, thesis type)</li>
-                                </ul>
-                            </div>
-                            
-                            <p><strong>Usage Statistics (5 days):</strong></p>
+                            <p><strong>Current Status:</strong></p>
                             <ul>
-                                <li>Total queries: 287</li>
-                                <li>Unique users: 12</li>
-                                <li>Average queries per user: 23.9</li>
-                                <li>Peak usage: 3-5 PM (lab meeting prep time)</li>
+                                <li>✅ System deployed and accessible on institute network</li>
+                                <li>✅ Access details shared with lab members</li>
+                                <li>⏳ Awaiting user feedback</li>
                             </ul>
+                            
+                            <div class="pending-item">
+                                <strong>Note:</strong> Beta testing has been initiated. Lab members have been provided access to the system. Feedback collection is pending.
+                            </div>
                         </td>
                     </tr>
                     <tr>
-                        <td>Network Accessibility</td>
+                        <td>Network Configuration</td>
                         <td><div class="progress-bar" style="--progress: 100%;">100%</div></td>
                         <td>
-                            <p><strong>Institute Network Configuration:</strong></p>
+                            <p><strong>Institute Network Setup:</strong></p>
                             <ul>
-                                <li>✅ Firewall rules configured for port 3000</li>
-                                <li>✅ Static IP assignment for consistent access</li>
-                                <li>✅ Network discovery enabled for lab subnet</li>
-                                <li>✅ Access restricted to institute IP range for security</li>
-                            </ul>
-                            
-                            <div class="security-notice">
-                                <strong>Access Control:</strong>
-                                <ul>
-                                    <li>Only accessible within institute network (192.168.41.x)</li>
-                                    <li>Authentication required for all users</li>
-                                    <li>Session timeout after 2 hours of inactivity</li>
-                                    <li>SSL certificate pending for HTTPS deployment</li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <!-- Technical Improvements Section -->
-        <div class="progress-section">
-            <h3><i class="fas fa-code"></i> Technical Enhancements & Optimizations</h3>
-            <table class="progress-table">
-                <thead>
-                    <tr>
-                        <th width="30%">Enhancement</th>
-                        <th width="70%">Implementation Details</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Query Caching System</td>
-                        <td>
-                            <p>Implemented Redis-based caching for frequently asked questions.</p>
-                            <ul>
-                                <li>Cache hit rate increased to 67% (up from 42%)</li>
-                                <li>Reduced OpenAI API calls by 40%</li>
-                                <li>Smart cache invalidation on document updates</li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Batch Processing Pipeline</td>
-                        <td>
-                            <p>Created efficient pipeline for processing multiple documents simultaneously.</p>
-                            <ul>
-                                <li>Parallel embedding generation (4x faster)</li>
-                                <li>Bulk vector insertion to Weaviate</li>
-                                <li>Progress tracking with real-time updates</li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Error Handling & Recovery</td>
-                        <td>
-                            <p>Robust error handling for network interruptions and API failures.</p>
-                            <ul>
-                                <li>Automatic retry with exponential backoff</li>
-                                <li>Graceful degradation when services unavailable</li>
-                                <li>Comprehensive error logging for debugging</li>
+                                <li>✅ System accessible within institute network (192.168.41.x)</li>
+                                <li>✅ Port 3000 configured for access</li>
+                                <li>✅ Running from personal MacBook as server</li>
                             </ul>
                         </td>
                     </tr>
@@ -341,35 +194,25 @@
         <div class="weekly-summary">
             <h3><i class="fas fa-flag"></i> Weekly Summary & Next Steps</h3>
             
-            <p>This week marked a significant milestone with the successful launch of RNA Lab Navigator beta testing. The local deployment strategy proved effective, providing stable access to lab members while maintaining control over sensitive research data.</p>
+            <p>This week focused on deploying the RNA Lab Navigator locally and making it accessible to lab members for testing. The system is now live on the institute network.</p>
             
-            <p><strong>Key Achievements:</strong></p>
+            <p><strong>Key Accomplishments:</strong></p>
             <ul>
-                <li>✅ Local server deployment on MacBook with 99.9% uptime</li>
-                <li>✅ Successful ingestion of 8 PhD theses and 45+ research papers</li>
-                <li>✅ Active beta testing with 12 lab members</li>
-                <li>✅ Positive initial feedback with actionable improvement suggestions</li>
-                <li>✅ Enhanced RAG-LLM system with improved retrieval accuracy</li>
+                <li>✅ Local server deployment on MacBook</li>
+                <li>✅ Successful ingestion of 7 PhD theses and 18 research papers</li>
+                <li>✅ System accessible via institute network</li>
+                <li>✅ Docker containers running all required services</li>
             </ul>
             
             <p><strong>Immediate Next Steps:</strong></p>
             <ol>
-                <li>Implement figure/diagram retrieval based on user feedback</li>
-                <li>Add export functionality for query results</li>
-                <li>Set up HTTPS with SSL certificate for secure access</li>
-                <li>Create user documentation and video tutorials</li>
-                <li>Plan for scaling to handle more concurrent users</li>
+                <li>Monitor system performance and stability</li>
+                <li>Collect feedback from lab members once they start using the system</li>
+                <li>Address any technical issues that arise during usage</li>
+                <li>Document user experiences and improvement suggestions</li>
             </ol>
             
-            <p><strong>Beta Testing Insights:</strong></p>
-            <ul>
-                <li>Users primarily search for methodology sections across theses</li>
-                <li>Cross-referencing between papers and theses is a common use case</li>
-                <li>Peak usage aligns with lab meeting preparation times</li>
-                <li>The system successfully reduces literature review time by ~60%</li>
-            </ul>
-            
-            <p>The successful beta launch validates the RNA Lab Navigator's potential to transform how lab members interact with research literature. The local deployment approach has proven both secure and performant, setting the stage for potential expansion to other research groups within the institute.</p>
+            <p>The RNA Lab Navigator is now deployed and ready for evaluation by lab members. The focus for the coming weeks will be on gathering user feedback and iterating based on real-world usage.</p>
         </div>
         
         <!-- Navigation back to progress tracker -->

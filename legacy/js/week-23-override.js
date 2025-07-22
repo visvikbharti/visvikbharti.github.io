@@ -1,17 +1,17 @@
 /**
- * Ultimate Week 24 Override Script
- * This script uses multiple strategies to ensure Week 24 is always displayed
+ * Ultimate Week 27 Override Script
+ * This script uses multiple strategies to ensure Week 27 is always displayed
  */
 
 (function() {
     'use strict';
     
-    const TARGET_WEEK = 26;
+    const TARGET_WEEK = 27;
     const TARGET_YEAR = 2025;
-    const TARGET_RANGE = "July 1 - July 7, 2025";
+    const TARGET_RANGE = "July 15 - July 21, 2025";
     
-    function absoluteForceWeek26() {
-        console.log('[Week 26 Override] Forcing Week 26 display...');
+    function absoluteForceWeek27() {
+        console.log('[Week 27 Override] Forcing Week 27 display...');
         
         // Strategy 1: Direct DOM manipulation
         const weekDisplay = document.getElementById('week-display');
@@ -27,17 +27,17 @@
             weekRange.innerHTML = TARGET_RANGE;
         }
         
-        // Strategy 2: Hide all weeks then show Week 26
+        // Strategy 2: Hide all weeks then show Week 27
         const allWeeks = document.querySelectorAll('[id^="content-week-"]');
         allWeeks.forEach(el => {
             el.style.cssText = 'display: none !important; visibility: hidden !important;';
             el.classList.remove('active', 'show', 'visible');
         });
         
-        const week26Content = document.getElementById('content-week-26-2025');
-        if (week26Content) {
-            week26Content.style.cssText = 'display: block !important; visibility: visible !important;';
-            week26Content.classList.add('active', 'show', 'visible');
+        const week27Content = document.getElementById('content-week-27-2025');
+        if (week27Content) {
+            week27Content.style.cssText = 'display: block !important; visibility: visible !important;';
+            week27Content.classList.add('active', 'show', 'visible');
         }
         
         // Strategy 3: Override localStorage
@@ -72,7 +72,7 @@
         if (selector === '#week-display' && result) {
             setTimeout(() => {
                 if (result.textContent !== `Week ${TARGET_WEEK}, ${TARGET_YEAR}`) {
-                    absoluteForceWeek26();
+                    absoluteForceWeek27();
                 }
             }, 0);
         }
@@ -80,7 +80,7 @@
     };
     
     // Run immediately
-    absoluteForceWeek26();
+    absoluteForceWeek27();
     
     // Run when DOM is ready
     if (document.readyState === 'loading') {

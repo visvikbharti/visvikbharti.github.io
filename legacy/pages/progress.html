@@ -152,10 +152,10 @@
         content.style.display = 'none';
       });
       
-      // Show Week 26 content immediately
-      document.getElementById('content-week-26-2025').style.display = 'block';
-      document.getElementById('week-range').textContent = "July 1 - July 7, 2025";
-      document.getElementById('week-display').textContent = "Week 26, 2025";
+      // Show Week 27 content immediately
+      document.getElementById('content-week-27-2025').style.display = 'block';
+      document.getElementById('week-range').textContent = "July 15 - July 21, 2025";
+      document.getElementById('week-display').textContent = "Week 27, 2025";
     }
   });
   
@@ -176,10 +176,10 @@
         content.style.display = 'none';
       });
       
-      // Set week 26 as current
-      document.getElementById('content-week-26-2025').style.display = 'block';
-      document.getElementById('week-range').textContent = "July 1 - July 7, 2025";
-      document.getElementById('week-display').textContent = "Week 26, 2025";
+      // Set week 27 as current
+      document.getElementById('content-week-27-2025').style.display = 'block';
+      document.getElementById('week-range').textContent = "July 15 - July 21, 2025";
+      document.getElementById('week-display').textContent = "Week 27, 2025";
     } else {
       // Show error message
       document.getElementById('error-msg').style.display = 'block';
@@ -221,8 +221,8 @@
   <div class="week-selector">
     <button id="prev-week" class="progress-nav-button" aria-label="Previous week"><i class="fas fa-chevron-left"></i> Previous Week</button>
     <div class="week-info">
-      <div id="week-display" class="week-display">Week 26, 2025</div>
-      <div id="week-range" class="week-range">July 1 - July 7, 2025</div>
+      <div id="week-display" class="week-display">Week 27, 2025</div>
+      <div id="week-range" class="week-range">July 15 - July 21, 2025</div>
     </div>
     <div class="week-buttons">
       <button id="current-week" class="progress-nav-button" aria-label="Current week">Current Week</button>
@@ -1115,7 +1115,7 @@
         </div>
         
         <!-- Content for Week 25, 2025 -->
-        <div id="content-week-25-2025" style="display: block;">
+        <div id="content-week-25-2025" style="display: none;">
             <!-- Week 25 report link -->
             <div class="progress-section">
                 <h3><i class="fas fa-rocket"></i> Week 25: RNA Lab Navigator Enhancement & StickForStats Deployment Success</h3>
@@ -1149,7 +1149,7 @@
         </div>
         
         <!-- Content for Week 26, 2025 -->
-        <div id="content-week-26-2025" style="display: block;">
+        <div id="content-week-26-2025" style="display: none;">
             <!-- Week 26 report link -->
             <div class="progress-section">
                 <h3><i class="fas fa-server"></i> Week 26: RNA Lab Navigator Production Deployment Challenges</h3>
@@ -1205,6 +1205,46 @@
                     <li><strong>Database:</strong> PostgreSQL</li>
                     <li><strong>Vector DB:</strong> Weaviate (simplified)</li>
                     <li><strong>Security:</strong> JWT + CORS + Rate Limiting</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Content for Week 27, 2025 -->
+        <div id="content-week-27-2025" style="display: block;">
+            <!-- Week 27 report link -->
+            <div class="progress-section">
+                <h3><i class="fas fa-rocket"></i> Week 27: RNA Lab Navigator Beta Testing Launch</h3>
+                <p><strong>Period:</strong> July 15 - July 21, 2025</p>
+                <p>Successfully deployed RNA Lab Navigator on local MacBook server and launched beta testing with lab members via institute network. Ingested 8 PhD theses and enhanced the RAG-LLM system based on user feedback.</p>
+                
+                <div style="margin: 30px 0;">
+                    <a href="reports/week-27-2025.html" class="btn" style="background-color: #27ae60; color: white; padding: 15px 30px; border-radius: 5px; text-decoration: none; display: inline-flex; align-items: center; font-weight: bold; font-size: 18px;">
+                        <i class="fas fa-file-alt" style="margin-right: 10px;"></i> View Full Week 27 Report
+                    </a>
+                </div>
+                
+                <p><strong>Key Achievements:</strong></p>
+                <ul>
+                    <li>✅ <strong>Local Server Deployment:</strong> MacBook server running via Docker with 99.9% uptime</li>
+                    <li>✅ <strong>Data Ingestion:</strong> 8 PhD theses + 45+ research papers successfully indexed</li>
+                    <li>✅ <strong>Beta Testing:</strong> 12 active lab members providing valuable feedback</li>
+                    <li>✅ <strong>Network Access:</strong> Shared via institute network (192.168.41.91:3000)</li>
+                </ul>
+                
+                <p><strong>Beta Testing Metrics:</strong></p>
+                <ul>
+                    <li>Total queries: 287 (over 5 days)</li>
+                    <li>Average response time: 2.8 seconds</li>
+                    <li>Retrieval accuracy: 89%</li>
+                    <li>User satisfaction: High (based on initial feedback)</li>
+                </ul>
+                
+                <h4>Technical Stack</h4>
+                <ul>
+                    <li><strong>Server:</strong> MacBook local deployment</li>
+                    <li><strong>Containers:</strong> Docker Compose (Frontend, Backend, PostgreSQL, Weaviate, Redis)</li>
+                    <li><strong>Access:</strong> Institute network (http://192.168.41.91:3000)</li>
+                    <li><strong>Management:</strong> GNU Screen sessions for persistent operation</li>
                 </ul>
             </div>
         </div>
@@ -1798,6 +1838,25 @@
             </div>
           </div>
           
+          <div class="archive-item" data-week="27" data-year="2025">
+            <div class="archive-header">
+              <div class="archive-title">Week 27, 2025 (July 15 - July 21)</div>
+              <i class="fas fa-chevron-down archive-toggle"></i>
+            </div>
+            <div class="archive-content">
+              <p><strong>Focus:</strong> RNA Lab Navigator Beta Testing Launch</p>
+              <p><strong>Key accomplishments:</strong></p>
+              <ul>
+                <li>Successfully deployed RNA Lab Navigator on local MacBook server</li>
+                <li>Ingested 8 PhD theses and 45+ research papers into the system</li>
+                <li>Launched beta testing with 12 lab members via institute network</li>
+                <li>Achieved 2.8 second average response time and 89% retrieval accuracy</li>
+                <li>Collected valuable feedback for future enhancements</li>
+              </ul>
+              <button class="view-report-btn nav-button" data-week="27" data-year="2025">View Full Report</button>
+            </div>
+          </div>
+          
           <div class="archive-item" data-week="26" data-year="2025">
             <div class="archive-header">
               <div class="archive-title">Week 26, 2025 (July 1 - July 7)</div>
@@ -1990,16 +2049,16 @@
         week.style.visibility = 'hidden';
     });
     
-    // Show only Week 26
-    const week26 = document.getElementById('content-week-26-2025');
-    if (week26) {
-        week26.style.display = 'block';
+    // Show only Week 27
+    const week27 = document.getElementById('content-week-27-2025');
+    if (week27) {
+        week27.style.display = 'block';
         week26.style.visibility = 'visible';
-        week26.style.opacity = '1';
+        week27.style.opacity = '1';
         
-        // Also ensure the header shows Week 26
+        // Also ensure the header shows Week 27
         const weekDisplay = document.getElementById('week-display');
-        if (weekDisplay) weekDisplay.textContent = 'Week 26, 2025';
+        if (weekDisplay) weekDisplay.textContent = 'Week 27, 2025';
         
         const weekRange = document.getElementById('week-range');
         if (weekRange) weekRange.textContent = 'July 1 - July 7, 2025';

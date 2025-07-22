@@ -13,11 +13,12 @@ const AVAILABLE_WEEKS = {
     23: { year: 2025, range: "June 2 - June 8, 2025" },
     24: { year: 2025, range: "June 10 - June 16, 2025" },
     25: { year: 2025, range: "June 17 - June 23, 2025" },
-    26: { year: 2025, range: "July 1 - July 7, 2025" }
+    26: { year: 2025, range: "July 1 - July 7, 2025" },
+    27: { year: 2025, range: "July 15 - July 21, 2025" }
 };
 
-// Current week should be Week 26
-const CURRENT_WEEK = 26;
+// Current week should be Week 27
+const CURRENT_WEEK = 27;
 const CURRENT_YEAR = 2025;
 
 // Make these available globally

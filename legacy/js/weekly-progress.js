@@ -171,11 +171,17 @@ function displayWeekData(week, year) {
     localStorage.setItem('currentDisplayedYear', year);
     
     // Get date range for the week
-    const weekRange = getDateRangeOfWeek(week, year);
     const weekRangeDisplay = document.getElementById('week-range');
     
     if (weekRangeDisplay) {
-        weekRangeDisplay.textContent = `${formatDate(weekRange.start)} - ${formatDate(weekRange.end)}`;
+        // Check if we have a predefined range for this week
+        if (AVAILABLE_WEEKS[week] && AVAILABLE_WEEKS[week].year === year) {
+            weekRangeDisplay.textContent = AVAILABLE_WEEKS[week].range;
+        } else {
+            // Fall back to calculated range for weeks not in AVAILABLE_WEEKS
+            const weekRange = getDateRangeOfWeek(week, year);
+            weekRangeDisplay.textContent = `${formatDate(weekRange.start)} - ${formatDate(weekRange.end)}`;
+        }
     }
     
     // Hide all week content divs first

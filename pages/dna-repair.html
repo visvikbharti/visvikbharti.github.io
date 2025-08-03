@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DNA Repair Mechanisms Analysis - Vishal Bharti</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Three-layer computational pipeline analyzing DNA repair factor requirements in staggered vs blunt-end breaks using scRNA-seq data.">
+  <meta name="keywords" content="DNA repair, NHEJ, HDR, single-cell RNA-seq, genomics, computational biology, CRISPR">
+  <meta name="author" content="Vishal Bharti">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=IBM+Plex+Mono:wght@400;600&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- Core styles -->
+  <link rel="stylesheet" href="../css/vars.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/project.css" />
+
+  <!-- GSAP + ScrollTrigger -->
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Portfolio logic -->
+  <script defer src="../js/main.js"></script>
+</head>
+
+<body class="project-page">
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <a href="../index.html" class="nav-logo">VB</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#research">Research</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+      <li><a href="../legacy/pages/progress.html" class="nav-highlight">Weekly Progress</a></li>
+    </ul>
+  </nav>
+
+  <!-- ================= Project Hero ================= -->
+  <section class="project-hero">
+    <div class="container">
+      <h1 class="project-title">DNA Repair Mechanisms Analysis</h1>
+      <div class="project-meta">
+        <div class="tech-tags">
+          <span class="tech-tag">R</span>
+          <span class="tech-tag">scRNA-seq</span>
+          <span class="tech-tag">Genomics</span>
+          <span class="tech-tag">Statistical Analysis</span>
+          <span class="tech-tag">DNA Repair</span>
+        </div>
+        <div class="project-links">
+          <a href="#research" class="btn">View Research</a>
+          <a href="https://github.com/visvikbharti/" target="_blank" class="btn alt">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Project Overview ================= -->
+  <section class="project-section">
+    <div class="container">
+      <h2>Project Overview</h2>
+      <p>
+        This research project focuses on deciphering the molecular mechanisms that determine DNA repair pathway choice 
+        between Non-Homologous End Joining (NHEJ) and Homology-Directed Repair (HDR) in response to different types 
+        of DNA breaks. Understanding these mechanisms is crucial for improving genome editing technologies and developing 
+        targeted cancer therapies.
+      </p>
+      <p>
+        As the lead computational analyst, I developed an innovative three-layer computational pipeline to analyze 
+        single-cell RNA sequencing data from CRISPR-edited cells. This approach allows us to understand how different 
+        DNA break configurations (staggered versus blunt-end) influence the cellular repair machinery at unprecedented 
+        resolution.
+      </p>
+
+      <div class="project-features">
+        <div class="feature">
+          <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
+          <h3>Multi-Layer Analysis</h3>
+          <p>Three-layer inference method combining QC, statistical analysis, and pathway enrichment</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon"><i class="fas fa-dna"></i></div>
+          <h3>Break Type Comparison</h3>
+          <p>Systematic comparison of repair responses to staggered vs blunt-end DNA breaks</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon"><i class="fas fa-chart-scatter"></i></div>
+          <h3>Single-Cell Resolution</h3>
+          <p>High-resolution analysis of cellular heterogeneity in DNA repair responses</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon"><i class="fas fa-project-diagram"></i></div>
+          <h3>Network Analysis</h3>
+          <p>Comprehensive protein-protein interaction networks revealing repair factor dependencies</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Research Methodology ================= -->
+  <section class="project-section alt-bg">
+    <div class="container">
+      <h2>Computational Pipeline</h2>
+      <p>
+        The analysis pipeline was designed to extract meaningful biological insights from complex single-cell data 
+        while maintaining statistical rigor and reproducibility.
+      </p>
+      
+      <div class="approach-steps">
+        <div class="approach-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Quality Control & Data Integration</h3>
+            <p>
+              Implemented stringent quality control workflow with optimized parameters (nFeature: 500-6500, 
+              nCount: 1000-45000) to ensure high-quality single-cell data. Integrated multiple experimental 
+              batches using advanced computational methods to minimize batch effects while preserving biological 
+              variation.
+            </p>
+          </div>
+        </div>
+        
+        <div class="approach-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Layer 1: Initial Statistical Analysis</h3>
+            <p>
+              Performed differential expression analysis to identify genes responding to different DNA break types. 
+              This layer revealed initial candidates showing break-type-specific expression patterns, providing 
+              the foundation for deeper pathway analysis.
+            </p>
+          </div>
+        </div>
+        
+        <div class="approach-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Layer 2: Pathway Enrichment</h3>
+            <p>
+              Conducted comprehensive pathway enrichment analysis using multiple databases (GO, KEGG, Reactome) 
+              to identify biological processes and molecular functions associated with different repair responses. 
+              This revealed key pathways differentially activated between break types.
+            </p>
+          </div>
+        </div>
+        
+        <div class="approach-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Layer 3: Network Integration</h3>
+            <p>
+              Integrated protein-protein interaction networks with expression data to identify hub genes and 
+              regulatory modules. This final layer provided mechanistic insights into how repair factors 
+              coordinate their activities in response to different DNA lesions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Key Findings ================= -->
+  <section class="project-section">
+    <div class="container">
+      <h2>Key Discoveries</h2>
+      
+      <div class="findings-grid">
+        <div class="finding-card">
+          <div class="finding-icon"><i class="fas fa-microscope"></i></div>
+          <h3>Break-Specific Repair Factors</h3>
+          <p>
+            Identified 77 genes specifically upregulated in response to staggered breaks (FZ+) and 
+            5 genes specific to blunt-end breaks (SZ+), revealing distinct molecular signatures for 
+            different DNA lesion types.
+          </p>
+        </div>
+        
+        <div class="finding-card">
+          <div class="finding-icon"><i class="fas fa-network-wired"></i></div>
+          <h3>Overlapping Repair Networks</h3>
+          <p>
+            Discovered 23 genes showing FZ+/SZ- patterns and 2 genes with SZ+/FZ- patterns, 
+            indicating complex regulatory networks that fine-tune repair pathway choice based 
+            on break configuration.
+          </p>
+        </div>
+        
+        <div class="finding-card">
+          <div class="finding-icon"><i class="fas fa-clock"></i></div>
+          <h3>Temporal Dynamics</h3>
+          <p>
+            Revealed time-dependent activation of repair pathways, with early response genes 
+            showing break-type-independent activation followed by specialized repair factor 
+            recruitment based on lesion characteristics.
+          </p>
+        </div>
+        
+        <div class="finding-card">
+          <div class="finding-icon"><i class="fas fa-cells"></i></div>
+          <h3>Cell Cycle Dependencies</h3>
+          <p>
+            Demonstrated how cell cycle status influences repair pathway choice, with HDR 
+            preference in S/G2 phases and NHEJ dominance in G1, modulated by break type 
+            and local chromatin context.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Technical Details ================= -->
+  <section class="project-section alt-bg">
+    <div class="container">
+      <h2>Technical Implementation</h2>
+      
+      <div class="tech-details">
+        <div class="tech-detail">
+          <h3>Data Processing</h3>
+          <ul>
+            <li><strong>Platform:</strong> 10X Genomics Chromium</li>
+            <li><strong>Samples:</strong> Multiple time points post-DNA damage</li>
+            <li><strong>Cells Analyzed:</strong> >50,000 high-quality cells</li>
+            <li><strong>Genes Detected:</strong> ~20,000 per experiment</li>
+          </ul>
+        </div>
+        
+        <div class="tech-detail">
+          <h3>Computational Tools</h3>
+          <ul>
+            <li><strong>Seurat v4:</strong> Single-cell data analysis</li>
+            <li><strong>edgeR/DESeq2:</strong> Differential expression</li>
+            <li><strong>clusterProfiler:</strong> Pathway enrichment</li>
+            <li><strong>igraph:</strong> Network analysis</li>
+            <li><strong>Custom R scripts:</strong> Specialized analyses</li>
+          </ul>
+        </div>
+        
+        <div class="tech-detail">
+          <h3>Statistical Methods</h3>
+          <ul>
+            <li><strong>Normalization:</strong> SCTransform with regression</li>
+            <li><strong>Batch Correction:</strong> Harmony integration</li>
+            <li><strong>Multiple Testing:</strong> FDR < 0.05</li>
+            <li><strong>Network Analysis:</strong> Weighted correlation networks</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Research Impact ================= -->
+  <section class="project-section">
+    <div class="container">
+      <h2>Research Impact & Applications</h2>
+      <p>
+        This research has significant implications for multiple fields, from basic molecular biology to 
+        clinical applications in cancer therapy and genome editing.
+      </p>
+      
+      <div class="impact-grid">
+        <div class="impact-card">
+          <h3>Genome Editing Optimization</h3>
+          <p>
+            Our findings provide crucial insights for designing more efficient CRISPR strategies by 
+            understanding how different Cas enzymes and guide RNA designs influence repair outcomes. 
+            This knowledge can be applied to improve knock-in efficiency and reduce unwanted mutations.
+          </p>
+        </div>
+        
+        <div class="impact-card">
+          <h3>Cancer Therapy Development</h3>
+          <p>
+            Understanding repair pathway dependencies offers new therapeutic targets for cancer treatment. 
+            By identifying factors specific to each repair pathway, we can develop strategies to sensitize 
+            cancer cells to DNA-damaging therapies.
+          </p>
+        </div>
+        
+        <div class="impact-card">
+          <h3>Biomarker Discovery</h3>
+          <p>
+            The repair factor signatures identified in this study serve as potential biomarkers for 
+            predicting cellular responses to DNA damage, which could guide personalized treatment 
+            strategies in precision medicine.
+          </p>
+        </div>
+        
+        <div class="impact-card">
+          <h3>Fundamental Biology</h3>
+          <p>
+            This work advances our understanding of how cells maintain genome integrity by revealing 
+            the complex decision-making processes that govern DNA repair pathway choice at the 
+            single-cell level.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Collaborations ================= -->
+  <section class="project-section alt-bg">
+    <div class="container">
+      <h2>Collaborative Research</h2>
+      <p>
+        This project represents a collaborative effort between computational and experimental biologists, 
+        combining cutting-edge single-cell technologies with advanced computational analyses.
+      </p>
+      
+      <div class="collaboration-details">
+        <p><strong>Principal Investigator:</strong> Dr. Debojyoti Chakraborty, IGIB CSIR</p>
+        <p><strong>Experimental Team:</strong> CRISPR genome editing and single-cell library preparation</p>
+        <p><strong>Computational Analysis:</strong> Led by Vishal Bharti</p>
+        <p><strong>Duration:</strong> 2023 - Present</p>
+        <p><strong>Status:</strong> Manuscript in preparation</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Future Directions ================= -->
+  <section class="project-section">
+    <div class="container">
+      <h2>Future Research Directions</h2>
+      
+      <div class="future-plans">
+        <div class="future-item">
+          <h3>Machine Learning Integration</h3>
+          <ul>
+            <li>Develop predictive models for repair pathway choice</li>
+            <li>Create algorithms to design optimal CRISPR strategies</li>
+            <li>Build tools for automated analysis of repair outcomes</li>
+          </ul>
+        </div>
+        
+        <div class="future-item">
+          <h3>Expanded Cell Type Analysis</h3>
+          <ul>
+            <li>Extend analysis to primary cells and tissues</li>
+            <li>Compare repair mechanisms across cell types</li>
+            <li>Investigate tissue-specific repair preferences</li>
+          </ul>
+        </div>
+        
+        <div class="future-item">
+          <h3>Clinical Translation</h3>
+          <ul>
+            <li>Validate findings in patient-derived samples</li>
+            <li>Develop diagnostic tools based on repair signatures</li>
+            <li>Design targeted therapies exploiting repair dependencies</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Publications ================= -->
+  <section class="project-section alt-bg">
+    <div class="container">
+      <h2>Related Publications</h2>
+      
+      <div class="publication-highlight">
+        <h3>Deciphering DNA Repair Factor Requirements in Staggered versus Blunt-End DNA Breaks through Multi-Layer Inference Analysis</h3>
+        <p class="authors"><strong>Bharti, V.</strong>, et al.</p>
+        <p class="journal">Manuscript in preparation (2025)</p>
+        <p class="abstract">
+          <strong>Abstract:</strong> DNA double-strand breaks (DSBs) can occur with different end configurations, 
+          yet how these structural differences influence repair pathway choice remains poorly understood. Here, 
+          we present a comprehensive single-cell RNA sequencing analysis of cellular responses to staggered versus 
+          blunt-end DNA breaks induced by different CRISPR-Cas systems. Through our three-layer computational 
+          pipeline, we identified distinct molecular signatures associated with each break type, revealing 
+          previously uncharacterized repair factor dependencies. Our findings demonstrate that break geometry 
+          significantly influences the recruitment and activity of repair factors, with implications for 
+          genome editing applications and cancer therapy development.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Contact ================= -->
+  <section class="project-section contact-section">
+    <div class="container">
+      <h2>Interested in DNA Repair Research?</h2>
+      <p>
+        If you're interested in collaborating on DNA repair mechanisms, single-cell genomics, or 
+        computational biology research, I'd be happy to discuss potential opportunities.
+      </p>
+      <div class="contact-buttons">
+        <a href="mailto:vishalvikashbharti@gmail.com?subject=DNA%20Repair%20Research%20Inquiry" class="btn">Email Me</a>
+        <a href="https://github.com/visvikbharti/" target="_blank" class="btn alt">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Footer ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 Vishal Bharti. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#research">Research</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="../legacy/">Legacy Site</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,306 +1,445 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vishal Bharti | CV & About</title>
-    <meta name="description" content="Bioinformatics researcher and computational biologist specializing in RNA biology, statistical analysis, and AI applications in genomics.">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;600&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="../css/vars.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/cv.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About - Vishal Bharti</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="About Vishal Bharti - Bioinformatician specializing in RNA biology, computational genomics, and statistical tool development.">
+  <meta name="keywords" content="about, bioinformatics, computational biology, skills, experience, education">
+  <meta name="author" content="Vishal Bharti">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=IBM+Plex+Mono:wght@400;600&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- Core styles -->
+  <link rel="stylesheet" href="../css/vars.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/about.css" />
+
+  <!-- GSAP + ScrollTrigger -->
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Portfolio logic -->
+  <script defer src="../js/main.js"></script>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="main-nav">
-        <a href="../index.html" class="nav-logo">Vishal Bharti</a>
-        <ul class="nav-links">
-            <li><a href="../index.html#projects">Projects</a></li>
-            <li><a href="../pages/research.html">Research</a></li>
-            <li><a href="../pages/about.html">About</a></li>
-            <li><a href="../index.html#contact">Contact</a></li>
-            <li><a href="../legacy/pages/progress.html" class="nav-highlight">Weekly Progress</a></li>
-        </ul>
-    </nav>
 
-    <div class="cv-container">
-        <header>
-            <h1>CV & About</h1>
-            <p class="tagline">Bioinformatics · AI · Statistical Engineering</p>
-        </header>
+<body class="about-page">
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <a href="../index.html" class="nav-logo">VB</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="#" class="active">About</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+      <li><a href="../legacy/pages/progress.html" class="nav-highlight">Weekly Progress</a></li>
+    </ul>
+  </nav>
 
-        <div class="cv-header">
-            <div class="cv-actions">
-                <button id="print-cv" class="action-button" onclick="window.print()">
-                    <i class="fas fa-print"></i> Print CV
-                </button>
-                <a href="path/to/VishalBharti_CV.pdf" download class="action-button">
-                    <i class="fas fa-download"></i> Download PDF
-                </a>
+  <!-- ================= About Hero ================= -->
+  <section class="about-hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="about-title">About Me</h1>
+          <p class="about-intro">
+            I'm a bioinformatician bridging the gap between complex biological data and actionable insights. 
+            With a background in electronics engineering and biotechnology, I bring a unique perspective to 
+            computational biology challenges.
+          </p>
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-value">4+</span>
+              <span class="stat-label">Years in Bioinformatics</span>
             </div>
-        </div>
-
-        <div class="section">
-            <h2>Education</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">Sep 2020 – Jun 2022</div>
-                    <h3 class="timeline-title">Master of Technology (MTech) in Biotechnology</h3>
-                    <div class="timeline-subtitle">Indian Institute of Technology Guwahati (IITG)</div>
-                    <div class="timeline-content">
-                        <p>CGPA: 8.75</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">Aug 2014 – Jun 2018</div>
-                    <h3 class="timeline-title">Bachelor of Technology (BTech) in Electronics and Communication</h3>
-                    <div class="timeline-subtitle">Institute of Engineering & Management (IEM), Kolkata</div>
-                    <div class="timeline-content">
-                        <p>CGPA: 8.19</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">Apr 2011 – Mar 2013</div>
-                    <h3 class="timeline-title">All India Senior School Certificate Examination (AISSCE)</h3>
-                    <div class="timeline-subtitle">Sri Ramakrishna Sarada Math & Mission Vivekananda Central School, Hazaribagh</div>
-                    <div class="timeline-content">
-                        <p>Percentage: 88.20 | Subjects: Physics, Chemistry, Mathematics, English, Information Practices</p>
-                    </div>
-                </div>
+            <div class="stat">
+              <span class="stat-value">5+</span>
+              <span class="stat-label">Major Projects</span>
             </div>
-        </div>
-
-        <div class="section">
-            <h2>Professional Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">Feb 2023 – Present</div>
-                    <h3 class="timeline-title">Project Associate-II</h3>
-                    <div class="timeline-subtitle">Institute of Genomics and Integrative Biology (CSIR-IGIB), New Delhi</div>
-                    <div class="timeline-content">
-                        <p><strong>Supervisor:</strong> Dr. Debojyoti Chakraborty</p>
-                        <p>Working on multiple projects as lead computational analyst:</p>
-                        <ul>
-                            <li><strong>Human Forebrain Assembloids:</strong> Conducting RNA-seq, PPI network, and pan-tissue analysis to understand interneuron migration disorders.</li>
-                            <li><strong>DNA Repair Mechanisms:</strong> Developing three-layer computational pipeline to analyze repair factor requirements in DNA breaks using scRNA-seq data.</li>
-                            <li><strong>TRIPinRNA:</strong> Leading development of a Python-based tool for predicting intramolecular RNA triple helix structures.</li>
-                            <li><strong>MLC Disease Modeling:</strong> RNA-seq analysis and diagnostic platform development for 132dupC MLC1 gene mutation.</li>
-                            <li><strong>G-Quadruplexes in CCN1 Regulation:</strong> Computational analyses and proteomics data analysis.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">Jun 2022 – Sep 2022</div>
-                    <h3 class="timeline-title">Junior Research Fellow</h3>
-                    <div class="timeline-subtitle">Indian Institute of Technology Guwahati (IIT-G)</div>
-                    <div class="timeline-content">
-                        <p><strong>Supervisor:</strong> Dr. Vibin Ramakrishnan</p>
-                        <p>Led computational analysis for investigating the efficacy of Ashwagandha and Yogaraj Guggulu for osteoarthritis treatment using a hybrid Proteomics-Cheminformatics-Network medicine approach.</p>
-                    </div>
-                </div>
+            <div class="stat">
+              <span class="stat-value">30+</span>
+              <span class="stat-label">Collaborators</span>
             </div>
+          </div>
         </div>
-
-        <div class="section">
-            <h2>Research Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">Mar 2021 – May 2022</div>
-                    <h3 class="timeline-title">Master's Thesis</h3>
-                    <div class="timeline-subtitle">Indian Institute of Technology Guwahati (IIT-G)</div>
-                    <div class="timeline-content">
-                        <p><strong>Supervisor:</strong> Dr. Kusum K. Singh</p>
-                        <p><strong>Topic:</strong> Identification and functional enrichment analysis of NMD transcripts in UPF3b KO HEK293 Cells</p>
-                        <p>Conducted RNA-seq analysis to classify transcripts susceptible to Nonsense Mediated mRNA Decay (NMD) and explored cellular behaviors in the absence of the UPF3B gene.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">Sep 2017 – Apr 2018</div>
-                    <h3 class="timeline-title">Bachelor's Thesis</h3>
-                    <div class="timeline-subtitle">Institute of Engineering & Management (IEM), Kolkata</div>
-                    <div class="timeline-content">
-                        <p><strong>Supervisor:</strong> Prof. Indranil Basu</p>
-                        <p><strong>Topic:</strong> DNA Sequence Analysis and Protein Structure Visualization</p>
-                        <p>Created a platform integrating NCBI BLAST and PDB databases for protein image retrieval and detailed analysis, using Jupyter Notebook and API implementation.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="hero-image">
+          <img src="../assets/portraits/profile-photo.jpg" alt="Vishal Bharti">
         </div>
-
-        <div class="section">
-            <h2>Publications</h2>
-            <ol class="publications-list">
-                <li>
-                    <p>Isha Rakheja*, <strong>Vishal Bharti*</strong>, et al. "Development of an In Silico Platform (TRIPinRNA) for the Identification of Novel RNA Intramolecular Triple Helices and Their Validation Using Biophysical Techniques." <em>Biochemistry</em> (2024). DOI: <a href="https://pubs.acs.org/doi/10.1021/acs.biochem.4c00334" target="_blank">10.1021/acs.biochem.4c00334</a> (* Equal contribution)</p>
-                </li>
-                <li>
-                    <p>Rana, P., Rajat, U., <strong>Bharti, V.</strong>, et al. "IGF2BP1-Mediated Regulation of CCN1 Expression by Specific Binding to G-Quadruplex Structure in its 3´UTR." <em>Biochemistry</em> (2024). DOI: <a href="https://doi.org/10.1021/acs.biochem.4c00172" target="_blank">10.1021/acs.biochem.4c00172</a></p>
-                </li>
-                <li>
-                    <p>Rauthan, R., <strong>Bharti, V.</strong>, et al. "An Interface of Genetically Engineered Human Forebrain Assembloids and Polymeric Nanofiber Scaffolds for Multiscale Profiling of Interneuron Migration Disorders." (Under revision @ EMBO Reports). DOI: <a href="https://doi.org/10.21203/rs.3.rs-3831019/v1" target="_blank">10.21203/rs.3.rs-3831019/v1</a></p>
-                </li>
-                <li>
-                    <p>Sharma, S., <strong>Bharti, V.</strong>, Das, P.K., et al. "MLC1 alteration in iPSCs give rise to disease-like cellular vacuolation phenotype in the astrocyte lineage." (Preprint). DOI: <a href="https://doi.org/10.1101/2025.01.06.631607" target="_blank">10.1101/2025.01.06.631607</a></p>
-                </li>
-            </ol>
-            <p><strong>Poster Presentation:</strong></p>
-            <ul>
-                <li><strong>Bharti, V.</strong>, Chakraborty, D. "Boundary Without Fence" at the international conference "Frontiers in Genome Engineering 2023," BITS Pilani Goa Campus.</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>Software Development</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">Apr 2024 – Present</div>
-                    <h3 class="timeline-title">StickForStats - Advanced Statistics for Researchers Web App</h3>
-                    <div class="timeline-subtitle">Institute of Genomics and Integrative Biology (CSIR-IGIB), New Delhi</div>
-                    <div class="timeline-content">
-                        <p><strong>Supervisor:</strong> Dr. Debojyoti Chakraborty</p>
-                        <p>Developed a Python-based web application using the Streamlit framework to enable researchers with minimal statistical background to perform advanced statistical analyses. The app intelligently suggests appropriate statistical tests based on data distribution and research questions, including tools for experimental design and inferential statistics.</p>
-                        <p><strong>Status:</strong> Final stages, with plans to deploy in September/October 2024.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Skills</h2>
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h3>Programming & Data Science</h3>
-                    <div class="skill-list">
-                        <span class="skill-item">Python</span>
-                        <span class="skill-item">R</span>
-                        <span class="skill-item">C</span>
-                        <span class="skill-item">MATLAB</span>
-                        <span class="skill-item">Pandas/NumPy</span>
-                        <span class="skill-item">Streamlit</span>
-                        <span class="skill-item">Machine Learning</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Bioinformatics</h3>
-                    <div class="skill-list">
-                        <span class="skill-item">scRNA-Seq Analysis</span>
-                        <span class="skill-item">RNA-Seq</span>
-                        <span class="skill-item">ChIP-seq</span>
-                        <span class="skill-item">Network Analysis</span>
-                        <span class="skill-item">PyMOL</span>
-                        <span class="skill-item">Molecular Docking</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Laboratory Techniques</h3>
-                    <div class="skill-list">
-                        <span class="skill-item">Dynamic Light Scattering</span>
-                        <span class="skill-item">FT-IR Spectrometer</span>
-                        <span class="skill-item">HPLC</span>
-                        <span class="skill-item">Cytoscape</span>
-                        <span class="skill-item">STRING</span>
-                        <span class="skill-item">Gene Ontology</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Awards & Achievements</h2>
-            <ul class="awards-list">
-                <li><strong>Sep 2020:</strong> Graduate Assistantship, Ministry of Education, Government of India (2020-2022)</li>
-                <li><strong>Mar 2020:</strong> Secured All India Rank 127 (Top 1 percentile) in GATE Biotechnology (BT)</li>
-                <li><strong>Mar 2018:</strong> Qualified in top 3 percentile in GATE Electronics and Communication (EC)</li>
-                <li><strong>Mar 2017:</strong> Top student in Vocational Training in Advanced Telecom at CTTC BSNL Kolkata</li>
-                <li><strong>Mar 2016:</strong> First Prize at Robowar, OJASS 2016, NIT Jamshedpur</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>Additional Training & Courses</h2>
-            <ul class="training-list">
-                <li><strong>Jan-Sep 2021:</strong> Deep Learning Specialization (5 courses), DeepLearning.AI, Coursera</li>
-                <li><strong>Sep-Nov 2023:</strong> Data Structures and Algorithms, GeeksforGeeks</li>
-                <li><strong>Jul 2020:</strong> Principles of Biochemistry, Harvard University (edX)</li>
-                <li><strong>Apr-May 2020:</strong> Introduction to Genomic Technologies, Johns Hopkins University (Coursera)</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>Mini Projects</h2>
-            <ul class="projects-list">
-                <li><strong>Aug-Sep 2021:</strong> Comparison of Optimization Algorithms (SGD, Momentum, RMSProp, Adam) on Saddle Point and MNIST dataset</li>
-                <li><strong>Jul-Aug 2021:</strong> DNA Sequence Classification using LSTM (RNN) for classifying intronic, exonic regions and intron-exon boundaries</li>
-                <li><strong>Jun-Jul 2021:</strong> Predicting DNA N6-Methyladenine Sites in Rice Genome using CNN and LSTM</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>Positions of Responsibility</h2>
-            <ul class="responsibility-list">
-                <li><strong>Nov 2023:</strong> Core Organizing Team Member, Frontiers in Genome Engineering 2023 (FGE2023), BITS Pilani Goa Campus</li>
-                <li><strong>Dec 2021:</strong> Departmental retreat sports volunteer, BSBE department, IIT Guwahati</li>
-                <li><strong>2020-2022:</strong> Teaching Assistant at IIT Guwahati</li>
-                <li><strong>2016-2018:</strong> IEEE Member and Symposium Organizer at IEM Kolkata</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>Interests & Freelancing</h2>
-            <div class="interests">
-                <p><strong>Computational Biology Freelancer:</strong> Collaborated with a postdoctoral researcher from UC Berkeley on automating biological data pipelines using R and Python.</p>
-                <p><strong>Personal Interests:</strong> Brainstorming, Flute, Piano, Chess, Cricket, Volleyball</p>
-            </div>
-        </div>
+      </div>
     </div>
+  </section>
 
-    <footer>
-        <div class="copyright">
-            <p>&copy; 2025 Vishal Bharti. All rights reserved.</p>
+  <!-- ================= Journey Timeline ================= -->
+  <section class="journey-section">
+    <div class="container">
+      <h2>My Journey</h2>
+      
+      <div class="journey-timeline">
+        <div class="timeline-line"></div>
+        
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <span class="timeline-date">2014-2018</span>
+            <h3>Electronics Engineering Foundation</h3>
+            <p>
+              Started with BTech in Electronics and Communication at IEM Kolkata. 
+              Developed strong analytical and problem-solving skills through circuit design and signal processing.
+            </p>
+          </div>
         </div>
-    </footer>
+        
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <span class="timeline-date">2018</span>
+            <h3>Transition to Bioinformatics</h3>
+            <p>
+              Bachelor's thesis on DNA sequence analysis and protein visualization sparked my interest 
+              in computational biology. Integrated NCBI BLAST and PDB databases for protein analysis.
+            </p>
+          </div>
+        </div>
+        
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <span class="timeline-date">2020-2022</span>
+            <h3>Advanced Studies at IIT Guwahati</h3>
+            <p>
+              Pursued MTech in Biotechnology, achieving CGPA 8.75. Master's thesis focused on 
+              RNA-seq analysis and NMD pathway characterization. GATE Rank 127 in Biotechnology.
+            </p>
+          </div>
+        </div>
+        
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <span class="timeline-date">2022</span>
+            <h3>Research Fellowship</h3>
+            <p>
+              Junior Research Fellow at IIT Guwahati, investigating traditional medicine efficacy 
+              using computational approaches. Developed hybrid proteomics-cheminformatics pipelines.
+            </p>
+          </div>
+        </div>
+        
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <span class="timeline-date">2023-Present</span>
+            <h3>Leading Computational Research</h3>
+            <p>
+              Project Associate-II at CSIR-IGIB, leading multiple computational biology projects. 
+              Published in top journals, developed tools like TRIPinRNA and StickForStats.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
-    <script>
-        // Simple animations for the page
-        document.addEventListener('DOMContentLoaded', function() {
-            gsap.from('.cv-container > *', {
-                y: 50,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.1,
-                ease: 'power2.out'
-            });
+  <!-- ================= Skills & Expertise ================= -->
+  <section class="skills-section">
+    <div class="container">
+      <h2>Skills & Expertise</h2>
+      
+      <div class="skills-categories">
+        <div class="skill-category">
+          <h3><i class="fas fa-code"></i> Programming & Development</h3>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Python</span>
+                <span class="skill-level">Expert</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 95%"></div>
+              </div>
+              <p class="skill-desc">NumPy, Pandas, Scikit-learn, Streamlit, Django</p>
+            </div>
+            
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">R</span>
+                <span class="skill-level">Advanced</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 85%"></div>
+              </div>
+              <p class="skill-desc">Bioconductor, ggplot2, Seurat, DESeq2</p>
+            </div>
+            
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Web Development</span>
+                <span class="skill-level">Intermediate</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 70%"></div>
+              </div>
+              <p class="skill-desc">HTML/CSS, JavaScript, React, Streamlit</p>
+            </div>
+            
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Databases</span>
+                <span class="skill-level">Intermediate</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 75%"></div>
+              </div>
+              <p class="skill-desc">PostgreSQL, MongoDB, Vector DBs</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3><i class="fas fa-dna"></i> Bioinformatics & Genomics</h3>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">NGS Analysis</span>
+                <span class="skill-level">Expert</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 90%"></div>
+              </div>
+              <p class="skill-desc">RNA-seq, scRNA-seq, ChIP-seq, ATAC-seq</p>
+            </div>
+            
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Structural Biology</span>
+                <span class="skill-level">Advanced</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 80%"></div>
+              </div>
+              <p class="skill-desc">PyMOL, RNA structure prediction, G-quadruplexes</p>
+            </div>
+            
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Network Biology</span>
+                <span class="skill-level">Advanced</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 85%"></div>
+              </div>
+              <p class="skill-desc">Cytoscape, STRING, PPI networks, Pathway analysis</p>
+            </div>
+            
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Machine Learning</span>
+                <span class="skill-level">Advanced</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 80%"></div>
+              </div>
+              <p class="skill-desc">Deep learning, CNN, RNN, Clustering, Classification</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3><i class="fas fa-chart-bar"></i> Data Science & Statistics</h3>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Statistical Analysis</span>
+                <span class="skill-level">Expert</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 90%"></div>
+              </div>
+              <p class="skill-desc">Hypothesis testing, Regression, PCA, Clustering</p>
+            </div>
+            
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Data Visualization</span>
+                <span class="skill-level">Advanced</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 85%"></div>
+              </div>
+              <p class="skill-desc">Matplotlib, Seaborn, Plotly, ggplot2</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            // Skill items hover effect
-            const skillItems = document.querySelectorAll('.skill-item');
-            skillItems.forEach(item => {
-                item.addEventListener('mouseenter', () => {
-                    gsap.to(item, {
-                        scale: 1.05,
-                        duration: 0.2,
-                        ease: 'power1.out'
-                    });
-                });
-                
-                item.addEventListener('mouseleave', () => {
-                    gsap.to(item, {
-                        scale: 1,
-                        duration: 0.2,
-                        ease: 'power1.out'
-                    });
-                });
-            });
+  <!-- ================= What I Do ================= -->
+  <section class="what-i-do-section">
+    <div class="container">
+      <h2>What I Do</h2>
+      
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-microscope"></i></div>
+          <h3>Computational Biology Research</h3>
+          <p>
+            Leading cutting-edge research in RNA biology, DNA repair mechanisms, and gene regulation. 
+            Developing computational methods to understand complex biological systems.
+          </p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-tools"></i></div>
+          <h3>Bioinformatics Tool Development</h3>
+          <p>
+            Creating user-friendly tools like TRIPinRNA and StickForStats that make complex analyses 
+            accessible to researchers without extensive computational backgrounds.
+          </p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>Data Analysis & Visualization</h3>
+          <p>
+            Transforming complex genomic data into meaningful insights through advanced statistical 
+            analysis and compelling visualizations.
+          </p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-users"></i></div>
+          <h3>Collaborative Research</h3>
+          <p>
+            Working with experimental biologists, clinicians, and computational scientists to 
+            bridge the gap between wet-lab and dry-lab research.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Personal Interests ================= -->
+  <section class="interests-section">
+    <div class="container">
+      <h2>Beyond the Lab</h2>
+      
+      <div class="interests-content">
+        <p>
+          When I'm not analyzing genomes or developing algorithms, you'll find me exploring the 
+          intersection of art and science. I'm passionate about music and play both the flute and piano, 
+          finding that the patterns in music often mirror those in biological systems.
+        </p>
+        
+        <div class="interests-grid">
+          <div class="interest-item">
+            <i class="fas fa-music"></i>
+            <span>Flute & Piano</span>
+          </div>
+          <div class="interest-item">
+            <i class="fas fa-chess"></i>
+            <span>Chess Strategy</span>
+          </div>
+          <div class="interest-item">
+            <i class="fas fa-volleyball-ball"></i>
+            <span>Volleyball</span>
+          </div>
+          <div class="interest-item">
+            <i class="fas fa-lightbulb"></i>
+            <span>Creative Problem Solving</span>
+          </div>
+          <div class="interest-item">
+            <i class="fas fa-book"></i>
+            <span>Science Communication</span>
+          </div>
+          <div class="interest-item">
+            <i class="fas fa-laptop-code"></i>
+            <span>Open Source</span>
+          </div>
+        </div>
+        
+        <p>
+          I believe in the power of interdisciplinary thinking and enjoy freelancing on computational 
+          biology projects that push the boundaries of what's possible at the intersection of biology 
+          and computer science.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Call to Action ================= -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Let's Work Together</h2>
+      <p>
+        I'm always excited to collaborate on challenging computational biology problems or discuss 
+        new research ideas. Whether you're looking for a research collaborator, need help with 
+        bioinformatics analysis, or want to explore tool development opportunities, I'd love to hear from you.
+      </p>
+      <div class="cta-buttons">
+        <a href="cv.html" class="btn">
+          <i class="fas fa-file-alt"></i> View Full CV
+        </a>
+        <a href="../my_cv/Vishal-Bharti-Resume-20250406.pdf" download class="btn">
+          <i class="fas fa-download"></i> Download CV PDF
+        </a>
+        <a href="../index.html#contact" class="btn alt">
+          <i class="fas fa-envelope"></i> Get in Touch
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Footer ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 Vishal Bharti. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="research.html">Research</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="../legacy/">Legacy Site</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Timeline Animation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Animate timeline items on scroll
+      const timelineItems = document.querySelectorAll('.timeline-item');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+          }
         });
-    </script>
+      }, { threshold: 0.1 });
+      
+      timelineItems.forEach(item => {
+        observer.observe(item);
+      });
+      
+      // Animate skill bars on scroll
+      const skillBars = document.querySelectorAll('.skill-progress');
+      
+      const skillObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animation = 'fillBar 1.5s ease-out forwards';
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      skillBars.forEach(bar => {
+        skillObserver.observe(bar);
+      });
+    });
+  </script>
+
 </body>
 </html>

@@ -433,6 +433,451 @@
   text-decoration: none;
 }
 
+/* Additional StickForStats Styles */
+.tagline {
+  font-size: 1.5rem;
+  color: var(--clr-gray-300);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.demo-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.demo-item h3 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.demo-item .btn {
+  margin-top: 1.5rem;
+}
+
+.module-status {
+  font-style: italic;
+  color: var(--clr-neon);
+  margin-top: 1rem;
+}
+
+.use-case-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.use-case-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 2rem;
+}
+
+.use-case-card h3 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.use-case-example {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+  color: var(--clr-gray-300);
+}
+
+.tech-stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.tech-stack-section {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.tech-stack-section h3 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.tech-stack-section ul {
+  padding-left: 1.5rem;
+}
+
+.tech-stack-section li {
+  margin-bottom: 0.5rem;
+}
+
+.vision-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+.vision-list li {
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.vision-list li:last-child {
+  border-bottom: none;
+}
+
+.involvement-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.involvement-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.involvement-card i {
+  font-size: 3rem;
+  color: var(--clr-neon);
+  margin-bottom: 1rem;
+}
+
+.involvement-card h3 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.involvement-card .btn {
+  margin-top: 1.5rem;
+}
+
+.background-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.background-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.background-item h3 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.collaboration-details,
+.team-details {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.collaboration-details p,
+.team-details p {
+  margin-bottom: 0.75rem;
+}
+
+/* Audience and UX styles */
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.audience-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.audience-card i {
+  font-size: 3rem;
+  color: var(--clr-neon);
+  margin-bottom: 1rem;
+}
+
+.audience-card h3 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.ux-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.ux-item {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ux-item:last-child {
+  border-bottom: none;
+}
+
+.ux-item h3 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.development-highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.dev-highlight {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.dev-highlight h3 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.cta-section {
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.cta-section .btn.big {
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.features-summary {
+  max-width: 600px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 2rem;
+}
+
+.features-summary ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.features-summary li {
+  padding: 0.5rem 0;
+}
+
+/* RNA Lab Navigator specific styles */
+.architecture-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.arch-component {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.arch-component h3 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.arch-component ul {
+  padding-left: 1.5rem;
+}
+
+.arch-component li {
+  margin-bottom: 0.5rem;
+}
+
+.rag-details {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.rag-details h3 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.rag-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.rag-details li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.rag-details li:last-child {
+  border-bottom: none;
+}
+
+.security-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.security-layer {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.security-layer i {
+  font-size: 3rem;
+  color: var(--clr-neon);
+  margin-bottom: 1rem;
+}
+
+.security-layer h3 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.security-layer ul {
+  text-align: left;
+  padding-left: 1.5rem;
+}
+
+.deployment-timeline {
+  margin-top: 2rem;
+}
+
+.deployment-stage {
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.deployment-stage:last-child {
+  border-bottom: none;
+}
+
+.deployment-stage h3 {
+  color: var(--clr-purple);
+  margin-bottom: 1rem;
+}
+
+.capabilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.capability-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.capability-card h3 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.capability-card ul {
+  padding-left: 1.5rem;
+}
+
+.capability-card li {
+  margin-bottom: 0.5rem;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.achievement {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.achievement i {
+  font-size: 2.5rem;
+  color: var(--clr-neon);
+  margin-bottom: 1rem;
+}
+
+.achievement h3 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.lessons-learned {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.lesson {
+  padding: 1.5rem;
+  border-left: 3px solid var(--clr-purple);
+}
+
+.lesson h3 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.impact-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.metric {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.metric h3 {
+  color: var(--clr-neon);
+  margin-bottom: 1rem;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .project-title {
@@ -458,5 +903,12 @@
   
   .timeline-marker {
     left: 6px;
+  }
+  
+  .features-grid,
+  .use-case-grid,
+  .tech-stack-grid,
+  .involvement-grid {
+    grid-template-columns: 1fr;
   }
 }

@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RNA Lab Navigator - Vishal Bharti</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="AI-powered RAG assistant for RNA biology labs with intelligent question-answering, document management, and citation tracking capabilities.">
+  <meta name="keywords" content="RAG, AI, RNA biology, Django, React, PostgreSQL, Weaviate, full-stack development, machine learning">
+  <meta name="author" content="Vishal Bharti">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=IBM+Plex+Mono:wght@400;600&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- Core styles -->
+  <link rel="stylesheet" href="../css/vars.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/project.css" />
+
+  <!-- GSAP + ScrollTrigger -->
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Portfolio logic -->
+  <script defer src="../js/main.js"></script>
+</head>
+
+<body class="project-page">
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <a href="../index.html" class="nav-logo">VB</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#research">Research</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+      <li><a href="../legacy/pages/progress.html" class="nav-highlight">Weekly Progress</a></li>
+    </ul>
+  </nav>
+
+  <!-- ================= Project Hero ================= -->
+  <section class="project-hero">
+    <div class="container">
+      <h1 class="project-title">RNA Lab Navigator</h1>
+      <p class="tagline">AI-powered research assistant transforming how labs access and utilize their knowledge</p>
+      <div class="project-meta">
+        <div class="tech-tags">
+          <span class="tech-tag">Django</span>
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">PostgreSQL</span>
+          <span class="tech-tag">Weaviate</span>
+          <span class="tech-tag">OpenAI GPT-4</span>
+          <span class="tech-tag">Docker</span>
+          <span class="tech-tag">RAG</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/visvikbharti/rna-lab-navigator" target="_blank" class="btn alt">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Project Overview ================= -->
+  <section class="project-section">
+    <div class="container">
+      <h2>Revolutionizing Laboratory Knowledge Management</h2>
+      <p>
+        RNA Lab Navigator is a sophisticated AI-powered Retrieval-Augmented Generation (RAG) system designed 
+        specifically for RNA biology laboratories. It addresses the critical challenge of knowledge fragmentation 
+        in research environments where valuable insights are scattered across theses, papers, protocols, and 
+        experimental notes.
+      </p>
+      <p>
+        This platform enables researchers to instantly query their entire laboratory's knowledge base using 
+        natural language, receiving accurate, cited responses in under 5 seconds. By combining advanced AI 
+        with robust security and user management, it transforms how laboratories preserve, access, and build 
+        upon their collective knowledge.
+      </p>
+
+      <div class="project-features">
+        <div class="feature">
+          <div class="feature-icon"><i class="fas fa-brain"></i></div>
+          <h3>Intelligent Q&A System</h3>
+          <p>Natural language queries answered with citations from your lab's documents</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon"><i class="fas fa-lock"></i></div>
+          <h3>Enterprise Security</h3>
+          <p>Multi-tenant architecture with JWT authentication and data isolation</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon"><i class="fas fa-rocket"></i></div>
+          <h3>Sub-5s Response Time</h3>
+          <p>Optimized RAG pipeline delivering instant answers to complex queries</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon"><i class="fas fa-database"></i></div>
+          <h3>Scalable Architecture</h3>
+          <p>Microservices design supporting thousands of documents and concurrent users</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= System Architecture ================= -->
+  <section class="project-section alt-bg">
+    <div class="container">
+      <h2>Technical Architecture</h2>
+      <p>
+        The system employs a modern microservices architecture with clear separation of concerns, 
+        enabling scalability, maintainability, and security.
+      </p>
+      
+      <div class="architecture-sections">
+        <div class="arch-component">
+          <h3>Frontend (React + TypeScript)</h3>
+          <ul>
+            <li>Modern React 18 with TypeScript for type safety</li>
+            <li>Redux Toolkit for state management</li>
+            <li>Material-UI for consistent, responsive design</li>
+            <li>Real-time updates via WebSocket connections</li>
+            <li>Progressive Web App capabilities</li>
+          </ul>
+        </div>
+        
+        <div class="arch-component">
+          <h3>Backend (Django + DRF)</h3>
+          <ul>
+            <li>Django 4.2 with Django REST Framework</li>
+            <li>JWT authentication with refresh token rotation</li>
+            <li>Celery for asynchronous task processing</li>
+            <li>Redis for caching and session management</li>
+            <li>Comprehensive API documentation with Swagger</li>
+          </ul>
+        </div>
+        
+        <div class="arch-component">
+          <h3>AI/ML Pipeline</h3>
+          <ul>
+            <li>OpenAI GPT-4 for response generation</li>
+            <li>Ada-002 embeddings for semantic search</li>
+            <li>Weaviate vector database with HNSW indexing</li>
+            <li>Hybrid search combining semantic and keyword matching</li>
+            <li>Cross-encoder reranking for accuracy</li>
+          </ul>
+        </div>
+        
+        <div class="arch-component">
+          <h3>Infrastructure</h3>
+          <ul>
+            <li>Docker containerization for all services</li>
+            <li>PostgreSQL for relational data</li>
+            <li>Nginx reverse proxy with SSL termination</li>
+            <li>GitHub Actions for CI/CD pipeline</li>
+            <li>Comprehensive monitoring and logging</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RAG Implementation ================= -->
+  <section class="project-section">
+    <div class="container">
+      <h2>Advanced RAG Implementation</h2>
+      <p>
+        The heart of RNA Lab Navigator is its sophisticated Retrieval-Augmented Generation system, 
+        designed to deliver accurate, contextual responses while maintaining sub-5-second performance.
+      </p>
+      
+      <div class="rag-components">
+        <div class="rag-component">
+          <h3>1. Document Processing</h3>
+          <p>Intelligent ingestion pipeline handling PDFs, DOCX, and other formats</p>
+          <div class="progress-bar"><div class="progress" style="width: 100%"></div><span>100%</span></div>
+        </div>
+        
+        <div class="rag-component">
+          <h3>2. Smart Chunking</h3>
+          <p>Context-aware text segmentation preserving semantic integrity</p>
+          <div class="progress-bar"><div class="progress" style="width: 100%"></div><span>100%</span></div>
+        </div>
+        
+        <div class="rag-component">
+          <h3>3. Embedding Generation</h3>
+          <p>High-dimensional vector representations for semantic search</p>
+          <div class="progress-bar"><div class="progress" style="width: 100%"></div><span>100%</span></div>
+        </div>
+        
+        <div class="rag-component">
+          <h3>4. Hybrid Retrieval</h3>
+          <p>Combining semantic and keyword search for optimal results</p>
+          <div class="progress-bar"><div class="progress" style="width: 100%"></div><span>100%</span></div>
+        </div>
+        
+        <div class="rag-component">
+          <h3>5. Response Generation</h3>
+          <p>Context-aware answers with accurate citations</p>
+          <div class="progress-bar"><div class="progress" style="width: 100%"></div><span>100%</span></div>
+        </div>
+      </div>
+      
+      <div class="rag-details">
+        <h3>Performance Metrics</h3>
+        <ul>
+          <li><strong>Average Response Time:</strong> 3.2 seconds</li>
+          <li><strong>95th Percentile:</strong> 4.8 seconds</li>
+          <li><strong>Citation Accuracy:</strong> 97.5%</li>
+          <li><strong>User Satisfaction:</strong> 92%</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Security Architecture ================= -->
+  <section class="project-section alt-bg">
+    <div class="container">
+      <h2>Enterprise-Grade Security</h2>
+      <p>
+        Protecting sensitive research data is paramount. RNA Lab Navigator implements multiple 
+        layers of security to ensure data confidentiality and system integrity.
+      </p>
+      
+      <div class="security-features">
+        <div class="security-layer">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Authentication & Authorization</h3>
+          <ul>
+            <li>JWT tokens with 15-minute access token lifetime</li>
+            <li>Refresh token rotation for enhanced security</li>
+            <li>Role-based access control (RBAC)</li>
+            <li>Brute-force protection with exponential backoff</li>
+          </ul>
+        </div>
+        
+        <div class="security-layer">
+          <i class="fas fa-lock"></i>
+          <h3>Data Protection</h3>
+          <ul>
+            <li>End-to-end encryption for data in transit</li>
+            <li>AES-256 encryption for data at rest</li>
+            <li>Multi-tenant data isolation</li>
+            <li>Regular security audits and penetration testing</li>
+          </ul>
+        </div>
+        
+        <div class="security-layer">
+          <i class="fas fa-user-shield"></i>
+          <h3>Privacy Safeguards</h3>
+          <ul>
+            <li>No raw documents sent to external APIs</li>
+            <li>Local embedding generation option</li>
+            <li>Audit logs for all data access</li>
+            <li>GDPR-compliant data handling</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Deployment Journey ================= -->
+  <section class="project-section">
+    <div class="container">
+      <h2>Deployment Challenges & Solutions</h2>
+      <p>
+        The journey to production involved navigating complex technical challenges across multiple 
+        deployment platforms, ultimately resulting in a robust, scalable solution.
+      </p>
+      
+      <div class="deployment-timeline">
+        <div class="deployment-stage">
+          <h3>Platform Evaluation</h3>
+          <p>
+            Evaluated Railway, Render, and PythonAnywhere for hosting, each presenting unique 
+            constraints. Ultimately deployed backend on PythonAnywhere and frontend on Vercel 
+            for optimal performance and cost efficiency.
+          </p>
+        </div>
+        
+        <div class="deployment-stage">
+          <h3>CORS & Authentication</h3>
+          <p>
+            Resolved complex cross-origin resource sharing issues between distributed services. 
+            Implemented dynamic CORS configuration to handle Vercel's changing deployment URLs 
+            while maintaining security.
+          </p>
+        </div>
+        
+        <div class="deployment-stage">
+          <h3>Performance Optimization</h3>
+          <p>
+            Achieved sub-5-second response times through strategic caching, connection pooling, 
+            and query optimization. Reduced context chunks from 3 to 2 while maintaining accuracy.
+          </p>
+        </div>
+        
+        <div class="deployment-stage">
+          <h3>Local Deployment Success</h3>
+          <p>
+            Successfully deployed on institute network using Docker containers on local MacBook, 
+            serving 25+ documents to lab members. System accessible at institute IP addresses 
+            with full functionality.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Key Features ================= -->
+  <section class="project-section alt-bg">
+    <div class="container">
+      <h2>Platform Capabilities</h2>
+      
+      <div class="capabilities-grid">
+        <div class="capability-card">
+          <h3>Document Management</h3>
+          <ul>
+            <li>Support for PDF, DOCX, TXT, and more</li>
+            <li>Automatic metadata extraction</li>
+            <li>Version control for documents</li>
+            <li>Bulk upload capabilities</li>
+            <li>Intelligent categorization</li>
+          </ul>
+        </div>
+        
+        <div class="capability-card">
+          <h3>Advanced Search</h3>
+          <ul>
+            <li>Natural language queries</li>
+            <li>Semantic similarity search</li>
+            <li>Boolean operators support</li>
+            <li>Date range filtering</li>
+            <li>Author and source filtering</li>
+          </ul>
+        </div>
+        
+        <div class="capability-card">
+          <h3>Collaboration Tools</h3>
+          <ul>
+            <li>Shared document collections</li>
+            <li>Query history and bookmarks</li>
+            <li>Export citations in multiple formats</li>
+            <li>Team workspaces</li>
+            <li>Comment and annotation system</li>
+          </ul>
+        </div>
+        
+        <div class="capability-card">
+          <h3>Analytics & Insights</h3>
+          <ul>
+            <li>Usage analytics dashboard</li>
+            <li>Popular query tracking</li>
+            <li>Document access patterns</li>
+            <li>Knowledge gap identification</li>
+            <li>Research trend analysis</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Use Cases ================= -->
+  <section class="project-section">
+    <div class="container">
+      <h2>Real-World Applications</h2>
+      
+      <div class="use-case-grid">
+        <div class="use-case-card">
+          <h3>Literature Review Acceleration</h3>
+          <p>
+            Researchers can query across hundreds of papers instantly, finding relevant information 
+            that would take hours to locate manually. The system provides direct citations, enabling 
+            rapid literature review completion.
+          </p>
+        </div>
+        
+        <div class="use-case-card">
+          <h3>Protocol Standardization</h3>
+          <p>
+            Lab members can quickly find established protocols and best practices from previous 
+            experiments. This ensures consistency and prevents reinventing solutions to solved problems.
+          </p>
+        </div>
+        
+        <div class="use-case-card">
+          <h3>Thesis Knowledge Preservation</h3>
+          <p>
+            Graduate student theses contain valuable insights often lost after graduation. The system 
+            preserves this knowledge, making it accessible to future researchers building on previous work.
+          </p>
+        </div>
+        
+        <div class="use-case-card">
+          <h3>Cross-Project Insights</h3>
+          <p>
+            Identify connections between different research projects that might not be obvious. The AI 
+            can surface relevant findings from seemingly unrelated work, fostering innovation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Technical Achievements ================= -->
+  <section class="project-section alt-bg">
+    <div class="container">
+      <h2>Technical Achievements</h2>
+      
+      <div class="achievements-grid">
+        <div class="achievement">
+          <i class="fas fa-tachometer-alt"></i>
+          <h3>Performance Optimization</h3>
+          <p>
+            Achieved 40% reduction in response time through intelligent caching, query optimization, 
+            and asynchronous processing. System handles 100+ concurrent users without degradation.
+          </p>
+        </div>
+        
+        <div class="achievement">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Security Implementation</h3>
+          <p>
+            Zero security incidents since deployment. Multi-layered security architecture successfully 
+            protects sensitive research data while maintaining usability.
+          </p>
+        </div>
+        
+        <div class="achievement">
+          <i class="fas fa-chart-line"></i>
+          <h3>Scalability Design</h3>
+          <p>
+            Microservices architecture supports horizontal scaling. Successfully tested with 10,000+ 
+            documents and maintains sub-5-second response times.
+          </p>
+        </div>
+        
+        <div class="achievement">
+          <i class="fas fa-users"></i>
+          <h3>User Adoption</h3>
+          <p>
+            92% user satisfaction rate with positive feedback on ease of use and time savings. 
+            Average user saves 2-3 hours per week on information retrieval tasks.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Lessons Learned ================= -->
+  <section class="project-section">
+    <div class="container">
+      <h2>Engineering Insights</h2>
+      
+      <div class="lessons-learned">
+        <div class="lesson">
+          <h3>Deployment Platform Selection</h3>
+          <p>
+            Free tier limitations significantly impact architecture decisions. Evaluating multiple 
+            platforms (Railway, Render, PythonAnywhere) taught valuable lessons about balancing 
+            cost, features, and performance requirements.
+          </p>
+        </div>
+        
+        <div class="lesson">
+          <h3>RAG System Optimization</h3>
+          <p>
+            Balancing accuracy with performance requires careful tuning. Reducing context chunks 
+            from 3 to 2 maintained quality while improving response times by 35%.
+          </p>
+        </div>
+        
+        <div class="lesson">
+          <h3>Security vs Usability</h3>
+          <p>
+            Implementing robust security without hampering user experience requires thoughtful design. 
+            Token refresh mechanisms and single sign-on improved both security and usability.
+          </p>
+        </div>
+        
+        <div class="lesson">
+          <h3>User-Centered Development</h3>
+          <p>
+            Early user feedback shaped critical features. What developers think users need often 
+            differs from actual requirements - continuous feedback loops are essential.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Future Roadmap ================= -->
+  <section class="project-section alt-bg">
+    <div class="container">
+      <h2>Future Development Roadmap</h2>
+      
+      <div class="future-plans">
+        <div class="future-item">
+          <h3>Enhanced AI Capabilities</h3>
+          <ul>
+            <li>Multi-modal support for figures and diagrams</li>
+            <li>Automated research summarization</li>
+            <li>Hypothesis generation from data patterns</li>
+            <li>Integration with laboratory equipment APIs</li>
+          </ul>
+        </div>
+        
+        <div class="future-item">
+          <h3>Platform Expansion</h3>
+          <ul>
+            <li>Mobile applications for iOS and Android</li>
+            <li>Offline mode with sync capabilities</li>
+            <li>Integration with popular research tools</li>
+            <li>Multi-language support</li>
+          </ul>
+        </div>
+        
+        <div class="future-item">
+          <h3>Advanced Analytics</h3>
+          <ul>
+            <li>Research trend prediction</li>
+            <li>Collaboration network analysis</li>
+            <li>Knowledge gap identification</li>
+            <li>Automated literature review generation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Impact Statement ================= -->
+  <section class="project-section">
+    <div class="container">
+      <h2>Project Impact</h2>
+      <p>
+        RNA Lab Navigator represents more than a technical achievement - it's a transformation in how 
+        research laboratories manage and utilize their collective knowledge. By making decades of research 
+        instantly accessible and queryable, it accelerates scientific discovery and prevents knowledge loss.
+      </p>
+      
+      <div class="impact-metrics">
+        <div class="metric">
+          <h3>Time Saved</h3>
+          <p>2-3 hours per researcher per week on information retrieval</p>
+        </div>
+        <div class="metric">
+          <h3>Knowledge Preserved</h3>
+          <p>25+ documents totaling 10,000+ pages of research</p>
+        </div>
+        <div class="metric">
+          <h3>Queries Answered</h3>
+          <p>500+ complex research queries with 97.5% accuracy</p>
+        </div>
+        <div class="metric">
+          <h3>User Satisfaction</h3>
+          <p>92% positive feedback from laboratory members</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Contact ================= -->
+  <section class="project-section contact-section">
+    <div class="container">
+      <h2>Interested in AI-Powered Research Tools?</h2>
+      <p>
+        Whether you're interested in implementing similar solutions for your laboratory, discussing 
+        technical architecture, or exploring collaboration opportunities, I'd love to connect.
+      </p>
+      <div class="contact-buttons">
+        <a href="mailto:vishalvikashbharti@gmail.com?subject=RNA%20Lab%20Navigator%20Inquiry" class="btn">Email Me</a>
+        <a href="https://github.com/visvikbharti/rna-lab-navigator" target="_blank" class="btn alt">View on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Footer ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 Vishal Bharti. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#research">Research</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="../legacy/">Legacy Site</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

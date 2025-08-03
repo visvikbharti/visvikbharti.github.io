@@ -1,0 +1,351 @@
+/* ----- Research Page Styles ----- */
+
+/* Base Styles */
+.research-page {
+  background-color: var(--clr-bg-dark);
+  color: var(--clr-gray-300);
+  padding-top: 60px; /* Space for fixed nav */
+}
+
+/* Research Hero */
+.research-hero {
+  padding: 6rem 0 4rem;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8), var(--clr-bg-dark));
+  text-align: center;
+}
+
+.research-title {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  color: white;
+  font-weight: 700;
+}
+
+.research-description {
+  font-size: 1.3rem;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Research Section */
+.research-section {
+  padding: 4rem 0;
+}
+
+.research-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+.research-section p {
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+  max-width: 85ch;
+}
+
+.alt-bg {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Research Interests */
+.research-interests {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.interest-tag {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.interest-tag:hover {
+  background: var(--clr-purple);
+  transform: translateY(-2px);
+}
+
+/* Publications Grid */
+.publications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.publication-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 2rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.publication-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.publication-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.publication-year {
+  color: var(--clr-neon);
+  font-weight: 600;
+}
+
+.publication-type {
+  font-size: 0.85rem;
+  color: var(--clr-purple);
+}
+
+.publication-card h3 {
+  color: white;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.authors {
+  color: var(--clr-gray-300);
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.authors strong {
+  color: var(--clr-neon);
+}
+
+.journal {
+  font-style: italic;
+  color: var(--clr-purple);
+  margin-bottom: 1rem;
+}
+
+.publication-description {
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.publication-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.pub-link {
+  padding: 0.5rem 1rem;
+  background: var(--clr-purple);
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.pub-link:hover {
+  background: var(--clr-pink);
+}
+
+.pub-link.alt {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.pub-link.alt:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Presentations */
+.presentations {
+  margin-top: 3rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.presentations h3 {
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.presentation-item h4 {
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.presentation-details {
+  color: var(--clr-gray-300);
+  line-height: 1.6;
+}
+
+/* Projects Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.project-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.project-icon {
+  font-size: 3rem;
+  color: var(--clr-neon);
+  margin-bottom: 1.5rem;
+}
+
+.project-card h3 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.project-card p {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.project-link {
+  color: var(--clr-purple);
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.project-link:hover {
+  color: var(--clr-pink);
+}
+
+/* Methodology Grid */
+.methodology-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.methodology-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.methodology-icon {
+  font-size: 2.5rem;
+  color: var(--clr-purple);
+  margin-bottom: 1rem;
+}
+
+.methodology-card h3 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 3rem auto;
+}
+
+.timeline-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+  border-left: 3px solid var(--clr-purple);
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -8px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--clr-neon);
+  box-shadow: 0 0 10px var(--clr-neon);
+}
+
+.timeline-content h3 {
+  color: var(--clr-purple);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-content h4 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+/* Collaborations */
+.collaborations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.collaboration-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 2rem;
+}
+
+.collaboration-card h3 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.collaboration-cta {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 1.1rem;
+}
+
+.collaboration-cta a {
+  color: var(--clr-neon);
+}
+
+/* Contact Section */
+.contact-section {
+  text-align: center;
+}
+
+.contact-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .research-title {
+    font-size: 3rem;
+  }
+  
+  .research-description {
+    font-size: 1.1rem;
+  }
+  
+  .publications-grid,
+  .projects-grid,
+  .methodology-grid,
+  .collaborations-grid {
+    grid-template-columns: 1fr;
+  }
+}

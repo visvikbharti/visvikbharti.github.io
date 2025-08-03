@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>G-Quadruplexes in CCN1 Regulation - Vishal Bharti</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Research on IGF2BP1-mediated regulation of CCN1 expression through G-quadruplex structures in the 3'UTR, with implications for gene regulation mechanisms.">
+  <meta name="keywords" content="G-quadruplex, CCN1, IGF2BP1, RNA structure, gene regulation, proteomics, computational biology">
+  <meta name="author" content="Vishal Bharti">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=IBM+Plex+Mono:wght@400;600&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- Core styles -->
+  <link rel="stylesheet" href="../css/vars.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/project.css" />
+
+  <!-- GSAP + ScrollTrigger -->
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Portfolio logic -->
+  <script defer src="../js/main.js"></script>
+</head>
+
+<body class="project-page">
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <a href="../index.html" class="nav-logo">VB</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#research">Research</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+      <li><a href="../legacy/pages/progress.html" class="nav-highlight">Weekly Progress</a></li>
+    </ul>
+  </nav>
+
+  <!-- ================= Project Hero ================= -->
+  <section class="project-hero">
+    <div class="container">
+      <h1 class="project-title">G-Quadruplexes in CCN1 Regulation</h1>
+      <div class="project-meta">
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Proteomics</span>
+          <span class="tech-tag">RNA Biology</span>
+          <span class="tech-tag">G-Quadruplex</span>
+          <span class="tech-tag">Gene Regulation</span>
+        </div>
+        <div class="project-links">
+          <a href="https://doi.org/10.1021/acs.biochem.4c00172" target="_blank" class="btn">View Publication</a>
+          <a href="https://github.com/visvikbharti/" target="_blank" class="btn alt">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Project Overview ================= -->
+  <section class="project-section">
+    <div class="container">
+      <h2>Project Overview</h2>
+      <p>
+        G-quadruplexes (G4s) are non-canonical nucleic acid secondary structures formed by guanine-rich sequences 
+        that play crucial roles in regulating gene expression. This research investigates how IGF2BP1 protein 
+        specifically recognizes and binds to G-quadruplex structures in the 3' untranslated region (3'UTR) of 
+        the CCN1 gene, influencing its expression and cellular functions.
+      </p>
+      <p>
+        As the lead computational analyst for this project, I conducted comprehensive bioinformatics analyses, 
+        analyzed proteomics data, and helped design further experiments to understand the molecular mechanisms 
+        of G-quadruplex-mediated gene regulation. This work provides new insights into post-transcriptional 
+        regulation and the functional importance of RNA secondary structures.
+      </p>
+
+      <div class="project-features">
+        <div class="feature">
+          <div class="feature-icon"><i class="fas fa-dna"></i></div>
+          <h3>G4 Structure Prediction</h3>
+          <p>Computational identification and validation of G-quadruplex forming sequences in the CCN1 3'UTR</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon"><i class="fas fa-project-diagram"></i></div>
+          <h3>Protein Interaction Analysis</h3>
+          <p>Characterization of IGF2BP1 binding specificity to G-quadruplex structures</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon"><i class="fas fa-chart-bar"></i></div>
+          <h3>Proteomics Analysis</h3>
+          <p>Comprehensive analysis of protein complexes associated with G-quadruplex structures</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon"><i class="fas fa-microscope"></i></div>
+          <h3>Functional Validation</h3>
+          <p>Integration of computational predictions with experimental validation</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Scientific Background ================= -->
+  <section class="project-section alt-bg">
+    <div class="container">
+      <h2>Scientific Background</h2>
+      <p>
+        CCN1 (Cellular Communication Network Factor 1) is a matricellular protein involved in cell adhesion, 
+        migration, proliferation, and survival. Its dysregulation is associated with various pathological 
+        conditions including cancer, fibrosis, and inflammatory diseases. Understanding the regulatory 
+        mechanisms controlling CCN1 expression is therefore of significant biomedical importance.
+      </p>
+      
+      <div class="background-sections">
+        <div class="background-item">
+          <h3>G-Quadruplex Structures</h3>
+          <p>
+            G-quadruplexes are four-stranded nucleic acid structures formed by sequences rich in guanine. 
+            These structures are stabilized by Hoogsteen hydrogen bonding between guanines arranged in 
+            planar tetrads. In RNA, G-quadruplexes can regulate various processes including translation, 
+            RNA stability, and localization.
+          </p>
+        </div>
+        
+        <div class="background-item">
+          <h3>IGF2BP1 Function</h3>
+          <p>
+            IGF2BP1 (Insulin-like Growth Factor 2 mRNA-Binding Protein 1) is an RNA-binding protein that 
+            regulates mRNA stability, localization, and translation. It plays crucial roles in embryonic 
+            development and is often reactivated in cancer, where it promotes oncogenic processes.
+          </p>
+        </div>
+        
+        <div class="background-item">
+          <h3>Post-Transcriptional Regulation</h3>
+          <p>
+            The 3'UTR of mRNAs contains regulatory elements that control gene expression post-transcriptionally. 
+            G-quadruplex structures in 3'UTRs can serve as binding platforms for specific proteins, influencing 
+            mRNA fate and protein production.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Computational Methods ================= -->
+  <section class="project-section">
+    <div class="container">
+      <h2>Computational Approach</h2>
+      
+      <div class="approach-steps">
+        <div class="approach-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>G-Quadruplex Prediction</h3>
+            <p>
+              Utilized multiple computational tools including QGRS Mapper and G4Hunter to identify potential 
+              G-quadruplex forming sequences in the CCN1 3'UTR. Analyzed sequence conservation across species 
+              to identify evolutionarily preserved G4 motifs.
+            </p>
+          </div>
+        </div>
+        
+        <div class="approach-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Structural Modeling</h3>
+            <p>
+              Performed molecular modeling of predicted G-quadruplex structures using computational tools to 
+              understand their topology and stability. Analyzed different G4 conformations and their potential 
+              for protein recognition.
+            </p>
+          </div>
+        </div>
+        
+        <div class="approach-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Proteomics Data Analysis</h3>
+            <p>
+              Analyzed mass spectrometry data to identify proteins specifically enriched in G-quadruplex 
+              pull-down experiments. Performed statistical analysis to distinguish specific binders from 
+              background proteins.
+            </p>
+          </div>
+        </div>
+        
+        <div class="approach-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Network Analysis</h3>
+            <p>
+              Constructed protein-protein interaction networks to understand the functional relationships 
+              between G4-binding proteins. Identified regulatory modules and pathways affected by 
+              G-quadruplex-mediated regulation.
+            </p>
+          </div>
+        </div>
+        
+        <div class="approach-step">
+          <div class="step-number">5</div>
+          <div class="step-content">
+            <h3>Expression Correlation</h3>
+            <p>
+              Analyzed gene expression data to correlate CCN1 levels with IGF2BP1 expression across 
+              different cellular contexts and cancer types, revealing the biological relevance of 
+              this regulatory mechanism.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Key Findings ================= -->
+  <section class="project-section alt-bg">
+    <div class="container">
+      <h2>Major Discoveries</h2>
+      
+      <div class="findings-grid">
+        <div class="finding-card">
+          <div class="finding-icon"><i class="fas fa-dna"></i></div>
+          <h3>G4 Structure in CCN1 3'UTR</h3>
+          <p>
+            Identified and validated a stable G-quadruplex structure in the CCN1 3'UTR that serves as 
+            a regulatory element. This structure is conserved across mammalian species, suggesting 
+            functional importance.
+          </p>
+        </div>
+        
+        <div class="finding-card">
+          <div class="finding-icon"><i class="fas fa-link"></i></div>
+          <h3>Specific IGF2BP1 Binding</h3>
+          <p>
+            Demonstrated that IGF2BP1 specifically recognizes and binds to the G-quadruplex structure 
+            in CCN1 3'UTR, distinguishing it from linear RNA sequences. This binding stabilizes the 
+            mRNA and enhances CCN1 expression.
+          </p>
+        </div>
+        
+        <div class="finding-card">
+          <div class="finding-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>Expression Regulation</h3>
+          <p>
+            Revealed that IGF2BP1-G4 interaction positively regulates CCN1 expression, with disruption 
+            of the G-quadruplex structure leading to decreased CCN1 levels and altered cellular functions.
+          </p>
+        </div>
+        
+        <div class="finding-card">
+          <div class="finding-icon"><i class="fas fa-microscope"></i></div>
+          <h3>Cellular Phenotypes</h3>
+          <p>
+            Showed that modulation of the IGF2BP1-G4-CCN1 axis affects cell migration, proliferation, 
+            and survival, particularly in cancer cells where this pathway is often dysregulated.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Technical Details ================= -->
+  <section class="project-section">
+    <div class="container">
+      <h2>Technical Implementation</h2>
+      
+      <div class="tech-details">
+        <div class="tech-detail">
+          <h3>Computational Tools</h3>
+          <ul>
+            <li><strong>QGRS Mapper:</strong> G-quadruplex prediction</li>
+            <li><strong>G4Hunter:</strong> G4 propensity analysis</li>
+            <li><strong>RNAfold:</strong> Secondary structure prediction</li>
+            <li><strong>PyMOL:</strong> Structural visualization</li>
+            <li><strong>Cytoscape:</strong> Network analysis</li>
+          </ul>
+        </div>
+        
+        <div class="tech-detail">
+          <h3>Data Analysis</h3>
+          <ul>
+            <li><strong>Proteomics:</strong> MaxQuant for MS data processing</li>
+            <li><strong>Statistics:</strong> R/Python for data analysis</li>
+            <li><strong>Expression:</strong> TCGA and GTEx database mining</li>
+            <li><strong>Conservation:</strong> Multiple sequence alignment</li>
+          </ul>
+        </div>
+        
+        <div class="tech-detail">
+          <h3>Validation Methods</h3>
+          <ul>
+            <li><strong>Circular Dichroism:</strong> G4 structure confirmation</li>
+            <li><strong>RNA Pull-down:</strong> Protein binding validation</li>
+            <li><strong>RT-qPCR:</strong> Expression analysis</li>
+            <li><strong>Cell-based Assays:</strong> Functional validation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Research Impact ================= -->
+  <section class="project-section alt-bg">
+    <div class="container">
+      <h2>Scientific Impact</h2>
+      <p>
+        This research contributes to our understanding of RNA-based gene regulation and has implications 
+        for both basic biology and therapeutic development.
+      </p>
+      
+      <div class="impact-grid">
+        <div class="impact-card">
+          <h3>Novel Regulatory Mechanism</h3>
+          <p>
+            Established a new paradigm for post-transcriptional regulation where G-quadruplex structures 
+            serve as specific recognition elements for RNA-binding proteins, expanding our understanding 
+            of 3'UTR-mediated gene control.
+          </p>
+        </div>
+        
+        <div class="impact-card">
+          <h3>Therapeutic Targets</h3>
+          <p>
+            The IGF2BP1-G4-CCN1 axis represents a potential therapeutic target, particularly in cancers 
+            where IGF2BP1 is overexpressed. Small molecules targeting this interaction could modulate 
+            CCN1 levels for therapeutic benefit.
+          </p>
+        </div>
+        
+        <div class="impact-card">
+          <h3>Biomarker Potential</h3>
+          <p>
+            The expression correlation between IGF2BP1 and CCN1 could serve as a biomarker for disease 
+            states, particularly in cancers and fibrotic diseases where both proteins are dysregulated.
+          </p>
+        </div>
+        
+        <div class="impact-card">
+          <h3>Broader Implications</h3>
+          <p>
+            This work suggests that G-quadruplex-protein interactions may be a widespread regulatory 
+            mechanism, opening new avenues for investigating similar structures in other disease-relevant genes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Publication ================= -->
+  <section class="project-section">
+    <div class="container">
+      <h2>Publication</h2>
+      
+      <div class="publication-highlight">
+        <h3>IGF2BP1-Mediated Regulation of CCN1 Expression by Specific Binding to G-Quadruplex Structure in its 3´UTR</h3>
+        <p class="authors">Prachi Rana, Upasana Rajat, <strong>Vishal Bharti</strong>, Saumya Dash, Peeyush Saharan, Akhilesh K. Yadav, Mary Krishna Ekka*, and Debojyoti Chakraborty*</p>
+        <p class="journal">Biochemistry (2024)</p>
+        <p class="abstract">
+          <strong>Abstract:</strong> The 3' untranslated regions (3'UTRs) of mRNAs are critical for regulating 
+          mRNA stability, localization, and translation. Here, we report that IGF2BP1 specifically binds to a 
+          G-quadruplex structure in the 3'UTR of CCN1 mRNA, enhancing its stability and expression. Using a 
+          combination of biophysical, biochemical, and cellular approaches, we demonstrate that this interaction 
+          is crucial for CCN1-mediated cellular functions including migration and proliferation. Our proteomics 
+          analysis reveals that IGF2BP1 is the primary G-quadruplex-binding protein for this element. 
+          Disruption of the G-quadruplex structure or depletion of IGF2BP1 leads to decreased CCN1 expression 
+          and impaired cellular functions. These findings establish a new regulatory mechanism where G-quadruplex 
+          structures serve as platforms for specific protein recognition in post-transcriptional gene regulation.
+        </p>
+        <div class="publication-links">
+          <a href="https://doi.org/10.1021/acs.biochem.4c00172" target="_blank" class="btn">View Full Paper</a>
+          <a href="https://github.com/visvikbharti/" target="_blank" class="btn alt">
+            <i class="fab fa-github"></i> Analysis Code
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Future Directions ================= -->
+  <section class="project-section alt-bg">
+    <div class="container">
+      <h2>Future Research Directions</h2>
+      
+      <div class="future-directions">
+        <div class="direction-item">
+          <h3>Genome-wide G4 Mapping</h3>
+          <p>
+            Expanding the analysis to identify all G-quadruplex structures in 3'UTRs that are recognized 
+            by IGF2BP1 and other RNA-binding proteins, creating a comprehensive map of G4-mediated regulation.
+          </p>
+        </div>
+        
+        <div class="direction-item">
+          <h3>Drug Discovery</h3>
+          <p>
+            Developing small molecule inhibitors that can specifically disrupt the IGF2BP1-G4 interaction 
+            as potential therapeutic agents for cancers where this pathway is dysregulated.
+          </p>
+        </div>
+        
+        <div class="direction-item">
+          <h3>Structural Biology</h3>
+          <p>
+            Determining the high-resolution structure of the IGF2BP1-G4 complex to understand the molecular 
+            basis of recognition and guide rational drug design efforts.
+          </p>
+        </div>
+        
+        <div class="direction-item">
+          <h3>Clinical Translation</h3>
+          <p>
+            Investigating the IGF2BP1-G4-CCN1 axis in patient samples to validate its relevance in human 
+            disease and explore its potential as a therapeutic target or biomarker.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Contact ================= -->
+  <section class="project-section contact-section">
+    <div class="container">
+      <h2>Interested in RNA Structure Research?</h2>
+      <p>
+        If you're interested in learning more about G-quadruplex biology, RNA-protein interactions, 
+        or computational approaches to studying RNA structure, feel free to reach out.
+      </p>
+      <div class="contact-buttons">
+        <a href="mailto:vishalvikashbharti@gmail.com?subject=G-Quadruplex%20Research%20Inquiry" class="btn">Email Me</a>
+        <a href="https://github.com/visvikbharti/" target="_blank" class="btn alt">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Footer ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 Vishal Bharti. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#research">Research</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="../legacy/">Legacy Site</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

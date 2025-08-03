@@ -1,0 +1,441 @@
+/* ----- Publications Page Styles ----- */
+
+/* Base Styles */
+.publications-page {
+  background-color: var(--clr-bg-dark);
+  color: var(--clr-gray-300);
+  padding-top: 60px;
+}
+
+/* Publications Hero */
+.publications-hero {
+  padding: 6rem 0 4rem;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8), var(--clr-bg-dark)), 
+              url('../assets/portraits/code-bg.jpg') no-repeat center center;
+  background-size: cover;
+  text-align: center;
+}
+
+.publications-title {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: white;
+  font-weight: 700;
+}
+
+.publications-description {
+  font-size: 1.3rem;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+
+.publication-stats {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--clr-neon);
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: var(--clr-gray-300);
+}
+
+/* Filter Section */
+.filter-section {
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--clr-gray-300);
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+}
+
+.filter-btn:hover {
+  border-color: var(--clr-purple);
+  color: var(--clr-purple);
+}
+
+.filter-btn.active {
+  background: var(--clr-purple);
+  color: white;
+  border-color: var(--clr-purple);
+}
+
+/* Publications Section */
+.publications-section {
+  padding: 4rem 0;
+}
+
+.publications-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: white;
+  text-align: center;
+}
+
+/* Publication Items */
+.publication-item {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 15px;
+  padding: 2rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.publication-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.pub-year {
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--clr-purple);
+  margin-top: 0.5rem;
+}
+
+.pub-content {
+  flex-grow: 1;
+}
+
+.publication-item h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: white;
+  line-height: 1.4;
+}
+
+.authors {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.author {
+  color: var(--clr-gray-300);
+}
+
+.author.me {
+  font-weight: 600;
+  color: var(--clr-neon);
+}
+
+.contribution {
+  font-size: 0.85rem;
+  color: var(--clr-purple);
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.journal-info {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.journal {
+  font-weight: 600;
+  color: white;
+}
+
+.year {
+  color: var(--clr-gray-300);
+}
+
+.doi {
+  color: var(--clr-purple);
+}
+
+.conference,
+.location {
+  color: var(--clr-gray-300);
+}
+
+/* Abstract */
+.abstract {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.abstract h4 {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.abstract p {
+  line-height: 1.7;
+  text-align: justify;
+}
+
+/* Publication Actions */
+.publication-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.pub-btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.pub-btn.primary {
+  background: var(--clr-purple);
+  color: white;
+}
+
+.pub-btn.primary:hover {
+  background: var(--clr-pink);
+  transform: translateY(-2px);
+}
+
+.pub-btn.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--clr-gray-300);
+}
+
+.pub-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+/* Citation Box */
+.citation-box {
+  margin-top: 1.5rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.citation-box h4 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.citation-format {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.citation-format label {
+  font-weight: 600;
+}
+
+.citation-format-select {
+  padding: 0.4rem 0.8rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.citation-text {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: 5px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.copy-citation {
+  padding: 0.5rem 1rem;
+  background: var(--clr-purple);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.copy-citation:hover {
+  background: var(--clr-pink);
+}
+
+/* Research Metrics */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto 3rem;
+}
+
+.metric-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+}
+
+.metric-icon {
+  font-size: 3rem;
+  color: var(--clr-neon);
+  margin-bottom: 1rem;
+}
+
+.metric-card h3 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.metric-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--clr-purple);
+  margin-bottom: 0.5rem;
+}
+
+/* Profiles Section */
+.profiles-section {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.profiles-section h3 {
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.profile-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.profile-btn {
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--clr-gray-300);
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.profile-btn:hover {
+  background: var(--clr-purple);
+  color: white;
+  border-color: var(--clr-purple);
+}
+
+/* Contact Section */
+.contact-section {
+  text-align: center;
+}
+
+.contact-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .publications-title {
+    font-size: 3rem;
+  }
+  
+  .publications-description {
+    font-size: 1.1rem;
+  }
+  
+  .publication-item {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .pub-year {
+    font-size: 1.2rem;
+  }
+  
+  .publication-item h3 {
+    font-size: 1.3rem;
+  }
+  
+  .journal-info {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .publication-actions {
+    flex-direction: column;
+  }
+  
+  .pub-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+}

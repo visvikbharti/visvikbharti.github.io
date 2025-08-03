@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publications - Vishal Bharti</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Publications by Vishal Bharti in bioinformatics, RNA biology, computational genomics, and statistical methods. Access full papers and citations.">
+  <meta name="keywords" content="publications, research papers, bioinformatics, RNA biology, computational genomics, peer-reviewed">
+  <meta name="author" content="Vishal Bharti">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=IBM+Plex+Mono:wght@400;600&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- Core styles -->
+  <link rel="stylesheet" href="../css/vars.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/publications.css" />
+
+  <!-- GSAP + ScrollTrigger -->
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Portfolio logic -->
+  <script defer src="../js/main.js"></script>
+</head>
+
+<body class="publications-page">
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <a href="../index.html" class="nav-logo">VB</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="#" class="active">Publications</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+      <li><a href="../legacy/pages/progress.html" class="nav-highlight">Weekly Progress</a></li>
+    </ul>
+  </nav>
+
+  <!-- ================= Publications Hero ================= -->
+  <section class="publications-hero">
+    <div class="container">
+      <h1 class="publications-title">Publications</h1>
+      <p class="publications-description">
+        My research contributions to the field of bioinformatics and computational biology, 
+        featuring peer-reviewed articles and manuscripts under review.
+      </p>
+      <div class="publication-stats">
+        <div class="stat-item">
+          <span class="stat-number">2</span>
+          <span class="stat-label">Peer-Reviewed Articles</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">2</span>
+          <span class="stat-label">Manuscripts Under Review</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">1</span>
+          <span class="stat-label">Conference Presentation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Filter Section ================= -->
+  <section class="filter-section">
+    <div class="container">
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All Publications</button>
+        <button class="filter-btn" data-filter="published">Published</button>
+        <button class="filter-btn" data-filter="review">Under Review</button>
+        <button class="filter-btn" data-filter="conference">Conference</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Peer-Reviewed Publications ================= -->
+  <section class="publications-section">
+    <div class="container">
+      <h2>Peer-Reviewed Publications</h2>
+      
+      <div class="publication-item published" data-year="2024">
+        <div class="pub-year">2024</div>
+        <div class="pub-content">
+          <h3>Development of an In Silico Platform (TRIPinRNA) for the Identification of Novel RNA Intramolecular Triple Helices and Their Validation Using Biophysical Techniques</h3>
+          
+          <div class="authors">
+            <span class="author">Isha Rakheja<sup>*</sup></span>, 
+            <span class="author me">Vishal Bharti<sup>*</sup></span>, 
+            <span class="author">Souvik Maiti</span>, 
+            <span class="author">Debojyoti Chakraborty</span>
+            <div class="contribution">* Equal contribution</div>
+          </div>
+          
+          <div class="journal-info">
+            <span class="journal">Biochemistry</span>
+            <span class="year">2024</span>
+            <span class="doi">DOI: 10.1021/acs.biochem.4c00334</span>
+          </div>
+          
+          <div class="abstract">
+            <h4>Abstract</h4>
+            <p>
+              We present TRIPinRNA, a computational platform designed to predict intramolecular RNA triple helix 
+              structures with high accuracy. Using a combination of thermodynamic calculations and structural 
+              constraints, our algorithm identifies potential triple helix forming regions in RNA sequences. 
+              We validated our predictions using biophysical techniques including circular dichroism spectroscopy 
+              and thermal denaturation studies. Our analysis reveals that triple helices are more prevalent 
+              in the human transcriptome than previously recognized, with significant enrichment in long 
+              non-coding RNAs involved in gene regulation and chromatin organization.
+            </p>
+          </div>
+          
+          <div class="publication-actions">
+            <a href="https://pubs.acs.org/doi/10.1021/acs.biochem.4c00334" target="_blank" class="pub-btn primary">
+              <i class="fas fa-external-link-alt"></i> View Full Paper
+            </a>
+            <a href="tripinrna.html" class="pub-btn secondary">
+              <i class="fas fa-project-diagram"></i> Project Details
+            </a>
+            <button class="pub-btn secondary cite-btn" data-pub="tripinrna">
+              <i class="fas fa-quote-right"></i> Cite
+            </button>
+          </div>
+          
+          <div class="citation-box" id="cite-tripinrna" style="display: none;">
+            <h4>Citation</h4>
+            <div class="citation-format">
+              <label>Format:</label>
+              <select class="citation-format-select" data-pub="tripinrna">
+                <option value="apa">APA</option>
+                <option value="mla">MLA</option>
+                <option value="chicago">Chicago</option>
+                <option value="bibtex">BibTeX</option>
+              </select>
+            </div>
+            <div class="citation-text" id="citation-text-tripinrna">
+              Rakheja, I., Bharti, V., Maiti, S., & Chakraborty, D. (2024). Development of an In Silico Platform (TRIPinRNA) for the Identification of Novel RNA Intramolecular Triple Helices and Their Validation Using Biophysical Techniques. Biochemistry. https://doi.org/10.1021/acs.biochem.4c00334
+            </div>
+            <button class="copy-citation" data-target="citation-text-tripinrna">
+              <i class="fas fa-copy"></i> Copy Citation
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="publication-item published" data-year="2024">
+        <div class="pub-year">2024</div>
+        <div class="pub-content">
+          <h3>IGF2BP1-Mediated Regulation of CCN1 Expression by Specific Binding to G-Quadruplex Structure in its 3´UTR</h3>
+          
+          <div class="authors">
+            <span class="author">Pallabi Rana</span>,
+            <span class="author">Utkarsh Rajat</span>,
+            <span class="author me">Vishal Bharti</span>,
+            <span class="author">Tanmoy Mondal</span>,
+            <span class="author">Bincy P. Baby</span>,
+            <span class="author">Pratik Chakraborty</span>,
+            <span class="author">Souvik Maiti</span>,
+            <span class="author">Debojyoti Chakraborty</span>
+          </div>
+          
+          <div class="journal-info">
+            <span class="journal">Biochemistry</span>
+            <span class="year">2024</span>
+            <span class="doi">DOI: 10.1021/acs.biochem.4c00172</span>
+          </div>
+          
+          <div class="abstract">
+            <h4>Abstract</h4>
+            <p>
+              This study elucidates how G-quadruplex structures in the 3'UTR of CCN1 mRNA regulate gene expression 
+              through specific binding by IGF2BP1. Using a combination of computational predictions, biophysical 
+              characterization, and proteomics analysis, we demonstrate that IGF2BP1 recognizes and stabilizes 
+              G-quadruplex structures, leading to enhanced CCN1 expression. Our findings reveal a novel mechanism 
+              of post-transcriptional regulation where RNA secondary structures serve as binding platforms for 
+              regulatory proteins, with implications for understanding cellular proliferation and wound healing processes.
+            </p>
+          </div>
+          
+          <div class="publication-actions">
+            <a href="https://doi.org/10.1021/acs.biochem.4c00172" target="_blank" class="pub-btn primary">
+              <i class="fas fa-external-link-alt"></i> View Full Paper
+            </a>
+            <a href="g-quadruplex-ccn1.html" class="pub-btn secondary">
+              <i class="fas fa-project-diagram"></i> Project Details
+            </a>
+            <button class="pub-btn secondary cite-btn" data-pub="ccn1">
+              <i class="fas fa-quote-right"></i> Cite
+            </button>
+          </div>
+          
+          <div class="citation-box" id="cite-ccn1" style="display: none;">
+            <h4>Citation</h4>
+            <div class="citation-format">
+              <label>Format:</label>
+              <select class="citation-format-select" data-pub="ccn1">
+                <option value="apa">APA</option>
+                <option value="mla">MLA</option>
+                <option value="chicago">Chicago</option>
+                <option value="bibtex">BibTeX</option>
+              </select>
+            </div>
+            <div class="citation-text" id="citation-text-ccn1">
+              Rana, P., Rajat, U., Bharti, V., Mondal, T., Baby, B. P., Chakraborty, P., Maiti, S., & Chakraborty, D. (2024). IGF2BP1-Mediated Regulation of CCN1 Expression by Specific Binding to G-Quadruplex Structure in its 3´UTR. Biochemistry. https://doi.org/10.1021/acs.biochem.4c00172
+            </div>
+            <button class="copy-citation" data-target="citation-text-ccn1">
+              <i class="fas fa-copy"></i> Copy Citation
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Manuscripts Under Review ================= -->
+  <section class="publications-section alt-bg">
+    <div class="container">
+      <h2>Manuscripts Under Review</h2>
+      
+      <div class="publication-item review" data-year="2023">
+        <div class="pub-year">2023</div>
+        <div class="pub-content">
+          <h3>An Interface of Genetically Engineered Human Forebrain Assembloids and Polymeric Nanofiber Scaffolds for Multiscale Profiling of Interneuron Migration Disorders</h3>
+          
+          <div class="authors">
+            <span class="author">Rahul Rauthan</span>,
+            <span class="author me">Vishal Bharti</span>,
+            <span class="author">Aditya Mittal</span>,
+            <span class="author">Suparna Mukherjee</span>,
+            <span class="author">Sumeet K. Asthana</span>,
+            <span class="author">Divya Tej Sowpati</span>,
+            <span class="author">Dipyaman Ganguly</span>,
+            <span class="author">Debojyoti Chakraborty</span>,
+            <span class="author">Apratim Bajpai</span>,
+            <span class="author">Sudipta Maiti</span>,
+            <span class="author">Shubha Tole</span>,
+            <span class="author">Sanjay Singh</span>
+          </div>
+          
+          <div class="journal-info">
+            <span class="journal">Under revision at EMBO Reports</span>
+            <span class="year">2023</span>
+            <span class="doi">Preprint: 10.21203/rs.3.rs-3831019/v1</span>
+          </div>
+          
+          <div class="abstract">
+            <h4>Abstract</h4>
+            <p>
+              We present a novel platform combining human forebrain organoids with polymeric nanofiber scaffolds 
+              to study interneuron migration disorders. Through comprehensive computational analyses including 
+              RNA-seq, protein-protein interaction networks, and pan-tissue expression analysis, we identified 
+              key molecular pathways disrupted in neurodevelopmental disorders. Our multiscale approach reveals 
+              how physical scaffolds can rescue migration defects, providing insights into potential therapeutic 
+              strategies for conditions like autism spectrum disorder and epilepsy.
+            </p>
+          </div>
+          
+          <div class="publication-actions">
+            <a href="https://doi.org/10.21203/rs.3.rs-3831019/v1" target="_blank" class="pub-btn primary">
+              <i class="fas fa-external-link-alt"></i> View Preprint
+            </a>
+            <a href="forebrain-assembloids.html" class="pub-btn secondary">
+              <i class="fas fa-project-diagram"></i> Project Details
+            </a>
+            <button class="pub-btn secondary cite-btn" data-pub="forebrain">
+              <i class="fas fa-quote-right"></i> Cite
+            </button>
+          </div>
+          
+          <div class="citation-box" id="cite-forebrain" style="display: none;">
+            <h4>Citation</h4>
+            <div class="citation-format">
+              <label>Format:</label>
+              <select class="citation-format-select" data-pub="forebrain">
+                <option value="apa">APA</option>
+                <option value="mla">MLA</option>
+                <option value="chicago">Chicago</option>
+                <option value="bibtex">BibTeX</option>
+              </select>
+            </div>
+            <div class="citation-text" id="citation-text-forebrain">
+              Rauthan, R., Bharti, V., Mittal, A., et al. (2023). An Interface of Genetically Engineered Human Forebrain Assembloids and Polymeric Nanofiber Scaffolds for Multiscale Profiling of Interneuron Migration Disorders. Under revision at EMBO Reports. https://doi.org/10.21203/rs.3.rs-3831019/v1
+            </div>
+            <button class="copy-citation" data-target="citation-text-forebrain">
+              <i class="fas fa-copy"></i> Copy Citation
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="publication-item review" data-year="2023">
+        <div class="pub-year">2023</div>
+        <div class="pub-content">
+          <h3>MLC1 alteration in iPSCs give rise to disease-like cellular vacuolation phenotype in the astrocyte lineage</h3>
+          
+          <div class="authors">
+            <span class="author">Shyamala Sharma</span>,
+            <span class="author me">Vishal Bharti</span>,
+            <span class="author">Prasanna Kumar Das</span>,
+            <span class="author">Nikhil Masurkar</span>,
+            <span class="author">Chintan Joshi</span>,
+            <span class="author">Gargi Kulkarni</span>,
+            <span class="author">Bharat Gogisetty</span>,
+            <span class="author">Snehal Dhamale</span>,
+            <span class="author">Sudhakar Sivasubbu</span>,
+            <span class="author">Apratim Bajpai</span>,
+            <span class="author">Debojyoti Chakraborty</span>,
+            <span class="author">Sourav Banerjee</span>
+          </div>
+          
+          <div class="journal-info">
+            <span class="journal">bioRxiv</span>
+            <span class="year">2023</span>
+            <span class="doi">DOI: 10.1101/2025.01.06.631607</span>
+          </div>
+          
+          <div class="abstract">
+            <h4>Abstract</h4>
+            <p>
+              This study investigates the cellular and molecular mechanisms underlying Megalencephalic 
+              Leukoencephalopathy with subcortical Cysts (MLC) using patient-derived iPSCs. I led the 
+              RNA-seq data analysis and developed a diagnostic platform to identify the 132dupC MLC1 
+              gene mutation. Our findings reveal how MLC1 mutations lead to astrocyte dysfunction and 
+              characteristic vacuolation phenotypes, providing insights into disease pathogenesis and 
+              potential therapeutic targets for this rare neurological disorder.
+            </p>
+          </div>
+          
+          <div class="publication-actions">
+            <a href="https://doi.org/10.1101/2025.01.06.631607" target="_blank" class="pub-btn primary">
+              <i class="fas fa-external-link-alt"></i> View Preprint
+            </a>
+            <button class="pub-btn secondary cite-btn" data-pub="mlc1">
+              <i class="fas fa-quote-right"></i> Cite
+            </button>
+          </div>
+          
+          <div class="citation-box" id="cite-mlc1" style="display: none;">
+            <h4>Citation</h4>
+            <div class="citation-format">
+              <label>Format:</label>
+              <select class="citation-format-select" data-pub="mlc1">
+                <option value="apa">APA</option>
+                <option value="mla">MLA</option>
+                <option value="chicago">Chicago</option>
+                <option value="bibtex">BibTeX</option>
+              </select>
+            </div>
+            <div class="citation-text" id="citation-text-mlc1">
+              Sharma, S., Bharti, V., Das, P. K., et al. (2023). MLC1 alteration in iPSCs give rise to disease-like cellular vacuolation phenotype in the astrocyte lineage. bioRxiv. https://doi.org/10.1101/2025.01.06.631607
+            </div>
+            <button class="copy-citation" data-target="citation-text-mlc1">
+              <i class="fas fa-copy"></i> Copy Citation
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Conference Presentations ================= -->
+  <section class="publications-section">
+    <div class="container">
+      <h2>Conference Presentations</h2>
+      
+      <div class="publication-item conference" data-year="2023">
+        <div class="pub-year">2023</div>
+        <div class="pub-content">
+          <h3>Boundary Without Fence</h3>
+          
+          <div class="authors">
+            <span class="author me">Vishal Bharti</span>,
+            <span class="author">Debojyoti Chakraborty</span>
+          </div>
+          
+          <div class="journal-info">
+            <span class="journal">Poster Presentation</span>
+            <span class="conference">International Conference: Frontiers in Genome Engineering 2023</span>
+            <span class="location">BITS Pilani Goa Campus</span>
+          </div>
+          
+          <div class="abstract">
+            <h4>Abstract</h4>
+            <p>
+              This poster presented our work on understanding how chromatin boundaries are established 
+              and maintained without physical barriers. Using computational approaches to analyze CTCF 
+              binding sites and chromatin accessibility data, we demonstrated how dynamic interactions 
+              between architectural proteins create functional boundaries in the genome. The work has 
+              implications for understanding gene regulation and chromatin organization in health and disease.
+            </p>
+          </div>
+          
+          <div class="publication-actions">
+            <button class="pub-btn secondary cite-btn" data-pub="conference">
+              <i class="fas fa-quote-right"></i> Cite
+            </button>
+          </div>
+          
+          <div class="citation-box" id="cite-conference" style="display: none;">
+            <h4>Citation</h4>
+            <div class="citation-format">
+              <label>Format:</label>
+              <select class="citation-format-select" data-pub="conference">
+                <option value="apa">APA</option>
+                <option value="mla">MLA</option>
+                <option value="chicago">Chicago</option>
+                <option value="bibtex">BibTeX</option>
+              </select>
+            </div>
+            <div class="citation-text" id="citation-text-conference">
+              Bharti, V., & Chakraborty, D. (2023). Boundary Without Fence. Poster presented at the International Conference: Frontiers in Genome Engineering 2023, BITS Pilani Goa Campus.
+            </div>
+            <button class="copy-citation" data-target="citation-text-conference">
+              <i class="fas fa-copy"></i> Copy Citation
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Research Metrics ================= -->
+  <section class="publications-section alt-bg">
+    <div class="container">
+      <h2>Research Impact & Metrics</h2>
+      
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>Citations</h3>
+          <p class="metric-value">Growing Impact</p>
+          <p>Recent publications gaining recognition in the scientific community</p>
+        </div>
+        
+        <div class="metric-card">
+          <div class="metric-icon"><i class="fas fa-users"></i></div>
+          <h3>Collaborations</h3>
+          <p class="metric-value">30+ Co-authors</p>
+          <p>Working with researchers across multiple institutions</p>
+        </div>
+        
+        <div class="metric-card">
+          <div class="metric-icon"><i class="fas fa-globe"></i></div>
+          <h3>Research Areas</h3>
+          <p class="metric-value">4 Major Domains</p>
+          <p>RNA Biology, Genomics, Neuroscience, Bioinformatics Tools</p>
+        </div>
+        
+        <div class="metric-card">
+          <div class="metric-icon"><i class="fas fa-award"></i></div>
+          <h3>Open Science</h3>
+          <p class="metric-value">100% Open Access</p>
+          <p>All publications freely available to the research community</p>
+        </div>
+      </div>
+      
+      <div class="profiles-section">
+        <h3>Academic Profiles</h3>
+        <div class="profile-links">
+          <a href="https://scholar.google.com/citations?user=-DGZzX8AAAAJ&hl=en" target="_blank" class="profile-btn">
+            <i class="fas fa-graduation-cap"></i> Google Scholar
+          </a>
+          <a href="https://orcid.org/0009-0003-1431-4457" target="_blank" class="profile-btn">
+            <i class="fab fa-orcid"></i> ORCID
+          </a>
+          <a href="https://www.researchgate.net/profile/Vishal-Bharti-7" target="_blank" class="profile-btn">
+            <i class="fab fa-researchgate"></i> ResearchGate
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Contact CTA ================= -->
+  <section class="publications-section contact-section">
+    <div class="container">
+      <h2>Collaboration & Inquiries</h2>
+      <p>
+        I'm always interested in discussing research collaborations, sharing data and code, 
+        or answering questions about my publications. Feel free to reach out!
+      </p>
+      <div class="contact-buttons">
+        <a href="mailto:vishalvikashbharti@gmail.com?subject=Research%20Inquiry" class="btn">
+          <i class="fas fa-envelope"></i> Email Me
+        </a>
+        <a href="research.html" class="btn alt">
+          <i class="fas fa-flask"></i> View Research Overview
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Footer ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 Vishal Bharti. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="research.html">Research</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="../legacy/">Legacy Site</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Citation Script -->
+  <script>
+    // Filter functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const publications = document.querySelectorAll('.publication-item');
+    
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        publications.forEach(pub => {
+          if (filter === 'all' || pub.classList.contains(filter)) {
+            pub.style.display = 'block';
+          } else {
+            pub.style.display = 'none';
+          }
+        });
+      });
+    });
+    
+    // Citation functionality
+    const citeBtns = document.querySelectorAll('.cite-btn');
+    const copyBtns = document.querySelectorAll('.copy-citation');
+    const formatSelects = document.querySelectorAll('.citation-format-select');
+    
+    citeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const pubId = btn.dataset.pub;
+        const citationBox = document.getElementById(`cite-${pubId}`);
+        citationBox.style.display = citationBox.style.display === 'none' ? 'block' : 'none';
+      });
+    });
+    
+    copyBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.dataset.target;
+        const text = document.getElementById(targetId).textContent;
+        navigator.clipboard.writeText(text).then(() => {
+          btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(() => {
+            btn.innerHTML = '<i class="fas fa-copy"></i> Copy Citation';
+          }, 2000);
+        });
+      });
+    });
+    
+    // Citation format switching
+    const citations = {
+      tripinrna: {
+        apa: "Rakheja, I., Bharti, V., Maiti, S., & Chakraborty, D. (2024). Development of an In Silico Platform (TRIPinRNA) for the Identification of Novel RNA Intramolecular Triple Helices and Their Validation Using Biophysical Techniques. Biochemistry. https://doi.org/10.1021/acs.biochem.4c00334",
+        mla: 'Rakheja, Isha, et al. "Development of an In Silico Platform (TRIPinRNA) for the Identification of Novel RNA Intramolecular Triple Helices and Their Validation Using Biophysical Techniques." Biochemistry, 2024. https://doi.org/10.1021/acs.biochem.4c00334.',
+        chicago: "Rakheja, Isha, Vishal Bharti, Souvik Maiti, and Debojyoti Chakraborty. 2024. \"Development of an In Silico Platform (TRIPinRNA) for the Identification of Novel RNA Intramolecular Triple Helices and Their Validation Using Biophysical Techniques.\" Biochemistry. https://doi.org/10.1021/acs.biochem.4c00334.",
+        bibtex: "@article{rakheja2024tripinrna,\n  title={Development of an In Silico Platform (TRIPinRNA) for the Identification of Novel RNA Intramolecular Triple Helices and Their Validation Using Biophysical Techniques},\n  author={Rakheja, Isha and Bharti, Vishal and Maiti, Souvik and Chakraborty, Debojyoti},\n  journal={Biochemistry},\n  year={2024},\n  publisher={ACS},\n  doi={10.1021/acs.biochem.4c00334}\n}"
+      },
+      ccn1: {
+        apa: "Rana, P., Rajat, U., Bharti, V., Mondal, T., Baby, B. P., Chakraborty, P., Maiti, S., & Chakraborty, D. (2024). IGF2BP1-Mediated Regulation of CCN1 Expression by Specific Binding to G-Quadruplex Structure in its 3´UTR. Biochemistry. https://doi.org/10.1021/acs.biochem.4c00172",
+        mla: 'Rana, Pallabi, et al. "IGF2BP1-Mediated Regulation of CCN1 Expression by Specific Binding to G-Quadruplex Structure in its 3´UTR." Biochemistry, 2024. https://doi.org/10.1021/acs.biochem.4c00172.',
+        chicago: "Rana, Pallabi, Utkarsh Rajat, Vishal Bharti, et al. 2024. \"IGF2BP1-Mediated Regulation of CCN1 Expression by Specific Binding to G-Quadruplex Structure in its 3´UTR.\" Biochemistry. https://doi.org/10.1021/acs.biochem.4c00172.",
+        bibtex: "@article{rana2024ccn1,\n  title={IGF2BP1-Mediated Regulation of CCN1 Expression by Specific Binding to G-Quadruplex Structure in its 3´UTR},\n  author={Rana, Pallabi and Rajat, Utkarsh and Bharti, Vishal and others},\n  journal={Biochemistry},\n  year={2024},\n  publisher={ACS},\n  doi={10.1021/acs.biochem.4c00172}\n}"
+      },
+      forebrain: {
+        apa: "Rauthan, R., Bharti, V., Mittal, A., et al. (2023). An Interface of Genetically Engineered Human Forebrain Assembloids and Polymeric Nanofiber Scaffolds for Multiscale Profiling of Interneuron Migration Disorders. Under revision at EMBO Reports. https://doi.org/10.21203/rs.3.rs-3831019/v1",
+        mla: 'Rauthan, Rahul, et al. "An Interface of Genetically Engineered Human Forebrain Assembloids and Polymeric Nanofiber Scaffolds for Multiscale Profiling of Interneuron Migration Disorders." Under revision at EMBO Reports, 2023. https://doi.org/10.21203/rs.3.rs-3831019/v1.',
+        chicago: "Rauthan, Rahul, Vishal Bharti, Aditya Mittal, et al. 2023. \"An Interface of Genetically Engineered Human Forebrain Assembloids and Polymeric Nanofiber Scaffolds for Multiscale Profiling of Interneuron Migration Disorders.\" Under revision at EMBO Reports. https://doi.org/10.21203/rs.3.rs-3831019/v1.",
+        bibtex: "@article{rauthan2023forebrain,\n  title={An Interface of Genetically Engineered Human Forebrain Assembloids and Polymeric Nanofiber Scaffolds for Multiscale Profiling of Interneuron Migration Disorders},\n  author={Rauthan, Rahul and Bharti, Vishal and Mittal, Aditya and others},\n  journal={Under revision at EMBO Reports},\n  year={2023},\n  doi={10.21203/rs.3.rs-3831019/v1}\n}"
+      },
+      mlc1: {
+        apa: "Sharma, S., Bharti, V., Das, P. K., et al. (2023). MLC1 alteration in iPSCs give rise to disease-like cellular vacuolation phenotype in the astrocyte lineage. bioRxiv. https://doi.org/10.1101/2025.01.06.631607",
+        mla: 'Sharma, Shyamala, et al. "MLC1 alteration in iPSCs give rise to disease-like cellular vacuolation phenotype in the astrocyte lineage." bioRxiv, 2023. https://doi.org/10.1101/2025.01.06.631607.',
+        chicago: "Sharma, Shyamala, Vishal Bharti, Prasanna Kumar Das, et al. 2023. \"MLC1 alteration in iPSCs give rise to disease-like cellular vacuolation phenotype in the astrocyte lineage.\" bioRxiv. https://doi.org/10.1101/2025.01.06.631607.",
+        bibtex: "@article{sharma2023mlc1,\n  title={MLC1 alteration in iPSCs give rise to disease-like cellular vacuolation phenotype in the astrocyte lineage},\n  author={Sharma, Shyamala and Bharti, Vishal and Das, Prasanna Kumar and others},\n  journal={bioRxiv},\n  year={2023},\n  doi={10.1101/2025.01.06.631607}\n}"
+      },
+      conference: {
+        apa: "Bharti, V., & Chakraborty, D. (2023). Boundary Without Fence. Poster presented at the International Conference: Frontiers in Genome Engineering 2023, BITS Pilani Goa Campus.",
+        mla: 'Bharti, Vishal, and Debojyoti Chakraborty. "Boundary Without Fence." Poster presented at the International Conference: Frontiers in Genome Engineering 2023, BITS Pilani Goa Campus, 2023.',
+        chicago: "Bharti, Vishal, and Debojyoti Chakraborty. 2023. \"Boundary Without Fence.\" Poster presented at the International Conference: Frontiers in Genome Engineering 2023, BITS Pilani Goa Campus.",
+        bibtex: "@inproceedings{bharti2023boundary,\n  title={Boundary Without Fence},\n  author={Bharti, Vishal and Chakraborty, Debojyoti},\n  booktitle={International Conference: Frontiers in Genome Engineering 2023},\n  year={2023},\n  organization={BITS Pilani Goa Campus}\n}"
+      }
+    };
+    
+    formatSelects.forEach(select => {
+      select.addEventListener('change', (e) => {
+        const pubId = e.target.dataset.pub;
+        const format = e.target.value;
+        const textElement = document.getElementById(`citation-text-${pubId}`);
+        textElement.textContent = citations[pubId][format];
+      });
+    });
+  </script>
+
+</body>
+</html>

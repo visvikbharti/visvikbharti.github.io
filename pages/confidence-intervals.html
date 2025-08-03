@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confidence Intervals Explorer - Vishal Bharti</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Interactive educational application for understanding confidence intervals through advanced visualizations, simulations, and practical applications in statistics.">
+  <meta name="keywords" content="confidence intervals, statistics, education, data visualization, interactive learning, statistical inference">
+  <meta name="author" content="Vishal Bharti">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=IBM+Plex+Mono:wght@400;600&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- Core styles -->
+  <link rel="stylesheet" href="../css/vars.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/project.css" />
+
+  <!-- GSAP + ScrollTrigger -->
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Portfolio logic -->
+  <script defer src="../js/main.js"></script>
+</head>
+
+<body class="project-page">
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <a href="../index.html" class="nav-logo">VB</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#research">Research</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+      <li><a href="../legacy/pages/progress.html" class="nav-highlight">Weekly Progress</a></li>
+    </ul>
+  </nav>
+
+  <!-- ================= Project Hero ================= -->
+  <section class="project-hero">
+    <div class="container">
+      <h1 class="project-title">Confidence Intervals Explorer</h1>
+      <p class="tagline">Master statistical inference through interactive visualizations and simulations</p>
+      <div class="project-meta">
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Streamlit</span>
+          <span class="tech-tag">Statistics</span>
+          <span class="tech-tag">Education</span>
+          <span class="tech-tag">Data Visualization</span>
+        </div>
+        <div class="project-links">
+          <a href="https://visvikbharti-confidence-intervals-explorer.streamlit.app/" target="_blank" class="btn">
+            <i class="fas fa-external-link-alt"></i> Try Live Demo
+          </a>
+          <a href="https://github.com/visvikbharti/confidence-intervals-explorer" target="_blank" class="btn alt">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Project Overview ================= -->
+  <section class="project-section">
+    <div class="container">
+      <h2>Transforming Statistical Education</h2>
+      <p>
+        Confidence Intervals Explorer is an interactive educational platform designed to demystify one of 
+        statistics' most fundamental yet frequently misunderstood concepts. Through dynamic visualizations, 
+        hands-on simulations, and real-world applications, this tool bridges the gap between theoretical 
+        understanding and practical implementation.
+      </p>
+      <p>
+        Born from the observation that many researchers and students struggle with the proper interpretation 
+        and application of confidence intervals, this platform provides an intuitive, visual approach to 
+        learning that complements traditional textbook methods. It serves as both a teaching aid for 
+        instructors and a self-study resource for learners at all levels.
+      </p>
+
+      <div class="project-features">
+        <div class="feature">
+          <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>Interactive Simulations</h3>
+          <p>Run thousands of simulations to visualize how confidence intervals behave with different parameters</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon"><i class="fas fa-graduation-cap"></i></div>
+          <h3>Educational Design</h3>
+          <p>Step-by-step explanations with mathematical rigor balanced with intuitive understanding</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon"><i class="fas fa-cogs"></i></div>
+          <h3>Multiple Methods</h3>
+          <p>Explore various CI techniques from basic to advanced, including bootstrap and Bayesian approaches</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon"><i class="fas fa-flask"></i></div>
+          <h3>Real-World Applications</h3>
+          <p>Apply concepts to practical scenarios in research, quality control, and decision-making</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Key Modules ================= -->
+  <section class="project-section alt-bg">
+    <div class="container">
+      <h2>Comprehensive Learning Modules</h2>
+      
+      <div class="module-grid">
+        <div class="module-card">
+          <h3>1. Foundations Module</h3>
+          <ul>
+            <li>What are confidence intervals?</li>
+            <li>Common misconceptions clarified</li>
+            <li>Relationship to hypothesis testing</li>
+            <li>Interpretation guidelines</li>
+            <li>Visual demonstrations of key concepts</li>
+          </ul>
+        </div>
+        
+        <div class="module-card">
+          <h3>2. Interactive Simulations</h3>
+          <ul>
+            <li>Sampling distribution visualizer</li>
+            <li>Effect of sample size on CI width</li>
+            <li>Coverage probability demonstrations</li>
+            <li>Central Limit Theorem in action</li>
+            <li>Real-time parameter adjustments</li>
+          </ul>
+        </div>
+        
+        <div class="module-card">
+          <h3>3. Methods & Techniques</h3>
+          <ul>
+            <li>Z-intervals for known variance</li>
+            <li>T-intervals for unknown variance</li>
+            <li>Bootstrap confidence intervals</li>
+            <li>Bayesian credible intervals</li>
+            <li>Non-parametric approaches</li>
+          </ul>
+        </div>
+        
+        <div class="module-card">
+          <h3>4. Advanced Topics</h3>
+          <ul>
+            <li>Confidence intervals for proportions</li>
+            <li>Difference between means</li>
+            <li>Correlation coefficients</li>
+            <li>Regression parameters</li>
+            <li>Multiple comparisons adjustments</li>
+          </ul>
+        </div>
+        
+        <div class="module-card">
+          <h3>5. Practical Applications</h3>
+          <ul>
+            <li>Clinical trial analysis</li>
+            <li>Quality control in manufacturing</li>
+            <li>Survey data interpretation</li>
+            <li>A/B testing scenarios</li>
+            <li>Research publication standards</li>
+          </ul>
+        </div>
+        
+        <div class="module-card">
+          <h3>6. Interactive Exercises</h3>
+          <ul>
+            <li>Guided problem-solving</li>
+            <li>Self-assessment quizzes</li>
+            <li>Case study analyses</li>
+            <li>Common pitfall scenarios</li>
+            <li>Best practice recommendations</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Technical Implementation ================= -->
+  <section class="project-section">
+    <div class="container">
+      <h2>Technical Architecture</h2>
+      <p>
+        The Confidence Intervals Explorer leverages modern web technologies and statistical computing 
+        libraries to deliver a seamless, responsive learning experience.
+      </p>
+      
+      <div class="tech-details">
+        <div class="tech-detail">
+          <h3>Frontend Technologies</h3>
+          <ul>
+            <li><strong>Streamlit:</strong> Rapid web app development</li>
+            <li><strong>Plotly:</strong> Interactive, publication-quality visualizations</li>
+            <li><strong>Altair:</strong> Declarative statistical graphics</li>
+            <li><strong>Custom CSS:</strong> Enhanced UI/UX design</li>
+          </ul>
+        </div>
+        
+        <div class="tech-detail">
+          <h3>Statistical Computing</h3>
+          <ul>
+            <li><strong>NumPy:</strong> Numerical computations</li>
+            <li><strong>SciPy:</strong> Statistical functions and distributions</li>
+            <li><strong>Pandas:</strong> Data manipulation and analysis</li>
+            <li><strong>Statsmodels:</strong> Advanced statistical modeling</li>
+          </ul>
+        </div>
+        
+        <div class="tech-detail">
+          <h3>Key Features</h3>
+          <ul>
+            <li><strong>Real-time Computation:</strong> Instant feedback on parameter changes</li>
+            <li><strong>Responsive Design:</strong> Works on desktop and mobile devices</li>
+            <li><strong>Session State:</strong> Preserves user progress</li>
+            <li><strong>Export Functionality:</strong> Download results and visualizations</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Educational Impact ================= -->
+  <section class="project-section alt-bg">
+    <div class="container">
+      <h2>Educational Philosophy & Impact</h2>
+      <p>
+        The design of this tool reflects a deep understanding of how people learn statistical concepts, 
+        incorporating principles from cognitive science and educational psychology.
+      </p>
+      
+      <div class="impact-grid">
+        <div class="impact-card">
+          <h3>Visual Learning</h3>
+          <p>
+            Complex statistical concepts become intuitive through interactive visualizations. Users can 
+            see how confidence intervals change in real-time as they adjust parameters, building an 
+            intuitive understanding that complements mathematical formulas.
+          </p>
+        </div>
+        
+        <div class="impact-card">
+          <h3>Active Engagement</h3>
+          <p>
+            Rather than passive reading, users actively explore concepts through simulations and 
+            experiments. This hands-on approach leads to deeper understanding and better retention 
+            of statistical principles.
+          </p>
+        </div>
+        
+        <div class="impact-card">
+          <h3>Scaffolded Learning</h3>
+          <p>
+            Content is organized from basic to advanced, allowing learners to build understanding 
+            progressively. Each module builds on previous concepts while introducing new complexity 
+            at a manageable pace.
+          </p>
+        </div>
+        
+        <div class="impact-card">
+          <h3>Practical Relevance</h3>
+          <p>
+            Real-world examples and applications demonstrate why confidence intervals matter. Users 
+            learn not just the "how" but also the "why" and "when" of statistical inference in 
+            research and decision-making.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= User Experience ================= -->
+  <section class="project-section">
+    <div class="container">
+      <h2>User Experience Highlights</h2>
+      
+      <div class="ux-features">
+        <div class="ux-item">
+          <h3>Intuitive Interface</h3>
+          <p>
+            Clean, modern design that doesn't overwhelm users with technical complexity. Controls are 
+            logically organized, with helpful tooltips and explanations available when needed.
+          </p>
+        </div>
+        
+        <div class="ux-item">
+          <h3>Progressive Disclosure</h3>
+          <p>
+            Advanced options and mathematical details are available but not forced upon users. Learners 
+            can dive as deep as they want without being overwhelmed initially.
+          </p>
+        </div>
+        
+        <div class="ux-item">
+          <h3>Instant Feedback</h3>
+          <p>
+            All calculations and visualizations update in real-time, providing immediate feedback on 
+            how parameter changes affect results. This rapid iteration accelerates learning.
+          </p>
+        </div>
+        
+        <div class="ux-item">
+          <h3>Export & Share</h3>
+          <p>
+            Users can export their work, including visualizations and calculations, for use in reports, 
+            presentations, or further analysis. This bridges the gap between learning and application.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Target Audience ================= -->
+  <section class="project-section alt-bg">
+    <div class="container">
+      <h2>Who Benefits from This Tool?</h2>
+      
+      <div class="audience-grid">
+        <div class="audience-card">
+          <i class="fas fa-user-graduate"></i>
+          <h3>Students</h3>
+          <p>
+            Undergraduate and graduate students studying statistics, data science, or any field 
+            requiring statistical analysis. The visual approach helps overcome common conceptual 
+            barriers in traditional statistics education.
+          </p>
+        </div>
+        
+        <div class="audience-card">
+          <i class="fas fa-microscope"></i>
+          <h3>Researchers</h3>
+          <p>
+            Scientists and researchers who need to properly calculate and interpret confidence 
+            intervals for their work. The tool serves as both a learning resource and a practical 
+            calculator for research applications.
+          </p>
+        </div>
+        
+        <div class="audience-card">
+          <i class="fas fa-chalkboard-teacher"></i>
+          <h3>Educators</h3>
+          <p>
+            Statistics instructors can use this as a teaching aid in classrooms or assign it for 
+            self-study. The modular structure aligns with typical statistics curriculum progression.
+          </p>
+        </div>
+        
+        <div class="audience-card">
+          <i class="fas fa-briefcase"></i>
+          <h3>Professionals</h3>
+          <p>
+            Data analysts, quality engineers, and business professionals who need to understand 
+            and communicate uncertainty in their work. The practical examples directly apply to 
+            professional scenarios.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Development Journey ================= -->
+  <section class="project-section">
+    <div class="container">
+      <h2>Development Insights</h2>
+      <p>
+        Creating an effective educational tool requires balancing technical accuracy with pedagogical 
+        effectiveness. This project represents months of iteration based on feedback from students and 
+        educators.
+      </p>
+      
+      <div class="development-highlights">
+        <div class="dev-highlight">
+          <h3>User-Centered Design</h3>
+          <p>
+            Extensive user testing with students at different levels helped identify common pain points 
+            and misconceptions. The interface evolved to address these specific learning challenges.
+          </p>
+        </div>
+        
+        <div class="dev-highlight">
+          <h3>Performance Optimization</h3>
+          <p>
+            Careful optimization ensures smooth performance even when running thousands of simulations. 
+            Efficient algorithms and caching strategies provide instant feedback without lag.
+          </p>
+        </div>
+        
+        <div class="dev-highlight">
+          <h3>Accessibility Focus</h3>
+          <p>
+            Color-blind friendly palettes, keyboard navigation, and screen reader compatibility ensure 
+            the tool is accessible to all learners, regardless of abilities.
+          </p>
+        </div>
+        
+        <div class="dev-highlight">
+          <h3>Continuous Improvement</h3>
+          <p>
+            Regular updates based on user feedback and advances in statistical education research. The 
+            tool evolves to incorporate new teaching methods and address emerging needs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Future Enhancements ================= -->
+  <section class="project-section alt-bg">
+    <div class="container">
+      <h2>Roadmap & Future Enhancements</h2>
+      
+      <div class="future-plans">
+        <div class="future-item">
+          <h3>Additional Statistical Methods</h3>
+          <ul>
+            <li>Tolerance intervals and prediction intervals</li>
+            <li>Confidence bands for regression</li>
+            <li>Multivariate confidence regions</li>
+            <li>Time series confidence intervals</li>
+          </ul>
+        </div>
+        
+        <div class="future-item">
+          <h3>Enhanced Interactivity</h3>
+          <ul>
+            <li>Gamification elements for engagement</li>
+            <li>Collaborative learning features</li>
+            <li>AI-powered tutoring assistance</li>
+            <li>Personalized learning paths</li>
+          </ul>
+        </div>
+        
+        <div class="future-item">
+          <h3>Integration Capabilities</h3>
+          <ul>
+            <li>LMS (Learning Management System) integration</li>
+            <li>API for embedding in other applications</li>
+            <li>Export to statistical software formats</li>
+            <li>Mobile app development</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Try It Now ================= -->
+  <section class="project-section">
+    <div class="container">
+      <h2>Experience Interactive Statistical Learning</h2>
+      <p>
+        Ready to transform your understanding of confidence intervals? The tool is freely available 
+        online and requires no installation or account creation.
+      </p>
+      
+      <div class="cta-section">
+        <a href="https://visvikbharti-confidence-intervals-explorer.streamlit.app/" target="_blank" class="btn big">
+          <i class="fas fa-external-link-alt"></i> Launch Confidence Intervals Explorer
+        </a>
+        
+        <div class="features-summary">
+          <p><strong>What you'll get:</strong></p>
+          <ul>
+            <li>✓ Instant access to all modules</li>
+            <li>✓ No registration required</li>
+            <li>✓ Works on any device</li>
+            <li>✓ Export capabilities included</li>
+            <li>✓ Regular updates and improvements</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Contact ================= -->
+  <section class="project-section contact-section">
+    <div class="container">
+      <h2>Feedback & Collaboration</h2>
+      <p>
+        Your feedback helps improve this educational tool. Whether you're an educator with suggestions, 
+        a student with questions, or a developer interested in contributing, I'd love to hear from you.
+      </p>
+      <div class="contact-buttons">
+        <a href="mailto:vishalvikashbharti@gmail.com?subject=Confidence%20Intervals%20Explorer%20Feedback" class="btn">
+          <i class="fas fa-envelope"></i> Send Feedback
+        </a>
+        <a href="https://github.com/visvikbharti/confidence-intervals-explorer" target="_blank" class="btn alt">
+          <i class="fab fa-github"></i> Contribute on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Footer ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 Vishal Bharti. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#research">Research</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="../legacy/">Legacy Site</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

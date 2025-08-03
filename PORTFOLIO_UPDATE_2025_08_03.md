@@ -37,13 +37,15 @@ visvikbharti.github.io/
 │   ├── about.css                # New - About page styles
 │   ├── cv.css                   # Enhanced CV styles
 │   ├── publications.css         # New - Publications styles
-│   └── research.css             # New - Research page styles
+│   ├── research.css             # New - Research page styles
+│   └── projects.css             # New - Projects overview page styles
 ├── js/
-│   └── main.js                  # Enhanced with smooth scrolling
+│   └── main.js                  # Enhanced with GSAP ScrollToPlugin
 ├── pages/                       # All new pages
 │   ├── about.html               # Enhanced about page
 │   ├── cv.html                  # New modern CV
 │   ├── publications.html        # New publications with citations
+│   ├── projects.html            # New comprehensive projects overview
 │   ├── research.html            # Existing research page
 │   ├── tripinrna.html          # Existing project
 │   ├── stickforstats.html      # Enhanced project page
@@ -146,6 +148,23 @@ All project pages follow consistent structure with:
 - **StickForStats** (`stickforstats.html`) - Complete content rewrite
 - **Research** (`research.html`) - Added RNA Lab Navigator project
 
+### 7. **Projects Overview Page (pages/projects.html)** - New
+- Comprehensive grid layout showing all projects
+- Filter functionality by category:
+  - All Projects
+  - RNA Biology
+  - Genomics
+  - Tools
+  - ML/AI
+- Sections include:
+  - 5 Major Research Projects
+  - 4 Software & Tools
+  - 3 Previous Projects
+  - 3 Machine Learning Projects
+- Project impact statistics
+- Ongoing development section
+- Professional project cards with icons and technology tags
+
 ## 🎨 Styling & Design
 
 ### CSS Files Created:
@@ -167,6 +186,13 @@ All project pages follow consistent structure with:
    - Timeline styling
    - Fixed header overlap issue
 
+4. **projects.css** - 500+ lines
+   - Modern project card designs
+   - Filter button functionality
+   - Impact statistics grid
+   - Hover effects and animations
+   - Responsive layout for all screen sizes
+
 ### Enhanced CSS:
 - **project.css** - Added components for:
   - Architecture sections
@@ -176,19 +202,24 @@ All project pages follow consistent structure with:
 
 ## 🔧 Technical Implementations
 
-### 1. **Smooth Scrolling Navigation**
-Added to `main.js`:
+### 1. **Smooth Scrolling Navigation with GSAP**
+Enhanced in `main.js` with ScrollToPlugin:
 ```javascript
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+// Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     e.preventDefault();
-    const targetId = this.getAttribute('href');
-    const targetElement = document.querySelector(targetId);
+    const targetElement = document.querySelector(this.getAttribute('href'));
     
     if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
+      const yOffset = targetElement.getBoundingClientRect().top + window.pageYOffset;
+      gsap.to(window, {
+        duration: 1,
+        scrollTo: { y: yOffset, autoKill: false },
+        ease: "power2.inOut"
       });
     }
   });
@@ -209,6 +240,23 @@ Added download buttons in:
 - Homepage contact section
 - About page CTA section
 
+### 4. **Project Filtering System**
+Implemented in projects.html:
+```javascript
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const filter = btn.dataset.filter;
+    projectCards.forEach(card => {
+      if (filter === 'all' || card.dataset.categories.includes(filter)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+```
+
 ## 🐛 Issues Fixed
 
 ### Critical Fixes on Aug 03:
@@ -218,27 +266,40 @@ Added download buttons in:
 4. **Header Overlap** - Fixed with proper padding in research.css
 5. **Smooth Scrolling** - Implemented for all anchor links
 
+### Additional Fixes Post-Deployment:
+6. **GSAP ScrollTrigger Conflict** - Fixed navigation scrolling with ScrollToPlugin
+7. **Projects Overview** - Created dedicated projects page to showcase all work
+8. **Navigation Update** - Changed Projects link to point to new projects.html page
+
 ## 📊 Project Statistics
 
 ### File Changes:
-- **Total files changed:** 19
-- **New files created:** 11
-- **Modified files:** 8
-- **Lines added:** 6,344
-- **Lines modified:** 577
+- **Total files changed:** 22
+- **New files created:** 13
+- **Modified files:** 9
+- **Lines added:** 7,844+
+- **Lines modified:** 600+
 
 ### Content Created:
-- **7 new HTML pages**
-- **3 new CSS files**
-- **4 research project descriptions**
-- **Interactive features:** Citation system, smooth scrolling
+- **8 new HTML pages** (including projects.html)
+- **4 new CSS files** (including projects.css)
+- **15+ project descriptions** across all categories
+- **Interactive features:** Citation system, smooth scrolling, project filtering
 
 ## 🚀 Deployment
 
-### Git Commit Details:
-- **Commit ID:** 1a046bd
-- **Date:** August 03, 2025
-- **Message:** "Major portfolio update: Add modern pages and fix navigation"
+### Git Commit History:
+1. **Initial Major Update**
+   - Commit ID: 1a046bd
+   - Message: "Major portfolio update: Add modern pages and fix navigation"
+   
+2. **Navigation Fix**
+   - Commit ID: 086acf3
+   - Message: "Fix navigation scrolling issue with GSAP ScrollToPlugin"
+   
+3. **Projects Page Addition**
+   - Commit ID: 15fef85
+   - Message: "Add comprehensive projects overview page"
 
 ### GitHub Pages Deployment:
 - **Repository:** https://github.com/visvikbharti/visvikbharti.github.io

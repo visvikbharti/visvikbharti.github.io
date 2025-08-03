@@ -1,6 +1,6 @@
 /* ===== Initialise GSAP ===== */
 document.addEventListener('DOMContentLoaded', () => {
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
     
     /* Smooth scrolling for anchor links --------------------------------- */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -10,9 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const targetElement = document.querySelector(targetId);
         
         if (targetElement) {
-          targetElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+          // Use GSAP's ScrollToPlugin for smooth scrolling that works with ScrollTrigger
+          const yOffset = targetElement.getBoundingClientRect().top + window.pageYOffset;
+          
+          gsap.to(window, {
+            duration: 1,
+            scrollTo: {
+              y: yOffset,
+              autoKill: false
+            },
+            ease: "power2.inOut"
           });
         }
       });

@@ -310,7 +310,95 @@ p { margin-bottom: 1rem; }
   text-decoration: underline;
 }
 
+/* ----- Technical Proficiencies ----- */
+.skills {
+  padding: 6vw 8vw;
+  background: var(--clr-bg);
+  color: var(--clr-gray-300);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.skill-category {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  padding: 1.5rem;
+  border: 1px solid rgba(168, 120, 255, 0.2);
+}
+
+.skill-category h3 {
+  color: var(--clr-neon);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ----- Future Research Interests ----- */
+.future-research {
+  padding: 6vw 8vw;
+  background: var(--clr-bg-dark);
+  color: var(--clr-gray-300);
+}
+
+.research-interests {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.interest-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  padding: 2rem;
+  border-left: 4px solid var(--clr-purple);
+  transition: transform 0.3s;
+}
+
+.interest-card:hover {
+  transform: translateX(5px);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.interest-card h3 {
+  color: var(--clr-neon);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.interest-card p {
+  line-height: 1.7;
+  color: var(--clr-gray-300);
+}
+
+/* ----- Publication Status ----- */
+.publication-card .status {
+  font-size: 0.9rem;
+  color: var(--clr-pink);
+  margin-top: 0.5rem;
+}
+
+.project-status {
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: rgba(168, 120, 255, 0.1);
+  border-radius: 4px;
+  border-left: 3px solid var(--clr-purple);
+}
+
 /* ----- Misc helpers ----- */
 .center { text-align: center; }
 .mt-2 { margin-top: 2rem; }
+.mt-3 { margin-top: 3rem; }
 .panel { position: relative; overflow: hidden; }

@@ -1,17 +1,17 @@
 /**
- * Ultimate Week 34 Override Script
- * This script uses multiple strategies to ensure Week 34 is always displayed
+ * Ultimate Week 36 Override Script
+ * This script uses multiple strategies to ensure Week 36 is always displayed
  */
 
 (function() {
     'use strict';
     
-    const TARGET_WEEK = 34;
+    const TARGET_WEEK = 36;
     const TARGET_YEAR = 2025;
-    const TARGET_RANGE = "August 19 - August 25, 2025";
+    const TARGET_RANGE = "September 1 - September 7, 2025";
     
-    function absoluteForceWeek34() {
-        console.log('[Week 34 Override] Forcing Week 34 display...');
+    function absoluteForceWeek36() {
+        console.log('[Week 36 Override] Forcing Week 36 display...');
         
         // Strategy 1: Direct DOM manipulation
         const weekDisplay = document.getElementById('week-display');
@@ -27,17 +27,17 @@
             weekRange.innerHTML = TARGET_RANGE;
         }
         
-        // Strategy 2: Hide all weeks then show Week 34
+        // Strategy 2: Hide all weeks then show Week 36
         const allWeeks = document.querySelectorAll('[id^="content-week-"]');
         allWeeks.forEach(el => {
             el.style.cssText = 'display: none !important; visibility: hidden !important;';
             el.classList.remove('active', 'show', 'visible');
         });
         
-        const week34Content = document.getElementById('content-week-34-2025');
-        if (week34Content) {
-            week34Content.style.cssText = 'display: block !important; visibility: visible !important;';
-            week34Content.classList.add('active', 'show', 'visible');
+        const week36Content = document.getElementById('content-week-36-2025');
+        if (week36Content) {
+            week36Content.style.cssText = 'display: block !important; visibility: visible !important;';
+            week36Content.classList.add('active', 'show', 'visible');
         }
         
         // Strategy 3: Override localStorage
@@ -67,22 +67,22 @@
     }
     
     // Run immediately
-    absoluteForceWeek34();
+    absoluteForceWeek36();
     
     // Run when DOM is ready
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', absoluteForceWeek34);
+        document.addEventListener('DOMContentLoaded', absoluteForceWeek36);
     } else {
-        setTimeout(absoluteForceWeek34, 0);
+        setTimeout(absoluteForceWeek36, 0);
     }
     
     // Run when window loads
-    window.addEventListener('load', absoluteForceWeek34);
+    window.addEventListener('load', absoluteForceWeek36);
     
     // Run multiple times with delays to ensure persistence
     const delays = [10, 50, 100, 200, 500, 1000, 1500, 2000];
     delays.forEach(delay => {
-        setTimeout(absoluteForceWeek34, delay);
+        setTimeout(absoluteForceWeek36, delay);
     });
     
     // Periodic check every second for first 10 seconds
@@ -90,7 +90,7 @@
     const periodicCheck = setInterval(() => {
         const weekDisplay = document.getElementById('week-display');
         if (weekDisplay && weekDisplay.textContent !== `Week ${TARGET_WEEK}, ${TARGET_YEAR}`) {
-            absoluteForceWeek34();
+            absoluteForceWeek36();
         }
         counter++;
         if (counter > 10) clearInterval(periodicCheck);

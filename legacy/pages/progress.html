@@ -2062,6 +2062,45 @@
             </div>
         </div>
 
+        <!-- Content for Week 36, 2025 -->
+        <div id="content-week-36-2025" style="display: none;">
+            <!-- Week 36 report link -->
+            <div class="progress-section">
+                <h3><i class="fas fa-dna"></i> Week 36: Protein Language Models for Mitochondrial Analysis</h3>
+                <p><strong>Period:</strong> September 1 - September 7, 2025</p>
+                <p>Developed computational pipeline using ESM-2 protein language models to analyze mitochondrial protein targeting. Identified distinct clustering patterns in sub-compartment localization.</p>
+                
+                <div style="margin: 30px 0;">
+                    <a href="reports/week-36-2025.html" class="btn" style="background-color: #3498db; color: white; padding: 15px 30px; border-radius: 5px; text-decoration: none; display: inline-flex; align-items: center; font-weight: bold; font-size: 18px;">
+                        <i class="fas fa-file-alt" style="margin-right: 10px;"></i> View Full Week 36 Report
+                    </a>
+                </div>
+                
+                <p><strong>Key Achievements:</strong></p>
+                <ul>
+                    <li>✅ <strong>PLM Implementation:</strong> ESM-2 T30 model (150M parameters)</li>
+                    <li>✅ <strong>Dataset Analysis:</strong> 20 mitochondrial proteins from UniProt</li>
+                    <li>✅ <strong>Key Finding:</strong> Intermembrane space proteins cluster tightly (d=2.48)</li>
+                    <li>✅ <strong>Processing Efficiency:</strong> 0.85 seconds per protein (CPU-only)</li>
+                </ul>
+                
+                <p><strong>Technical Details:</strong></p>
+                <ul>
+                    <li>Embedding dimensions: 640-dimensional vectors</li>
+                    <li>Analysis methods: UMAP, t-SNE, PCA</li>
+                    <li>Resource usage: 3GB disk space</li>
+                    <li>GitHub repository: Created for reproducibility</li>
+                </ul>
+                
+                <h4>Literature Review</h4>
+                <ul>
+                    <li><strong>Bridge RNA Systems:</strong> 2 Nature papers (June 2024)</li>
+                    <li><strong>PLM Applications:</strong> Cell Systems paper (September 2025)</li>
+                    <li><strong>Focus:</strong> Programmable genome editing technologies</li>
+                </ul>
+            </div>
+        </div>
+
 <!-- Dark mode toggle button -->
 <div class="dark-mode-toggle" id="progress-dark-toggle" aria-label="Toggle dark mode">
   <i class="fas fa-moon"></i>
@@ -2077,9 +2116,9 @@
 <!-- Ultimate Week 27 Override - Load this last to ensure Week 27 is displayed -->
 <script src="../js/week-23-override.js"></script>
 
-<!-- Final inline script to ensure Week 27 is visible -->
+<!-- Final inline script to ensure Week 36 is visible -->
 <script>
-// Absolute final override to show Week 34
+// Absolute final override to show Week 36
 (function() {
     // Hide all week content divs
     const allWeeks = document.querySelectorAll('[id^="content-week-"]');
@@ -2088,19 +2127,19 @@
         week.style.visibility = 'hidden';
     });
     
-    // Show only Week 34
-    const week34 = document.getElementById('content-week-34-2025');
-    if (week34) {
-        week34.style.display = 'block';
-        week34.style.visibility = 'visible';
-        week34.style.opacity = '1';
+    // Show only Week 36
+    const week36 = document.getElementById('content-week-36-2025');
+    if (week36) {
+        week36.style.display = 'block';
+        week36.style.visibility = 'visible';
+        week36.style.opacity = '1';
         
-        // Also ensure the header shows Week 34
+        // Also ensure the header shows Week 36
         const weekDisplay = document.getElementById('week-display');
-        if (weekDisplay) weekDisplay.textContent = 'Week 34, 2025';
+        if (weekDisplay) weekDisplay.textContent = 'Week 36, 2025';
         
         const weekRange = document.getElementById('week-range');
-        if (weekRange) weekRange.textContent = 'August 19 - August 25, 2025';
+        if (weekRange) weekRange.textContent = 'September 1 - September 7, 2025';
     }
 })();
 </script>

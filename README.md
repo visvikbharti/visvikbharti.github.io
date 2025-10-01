@@ -1,6 +1,6 @@
-# Vishal Bharti's Portfolio Website
+# My Portfolio Website
 
-This repository contains Vishal Bharti's personal portfolio website, showcasing research work, publications, projects, and weekly progress reports. The site is deployed via GitHub Pages at [visvikbharti.github.io](https://visvikbharti.github.io/).
+This repository contains my personal portfolio website, showcasing research work, publications, projects, and weekly progress reports. The site is deployed via GitHub Pages at [visvikbharti.github.io](https://visvikbharti.github.io/).
 
 ## Repository Structure
 

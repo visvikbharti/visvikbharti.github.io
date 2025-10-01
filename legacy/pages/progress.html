@@ -152,10 +152,10 @@
         content.style.display = 'none';
       });
       
-      // Show Week 27 content immediately
-      document.getElementById('content-week-27-2025').style.display = 'block';
-      document.getElementById('week-range').textContent = "July 15 - July 21, 2025";
-      document.getElementById('week-display').textContent = "Week 27, 2025";
+      // Show Week 39 content immediately
+      document.getElementById('content-week-39-2025').style.display = 'block';
+      document.getElementById('week-range').textContent = "September 30 - October 6, 2025";
+      document.getElementById('week-display').textContent = "Week 39, 2025";
     }
   });
   
@@ -176,10 +176,10 @@
         content.style.display = 'none';
       });
       
-      // Set week 27 as current
-      document.getElementById('content-week-27-2025').style.display = 'block';
-      document.getElementById('week-range').textContent = "July 15 - July 21, 2025";
-      document.getElementById('week-display').textContent = "Week 27, 2025";
+      // Set week 39 as current
+      document.getElementById('content-week-39-2025').style.display = 'block';
+      document.getElementById('week-range').textContent = "September 30 - October 6, 2025";
+      document.getElementById('week-display').textContent = "Week 39, 2025";
     } else {
       // Show error message
       document.getElementById('error-msg').style.display = 'block';
@@ -1802,6 +1802,43 @@
         <h3><i class="fas fa-history"></i> Previous Reports</h3>
         
         <div class="archive-list">
+          <div class="archive-item" data-week="39" data-year="2025">
+            <div class="archive-header">
+              <div class="archive-title">Week 39, 2025 (September 30 - October 6)</div>
+              <i class="fas fa-chevron-down archive-toggle"></i>
+            </div>
+            <div class="archive-content">
+              <p><strong>Focus:</strong> StickForStats Confidence Intervals Migration to Client-Side JavaScript</p>
+              <p><strong>Key accomplishments:</strong></p>
+              <ul>
+                <li>Created comprehensive simulation engine (simulationUtils.js, 549 lines)</li>
+                <li>Migrated all 5 confidence interval simulation components</li>
+                <li>Eliminated 100% of WebSocket backend dependencies</li>
+                <li>Implemented async execution with real-time progress tracking</li>
+                <li>Created 638 lines of technical documentation</li>
+              </ul>
+              <button class="view-report-btn nav-button" data-week="39" data-year="2025">View Full Report</button>
+            </div>
+          </div>
+
+          <div class="archive-item" data-week="36" data-year="2025">
+            <div class="archive-header">
+              <div class="archive-title">Week 36, 2025 (September 1 - September 7)</div>
+              <i class="fas fa-chevron-down archive-toggle"></i>
+            </div>
+            <div class="archive-content">
+              <p><strong>Focus:</strong> Protein Language Models for Mitochondrial Protein Analysis</p>
+              <p><strong>Key accomplishments:</strong></p>
+              <ul>
+                <li>Developed ESM-2 based computational pipeline for protein targeting analysis</li>
+                <li>Analyzed 20 mitochondrial proteins with 640-dimensional embeddings</li>
+                <li>Identified clustering patterns in sub-compartment localization</li>
+                <li>Reviewed bridge RNA and PLM literature (3 high-impact papers)</li>
+              </ul>
+              <button class="view-report-btn nav-button" data-week="36" data-year="2025">View Full Report</button>
+            </div>
+          </div>
+
           <div class="archive-item" data-week="23" data-year="2025">
             <div class="archive-header">
               <div class="archive-title">Week 23, 2025 (June 2 - June 8)</div>
@@ -2069,13 +2106,13 @@
                 <h3><i class="fas fa-dna"></i> Week 36: Protein Language Models for Mitochondrial Analysis</h3>
                 <p><strong>Period:</strong> September 1 - September 7, 2025</p>
                 <p>Developed computational pipeline using ESM-2 protein language models to analyze mitochondrial protein targeting. Identified distinct clustering patterns in sub-compartment localization.</p>
-                
+
                 <div style="margin: 30px 0;">
                     <a href="reports/week-36-2025.html" class="btn" style="background-color: #3498db; color: white; padding: 15px 30px; border-radius: 5px; text-decoration: none; display: inline-flex; align-items: center; font-weight: bold; font-size: 18px;">
                         <i class="fas fa-file-alt" style="margin-right: 10px;"></i> View Full Week 36 Report
                     </a>
                 </div>
-                
+
                 <p><strong>Key Achievements:</strong></p>
                 <ul>
                     <li>✅ <strong>PLM Implementation:</strong> ESM-2 T30 model (150M parameters)</li>
@@ -2083,7 +2120,7 @@
                     <li>✅ <strong>Key Finding:</strong> Intermembrane space proteins cluster tightly (d=2.48)</li>
                     <li>✅ <strong>Processing Efficiency:</strong> 0.85 seconds per protein (CPU-only)</li>
                 </ul>
-                
+
                 <p><strong>Technical Details:</strong></p>
                 <ul>
                     <li>Embedding dimensions: 640-dimensional vectors</li>
@@ -2091,12 +2128,52 @@
                     <li>Resource usage: 3GB disk space</li>
                     <li>GitHub repository: Created for reproducibility</li>
                 </ul>
-                
+
                 <h4>Literature Review</h4>
                 <ul>
                     <li><strong>Bridge RNA Systems:</strong> 2 Nature papers (June 2024)</li>
                     <li><strong>PLM Applications:</strong> Cell Systems paper (September 2025)</li>
                     <li><strong>Focus:</strong> Programmable genome editing technologies</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Content for Week 39, 2025 -->
+        <div id="content-week-39-2025" style="display: none;">
+            <!-- Week 39 report link -->
+            <div class="progress-section">
+                <h3><i class="fas fa-chart-line"></i> Week 39: StickForStats Confidence Intervals Migration</h3>
+                <p><strong>Period:</strong> September 30 - October 6, 2025</p>
+                <p>Successfully migrated all confidence interval simulations from WebSocket-based backend execution to client-side JavaScript. This architectural transformation eliminated dependency errors and enabled offline functionality.</p>
+
+                <div style="margin: 30px 0;">
+                    <a href="reports/week-39-2025.html" class="btn" style="background-color: #e74c3c; color: white; padding: 15px 30px; border-radius: 5px; text-decoration: none; display: inline-flex; align-items: center; font-weight: bold; font-size: 18px;">
+                        <i class="fas fa-file-alt" style="margin-right: 10px;"></i> View Full Week 39 Report
+                    </a>
+                </div>
+
+                <p><strong>Key Achievements:</strong></p>
+                <ul>
+                    <li>✅ <strong>Simulation Engine:</strong> Created simulationUtils.js (549 lines) with 15+ statistical functions</li>
+                    <li>✅ <strong>Components Migrated:</strong> All 5 simulation modules updated (Coverage, Sample Size, Bootstrap, Transformation, Non-Normality)</li>
+                    <li>✅ <strong>Zero WebSocket Errors:</strong> 100% elimination of backend dependencies</li>
+                    <li>✅ <strong>Async Execution:</strong> Non-blocking UI with real-time progress tracking</li>
+                </ul>
+
+                <p><strong>Technical Implementation:</strong></p>
+                <ul>
+                    <li>Total code: 549 lines (engine) + 650 lines (components)</li>
+                    <li>Technology: React 18, JavaScript ES6+, Async/Await patterns</li>
+                    <li>Performance: Handles 1000+ simulation iterations smoothly</li>
+                    <li>Documentation: 638 lines across 3 comprehensive markdown files</li>
+                </ul>
+
+                <h4>Architecture Benefits</h4>
+                <ul>
+                    <li><strong>No Backend Dependency:</strong> All simulations run in browser</li>
+                    <li><strong>Offline Capable:</strong> Works without internet connection</li>
+                    <li><strong>Unlimited Scalability:</strong> No server load constraints</li>
+                    <li><strong>Zero Latency:</strong> Instant startup, no connection delays</li>
                 </ul>
             </div>
         </div>
@@ -2116,9 +2193,9 @@
 <!-- Ultimate Week 27 Override - Load this last to ensure Week 27 is displayed -->
 <script src="../js/week-23-override.js"></script>
 
-<!-- Final inline script to ensure Week 36 is visible -->
+<!-- Final inline script to ensure Week 39 is visible -->
 <script>
-// Absolute final override to show Week 36
+// Absolute final override to show Week 39
 (function() {
     // Hide all week content divs
     const allWeeks = document.querySelectorAll('[id^="content-week-"]');
@@ -2126,20 +2203,20 @@
         week.style.display = 'none';
         week.style.visibility = 'hidden';
     });
-    
-    // Show only Week 36
-    const week36 = document.getElementById('content-week-36-2025');
-    if (week36) {
-        week36.style.display = 'block';
-        week36.style.visibility = 'visible';
-        week36.style.opacity = '1';
-        
-        // Also ensure the header shows Week 36
+
+    // Show only Week 39
+    const week39 = document.getElementById('content-week-39-2025');
+    if (week39) {
+        week39.style.display = 'block';
+        week39.style.visibility = 'visible';
+        week39.style.opacity = '1';
+
+        // Also ensure the header shows Week 39
         const weekDisplay = document.getElementById('week-display');
-        if (weekDisplay) weekDisplay.textContent = 'Week 36, 2025';
+        if (weekDisplay) weekDisplay.textContent = 'Week 39, 2025';
         
         const weekRange = document.getElementById('week-range');
-        if (weekRange) weekRange.textContent = 'September 1 - September 7, 2025';
+        if (weekRange) weekRange.textContent = 'September 30 - October 6, 2025';
     }
 })();
 </script>

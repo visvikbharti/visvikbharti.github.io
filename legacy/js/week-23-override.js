@@ -1,43 +1,43 @@
 /**
- * Ultimate Week 36 Override Script
- * This script uses multiple strategies to ensure Week 36 is always displayed
+ * Ultimate Week 39 Override Script
+ * This script uses multiple strategies to ensure Week 39 is always displayed
  */
 
 (function() {
     'use strict';
-    
-    const TARGET_WEEK = 36;
+
+    const TARGET_WEEK = 39;
     const TARGET_YEAR = 2025;
-    const TARGET_RANGE = "September 1 - September 7, 2025";
-    
-    function absoluteForceWeek36() {
-        console.log('[Week 36 Override] Forcing Week 36 display...');
-        
+    const TARGET_RANGE = "September 30 - October 6, 2025";
+
+    function absoluteForceWeek39() {
+        console.log('[Week 39 Override] Forcing Week 39 display...');
+
         // Strategy 1: Direct DOM manipulation
         const weekDisplay = document.getElementById('week-display');
         const weekRange = document.getElementById('week-range');
-        
+
         if (weekDisplay) {
             weekDisplay.textContent = `Week ${TARGET_WEEK}, ${TARGET_YEAR}`;
             weekDisplay.innerHTML = `Week ${TARGET_WEEK}, ${TARGET_YEAR}`;
         }
-        
+
         if (weekRange) {
             weekRange.textContent = TARGET_RANGE;
             weekRange.innerHTML = TARGET_RANGE;
         }
-        
-        // Strategy 2: Hide all weeks then show Week 36
+
+        // Strategy 2: Hide all weeks then show Week 39
         const allWeeks = document.querySelectorAll('[id^="content-week-"]');
         allWeeks.forEach(el => {
             el.style.cssText = 'display: none !important; visibility: hidden !important;';
             el.classList.remove('active', 'show', 'visible');
         });
-        
-        const week36Content = document.getElementById('content-week-36-2025');
-        if (week36Content) {
-            week36Content.style.cssText = 'display: block !important; visibility: visible !important;';
-            week36Content.classList.add('active', 'show', 'visible');
+
+        const week39Content = document.getElementById('content-week-39-2025');
+        if (week39Content) {
+            week39Content.style.cssText = 'display: block !important; visibility: visible !important;';
+            week39Content.classList.add('active', 'show', 'visible');
         }
         
         // Strategy 3: Override localStorage
@@ -67,30 +67,30 @@
     }
     
     // Run immediately
-    absoluteForceWeek36();
-    
+    absoluteForceWeek39();
+
     // Run when DOM is ready
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', absoluteForceWeek36);
+        document.addEventListener('DOMContentLoaded', absoluteForceWeek39);
     } else {
-        setTimeout(absoluteForceWeek36, 0);
+        setTimeout(absoluteForceWeek39, 0);
     }
-    
+
     // Run when window loads
-    window.addEventListener('load', absoluteForceWeek36);
-    
+    window.addEventListener('load', absoluteForceWeek39);
+
     // Run multiple times with delays to ensure persistence
     const delays = [10, 50, 100, 200, 500, 1000, 1500, 2000];
     delays.forEach(delay => {
-        setTimeout(absoluteForceWeek36, delay);
+        setTimeout(absoluteForceWeek39, delay);
     });
-    
+
     // Periodic check every second for first 10 seconds
     let counter = 0;
     const periodicCheck = setInterval(() => {
         const weekDisplay = document.getElementById('week-display');
         if (weekDisplay && weekDisplay.textContent !== `Week ${TARGET_WEEK}, ${TARGET_YEAR}`) {
-            absoluteForceWeek36();
+            absoluteForceWeek39();
         }
         counter++;
         if (counter > 10) clearInterval(periodicCheck);

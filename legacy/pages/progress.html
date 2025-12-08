@@ -152,10 +152,10 @@
         content.style.display = 'none';
       });
       
-      // Show Week 39 content immediately
-      document.getElementById('content-week-39-2025').style.display = 'block';
-      document.getElementById('week-range').textContent = "September 30 - October 6, 2025";
-      document.getElementById('week-display').textContent = "Week 39, 2025";
+      // Show Week 50 content immediately
+      document.getElementById('content-week-50-2025').style.display = 'block';
+      document.getElementById('week-range').textContent = "December 8 - December 14, 2025";
+      document.getElementById('week-display').textContent = "Week 50, 2025";
     }
   });
   
@@ -176,10 +176,10 @@
         content.style.display = 'none';
       });
       
-      // Set week 39 as current
-      document.getElementById('content-week-39-2025').style.display = 'block';
-      document.getElementById('week-range').textContent = "September 30 - October 6, 2025";
-      document.getElementById('week-display').textContent = "Week 39, 2025";
+      // Set week 50 as current
+      document.getElementById('content-week-50-2025').style.display = 'block';
+      document.getElementById('week-range').textContent = "December 8 - December 14, 2025";
+      document.getElementById('week-display').textContent = "Week 50, 2025";
     } else {
       // Show error message
       document.getElementById('error-msg').style.display = 'block';
@@ -1802,6 +1802,25 @@
         <h3><i class="fas fa-history"></i> Previous Reports</h3>
         
         <div class="archive-list">
+          <div class="archive-item" data-week="40" data-year="2025">
+            <div class="archive-header">
+              <div class="archive-title">Week 40, 2025 (October 2)</div>
+              <i class="fas fa-chevron-down archive-toggle"></i>
+            </div>
+            <div class="archive-content">
+              <p><strong>Focus:</strong> StickForStats Platform Transformation - Unified Educational Architecture</p>
+              <p><strong>Key accomplishments:</strong></p>
+              <ul>
+                <li>Built 17 interactive lessons across 4 modules (PCA, CI, DOE, Probability)</li>
+                <li>Created unified Learning Hub with progress tracking and smart discovery</li>
+                <li>Integrated educational banners in all 4 analysis pages</li>
+                <li>Achieved 3-5x efficiency through strategic component reuse</li>
+                <li>Delivered 16.5-hour plan in ~13 hours (21% ahead of schedule)</li>
+              </ul>
+              <button class="view-report-btn nav-button" data-week="40" data-year="2025">View Full Report</button>
+            </div>
+          </div>
+
           <div class="archive-item" data-week="39" data-year="2025">
             <div class="archive-header">
               <div class="archive-title">Week 39, 2025 (September 30 - October 6)</div>
@@ -2138,6 +2157,49 @@
             </div>
         </div>
 
+        <!-- Content for Week 40, 2025 -->
+        <div id="content-week-40-2025" style="display: none;">
+            <!-- Week 40 report link -->
+            <div class="progress-section">
+                <h3><i class="fas fa-graduation-cap"></i> Week 40: StickForStats Platform Transformation</h3>
+                <p><strong>Period:</strong> October 2, 2025</p>
+                <p>Completed major platform transformation unifying educational architecture across all StickForStats modules. Transformed from inconsistent tab-based interfaces to a progressive lesson system with a central Learning Hub.</p>
+
+                <div style="margin: 30px 0;">
+                    <a href="reports/week-40-2025.html" class="btn" style="background-color: #9b59b6; color: white; padding: 15px 30px; border-radius: 5px; text-decoration: none; display: inline-flex; align-items: center; font-weight: bold; font-size: 18px;">
+                        <i class="fas fa-file-alt" style="margin-right: 10px;"></i> View Full Week 40 Report
+                    </a>
+                </div>
+
+                <p><strong>Key Achievements:</strong></p>
+                <ul>
+                    <li>✅ <strong>17 Interactive Lessons:</strong> Built progressive lessons across 4 modules (PCA: 5, CI: 4, DOE: 4, Probability: 4)</li>
+                    <li>✅ <strong>Unified Learning Hub:</strong> Central educational portal with progress tracking and smart discovery</li>
+                    <li>✅ <strong>Educational Banners:</strong> Contextual learning prompts integrated in all 4 analysis pages</li>
+                    <li>✅ <strong>3-5x Efficiency:</strong> Strategic component reuse (refactoring vs building from scratch)</li>
+                    <li>✅ <strong>21% Ahead of Schedule:</strong> 16.5-hour plan delivered in ~13 hours</li>
+                </ul>
+
+                <p><strong>Technical Implementation:</strong></p>
+                <ul>
+                    <li><strong>Files Created:</strong> 29 new files (~10,000 lines of educational code)</li>
+                    <li><strong>CI Module:</strong> 5 files (CIEducationHub + 4 lessons with interactive simulations)</li>
+                    <li><strong>DOE Module:</strong> 5 files (DOEEducationHub + 4 lessons with factorial design visualizations)</li>
+                    <li><strong>Probability Module:</strong> 6 files (Hub + 4 lessons with D3.js distribution animations)</li>
+                    <li><strong>Unified Navigation:</strong> 3 files (LearningHub + EducationalBanner components + routing)</li>
+                    <li><strong>Zero Compilation Errors:</strong> All components compile cleanly on first build</li>
+                </ul>
+
+                <p><strong>Architecture Transformation:</strong></p>
+                <ul>
+                    <li><strong>Before:</strong> Inconsistent UX (tabs, mixed layouts), no unified portal, no progress tracking</li>
+                    <li><strong>After:</strong> Unified progressive lessons, central Learning Hub, cross-module progress tracking</li>
+                    <li><strong>Routes:</strong> /learn (hub), /pca-learn, /ci-learn, /doe-learn, /probability-learn</li>
+                    <li><strong>Tech Stack:</strong> React 18, Material-UI 5, MathJax 3, D3.js, Recharts, Framer Motion</li>
+                </ul>
+            </div>
+        </div>
+
         <!-- Content for Week 39, 2025 -->
         <div id="content-week-39-2025" style="display: none;">
             <!-- Week 39 report link -->
@@ -2178,6 +2240,152 @@
             </div>
         </div>
 
+        <!-- Content for Week 49, 2025 -->
+        <div id="content-week-49-2025" style="display: none;">
+            <div class="progress-section">
+                <h3><i class="fas fa-calendar-check"></i> Week 49: RNA Biology Lab Attendance System - Development</h3>
+                <p><strong>Period:</strong> December 1 - December 7, 2025</p>
+                <p>Developed and deployed a full-stack attendance management system for the RNA Biology Lab. Built using MERN stack (MongoDB, Express.js, React, Node.js) with cloud deployment on Vercel and Render.</p>
+
+                <h4>Project Overview</h4>
+                <p>Created an internal lab tool to track daily attendance of lab members, replacing manual tracking methods. The system supports both students and administrators with different access levels.</p>
+
+                <p><strong>Key Achievements:</strong></p>
+                <ul>
+                    <li>✅ <strong>Full MERN Stack Application:</strong> Built complete frontend and backend from scratch</li>
+                    <li>✅ <strong>Authentication System:</strong> JWT-based login with role-based access control (Admin/Student)</li>
+                    <li>✅ <strong>Auto-Generated Lab IDs:</strong> Format: TYPE+YEAR+SEQUENCE (e.g., PHD2025001)</li>
+                    <li>✅ <strong>Working Days Calculation:</strong> Excludes weekends (Sat/Sun) from attendance metrics</li>
+                    <li>✅ <strong>System Go-Live Date Feature:</strong> Prevents penalizing users for days before deployment</li>
+                    <li>✅ <strong>Cloud Deployment:</strong> Frontend on Vercel, Backend on Render, Database on MongoDB Atlas</li>
+                </ul>
+
+                <h4>Technical Stack</h4>
+                <table class="progress-table">
+                    <tr>
+                        <th>Component</th>
+                        <th>Technology</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Frontend</td>
+                        <td>React.js</td>
+                        <td>Student Dashboard, Admin Dashboard, Profile pages</td>
+                    </tr>
+                    <tr>
+                        <td>Backend</td>
+                        <td>Node.js + Express</td>
+                        <td>RESTful API with JWT authentication</td>
+                    </tr>
+                    <tr>
+                        <td>Database</td>
+                        <td>MongoDB Atlas</td>
+                        <td>User, Attendance, SystemSettings collections</td>
+                    </tr>
+                    <tr>
+                        <td>Hosting</td>
+                        <td>Vercel + Render</td>
+                        <td>Free tier with auto-deployment from GitHub</td>
+                    </tr>
+                </table>
+
+                <h4>Features Implemented</h4>
+                <ul>
+                    <li><strong>Student Features:</strong> Mark daily attendance, view monthly records, download CSV/PDF reports</li>
+                    <li><strong>Admin Features:</strong> View all members, monthly reports with percentages, system settings</li>
+                    <li><strong>CORS Configuration:</strong> Supports Vercel preview deployments (*.vercel.app)</li>
+                </ul>
+
+                <h4>Git Commits This Week</h4>
+                <ul>
+                    <li><code>41e483c</code> - Initial commit: RNA Biology Lab Attendance System</li>
+                    <li><code>bdf5ee4</code> - Add credentials file to gitignore for security</li>
+                    <li><code>fe79ffb</code> - Fix attendance calculation and add auto-generated Lab IDs</li>
+                    <li><code>f2dd97b</code> - Trigger Vercel deployment</li>
+                    <li><code>9afec2e</code> - Add System Go-Live Date feature for attendance calculation</li>
+                    <li><code>ab43326</code> - Remove 'This Month's Records' stat card from Admin Dashboard</li>
+                    <li><code>85d5c54</code> - Fix CORS to allow Vercel preview deployments</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Content for Week 50, 2025 -->
+        <div id="content-week-50-2025" style="display: none;">
+            <div class="progress-section">
+                <h3><i class="fas fa-bug"></i> Week 50: RNA Biology Lab Attendance System - Bug Fixes & Documentation</h3>
+                <p><strong>Period:</strong> December 8 - December 14, 2025</p>
+                <p>Continued refinement of the attendance system with critical bug fixes, feature additions, and comprehensive documentation.</p>
+
+                <h4>Issues Resolved</h4>
+                <table class="progress-table">
+                    <tr>
+                        <th>Issue</th>
+                        <th>Root Cause</th>
+                        <th>Solution</th>
+                    </tr>
+                    <tr>
+                        <td>Password change server error</td>
+                        <td>Using req.user._id instead of req.userId</td>
+                        <td>Fixed auth middleware reference, added null checks</td>
+                    </tr>
+                    <tr>
+                        <td>Student dashboard showing 30 days absent</td>
+                        <td>Using calendar days instead of working days</td>
+                        <td>Created getWorkingDaysInMonth() function</td>
+                    </tr>
+                    <tr>
+                        <td>Profile page wrong percentage</td>
+                        <td>Calculating for entire month, not up to today</td>
+                        <td>Limited calculation to current date</td>
+                    </tr>
+                </table>
+
+                <p><strong>Key Achievements:</strong></p>
+                <ul>
+                    <li>✅ <strong>Delete Member Feature:</strong> Admin can now remove users with confirmation dialog</li>
+                    <li>✅ <strong>Password Change Fix:</strong> Proper error handling, prevents same-password reuse</li>
+                    <li>✅ <strong>Working Days Calculation:</strong> All dashboards now correctly show Mon-Fri only</li>
+                    <li>✅ <strong>Comprehensive Documentation:</strong> Created 691-line session log with troubleshooting guide</li>
+                </ul>
+
+                <h4>Deployment Challenges Resolved</h4>
+                <ul>
+                    <li><strong>Git Author Issue:</strong> Vercel requires commits with valid author info</li>
+                    <li><strong>Auto-Deploy Not Triggering:</strong> Fixed by configuring git user.email/name</li>
+                    <li><strong>Render Spin-Down:</strong> Documented free tier 15-min inactivity behavior</li>
+                </ul>
+
+                <h4>Git Commits This Week</h4>
+                <ul>
+                    <li><code>bfc951f</code> - Add delete member functionality for admin</li>
+                    <li><code>4ef1d26</code> - Trigger Vercel deployment with latest changes</li>
+                    <li><code>e5e91dc</code> - Deploy with proper author</li>
+                    <li><code>b1a4d81</code> - Fix password change and student dashboard calculations</li>
+                    <li><code>c99a8b9</code> - Add comprehensive session documentation for Dec 8, 2025</li>
+                    <li><code>d234a6a</code> - Fix Profile page working days calculation</li>
+                    <li><code>7399e1a</code> - Update documentation: mark Profile.js issue as resolved</li>
+                </ul>
+
+                <h4>Documentation Created</h4>
+                <p>Created detailed session documentation at <code>docs/SESSION_LOG_2025-12-08.md</code> covering:</p>
+                <ul>
+                    <li>Problem analysis and root cause identification</li>
+                    <li>Git and deployment troubleshooting guide</li>
+                    <li>Architecture overview with ASCII diagrams</li>
+                    <li>Environment variable reference</li>
+                    <li>Quick reference commands</li>
+                </ul>
+
+                <h4>Current System Status</h4>
+                <ul>
+                    <li><strong>Frontend:</strong> https://rna-lab-attendance.vercel.app</li>
+                    <li><strong>Backend:</strong> https://rna-lab-attendance.onrender.com</li>
+                    <li><strong>Repository:</strong> github.com/visvikbharti/rna-lab-attendance</li>
+                    <li><strong>Status:</strong> All features working, 7 lab members registered</li>
+                </ul>
+            </div>
+        </div>
+
 <!-- Dark mode toggle button -->
 <div class="dark-mode-toggle" id="progress-dark-toggle" aria-label="Toggle dark mode">
   <i class="fas fa-moon"></i>
@@ -2193,9 +2401,9 @@
 <!-- Ultimate Week 27 Override - Load this last to ensure Week 27 is displayed -->
 <script src="../js/week-23-override.js"></script>
 
-<!-- Final inline script to ensure Week 39 is visible -->
+<!-- Final inline script to ensure Week 50 is visible -->
 <script>
-// Absolute final override to show Week 39
+// Absolute final override to show Week 50
 (function() {
     // Hide all week content divs
     const allWeeks = document.querySelectorAll('[id^="content-week-"]');
@@ -2204,19 +2412,19 @@
         week.style.visibility = 'hidden';
     });
 
-    // Show only Week 39
-    const week39 = document.getElementById('content-week-39-2025');
-    if (week39) {
-        week39.style.display = 'block';
-        week39.style.visibility = 'visible';
-        week39.style.opacity = '1';
+    // Show only Week 50
+    const week50 = document.getElementById('content-week-50-2025');
+    if (week50) {
+        week50.style.display = 'block';
+        week50.style.visibility = 'visible';
+        week50.style.opacity = '1';
 
-        // Also ensure the header shows Week 39
+        // Also ensure the header shows Week 50
         const weekDisplay = document.getElementById('week-display');
-        if (weekDisplay) weekDisplay.textContent = 'Week 39, 2025';
-        
+        if (weekDisplay) weekDisplay.textContent = 'Week 50, 2025';
+
         const weekRange = document.getElementById('week-range');
-        if (weekRange) weekRange.textContent = 'September 30 - October 6, 2025';
+        if (weekRange) weekRange.textContent = 'December 8 - December 14, 2025';
     }
 })();
 </script>

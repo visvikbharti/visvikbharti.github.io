@@ -2434,35 +2434,7 @@
   console.log('Progress page loaded, preparing to initialize feedback system');
 </script>
 <script src="../js/feedback-system.js"></script>
-<!-- Ultimate Week 27 Override - Load this last to ensure Week 27 is displayed -->
+<!-- Week 50 Initial Load Script -->
 <script src="../js/week-23-override.js"></script>
-
-<!-- Final inline script to ensure Week 50 is visible -->
-<script>
-// Absolute final override to show Week 50
-(function() {
-    // Hide all week content divs
-    const allWeeks = document.querySelectorAll('[id^="content-week-"]');
-    allWeeks.forEach(week => {
-        week.style.display = 'none';
-        week.style.visibility = 'hidden';
-    });
-
-    // Show only Week 50
-    const week50 = document.getElementById('content-week-50-2025');
-    if (week50) {
-        week50.style.display = 'block';
-        week50.style.visibility = 'visible';
-        week50.style.opacity = '1';
-
-        // Also ensure the header shows Week 50
-        const weekDisplay = document.getElementById('week-display');
-        if (weekDisplay) weekDisplay.textContent = 'Week 50, 2025';
-
-        const weekRange = document.getElementById('week-range');
-        if (weekRange) weekRange.textContent = 'December 8 - December 14, 2025';
-    }
-})();
-</script>
 </body>
 </html>

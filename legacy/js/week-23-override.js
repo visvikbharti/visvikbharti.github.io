@@ -1,6 +1,7 @@
 /**
- * Ultimate Week 50 Override Script
- * This script uses multiple strategies to ensure Week 50 is always displayed
+ * Week 50 Initial Load Script
+ * This script ensures Week 50 is displayed on initial page load,
+ * but allows normal navigation to other weeks afterward
  */
 
 (function() {
@@ -10,89 +11,77 @@
     const TARGET_YEAR = 2025;
     const TARGET_RANGE = "December 8 - December 14, 2025";
 
-    function absoluteForceWeek50() {
-        console.log('[Week 50 Override] Forcing Week 50 display...');
+    // Flag to track if user has navigated
+    let userHasNavigated = false;
 
-        // Strategy 1: Direct DOM manipulation
+    function setInitialWeek50() {
+        // Only run if user hasn't started navigating
+        if (userHasNavigated) return;
+
+        console.log('[Week 50 Init] Setting initial Week 50 display...');
+
+        // Update week display header
         const weekDisplay = document.getElementById('week-display');
         const weekRange = document.getElementById('week-range');
 
         if (weekDisplay) {
             weekDisplay.textContent = `Week ${TARGET_WEEK}, ${TARGET_YEAR}`;
-            weekDisplay.innerHTML = `Week ${TARGET_WEEK}, ${TARGET_YEAR}`;
         }
 
         if (weekRange) {
             weekRange.textContent = TARGET_RANGE;
-            weekRange.innerHTML = TARGET_RANGE;
         }
 
-        // Strategy 2: Hide all weeks then show Week 39
+        // Hide all weeks then show Week 50
         const allWeeks = document.querySelectorAll('[id^="content-week-"]');
         allWeeks.forEach(el => {
-            el.style.cssText = 'display: none !important; visibility: hidden !important;';
-            el.classList.remove('active', 'show', 'visible');
+            el.style.display = 'none';
         });
 
         const week50Content = document.getElementById('content-week-50-2025');
         if (week50Content) {
-            week50Content.style.cssText = 'display: block !important; visibility: visible !important;';
-            week50Content.classList.add('active', 'show', 'visible');
+            week50Content.style.display = 'block';
         }
-        
-        // Strategy 3: Override localStorage
+
+        // Set localStorage for current display
         localStorage.setItem('currentDisplayedWeek', TARGET_WEEK.toString());
         localStorage.setItem('currentDisplayedYear', TARGET_YEAR.toString());
-        localStorage.setItem('currentWeek', TARGET_WEEK.toString());
-        localStorage.setItem('selectedWeek', TARGET_WEEK.toString());
-        
-        // Strategy 4: Override window variables
-        window.CURRENT_WEEK = TARGET_WEEK;
-        window.CURRENT_YEAR = TARGET_YEAR;
-        window.currentWeek = TARGET_WEEK;
-        window.currentYear = TARGET_YEAR;
-        
-        // Strategy 5: Disable navigation buttons temporarily
+    }
+
+    // Listen for navigation clicks to stop overriding
+    function setupNavigationListeners() {
         const prevBtn = document.getElementById('prev-week');
         const nextBtn = document.getElementById('next-week');
-        
-        if (prevBtn) prevBtn.style.pointerEvents = 'none';
-        if (nextBtn) nextBtn.style.pointerEvents = 'none';
-        
-        // Re-enable after a delay
-        setTimeout(() => {
-            if (prevBtn) prevBtn.style.pointerEvents = 'auto';
-            if (nextBtn) nextBtn.style.pointerEvents = 'auto';
-        }, 2000);
-    }
-    
-    // Run immediately
-    absoluteForceWeek50();
+        const archiveButtons = document.querySelectorAll('.view-report-btn');
+        const archiveItems = document.querySelectorAll('.archive-item');
 
-    // Run when DOM is ready
+        const markNavigated = () => {
+            userHasNavigated = true;
+            console.log('[Week 50 Init] User navigation detected, override disabled');
+        };
+
+        if (prevBtn) prevBtn.addEventListener('click', markNavigated);
+        if (nextBtn) nextBtn.addEventListener('click', markNavigated);
+
+        archiveButtons.forEach(btn => btn.addEventListener('click', markNavigated));
+        archiveItems.forEach(item => item.addEventListener('click', markNavigated));
+    }
+
+    // Run on DOM ready
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', absoluteForceWeek50);
+        document.addEventListener('DOMContentLoaded', () => {
+            setInitialWeek50();
+            setupNavigationListeners();
+        });
     } else {
-        setTimeout(absoluteForceWeek50, 0);
+        setInitialWeek50();
+        setupNavigationListeners();
     }
 
-    // Run when window loads
-    window.addEventListener('load', absoluteForceWeek50);
-
-    // Run multiple times with delays to ensure persistence
-    const delays = [10, 50, 100, 200, 500, 1000, 1500, 2000];
-    delays.forEach(delay => {
-        setTimeout(absoluteForceWeek50, delay);
-    });
-
-    // Periodic check every second for first 10 seconds
-    let counter = 0;
-    const periodicCheck = setInterval(() => {
-        const weekDisplay = document.getElementById('week-display');
-        if (weekDisplay && weekDisplay.textContent !== `Week ${TARGET_WEEK}, ${TARGET_YEAR}`) {
-            absoluteForceWeek50();
+    // Run once more after a short delay to ensure it takes effect
+    setTimeout(() => {
+        if (!userHasNavigated) {
+            setInitialWeek50();
         }
-        counter++;
-        if (counter > 10) clearInterval(periodicCheck);
-    }, 1000);
+    }, 100);
 })();

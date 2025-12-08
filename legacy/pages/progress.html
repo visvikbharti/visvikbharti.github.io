@@ -1755,6 +1755,152 @@
             </div>
           </div>
         </div>
+
+        <!-- Content for Week 49, 2025 -->
+        <div id="content-week-49-2025" style="display: none;">
+          <div class="progress-section">
+            <h3><i class="fas fa-calendar-check"></i> Week 49: RNA Biology Lab Attendance System - Development</h3>
+            <p><strong>Period:</strong> December 1 - December 7, 2025</p>
+            <p>Developed and deployed a full-stack attendance management system for the RNA Biology Lab. Built using MERN stack (MongoDB, Express.js, React, Node.js) with cloud deployment on Vercel and Render.</p>
+
+            <h4>Project Overview</h4>
+            <p>Created an internal lab tool to track daily attendance of lab members, replacing manual tracking methods. The system supports both students and administrators with different access levels.</p>
+
+            <p><strong>Key Achievements:</strong></p>
+            <ul>
+              <li>✅ <strong>Full MERN Stack Application:</strong> Built complete frontend and backend from scratch</li>
+              <li>✅ <strong>Authentication System:</strong> JWT-based login with role-based access control (Admin/Student)</li>
+              <li>✅ <strong>Auto-Generated Lab IDs:</strong> Format: TYPE+YEAR+SEQUENCE (e.g., PHD2025001)</li>
+              <li>✅ <strong>Working Days Calculation:</strong> Excludes weekends (Sat/Sun) from attendance metrics</li>
+              <li>✅ <strong>System Go-Live Date Feature:</strong> Prevents penalizing users for days before deployment</li>
+              <li>✅ <strong>Cloud Deployment:</strong> Frontend on Vercel, Backend on Render, Database on MongoDB Atlas</li>
+            </ul>
+
+            <h4>Technical Stack</h4>
+            <table class="progress-table">
+              <tr>
+                <th>Component</th>
+                <th>Technology</th>
+                <th>Details</th>
+              </tr>
+              <tr>
+                <td>Frontend</td>
+                <td>React.js</td>
+                <td>Student Dashboard, Admin Dashboard, Profile pages</td>
+              </tr>
+              <tr>
+                <td>Backend</td>
+                <td>Node.js + Express</td>
+                <td>RESTful API with JWT authentication</td>
+              </tr>
+              <tr>
+                <td>Database</td>
+                <td>MongoDB Atlas</td>
+                <td>User, Attendance, SystemSettings collections</td>
+              </tr>
+              <tr>
+                <td>Hosting</td>
+                <td>Vercel + Render</td>
+                <td>Free tier with auto-deployment from GitHub</td>
+              </tr>
+            </table>
+
+            <h4>Features Implemented</h4>
+            <ul>
+              <li><strong>Student Features:</strong> Mark daily attendance, view monthly records, download CSV/PDF reports</li>
+              <li><strong>Admin Features:</strong> View all members, monthly reports with percentages, system settings</li>
+              <li><strong>CORS Configuration:</strong> Supports Vercel preview deployments (*.vercel.app)</li>
+            </ul>
+
+            <h4>Git Commits This Week</h4>
+            <ul>
+              <li><code>41e483c</code> - Initial commit: RNA Biology Lab Attendance System</li>
+              <li><code>bdf5ee4</code> - Add credentials file to gitignore for security</li>
+              <li><code>fe79ffb</code> - Fix attendance calculation and add auto-generated Lab IDs</li>
+              <li><code>f2dd97b</code> - Trigger Vercel deployment</li>
+              <li><code>9afec2e</code> - Add System Go-Live Date feature for attendance calculation</li>
+              <li><code>ab43326</code> - Remove 'This Month's Records' stat card from Admin Dashboard</li>
+              <li><code>85d5c54</code> - Fix CORS to allow Vercel preview deployments</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Content for Week 50, 2025 -->
+        <div id="content-week-50-2025" style="display: none;">
+          <div class="progress-section">
+            <h3><i class="fas fa-bug"></i> Week 50: RNA Biology Lab Attendance System - Bug Fixes & Documentation</h3>
+            <p><strong>Period:</strong> December 8 - December 14, 2025</p>
+            <p>Continued refinement of the attendance system with critical bug fixes, feature additions, and comprehensive documentation.</p>
+
+            <h4>Issues Resolved</h4>
+            <table class="progress-table">
+              <tr>
+                <th>Issue</th>
+                <th>Root Cause</th>
+                <th>Solution</th>
+              </tr>
+              <tr>
+                <td>Password change server error</td>
+                <td>Using req.user._id instead of req.userId</td>
+                <td>Fixed auth middleware reference, added null checks</td>
+              </tr>
+              <tr>
+                <td>Student dashboard showing 30 days absent</td>
+                <td>Using calendar days instead of working days</td>
+                <td>Created getWorkingDaysInMonth() function</td>
+              </tr>
+              <tr>
+                <td>Profile page wrong percentage</td>
+                <td>Calculating for entire month, not up to today</td>
+                <td>Limited calculation to current date</td>
+              </tr>
+            </table>
+
+            <p><strong>Key Achievements:</strong></p>
+            <ul>
+              <li>✅ <strong>Delete Member Feature:</strong> Admin can now remove users with confirmation dialog</li>
+              <li>✅ <strong>Password Change Fix:</strong> Proper error handling, prevents same-password reuse</li>
+              <li>✅ <strong>Working Days Calculation:</strong> All dashboards now correctly show Mon-Fri only</li>
+              <li>✅ <strong>Comprehensive Documentation:</strong> Created 691-line session log with troubleshooting guide</li>
+            </ul>
+
+            <h4>Deployment Challenges Resolved</h4>
+            <ul>
+              <li><strong>Git Author Issue:</strong> Vercel requires commits with valid author info</li>
+              <li><strong>Auto-Deploy Not Triggering:</strong> Fixed by configuring git user.email/name</li>
+              <li><strong>Render Spin-Down:</strong> Documented free tier 15-min inactivity behavior</li>
+            </ul>
+
+            <h4>Git Commits This Week</h4>
+            <ul>
+              <li><code>bfc951f</code> - Add delete member functionality for admin</li>
+              <li><code>4ef1d26</code> - Trigger Vercel deployment with latest changes</li>
+              <li><code>e5e91dc</code> - Deploy with proper author</li>
+              <li><code>b1a4d81</code> - Fix password change and student dashboard calculations</li>
+              <li><code>c99a8b9</code> - Add comprehensive session documentation for Dec 8, 2025</li>
+              <li><code>d234a6a</code> - Fix Profile page working days calculation</li>
+              <li><code>7399e1a</code> - Update documentation: mark Profile.js issue as resolved</li>
+            </ul>
+
+            <h4>Documentation Created</h4>
+            <p>Created detailed session documentation at <code>docs/SESSION_LOG_2025-12-08.md</code> covering:</p>
+            <ul>
+              <li>Problem analysis and root cause identification</li>
+              <li>Git and deployment troubleshooting guide</li>
+              <li>Architecture overview with ASCII diagrams</li>
+              <li>Environment variable reference</li>
+              <li>Quick reference commands</li>
+            </ul>
+
+            <h4>Current System Status</h4>
+            <ul>
+              <li><strong>Frontend:</strong> https://rna-lab-attendance.vercel.app</li>
+              <li><strong>Backend:</strong> https://rna-lab-attendance.onrender.com</li>
+              <li><strong>Repository:</strong> github.com/visvikbharti/rna-lab-attendance</li>
+              <li><strong>Status:</strong> All features working, 7 lab members registered</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
     
@@ -1800,8 +1946,44 @@
       <!-- Previous Reports -->
       <div class="project-section">
         <h3><i class="fas fa-history"></i> Previous Reports</h3>
-        
+
         <div class="archive-list">
+          <div class="archive-item" data-week="50" data-year="2025">
+            <div class="archive-header">
+              <div class="archive-title">Week 50, 2025 (December 8 - 14)</div>
+              <i class="fas fa-chevron-down archive-toggle"></i>
+            </div>
+            <div class="archive-content">
+              <p><strong>Focus:</strong> RNA Biology Lab Attendance System - Bug Fixes & Documentation</p>
+              <p><strong>Key accomplishments:</strong></p>
+              <ul>
+                <li>Fixed password change server error (req.userId vs req.user._id)</li>
+                <li>Implemented working days calculation for all dashboards</li>
+                <li>Added delete member functionality for admin</li>
+                <li>Created 691-line session documentation with troubleshooting guide</li>
+              </ul>
+              <button class="view-report-btn nav-button" data-week="50" data-year="2025">View Full Report</button>
+            </div>
+          </div>
+
+          <div class="archive-item" data-week="49" data-year="2025">
+            <div class="archive-header">
+              <div class="archive-title">Week 49, 2025 (December 1 - 7)</div>
+              <i class="fas fa-chevron-down archive-toggle"></i>
+            </div>
+            <div class="archive-content">
+              <p><strong>Focus:</strong> RNA Biology Lab Attendance System - Development</p>
+              <p><strong>Key accomplishments:</strong></p>
+              <ul>
+                <li>Built full MERN stack application from scratch</li>
+                <li>Implemented JWT authentication with role-based access</li>
+                <li>Created auto-generated Lab IDs (TYPE+YEAR+SEQUENCE)</li>
+                <li>Deployed on Vercel (frontend) and Render (backend)</li>
+              </ul>
+              <button class="view-report-btn nav-button" data-week="49" data-year="2025">View Full Report</button>
+            </div>
+          </div>
+
           <div class="archive-item" data-week="40" data-year="2025">
             <div class="archive-header">
               <div class="archive-title">Week 40, 2025 (October 2)</div>
@@ -2236,152 +2418,6 @@
                     <li><strong>Offline Capable:</strong> Works without internet connection</li>
                     <li><strong>Unlimited Scalability:</strong> No server load constraints</li>
                     <li><strong>Zero Latency:</strong> Instant startup, no connection delays</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Content for Week 49, 2025 -->
-        <div id="content-week-49-2025" style="display: none;">
-            <div class="progress-section">
-                <h3><i class="fas fa-calendar-check"></i> Week 49: RNA Biology Lab Attendance System - Development</h3>
-                <p><strong>Period:</strong> December 1 - December 7, 2025</p>
-                <p>Developed and deployed a full-stack attendance management system for the RNA Biology Lab. Built using MERN stack (MongoDB, Express.js, React, Node.js) with cloud deployment on Vercel and Render.</p>
-
-                <h4>Project Overview</h4>
-                <p>Created an internal lab tool to track daily attendance of lab members, replacing manual tracking methods. The system supports both students and administrators with different access levels.</p>
-
-                <p><strong>Key Achievements:</strong></p>
-                <ul>
-                    <li>✅ <strong>Full MERN Stack Application:</strong> Built complete frontend and backend from scratch</li>
-                    <li>✅ <strong>Authentication System:</strong> JWT-based login with role-based access control (Admin/Student)</li>
-                    <li>✅ <strong>Auto-Generated Lab IDs:</strong> Format: TYPE+YEAR+SEQUENCE (e.g., PHD2025001)</li>
-                    <li>✅ <strong>Working Days Calculation:</strong> Excludes weekends (Sat/Sun) from attendance metrics</li>
-                    <li>✅ <strong>System Go-Live Date Feature:</strong> Prevents penalizing users for days before deployment</li>
-                    <li>✅ <strong>Cloud Deployment:</strong> Frontend on Vercel, Backend on Render, Database on MongoDB Atlas</li>
-                </ul>
-
-                <h4>Technical Stack</h4>
-                <table class="progress-table">
-                    <tr>
-                        <th>Component</th>
-                        <th>Technology</th>
-                        <th>Details</th>
-                    </tr>
-                    <tr>
-                        <td>Frontend</td>
-                        <td>React.js</td>
-                        <td>Student Dashboard, Admin Dashboard, Profile pages</td>
-                    </tr>
-                    <tr>
-                        <td>Backend</td>
-                        <td>Node.js + Express</td>
-                        <td>RESTful API with JWT authentication</td>
-                    </tr>
-                    <tr>
-                        <td>Database</td>
-                        <td>MongoDB Atlas</td>
-                        <td>User, Attendance, SystemSettings collections</td>
-                    </tr>
-                    <tr>
-                        <td>Hosting</td>
-                        <td>Vercel + Render</td>
-                        <td>Free tier with auto-deployment from GitHub</td>
-                    </tr>
-                </table>
-
-                <h4>Features Implemented</h4>
-                <ul>
-                    <li><strong>Student Features:</strong> Mark daily attendance, view monthly records, download CSV/PDF reports</li>
-                    <li><strong>Admin Features:</strong> View all members, monthly reports with percentages, system settings</li>
-                    <li><strong>CORS Configuration:</strong> Supports Vercel preview deployments (*.vercel.app)</li>
-                </ul>
-
-                <h4>Git Commits This Week</h4>
-                <ul>
-                    <li><code>41e483c</code> - Initial commit: RNA Biology Lab Attendance System</li>
-                    <li><code>bdf5ee4</code> - Add credentials file to gitignore for security</li>
-                    <li><code>fe79ffb</code> - Fix attendance calculation and add auto-generated Lab IDs</li>
-                    <li><code>f2dd97b</code> - Trigger Vercel deployment</li>
-                    <li><code>9afec2e</code> - Add System Go-Live Date feature for attendance calculation</li>
-                    <li><code>ab43326</code> - Remove 'This Month's Records' stat card from Admin Dashboard</li>
-                    <li><code>85d5c54</code> - Fix CORS to allow Vercel preview deployments</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Content for Week 50, 2025 -->
-        <div id="content-week-50-2025" style="display: none;">
-            <div class="progress-section">
-                <h3><i class="fas fa-bug"></i> Week 50: RNA Biology Lab Attendance System - Bug Fixes & Documentation</h3>
-                <p><strong>Period:</strong> December 8 - December 14, 2025</p>
-                <p>Continued refinement of the attendance system with critical bug fixes, feature additions, and comprehensive documentation.</p>
-
-                <h4>Issues Resolved</h4>
-                <table class="progress-table">
-                    <tr>
-                        <th>Issue</th>
-                        <th>Root Cause</th>
-                        <th>Solution</th>
-                    </tr>
-                    <tr>
-                        <td>Password change server error</td>
-                        <td>Using req.user._id instead of req.userId</td>
-                        <td>Fixed auth middleware reference, added null checks</td>
-                    </tr>
-                    <tr>
-                        <td>Student dashboard showing 30 days absent</td>
-                        <td>Using calendar days instead of working days</td>
-                        <td>Created getWorkingDaysInMonth() function</td>
-                    </tr>
-                    <tr>
-                        <td>Profile page wrong percentage</td>
-                        <td>Calculating for entire month, not up to today</td>
-                        <td>Limited calculation to current date</td>
-                    </tr>
-                </table>
-
-                <p><strong>Key Achievements:</strong></p>
-                <ul>
-                    <li>✅ <strong>Delete Member Feature:</strong> Admin can now remove users with confirmation dialog</li>
-                    <li>✅ <strong>Password Change Fix:</strong> Proper error handling, prevents same-password reuse</li>
-                    <li>✅ <strong>Working Days Calculation:</strong> All dashboards now correctly show Mon-Fri only</li>
-                    <li>✅ <strong>Comprehensive Documentation:</strong> Created 691-line session log with troubleshooting guide</li>
-                </ul>
-
-                <h4>Deployment Challenges Resolved</h4>
-                <ul>
-                    <li><strong>Git Author Issue:</strong> Vercel requires commits with valid author info</li>
-                    <li><strong>Auto-Deploy Not Triggering:</strong> Fixed by configuring git user.email/name</li>
-                    <li><strong>Render Spin-Down:</strong> Documented free tier 15-min inactivity behavior</li>
-                </ul>
-
-                <h4>Git Commits This Week</h4>
-                <ul>
-                    <li><code>bfc951f</code> - Add delete member functionality for admin</li>
-                    <li><code>4ef1d26</code> - Trigger Vercel deployment with latest changes</li>
-                    <li><code>e5e91dc</code> - Deploy with proper author</li>
-                    <li><code>b1a4d81</code> - Fix password change and student dashboard calculations</li>
-                    <li><code>c99a8b9</code> - Add comprehensive session documentation for Dec 8, 2025</li>
-                    <li><code>d234a6a</code> - Fix Profile page working days calculation</li>
-                    <li><code>7399e1a</code> - Update documentation: mark Profile.js issue as resolved</li>
-                </ul>
-
-                <h4>Documentation Created</h4>
-                <p>Created detailed session documentation at <code>docs/SESSION_LOG_2025-12-08.md</code> covering:</p>
-                <ul>
-                    <li>Problem analysis and root cause identification</li>
-                    <li>Git and deployment troubleshooting guide</li>
-                    <li>Architecture overview with ASCII diagrams</li>
-                    <li>Environment variable reference</li>
-                    <li>Quick reference commands</li>
-                </ul>
-
-                <h4>Current System Status</h4>
-                <ul>
-                    <li><strong>Frontend:</strong> https://rna-lab-attendance.vercel.app</li>
-                    <li><strong>Backend:</strong> https://rna-lab-attendance.onrender.com</li>
-                    <li><strong>Repository:</strong> github.com/visvikbharti/rna-lab-attendance</li>
-                    <li><strong>Status:</strong> All features working, 7 lab members registered</li>
                 </ul>
             </div>
         </div>

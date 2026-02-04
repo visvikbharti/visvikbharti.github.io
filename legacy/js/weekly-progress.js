@@ -19,12 +19,13 @@ const AVAILABLE_WEEKS = {
     36: { year: 2025, range: "September 1 - September 7, 2025" },
     39: { year: 2025, range: "September 30 - October 6, 2025" },
     49: { year: 2025, range: "December 1 - December 7, 2025" },
-    50: { year: 2025, range: "December 8 - December 14, 2025" }
+    50: { year: 2025, range: "December 8 - December 14, 2025" },
+    5: { year: 2026, range: "January 25 - February 1, 2026" }
 };
 
-// Current week should be Week 50
-const CURRENT_WEEK = 50;
-const CURRENT_YEAR = 2025;
+// Current week should be Week 5, 2026
+const CURRENT_WEEK = 5;
+const CURRENT_YEAR = 2026;
 
 // Make these available globally
 window.CURRENT_WEEK = CURRENT_WEEK;

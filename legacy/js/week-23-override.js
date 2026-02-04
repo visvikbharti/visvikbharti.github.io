@@ -1,24 +1,24 @@
 /**
- * Week 50 Initial Load Script
- * This script ensures Week 50 is displayed on initial page load,
+ * Week 5, 2026 Initial Load Script
+ * This script ensures Week 5 (2026) is displayed on initial page load,
  * but allows normal navigation to other weeks afterward
  */
 
 (function() {
     'use strict';
 
-    const TARGET_WEEK = 50;
-    const TARGET_YEAR = 2025;
-    const TARGET_RANGE = "December 8 - December 14, 2025";
+    const TARGET_WEEK = 5;
+    const TARGET_YEAR = 2026;
+    const TARGET_RANGE = "January 25 - February 1, 2026";
 
     // Flag to track if user has navigated
     let userHasNavigated = false;
 
-    function setInitialWeek50() {
+    function setInitialWeek() {
         // Only run if user hasn't started navigating
         if (userHasNavigated) return;
 
-        console.log('[Week 50 Init] Setting initial Week 50 display...');
+        console.log('[Week 5 Init] Setting initial Week 5, 2026 display...');
 
         // Update week display header
         const weekDisplay = document.getElementById('week-display');
@@ -32,15 +32,15 @@
             weekRange.textContent = TARGET_RANGE;
         }
 
-        // Hide all weeks then show Week 50
+        // Hide all weeks then show Week 5, 2026
         const allWeeks = document.querySelectorAll('[id^="content-week-"]');
         allWeeks.forEach(el => {
             el.style.display = 'none';
         });
 
-        const week50Content = document.getElementById('content-week-50-2025');
-        if (week50Content) {
-            week50Content.style.display = 'block';
+        const weekContent = document.getElementById('content-week-5-2026');
+        if (weekContent) {
+            weekContent.style.display = 'block';
         }
 
         // Set localStorage for current display
@@ -57,7 +57,7 @@
 
         const markNavigated = () => {
             userHasNavigated = true;
-            console.log('[Week 50 Init] User navigation detected, override disabled');
+            console.log('[Week 5 Init] User navigation detected, override disabled');
         };
 
         if (prevBtn) prevBtn.addEventListener('click', markNavigated);
@@ -70,18 +70,18 @@
     // Run on DOM ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {
-            setInitialWeek50();
+            setInitialWeek();
             setupNavigationListeners();
         });
     } else {
-        setInitialWeek50();
+        setInitialWeek();
         setupNavigationListeners();
     }
 
     // Run once more after a short delay to ensure it takes effect
     setTimeout(() => {
         if (!userHasNavigated) {
-            setInitialWeek50();
+            setInitialWeek();
         }
     }, 100);
 })();

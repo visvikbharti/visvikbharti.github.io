@@ -152,34 +152,34 @@
         content.style.display = 'none';
       });
       
-      // Show Week 50 content immediately
-      document.getElementById('content-week-50-2025').style.display = 'block';
-      document.getElementById('week-range').textContent = "December 8 - December 14, 2025";
-      document.getElementById('week-display').textContent = "Week 50, 2025";
+      // Show Week 5, 2026 content immediately
+      document.getElementById('content-week-5-2026').style.display = 'block';
+      document.getElementById('week-range').textContent = "January 25 - February 1, 2026";
+      document.getElementById('week-display').textContent = "Week 5, 2026";
     }
   });
-  
+
   // Simplified password handling
   function checkPassword() {
     const password = document.getElementById('progress-password').value;
     const correctPassword = "qwerty"; // The correct password
-    
+
     if (password === correctPassword) {
       // Set authentication and show content immediately
       sessionStorage.setItem('progressAuth', 'true');
       document.getElementById('progress-content').style.display = 'block';
       document.getElementById('login-container').style.display = 'none';
-      
+
       // Hide ALL week content divs first
       const allWeekContents = document.querySelectorAll('[id^="content-week-"]');
       allWeekContents.forEach(content => {
         content.style.display = 'none';
       });
-      
-      // Set week 50 as current
-      document.getElementById('content-week-50-2025').style.display = 'block';
-      document.getElementById('week-range').textContent = "December 8 - December 14, 2025";
-      document.getElementById('week-display').textContent = "Week 50, 2025";
+
+      // Set week 5, 2026 as current
+      document.getElementById('content-week-5-2026').style.display = 'block';
+      document.getElementById('week-range').textContent = "January 25 - February 1, 2026";
+      document.getElementById('week-display').textContent = "Week 5, 2026";
     } else {
       // Show error message
       document.getElementById('error-msg').style.display = 'block';
@@ -2564,6 +2564,45 @@
                     <li><strong>After:</strong> Unified progressive lessons, central Learning Hub, cross-module progress tracking</li>
                     <li><strong>Routes:</strong> /learn (hub), /pca-learn, /ci-learn, /doe-learn, /probability-learn</li>
                     <li><strong>Tech Stack:</strong> React 18, Material-UI 5, MathJax 3, D3.js, Recharts, Framer Motion</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Content for Week 5, 2026 -->
+        <div id="content-week-5-2026" style="display: none;">
+            <div class="progress-section">
+                <h3><i class="fas fa-file-alt"></i> Week 5: StickForStats JSS Manuscript Finalization</h3>
+                <p><strong>Period:</strong> January 25 - February 1, 2026</p>
+                <p>Completed a rigorous scientific integrity audit of the JSS manuscript, removed all unverified claims, re-validated case studies with real datasets (UCI Wine Quality), and prepared complete submission packages for both the Journal of Statistical Software (JSS) and arXiv.</p>
+
+                <div style="margin: 30px 0;">
+                    <a href="reports/week-5-2026.html" class="btn" style="background-color: #c62828; color: white; padding: 15px 30px; border-radius: 5px; text-decoration: none; display: inline-flex; align-items: center; font-weight: bold; font-size: 18px;">
+                        <i class="fas fa-file-alt" style="margin-right: 10px;"></i> View Full Week 5 Report
+                    </a>
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <a href="../../assets/StickForStats_JSS_Manuscript_Jan2026.pdf" target="_blank" class="btn" style="background-color: #1565c0; color: white; padding: 12px 25px; border-radius: 5px; text-decoration: none; display: inline-flex; align-items: center; font-weight: bold; font-size: 16px;">
+                        <i class="fas fa-download" style="margin-right: 10px;"></i> Download JSS Manuscript PDF (614 KB)
+                    </a>
+                </div>
+
+                <p><strong>Key Achievements:</strong></p>
+                <ul>
+                    <li><strong>Scientific Integrity Audit:</strong> Removed unverified R 4.3.1, G*Power 3.1, and Mathematica claims</li>
+                    <li><strong>Wine Quality Case Study:</strong> Corrected with real UCI data (p-value: 2.83e-91, Spearman rho: 0.479)</li>
+                    <li><strong>R Cross-Validation:</strong> Created validate_against_R.R (264 lines) for independent verification</li>
+                    <li><strong>93 Automated Tests:</strong> 38 backend + 55 frontend Guardian tests documented</li>
+                    <li><strong>Guardian UI Components:</strong> 5 new React components (ConfidenceGauge, GuardianBadge, GuardianReportDisplay, ViolationCard, useGuardianReport hook)</li>
+                    <li><strong>Submission Packages:</strong> Both JSS and arXiv packages complete with cover letters</li>
+                </ul>
+
+                <p><strong>Manuscript Details:</strong></p>
+                <ul>
+                    <li>Title: "StickForStats: A Statistical Analysis Platform with Automatic Assumption Validation"</li>
+                    <li>Authors: Vishal Bharti & Debojyoti Chakraborty (CSIR-IGIB)</li>
+                    <li>Pages: 41 | References: 29 | LaTeX: 1,639 lines</li>
+                    <li>Real datasets validated: Iris, Wine Quality, mtcars, ToothGrowth, PlantGrowth</li>
                 </ul>
             </div>
         </div>

@@ -4,10 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Structure
 
-This repository contains Vishal Bharti's personal portfolio website with two main versions:
-- Current design in the root directory (`/`)
-- Legacy version in the `/legacy` directory
-- Projects in development in dedicated folders (e.g., `/colossal`)
+This repository contains Vishal Bharti's personal portfolio website:
+- The single-page site in the root directory (`/index.html`)
+- Full pages in `/pages` (publications, research, CV, about, project overview, one detail page per project)
+
+The former legacy site, weekly progress log and draft versions were moved out of the repository in September 2026 (see git history).
 
 The current website is a modern portfolio with animations powered by GSAP/ScrollTrigger, featuring a clean, minimalist design with sections for projects, about, and contact information.
 
@@ -55,20 +56,15 @@ No CSS preprocessor is being used, but variables are leveraged through CSS custo
      - Reveal animations for split panels
      - Section pinning for snap scrolling
 
-### Legacy Site (`/legacy`)
+### Facts that are duplicated across files
 
-1. **Tab-based SPA Architecture**
-   - Single page with dynamic content loading
-   - Tab navigation for different sections of the portfolio
-   - Content loaded via AJAX from `/pages` directory
+There is no build step, so some facts are repeated. Update every copy together:
+- Publication list: `index.html`, `pages/publications.html` (including the inline JS `citations` object), `pages/research.html`; `pages/cv.html` has a subset and a count
+- Publication counts: the `index.html` stats strip, `pages/publications.html`, `pages/projects.html`, `pages/cv.html`
+- StickForStats status: `index.html`, `pages/stickforstats.html`, `pages/projects.html`, `pages/research.html`, `pages/cv.html`
+- CV link: always `my_cv/Vishal_Bharti_CV.pdf`. Replace the file and keep the name.
 
-2. **JavaScript Features**
-   - Tab system for navigation
-   - Dark mode toggle
-   - Project filtering system
-   - Research timeline navigation
-   - Lazy loading for images and videos
-   - Citation chart visualization
+Everything in the repository is served publicly by GitHub Pages (`.nojekyll`), so do not commit notes, drafts or private documents.
 
 ### Projects Section
 
@@ -78,9 +74,8 @@ The website showcases various projects including:
 
 ## Images and Assets
 
-- Hero video stored in `/assets/hero.mp4`
-- Profile images in `/assets/portraits/`
-- Icons and other graphics in `/assets/icons/`
+- Hero video stored in `/assets/hero.mp4` (currently an empty placeholder file)
+- Profile photo at `/assets/portraits/profile-photo.jpg`; the project images referenced by `index.html` are not yet in the repo
 
 ## Best Practices When Editing
 
@@ -96,4 +91,4 @@ The website showcases various projects including:
 
 3. **Content Updates**:
    - For the main site, update the HTML directly in `index.html`
-   - For the legacy site, update content in the appropriate file in `/legacy/pages/`
+   - For subpages, update the file in `/pages/`, and any duplicated copies listed above

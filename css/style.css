@@ -55,7 +55,7 @@ p { margin-bottom: 1rem; }
   padding: .75em 1.75em;
   border-radius: 50px;
   background: var(--clr-purple);
-  color: #fff;
+  color: #141414;                 /* white on this purple was 3.1:1; dark text is 6:1 */
   font-weight: var(--fw-bold);
   text-transform: uppercase;
   letter-spacing: .05em;
@@ -364,6 +364,9 @@ p { margin-bottom: 1rem; }
   color: var(--clr-neon);
   transform: translateY(-3px);
 }
+
+/* On the light About panel, the purple outline button was 2.8:1; a deeper purple is 5.7:1 */
+.about .btn.alt { color: #6a3fe0; border-color: #6a3fe0; }
 
 /* Outline buttons sit on the purple-pink gradient here, where purple text vanished */
 .contact .btn.alt {

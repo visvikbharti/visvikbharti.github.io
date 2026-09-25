@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   
     /* 1. Hero colour‑shift on scroll ------------------------------------ */
-    gsap.to('#hero .bg-video', {
+    if (!reduceMotion) gsap.to('#hero .bg-video', {
       scrollTrigger: {
         trigger: '#hero',
         start: 'top top',
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   
     /* 3. Split panels reveal ------------------------------------------- */
-    gsap.utils.toArray('.projects .split').forEach(panel => {
+    if (!reduceMotion) gsap.utils.toArray('.projects .split').forEach(panel => {
       const img  = panel.querySelector('.split__img');
       const copy = panel.querySelector('.split__copy');
   

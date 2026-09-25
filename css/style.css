@@ -253,6 +253,47 @@ p { margin-bottom: 1rem; }
   text-decoration: none;
 }
 
+/* ----- Awards ----- */
+.awards {
+  padding: 6vw 8vw;
+  background: var(--clr-bg-dark);
+  color: var(--clr-gray-300);
+  text-align: center;
+}
+
+.awards-list {
+  max-width: 1000px;
+  margin: 2rem auto 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.award-item {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 4px solid var(--clr-purple);
+  border-radius: 8px;
+}
+
+.award-year {
+  min-width: 5.5rem;
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--clr-purple);
+}
+
+.award-title {
+  font-size: 1.2rem;
+  color: var(--clr-neon);
+}
+
+.award-item p {
+  margin-bottom: 0;
+}
+
 /* ----- About grid ----- */
 .about { background: var(--clr-bg-light); color: #000; }
 .about__grid {

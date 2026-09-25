@@ -662,3 +662,43 @@ p { margin-bottom: 1rem; }
 .mt-2 { margin-top: 2rem; }
 .mt-3 { margin-top: 3rem; }
 .panel { position: relative; overflow: hidden; }
+
+/* ----- Phones ----- */
+@media (max-width: 768px) {
+  .main-nav { padding: .75rem 1rem; gap: 1rem; }
+  .nav-links {
+    min-width: 0;
+    gap: 1.25rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    font-size: .9rem;
+    scrollbar-width: none;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+
+  .hero-cta,
+  .about-links { flex-wrap: wrap; justify-content: center; }
+
+  .stats { flex-wrap: wrap; gap: 2rem 1rem; padding: 3rem 1rem; }
+  .stat { flex: 1 1 40%; }
+
+  #research-interests,
+  .research,
+  .awards,
+  .skills,
+  .selected-software,
+  .future-research { padding: 4rem 1.25rem 3rem; }
+
+  .projects .split { grid-template-columns: 1fr; min-height: auto; }
+  .split__img { display: none; }
+  .split__copy { padding: 4rem 1.25rem 3rem; }
+
+  .about__grid { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.25rem 3rem; }
+
+  .future-research .research-interests { padding: 0; grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr; }
+
+  .award-item { flex-direction: column; gap: .25rem; }
+  .publication-item { padding: .75rem; }
+  .contact .social { gap: 1.25rem; }
+}

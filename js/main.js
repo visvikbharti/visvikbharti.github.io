@@ -85,12 +85,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   
     /* 4. Pin each section for nice snap feeling ------------------------- */
+    // Panels taller than the viewport pin at their bottom edge instead of their
+    // top, so all of their content scrolls past before the next panel covers it.
+    // Pinning a tall panel at 'top top' froze it and hid everything below the fold.
     gsap.utils.toArray('.panel').forEach(panel => {
       ScrollTrigger.create({
         trigger: panel,
-        start: 'top top',
+        start: () => panel.offsetHeight > window.innerHeight ? 'bottom bottom' : 'top top',
         pin: true,
-        pinSpacing: false
+        pinSpacing: false,
+        invalidateOnRefresh: true
       });
     });
   });

@@ -325,7 +325,7 @@ p { margin-bottom: 1rem; }
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 4rem; padding: 6vw 8vw;
 }
-.about img { width: 100%; border-radius: 1rem; }
+.about img { width: 100%; height: auto; border-radius: 1rem; }
 
 .about-links {
   display: flex;

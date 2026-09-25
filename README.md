@@ -6,7 +6,7 @@ This repository contains my personal academic portfolio, with my research, publi
 
 - **index.html**: the main single-page site (research question, publications, awards, projects, about, skills, contact)
 - **pages/**: full pages for publications, research, CV, about, the project overview and one detail page per project
-- **css/**, **js/**: styles (`vars.css` holds the colour and type variables) and the GSAP scroll logic (`main.js`)
+- **css/**, **js/**: styles (`vars.css` holds the design tokens) and scripts: `main.js` (GSAP scroll logic), `hero-cells.js` (the hero drawn in characters), `project-art.js` (project drawings), `ascii-photo.js` (photos drawn in characters)
 - **assets/**: images and the hero video
 - **my_cv/Vishal_Bharti_CV.pdf**: the current CV. Keep this filename when replacing it, so the links never go stale.
   A copy also sits at the old address, `my_cv/Vishal-Bharti-Resume-Updated-Sep-2025.pdf`, so CV links already sent out keep working. Replace both when the CV changes.

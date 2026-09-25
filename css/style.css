@@ -382,6 +382,14 @@ p { margin-bottom: 1rem; }
 }
 
 /* ----- Publication List (Numbered) ----- */
+.pub-group-title {
+  max-width: 1000px;
+  margin: 2.5rem auto 0;
+  text-align: left;
+  color: var(--clr-neon);
+  font-size: 1.2rem;
+}
+
 .publications-list {
   max-width: 1000px;
   margin: 2rem auto;

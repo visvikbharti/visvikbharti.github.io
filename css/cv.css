@@ -10,8 +10,7 @@
 /* CV Hero */
 .cv-hero {
   padding: 6rem 0 4rem;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.8), var(--clr-bg-dark)), 
-              url('../assets/portraits/code-bg.jpg') no-repeat center center;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8), var(--clr-bg-dark));
   background-size: cover;
   text-align: center;
 }

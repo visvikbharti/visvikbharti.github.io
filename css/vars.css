@@ -1,6 +1,7 @@
 /* Color system */
 :root {
     --clr-bg-dark: #141414;
+    --clr-bg: var(--clr-bg-dark); /* used by .skills and .research-interests; was undefined, leaving them transparent */
     --clr-bg-light: #f5f5f5;
     --clr-purple: #a878ff;
     --clr-pink:   #ff56c8;

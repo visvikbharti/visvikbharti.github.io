@@ -349,3 +349,5 @@
     grid-template-columns: 1fr;
   }
 }
+/* The shared publication list (same markup as the home page) keeps its own spacing */
+.research-section .pub-citation { margin-bottom: 0; max-width: none; }

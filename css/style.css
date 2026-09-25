@@ -20,11 +20,33 @@ h1, h2, h3 {
 }
 
 h1 { font-size: var(--fs-xl); }
-h2.section-title { font-size: var(--fs-lg); margin-bottom: .75em; }
+h2.section-title,
+h3.section-title { font-size: var(--fs-lg); margin-bottom: .75em; }
 h3 { font-size: var(--fs-md); margin-bottom: 0.5em; }
 
 a { color: var(--clr-neon); text-decoration: none; }
 a:hover { text-decoration: underline; }
+
+/* Keyboard focus: visible on dark and light panels */
+a:focus-visible,
+button:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--clr-neon);
+  outline-offset: 3px;
+}
+[tabindex="-1"]:focus { outline: none; }
+
+.skip-link {
+  position: fixed;
+  top: .5rem; left: .5rem;
+  z-index: 2000;
+  padding: .5rem 1rem;
+  background: var(--clr-bg-dark);
+  color: var(--clr-neon);
+  border-radius: 4px;
+  transform: translateY(-150%);
+}
+.skip-link:focus { transform: none; }
 
 p { margin-bottom: 1rem; }
 

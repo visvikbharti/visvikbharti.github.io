@@ -8,27 +8,37 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || typeof ScrollToPlugin === 'undefined') return;
 
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-    
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     /* Smooth scrolling for anchor links --------------------------------- */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
-        e.preventDefault();
         const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        
-        if (targetElement) {
-          // Use GSAP's ScrollToPlugin for smooth scrolling that works with ScrollTrigger
-          const yOffset = targetElement.getBoundingClientRect().top + window.pageYOffset;
-          
-          gsap.to(window, {
-            duration: 1,
-            scrollTo: {
-              y: yOffset,
-              autoKill: false
-            },
-            ease: "power2.inOut"
-          });
-        }
+        const targetElement = targetId.length > 1 && document.querySelector(targetId);
+        if (!targetElement) return;
+        e.preventDefault();
+
+        // A pinned panel is position:fixed, so measure its pin-spacer (its place in the flow)
+        const inFlow = targetElement.parentElement.classList.contains('pin-spacer')
+          ? targetElement.parentElement : targetElement;
+        const yOffset = inFlow.getBoundingClientRect().top + window.pageYOffset;
+
+        // Use GSAP's ScrollToPlugin for smooth scrolling that works with ScrollTrigger
+        gsap.to(window, {
+          duration: reduceMotion ? 0 : 1,
+          scrollTo: {
+            y: yOffset,
+            autoKill: false
+          },
+          ease: "power2.inOut",
+          onComplete: () => {
+            // Move keyboard focus to the section and keep the URL shareable
+            if (!targetElement.hasAttribute('tabindex')) targetElement.setAttribute('tabindex', '-1');
+            targetElement.focus({ preventScroll: true });
+            history.pushState(null, '', targetId);
+          }
+        });
       });
     });
   
@@ -45,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
   
     /* 2. Count‑up animation in stats ------------------------------------ */
     // The HTML carries the final numbers; only count up from 0 when motion is welcome.
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!reduceMotion) gsap.utils.toArray('.num').forEach(el => {
       const final = +el.dataset.count;
       let counted = false;

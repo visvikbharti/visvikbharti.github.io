@@ -36,6 +36,8 @@
 </head>
 
 <body>
+  <a class="skip-link" href="#research-interests">Skip to content</a>
+
   <!-- Navigation -->
   <nav class="main-nav">
     <a href="#hero" class="nav-logo">VB</a>
@@ -51,10 +53,8 @@
 
   <!-- ================= Hero ================= -->
   <section id="hero" class="panel hero">
-    <video class="bg-video" autoplay muted loop playsinline>
+    <video class="bg-video" autoplay muted loop playsinline aria-hidden="true">
       <source src="assets/hero.mp4" type="video/mp4" />
-      <!-- ↓ graceful fallback -->
-      <img src="assets/hero-fallback.jpg" aria-hidden="true" />
     </video>
 
     <div class="hero__content">
@@ -136,10 +136,11 @@
 
   <!-- ================= Projects carousel ================= -->
   <section id="projects" class="panel projects">
+    <h2 class="sr-only">Projects</h2>
     <div class="split">
       <div class="split__img" style="background-image:url('assets/portraits/stickforstats.jpg')"></div>
       <div class="split__copy">
-        <h2 class="section-title">StickForStats</h2>
+        <h3 class="section-title">StickForStats</h3>
         <p>
           An interactive, modular statistical toolkit that bridges complex
           inference with an intuitive Streamlit UI. <strong>15+ statistical modules</strong> deployed for real‑world
@@ -160,7 +161,7 @@
     <div class="split">
       <div class="split__img" style="background-image:url('assets/portraits/tripinrna.jpg')"></div>
       <div class="split__copy">
-        <h2 class="section-title">TRIPinRNA</h2>
+        <h3 class="section-title">TRIPinRNA</h3>
         <p>
           In silico platform for predicting intramolecular RNA triple helix structures. <strong>Published in Biochemistry (2024)</strong>, 
           co-first author contribution. Applications in X chromosome inactivation and gene regulation mechanisms.
@@ -178,7 +179,7 @@
     <div class="split">
       <div class="split__img" style="background-image:url('assets/portraits/dna-repair.jpg')"></div>
       <div class="split__copy">
-        <h2 class="section-title">DNA Repair Analysis</h2>
+        <h3 class="section-title">DNA Repair Analysis</h3>
         <p>
           Developed a three-layer computational pipeline to decipher repair factor requirements in 
           staggered versus blunt-end DNA breaks using scRNA-seq data and advanced statistical methods.
@@ -195,7 +196,7 @@
     <div class="split">
       <div class="split__img" style="background-image:url('assets/portraits/g-quadruplex.jpg')"></div>
       <div class="split__copy">
-        <h2 class="section-title">G-Quadruplexes in CCN1</h2>
+        <h3 class="section-title">G-Quadruplexes in CCN1</h3>
         <p>
           Investigated IGF2BP1-mediated regulation of CCN1 expression through specific binding to 
           G-quadruplex structures in its 3'UTR, revealing novel mechanisms of post-transcriptional control.
@@ -212,7 +213,7 @@
     <div class="split">
       <div class="split__img" style="background-image:url('assets/portraits/brain-organoids.jpg')"></div>
       <div class="split__copy">
-        <h2 class="section-title">Forebrain Assembloids</h2>
+        <h3 class="section-title">Forebrain Assembloids</h3>
         <p>
           Computational analysis of RNA-seq data from human forebrain organoids to understand 
           interneuron migration disorders and their role in neurodevelopmental conditions.
@@ -229,7 +230,7 @@
     <div class="split">
       <div class="split__img" style="background-image:url('assets/portraits/confidence-intervals.jpg')"></div>
       <div class="split__copy">
-        <h2 class="section-title">Confidence Intervals Explorer</h2>
+        <h3 class="section-title">Confidence Intervals Explorer</h3>
         <p>
           Interactive educational tool for understanding statistical confidence intervals through 
           visualizations and simulations, part of the StickForStats statistical platform.
@@ -247,7 +248,7 @@
     <div class="split">
       <div class="split__img" style="background-image:url('assets/portraits/rna-lab-nav.jpg')"></div>
       <div class="split__copy">
-        <h2 class="section-title">RNA Lab Navigator</h2>
+        <h3 class="section-title">RNA Lab Navigator</h3>
         <p>
           AI-powered RAG assistant transforming laboratory knowledge management with intelligent 
           question-answering, enterprise security, and sub-5-second response times.

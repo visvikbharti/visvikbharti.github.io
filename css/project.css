@@ -910,4 +910,8 @@
   .involvement-grid {
     grid-template-columns: 1fr;
   }
+
+  /* long words ('Neurodevelopmental') and button rows must not widen the page */
+  .project-section h2 { overflow-wrap: anywhere; }
+  .publication-highlight .publication-links { flex-wrap: wrap; }
 }

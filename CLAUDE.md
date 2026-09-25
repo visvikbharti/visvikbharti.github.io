@@ -18,15 +18,15 @@ The legacy site, the weekly progress log and old drafts were removed from the re
 ## Publishing workflow
 
 - The local branch `release` tracks what is live (`github/master`; the remote is named `github`).
-- Edit on `release`, make small separate commits, then publish with `git push github release:master`. Pages is live in about 30 s; check with a hard refresh.
+- Edit on `release`, make small separate commits, then publish with `git push github release:master` when the owner asks for it. Pages is live in about 30 s; check with a hard refresh.
 - Other local branches (`main`, `ship/content`, `design/restyle`) are history only.
 - Everything in the repository is served publicly by GitHub Pages (`.nojekyll`). Never commit notes, drafts or private documents. The brief, `SITE-UPDATE-WORKLOG.md`, `SHIP-INSTRUCTIONS.md` and `_handover/` are git-excluded on purpose.
 
 ## Development Commands
 
 ```bash
-python3 -m http.server 8765          # then open http://127.0.0.1:8765/
-python3 _handover/sitecheck.py . LOCAL   # link / alt / rel / heading / wording check (the folder is git-excluded; it may be absent in a fresh clone)
+python3 -m http.server 8765 --bind 127.0.0.1   # then open http://127.0.0.1:8765/; stop it when done
+python3 _handover/sitecheck.py . LOCAL   # checks the local files (label is free text): links, alt, rel, headings, wording; _handover/ is git-excluded
 ```
 
 When testing in Chrome, cached JS/CSS is common. Load the page with a new query string and `fetch(url, {cache: 'reload'})` the assets.

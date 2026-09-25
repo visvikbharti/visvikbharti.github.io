@@ -47,7 +47,7 @@
   <section class="project-hero">
     <div class="container">
       <h1 class="project-title">RNA Lab Navigator</h1>
-      <p class="tagline">AI-powered research assistant transforming how labs access and utilize their knowledge</p>
+      <p class="tagline">Retrieval-augmented research assistant for fast, grounded literature triage in a wet-dry lab</p>
       <div class="project-meta">
         <div class="tech-tags">
           <span class="tech-tag">Django</span>
@@ -70,7 +70,7 @@
   <!-- ================= Project Overview ================= -->
   <section class="project-section">
     <div class="container">
-      <h2>Revolutionizing Laboratory Knowledge Management</h2>
+      <h2>Laboratory Knowledge Management</h2>
       <p>
         RNA Lab Navigator is a sophisticated AI-powered Retrieval-Augmented Generation (RAG) system designed 
         specifically for RNA biology laboratories. It addresses the critical challenge of knowledge fragmentation 
@@ -78,10 +78,9 @@
         experimental notes.
       </p>
       <p>
-        This platform enables researchers to instantly query their entire laboratory's knowledge base using 
-        natural language, receiving accurate, cited responses in under 5 seconds. By combining advanced AI 
-        with robust security and user management, it transforms how laboratories preserve, access, and build 
-        upon their collective knowledge.
+        Researchers query internal lab documents and the primary literature in natural language and receive
+        answers with citations to the source documents, for fast, grounded literature triage in a wet-dry lab.
+        It is in routine use by about 21 researchers.
       </p>
 
       <div class="project-features">
@@ -92,18 +91,13 @@
         </div>
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-lock"></i></div>
-          <h3>Enterprise Security</h3>
-          <p>Multi-tenant architecture with JWT authentication and data isolation</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon"><i class="fas fa-rocket"></i></div>
-          <h3>Sub-5s Response Time</h3>
-          <p>Optimized RAG pipeline delivering instant answers to complex queries</p>
+          <h3>Secure Access</h3>
+          <p>JWT authentication, with access limited to lab members on the institute network</p>
         </div>
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-database"></i></div>
-          <h3>Scalable Architecture</h3>
-          <p>Microservices design supporting thousands of documents and concurrent users</p>
+          <h3>Lab Document Corpus</h3>
+          <p>PhD theses and papers indexed for semantic search</p>
         </div>
       </div>
     </div>
@@ -172,48 +166,41 @@
       <h2>Advanced RAG Implementation</h2>
       <p>
         The heart of RNA Lab Navigator is its sophisticated Retrieval-Augmented Generation system, 
-        designed to deliver accurate, contextual responses while maintaining sub-5-second performance.
+        designed to deliver accurate, contextual responses grounded in the lab's documents.
       </p>
       
       <div class="rag-components">
         <div class="rag-component">
           <h3>1. Document Processing</h3>
           <p>Intelligent ingestion pipeline handling PDFs, DOCX, and other formats</p>
-          <div class="progress-bar"><div class="progress" style="width: 100%"></div><span>100%</span></div>
         </div>
         
         <div class="rag-component">
           <h3>2. Smart Chunking</h3>
           <p>Context-aware text segmentation preserving semantic integrity</p>
-          <div class="progress-bar"><div class="progress" style="width: 100%"></div><span>100%</span></div>
         </div>
         
         <div class="rag-component">
           <h3>3. Embedding Generation</h3>
           <p>High-dimensional vector representations for semantic search</p>
-          <div class="progress-bar"><div class="progress" style="width: 100%"></div><span>100%</span></div>
         </div>
         
         <div class="rag-component">
           <h3>4. Hybrid Retrieval</h3>
           <p>Combining semantic and keyword search for optimal results</p>
-          <div class="progress-bar"><div class="progress" style="width: 100%"></div><span>100%</span></div>
         </div>
         
         <div class="rag-component">
           <h3>5. Response Generation</h3>
           <p>Context-aware answers with accurate citations</p>
-          <div class="progress-bar"><div class="progress" style="width: 100%"></div><span>100%</span></div>
         </div>
       </div>
       
       <div class="rag-details">
-        <h3>Performance Metrics</h3>
+        <h3>Performance Metrics (test deployment, July 2025)</h3>
         <ul>
           <li><strong>Average Response Time:</strong> 3.2 seconds</li>
           <li><strong>95th Percentile:</strong> 4.8 seconds</li>
-          <li><strong>Citation Accuracy:</strong> 97.5%</li>
-          <li><strong>User Satisfaction:</strong> 92%</li>
         </ul>
       </div>
     </div>
@@ -222,12 +209,12 @@
   <!-- ================= Security Architecture ================= -->
   <section class="project-section alt-bg">
     <div class="container">
-      <h2>Enterprise-Grade Security</h2>
+      <h2>Access & Security</h2>
       <p>
-        Protecting sensitive research data is paramount. RNA Lab Navigator implements multiple 
-        layers of security to ensure data confidentiality and system integrity.
+        Protecting sensitive research data is paramount. RNA Lab Navigator uses JWT-based authentication,
+        and access is limited to lab members on the institute network.
       </p>
-      
+
       <div class="security-features">
         <div class="security-layer">
           <i class="fas fa-shield-alt"></i>
@@ -235,30 +222,16 @@
           <ul>
             <li>JWT tokens with 15-minute access token lifetime</li>
             <li>Refresh token rotation for enhanced security</li>
-            <li>Role-based access control (RBAC)</li>
-            <li>Brute-force protection with exponential backoff</li>
+            <li>Brute-force protection (Axes)</li>
           </ul>
         </div>
-        
+
         <div class="security-layer">
           <i class="fas fa-lock"></i>
-          <h3>Data Protection</h3>
+          <h3>Network Access</h3>
           <ul>
-            <li>End-to-end encryption for data in transit</li>
-            <li>AES-256 encryption for data at rest</li>
-            <li>Multi-tenant data isolation</li>
-            <li>Regular security audits and penetration testing</li>
-          </ul>
-        </div>
-        
-        <div class="security-layer">
-          <i class="fas fa-user-shield"></i>
-          <h3>Privacy Safeguards</h3>
-          <ul>
-            <li>No raw documents sent to external APIs</li>
-            <li>Local embedding generation option</li>
-            <li>Audit logs for all data access</li>
-            <li>GDPR-compliant data handling</li>
+            <li>Served on the institute network</li>
+            <li>Access limited to lab members</li>
           </ul>
         </div>
       </div>
@@ -271,16 +244,15 @@
       <h2>Deployment Challenges & Solutions</h2>
       <p>
         The journey to production involved navigating complex technical challenges across multiple 
-        deployment platforms, ultimately resulting in a robust, scalable solution.
+        deployment platforms, ultimately resulting in a local deployment on the institute network.
       </p>
       
       <div class="deployment-timeline">
         <div class="deployment-stage">
           <h3>Platform Evaluation</h3>
           <p>
-            Evaluated Railway, Render, and PythonAnywhere for hosting, each presenting unique 
-            constraints. Ultimately deployed backend on PythonAnywhere and frontend on Vercel 
-            for optimal performance and cost efficiency.
+            Evaluated Railway, Render, PythonAnywhere, and Vercel for hosting, each presenting unique
+            constraints.
           </p>
         </div>
         
@@ -296,17 +268,16 @@
         <div class="deployment-stage">
           <h3>Performance Optimization</h3>
           <p>
-            Achieved sub-5-second response times through strategic caching, connection pooling, 
-            and query optimization. Reduced context chunks from 3 to 2 while maintaining accuracy.
+            Cut response times through strategic caching, connection pooling, and query
+            optimization, and by reducing context chunks from 3 to 2.
           </p>
         </div>
         
         <div class="deployment-stage">
           <h3>Local Deployment Success</h3>
           <p>
-            Successfully deployed on institute network using Docker containers on local MacBook, 
-            serving 25+ documents to lab members. System accessible at institute IP addresses 
-            with full functionality.
+            Successfully deployed on institute network using Docker containers on local MacBook,
+            serving 25 documents (7 PhD theses, 18 papers) to lab members. System accessible at institute IP addresses.
           </p>
         </div>
       </div>
@@ -324,7 +295,6 @@
           <ul>
             <li>Support for PDF, DOCX, TXT, and more</li>
             <li>Automatic metadata extraction</li>
-            <li>Version control for documents</li>
             <li>Bulk upload capabilities</li>
             <li>Intelligent categorization</li>
           </ul>
@@ -335,8 +305,6 @@
           <ul>
             <li>Natural language queries</li>
             <li>Semantic similarity search</li>
-            <li>Boolean operators support</li>
-            <li>Date range filtering</li>
             <li>Author and source filtering</li>
           </ul>
         </div>
@@ -345,21 +313,7 @@
           <h3>Collaboration Tools</h3>
           <ul>
             <li>Shared document collections</li>
-            <li>Query history and bookmarks</li>
-            <li>Export citations in multiple formats</li>
-            <li>Team workspaces</li>
-            <li>Comment and annotation system</li>
-          </ul>
-        </div>
-        
-        <div class="capability-card">
-          <h3>Analytics & Insights</h3>
-          <ul>
-            <li>Usage analytics dashboard</li>
-            <li>Popular query tracking</li>
-            <li>Document access patterns</li>
-            <li>Knowledge gap identification</li>
-            <li>Research trend analysis</li>
+            <li>Query history</li>
           </ul>
         </div>
       </div>
@@ -375,17 +329,16 @@
         <div class="use-case-card">
           <h3>Literature Review Acceleration</h3>
           <p>
-            Researchers can query across hundreds of papers instantly, finding relevant information 
-            that would take hours to locate manually. The system provides direct citations, enabling 
-            rapid literature review completion.
+            Researchers can query the indexed papers and theses in natural language for fast,
+            grounded literature triage. The system provides direct citations back to the source documents.
           </p>
         </div>
         
         <div class="use-case-card">
           <h3>Protocol Standardization</h3>
           <p>
-            Lab members can quickly find established protocols and best practices from previous 
-            experiments. This ensures consistency and prevents reinventing solutions to solved problems.
+            Lab members can quickly find methods and best practices described in the indexed theses
+            and papers. This ensures consistency and prevents reinventing solutions to solved problems.
           </p>
         </div>
         
@@ -400,8 +353,7 @@
         <div class="use-case-card">
           <h3>Cross-Project Insights</h3>
           <p>
-            Identify connections between different research projects that might not be obvious. The AI 
-            can surface relevant findings from seemingly unrelated work, fostering innovation.
+            Identify connections between different research projects that might not be obvious.
           </p>
         </div>
       </div>
@@ -418,8 +370,8 @@
           <i class="fas fa-tachometer-alt"></i>
           <h3>Performance Optimization</h3>
           <p>
-            Achieved 40% reduction in response time through intelligent caching, query optimization, 
-            and asynchronous processing. System handles 100+ concurrent users without degradation.
+            Reduced response time through intelligent caching, query optimization,
+            and asynchronous processing.
           </p>
         </div>
         
@@ -427,8 +379,8 @@
           <i class="fas fa-shield-alt"></i>
           <h3>Security Implementation</h3>
           <p>
-            Zero security incidents since deployment. Multi-layered security architecture successfully 
-            protects sensitive research data while maintaining usability.
+            JWT authentication with refresh token rotation and brute-force protection, with access
+            limited to lab members on the institute network.
           </p>
         </div>
         
@@ -436,8 +388,7 @@
           <i class="fas fa-chart-line"></i>
           <h3>Scalability Design</h3>
           <p>
-            Microservices architecture supports horizontal scaling. Successfully tested with 10,000+ 
-            documents and maintains sub-5-second response times.
+            Microservices architecture designed to support horizontal scaling.
           </p>
         </div>
         
@@ -445,8 +396,7 @@
           <i class="fas fa-users"></i>
           <h3>User Adoption</h3>
           <p>
-            92% user satisfaction rate with positive feedback on ease of use and time savings. 
-            Average user saves 2-3 hours per week on information retrieval tasks.
+            In routine use by about 21 researchers.
           </p>
         </div>
       </div>
@@ -471,8 +421,8 @@
         <div class="lesson">
           <h3>RAG System Optimization</h3>
           <p>
-            Balancing accuracy with performance requires careful tuning. Reducing context chunks 
-            from 3 to 2 maintained quality while improving response times by 35%.
+            Balancing accuracy with performance requires careful tuning. Reducing context chunks
+            from 3 to 2 improved response times.
           </p>
         </div>
         
@@ -480,15 +430,15 @@
           <h3>Security vs Usability</h3>
           <p>
             Implementing robust security without hampering user experience requires thoughtful design. 
-            Token refresh mechanisms and single sign-on improved both security and usability.
+            Token refresh mechanisms improved both security and usability.
           </p>
         </div>
         
         <div class="lesson">
           <h3>User-Centered Development</h3>
           <p>
-            Early user feedback shaped critical features. What developers think users need often 
-            differs from actual requirements - continuous feedback loops are essential.
+            What developers think users need often differs from actual requirements - continuous
+            feedback loops are essential.
           </p>
         </div>
       </div>
@@ -538,28 +488,15 @@
   <section class="project-section">
     <div class="container">
       <h2>Project Impact</h2>
-      <p>
-        RNA Lab Navigator represents more than a technical achievement - it's a transformation in how 
-        research laboratories manage and utilize their collective knowledge. By making decades of research 
-        instantly accessible and queryable, it accelerates scientific discovery and prevents knowledge loss.
-      </p>
-      
+
       <div class="impact-metrics">
         <div class="metric">
-          <h3>Time Saved</h3>
-          <p>2-3 hours per researcher per week on information retrieval</p>
+          <h3>Users</h3>
+          <p>In routine use by about 21 researchers</p>
         </div>
         <div class="metric">
           <h3>Knowledge Preserved</h3>
-          <p>25+ documents totaling 10,000+ pages of research</p>
-        </div>
-        <div class="metric">
-          <h3>Queries Answered</h3>
-          <p>500+ complex research queries with 97.5% accuracy</p>
-        </div>
-        <div class="metric">
-          <h3>User Satisfaction</h3>
-          <p>92% positive feedback from laboratory members</p>
+          <p>25 documents (7 PhD theses, 18 papers) indexed at the July 2025 local deployment</p>
         </div>
       </div>
     </div>

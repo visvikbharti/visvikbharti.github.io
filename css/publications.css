@@ -126,6 +126,7 @@
   font-weight: 700;
   color: var(--clr-purple);
   margin-top: 0.5rem;
+  min-width: 3em; /* keeps cards aligned when an item has no year (e.g. an undated preprint) */
 }
 
 .pub-content {
@@ -179,6 +180,10 @@
 
 .doi {
   color: var(--clr-purple);
+}
+
+.doi a {
+  color: inherit;
 }
 
 .conference,
@@ -415,6 +420,10 @@
   
   .pub-year {
     font-size: 1.2rem;
+  }
+
+  .pub-year:empty {
+    display: none;
   }
   
   .publication-item h3 {

@@ -50,16 +50,16 @@
       <h1 class="publications-title">Publications</h1>
       <p class="publications-description">
         My research contributions to the field of bioinformatics and computational biology, 
-        featuring peer-reviewed articles and manuscripts under review.
+        featuring peer-reviewed articles, preprints, and manuscripts under review.
       </p>
       <div class="publication-stats">
         <div class="stat-item">
-          <span class="stat-number">2</span>
+          <span class="stat-number">5</span>
           <span class="stat-label">Peer-Reviewed Articles</span>
         </div>
         <div class="stat-item">
-          <span class="stat-number">2</span>
-          <span class="stat-label">Manuscripts Under Review</span>
+          <span class="stat-number">5</span>
+          <span class="stat-label">Preprints &amp; Manuscripts Under Review</span>
         </div>
         <div class="stat-item">
           <span class="stat-number">1</span>
@@ -73,36 +73,40 @@
   <section class="filter-section">
     <div class="container">
       <div class="filter-buttons">
-        <button class="filter-btn active" data-filter="all">All Publications</button>
-        <button class="filter-btn" data-filter="published">Published</button>
-        <button class="filter-btn" data-filter="review">Under Review</button>
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="peer-reviewed">Peer-reviewed</button>
+        <button class="filter-btn" data-filter="preprint">Preprints &amp; under review</button>
         <button class="filter-btn" data-filter="conference">Conference</button>
       </div>
     </div>
   </section>
 
-  <!-- ================= Peer-Reviewed Publications ================= -->
+  <!-- ================= Peer-reviewed Publications ================= -->
   <section class="publications-section">
     <div class="container">
-      <h2>Peer-Reviewed Publications</h2>
+      <h2>Peer-reviewed</h2>
       
-      <div class="publication-item published" data-year="2024">
+      <div class="publication-item peer-reviewed" data-year="2024">
         <div class="pub-year">2024</div>
         <div class="pub-content">
-          <h3>Development of an In Silico Platform (TRIPinRNA) for the Identification of Novel RNA Intramolecular Triple Helices and Their Validation Using Biophysical Techniques</h3>
+          <h3>Development of an in silico platform (TRIPinRNA) for the identification of novel RNA intramolecular triple helices and their validation using biophysical techniques</h3>
           
           <div class="authors">
-            <span class="author">Isha Rakheja<sup>*</sup></span>, 
-            <span class="author me">Vishal Bharti<sup>*</sup></span>, 
-            <span class="author">Souvik Maiti</span>, 
-            <span class="author">Debojyoti Chakraborty</span>
+            <span class="author">Isha Rakheja<sup>*</sup></span>,
+            <span class="author me">Vishal Bharti<sup>*</sup></span>,
+            <span class="author">S Sahana</span>,
+            <span class="author">Prosad Kumar Das</span>,
+            <span class="author">Gyan Ranjan</span>,
+            <span class="author">Ajit Kumar</span>,
+            <span class="author">Niyati Jain</span>,
+            <span class="author">Souvik Maiti</span>
             <div class="contribution">* Equal contribution</div>
           </div>
           
           <div class="journal-info">
-            <span class="journal">Biochemistry</span>
+            <span class="venue"><span class="journal">Biochemistry</span> (ACS) 64(1):250-265</span>
             <span class="year">2024</span>
-            <span class="doi">DOI: 10.1021/acs.biochem.4c00334</span>
+            <span class="doi">DOI: <a href="https://doi.org/10.1021/acs.biochem.4c00334" target="_blank" rel="noopener">10.1021/acs.biochem.4c00334</a></span>
           </div>
           
           <div class="abstract">
@@ -119,7 +123,7 @@
           </div>
           
           <div class="publication-actions">
-            <a href="https://pubs.acs.org/doi/10.1021/acs.biochem.4c00334" target="_blank" class="pub-btn primary">
+            <a href="https://doi.org/10.1021/acs.biochem.4c00334" target="_blank" rel="noopener" class="pub-btn primary">
               <i class="fas fa-external-link-alt"></i> View Full Paper
             </a>
             <a href="tripinrna.html" class="pub-btn secondary">
@@ -141,9 +145,7 @@
                 <option value="bibtex">BibTeX</option>
               </select>
             </div>
-            <div class="citation-text" id="citation-text-tripinrna">
-              Rakheja, I., Bharti, V., Maiti, S., & Chakraborty, D. (2024). Development of an In Silico Platform (TRIPinRNA) for the Identification of Novel RNA Intramolecular Triple Helices and Their Validation Using Biophysical Techniques. Biochemistry. https://doi.org/10.1021/acs.biochem.4c00334
-            </div>
+            <div class="citation-text" id="citation-text-tripinrna">Rakheja, I., Bharti, V., Sahana, S., Das, P. K., Ranjan, G., Kumar, A., Jain, N., &amp; Maiti, S. (2024). Development of an In Silico Platform (TRIPinRNA) for the Identification of Novel RNA Intramolecular Triple Helices and Their Validation Using Biophysical Techniques. Biochemistry, 64(1), 250–265. https://doi.org/10.1021/acs.biochem.4c00334</div>
             <button class="copy-citation" data-target="citation-text-tripinrna">
               <i class="fas fa-copy"></i> Copy Citation
             </button>
@@ -151,26 +153,184 @@
         </div>
       </div>
       
-      <div class="publication-item published" data-year="2024">
-        <div class="pub-year">2024</div>
+      <div class="publication-item peer-reviewed" data-year="2026">
+        <div class="pub-year">2026</div>
         <div class="pub-content">
-          <h3>IGF2BP1-Mediated Regulation of CCN1 Expression by Specific Binding to G-Quadruplex Structure in its 3´UTR</h3>
+          <h3>MLC1 alteration in human iPSCs give rise to disease-like cellular vacuolation phenotype in the astrocyte lineage</h3>
           
           <div class="authors">
-            <span class="author">Pallabi Rana</span>,
-            <span class="author">Utkarsh Rajat</span>,
+            <span class="author">Saumya Sharma</span>,
             <span class="author me">Vishal Bharti</span>,
-            <span class="author">Tanmoy Mondal</span>,
-            <span class="author">Bincy P. Baby</span>,
-            <span class="author">Pratik Chakraborty</span>,
+            <span class="author">Prosad Kumar Das</span>,
+            <span class="author">Abdul Rahman</span>,
+            <span class="author">Harshita Sharma</span>,
+            <span class="author">Riya Rauthan</span>,
+            <span class="author">Madhumita RC</span>,
+            <span class="author">Neerja Gupta</span>,
+            <span class="author">Rashmi Shukla</span>,
+            <span class="author">Sujata Mohanty</span>,
+            <span class="author">Madhulika Kabra</span>,
+            <span class="author">Kevin R. Francis</span>,
+            <span class="author">Debojyoti Chakraborty</span>
+          </div>
+          
+          <div class="journal-info">
+            <span class="venue"><span class="journal">Orphanet Journal of Rare Diseases</span> 21:176</span>
+            <span class="year">2026</span>
+            <span class="doi">DOI: <a href="https://doi.org/10.1186/s13023-026-04316-3" target="_blank" rel="noopener">10.1186/s13023-026-04316-3</a></span>
+          </div>
+          
+          <div class="abstract">
+            <h4>Abstract</h4>
+            <p>
+              This study investigates the cellular and molecular mechanisms underlying Megalencephalic 
+              Leukoencephalopathy with subcortical Cysts (MLC) using patient-derived iPSCs. I led the 
+              RNA-seq data analysis and developed a diagnostic platform to identify the 132dupC MLC1 
+              gene mutation. Our findings reveal how MLC1 mutations lead to astrocyte dysfunction and 
+              characteristic vacuolation phenotypes, providing insights into disease pathogenesis and 
+              potential therapeutic targets for this rare neurological disorder.
+            </p>
+          </div>
+          
+          <div class="publication-actions">
+            <a href="https://doi.org/10.1186/s13023-026-04316-3" target="_blank" rel="noopener" class="pub-btn primary">
+              <i class="fas fa-external-link-alt"></i> View Full Paper
+            </a>
+            <button class="pub-btn secondary cite-btn" data-pub="mlc1">
+              <i class="fas fa-quote-right"></i> Cite
+            </button>
+          </div>
+          
+          <div class="citation-box" id="cite-mlc1" style="display: none;">
+            <h4>Citation</h4>
+            <div class="citation-format">
+              <label>Format:</label>
+              <select class="citation-format-select" data-pub="mlc1">
+                <option value="apa">APA</option>
+                <option value="mla">MLA</option>
+                <option value="chicago">Chicago</option>
+                <option value="bibtex">BibTeX</option>
+              </select>
+            </div>
+            <div class="citation-text" id="citation-text-mlc1">Sharma, S., Bharti, V., Das, P. K., Rahman, A., Sharma, H., Rauthan, R., RC, M., Gupta, N., Shukla, R., Mohanty, S., Kabra, M., Francis, K. R., &amp; Chakraborty, D. (2026). MLC1 alteration in human iPSCs give rise to disease-like cellular vacuolation phenotype in the astrocyte lineage. Orphanet Journal of Rare Diseases, 21(1). https://doi.org/10.1186/s13023-026-04316-3</div>
+            <button class="copy-citation" data-target="citation-text-mlc1">
+              <i class="fas fa-copy"></i> Copy Citation
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="publication-item peer-reviewed" data-year="2026">
+        <div class="pub-year">2026</div>
+        <div class="pub-content">
+          <h3>Quercetin affects carcinogenic phenotype of breast and lung cancer cells differentially through sterol regulation mediated by MALAT1 perturbation</h3>
+          
+          <div class="authors">
+            <span class="author">Isha Rakheja</span>,
+            <span class="author me">Vishal Bharti</span>,
+            <span class="author">Vandana Singh</span>,
+            <span class="author">Souvik Maiti</span>
+          </div>
+          
+          <div class="journal-info">
+            <span class="venue"><span class="journal">Chemistry - An Asian Journal</span> 21(11):e70821</span>
+            <span class="year">2026</span>
+            <span class="doi">DOI: <a href="https://doi.org/10.1002/asia.70821" target="_blank" rel="noopener">10.1002/asia.70821</a></span>
+          </div>
+          
+          <div class="publication-actions">
+            <a href="https://doi.org/10.1002/asia.70821" target="_blank" rel="noopener" class="pub-btn primary">
+              <i class="fas fa-external-link-alt"></i> View Full Paper
+            </a>
+            <button class="pub-btn secondary cite-btn" data-pub="quercetin">
+              <i class="fas fa-quote-right"></i> Cite
+            </button>
+          </div>
+          
+          <div class="citation-box" id="cite-quercetin" style="display: none;">
+            <h4>Citation</h4>
+            <div class="citation-format">
+              <label>Format:</label>
+              <select class="citation-format-select" data-pub="quercetin">
+                <option value="apa">APA</option>
+                <option value="mla">MLA</option>
+                <option value="chicago">Chicago</option>
+                <option value="bibtex">BibTeX</option>
+              </select>
+            </div>
+            <div class="citation-text" id="citation-text-quercetin">Rakheja, I., Bharti, V., Singh, V., &amp; Maiti, S. (2026). Quercetin Affects Carcinogenic Phenotype of Breast and Lung Cancer Cells Differentially Through Sterol Regulation Mediated by MALAT1 Perturbation. Chemistry – an Asian Journal, 21(11). https://doi.org/10.1002/asia.70821</div>
+            <button class="copy-citation" data-target="citation-text-quercetin">
+              <i class="fas fa-copy"></i> Copy Citation
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="publication-item peer-reviewed" data-year="2025">
+        <div class="pub-year">2025</div>
+        <div class="pub-content">
+          <h3>CRISPR-Cas diagnostics (CRISPR-Dx) of viral pathogens in low- and limited-resource areas</h3>
+          
+          <div class="authors">
+            <span class="author">Prosad Kumar Das</span>,
+            <span class="author">Meghali Aich</span>,
+            <span class="author">Patrick Adu</span>,
+            <span class="author me">Vishal Bharti</span>,
             <span class="author">Souvik Maiti</span>,
             <span class="author">Debojyoti Chakraborty</span>
           </div>
           
           <div class="journal-info">
-            <span class="journal">Biochemistry</span>
+            <span class="venue"><span class="journal">TrAC Trends in Analytical Chemistry</span> 118590</span>
+            <span class="year">2025</span>
+            <span class="doi">DOI: <a href="https://doi.org/10.1016/j.trac.2025.118590" target="_blank" rel="noopener">10.1016/j.trac.2025.118590</a></span>
+          </div>
+          
+          <div class="publication-actions">
+            <a href="https://doi.org/10.1016/j.trac.2025.118590" target="_blank" rel="noopener" class="pub-btn primary">
+              <i class="fas fa-external-link-alt"></i> View Full Paper
+            </a>
+            <button class="pub-btn secondary cite-btn" data-pub="crisprdx">
+              <i class="fas fa-quote-right"></i> Cite
+            </button>
+          </div>
+          
+          <div class="citation-box" id="cite-crisprdx" style="display: none;">
+            <h4>Citation</h4>
+            <div class="citation-format">
+              <label>Format:</label>
+              <select class="citation-format-select" data-pub="crisprdx">
+                <option value="apa">APA</option>
+                <option value="mla">MLA</option>
+                <option value="chicago">Chicago</option>
+                <option value="bibtex">BibTeX</option>
+              </select>
+            </div>
+            <div class="citation-text" id="citation-text-crisprdx">Das, P. K., Aich, M., Adu, P., Bharti, V., Maiti, S., &amp; Chakraborty, D. (2026). CRISPR-cas diagnostics (CRISPR-Dx) of viral pathogens in low and limited resource areas: Current state and future directions. TrAC Trends in Analytical Chemistry, 195, 118590. https://doi.org/10.1016/j.trac.2025.118590</div>
+            <button class="copy-citation" data-target="citation-text-crisprdx">
+              <i class="fas fa-copy"></i> Copy Citation
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="publication-item peer-reviewed" data-year="2024">
+        <div class="pub-year">2024</div>
+        <div class="pub-content">
+          <h3>IGF2BP1-mediated regulation of CCN1 expression by specific binding to a G-quadruplex structure in its 3' UTR</h3>
+          
+          <div class="authors">
+            <span class="author">Priya Rana</span>,
+            <span class="author">Rajat Ujjainiya</span>,
+            <span class="author me">Vishal Bharti</span>,
+            <span class="author">Souvik Maiti</span>,
+            <span class="author">Mary K. Ekka</span>
+          </div>
+          
+          <div class="journal-info">
+            <span class="venue"><span class="journal">Biochemistry</span> (ACS) 63(17):2166-2182</span>
             <span class="year">2024</span>
-            <span class="doi">DOI: 10.1021/acs.biochem.4c00172</span>
+            <span class="doi">DOI: <a href="https://doi.org/10.1021/acs.biochem.4c00172" target="_blank" rel="noopener">10.1021/acs.biochem.4c00172</a></span>
           </div>
           
           <div class="abstract">
@@ -186,7 +346,7 @@
           </div>
           
           <div class="publication-actions">
-            <a href="https://doi.org/10.1021/acs.biochem.4c00172" target="_blank" class="pub-btn primary">
+            <a href="https://doi.org/10.1021/acs.biochem.4c00172" target="_blank" rel="noopener" class="pub-btn primary">
               <i class="fas fa-external-link-alt"></i> View Full Paper
             </a>
             <a href="g-quadruplex-ccn1.html" class="pub-btn secondary">
@@ -208,9 +368,7 @@
                 <option value="bibtex">BibTeX</option>
               </select>
             </div>
-            <div class="citation-text" id="citation-text-ccn1">
-              Rana, P., Rajat, U., Bharti, V., Mondal, T., Baby, B. P., Chakraborty, P., Maiti, S., & Chakraborty, D. (2024). IGF2BP1-Mediated Regulation of CCN1 Expression by Specific Binding to G-Quadruplex Structure in its 3´UTR. Biochemistry. https://doi.org/10.1021/acs.biochem.4c00172
-            </div>
+            <div class="citation-text" id="citation-text-ccn1">Rana, P., Ujjainiya, R., Bharti, V., Maiti, S., &amp; Ekka, M. K. (2024). IGF2BP1-Mediated Regulation of CCN1 Expression by Specific Binding to G-Quadruplex Structure in Its 3′UTR. Biochemistry, 63(17), 2166–2182. https://doi.org/10.1021/acs.biochem.4c00172</div>
             <button class="copy-citation" data-target="citation-text-ccn1">
               <i class="fas fa-copy"></i> Copy Citation
             </button>
@@ -220,35 +378,98 @@
     </div>
   </section>
 
-  <!-- ================= Manuscripts Under Review ================= -->
+  <!-- ================= Preprints and Manuscripts Under Review ================= -->
   <section class="publications-section alt-bg">
     <div class="container">
-      <h2>Manuscripts Under Review</h2>
+      <h2>Preprints and manuscripts under review</h2>
       
-      <div class="publication-item review" data-year="2023">
-        <div class="pub-year">2023</div>
+      <div class="publication-item preprint" data-year="2026">
+        <div class="pub-year">2026</div>
         <div class="pub-content">
-          <h3>An Interface of Genetically Engineered Human Forebrain Assembloids and Polymeric Nanofiber Scaffolds for Multiscale Profiling of Interneuron Migration Disorders</h3>
+          <h3>StickForStats: automated statistical assumption validation for reproducible computational biology</h3>
           
           <div class="authors">
-            <span class="author">Rahul Rauthan</span>,
             <span class="author me">Vishal Bharti</span>,
-            <span class="author">Aditya Mittal</span>,
-            <span class="author">Suparna Mukherjee</span>,
-            <span class="author">Sumeet K. Asthana</span>,
-            <span class="author">Divya Tej Sowpati</span>,
-            <span class="author">Dipyaman Ganguly</span>,
-            <span class="author">Debojyoti Chakraborty</span>,
-            <span class="author">Apratim Bajpai</span>,
-            <span class="author">Sudipta Maiti</span>,
-            <span class="author">Shubha Tole</span>,
-            <span class="author">Sanjay Singh</span>
+            <span class="author">Debojyoti Chakraborty</span>
+            <div class="contribution">First and corresponding author</div>
           </div>
           
           <div class="journal-info">
-            <span class="journal">Under revision at Stem Cell Reports</span>
-            <span class="year">2023</span>
-            <span class="doi">Preprint: 10.21203/rs.3.rs-3831019/v1</span>
+            <span class="venue"><span class="journal">bioRxiv</span> preprint</span>
+            <span class="year">2026</span>
+            <span class="pub-status">In peer review at <em>BMC Bioinformatics</em></span>
+            <span class="doi">DOI: <a href="https://doi.org/10.64898/2026.06.15.732278" target="_blank" rel="noopener">10.64898/2026.06.15.732278</a></span>
+          </div>
+          
+          <div class="publication-actions">
+            <a href="https://doi.org/10.64898/2026.06.15.732278" target="_blank" rel="noopener" class="pub-btn primary">
+              <i class="fas fa-external-link-alt"></i> View Preprint
+            </a>
+            <a href="stickforstats.html" class="pub-btn secondary">
+              <i class="fas fa-project-diagram"></i> Project Details
+            </a>
+            <button class="pub-btn secondary cite-btn" data-pub="stickforstats">
+              <i class="fas fa-quote-right"></i> Cite
+            </button>
+          </div>
+          
+          <div class="citation-box" id="cite-stickforstats" style="display: none;">
+            <h4>Citation</h4>
+            <div class="citation-format">
+              <label>Format:</label>
+              <select class="citation-format-select" data-pub="stickforstats">
+                <option value="apa">APA</option>
+                <option value="mla">MLA</option>
+                <option value="chicago">Chicago</option>
+                <option value="bibtex">BibTeX</option>
+              </select>
+            </div>
+            <div class="citation-text" id="citation-text-stickforstats">Bharti, V., &amp; Chakraborty, D. (2026). StickForStats: automated statistical assumption validation for reproducible computational biology. https://doi.org/10.64898/2026.06.15.732278</div>
+            <button class="copy-citation" data-target="citation-text-stickforstats">
+              <i class="fas fa-copy"></i> Copy Citation
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="publication-item preprint" data-year="2026">
+        <div class="pub-year">2026</div>
+        <div class="pub-content">
+          <h3>Most biomedical articles print no statistical result checkable by recomputation: a pre-registered audit with a 20,000-article out-of-sample replication</h3>
+          
+          <div class="authors">
+            <span class="author me">Bharti V.</span>,
+            <span class="author">Chakraborty D.</span>
+            <div class="contribution">First and corresponding author</div>
+          </div>
+          
+          <div class="journal-info">
+            <span class="year">2026</span>
+            <span class="pub-status">Submitted to <em>Nature Human Behaviour</em></span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="publication-item preprint">
+        <div class="pub-year" aria-hidden="true"></div>
+        <div class="pub-content">
+          <h3>An interface of genetically engineered human forebrain assembloids and polymeric nanofiber scaffolds for multiscale profiling of interneuron-migration disorders</h3>
+          
+          <div class="authors">
+            <span class="author">Riya Rauthan</span>,
+            <span class="author me">Vishal Bharti</span>,
+            <span class="author">Atharva Agashe</span>,
+            <span class="author">Praveen Singh</span>,
+            <span class="author">Harrison M York</span>,
+            <span class="author">Amrinder S. Nain</span>,
+            <span class="author">Senthil Arumugam</span>,
+            <span class="author">Debojyoti Chakraborty</span>
+          </div>
+          
+          <div class="journal-info">
+            <span class="venue"><span class="journal">Research Square</span> preprint</span>
+            <span class="pub-status">Under revision at <em>Stem Cell Reports</em></span>
+            <span class="doi">DOI: <a href="https://doi.org/10.21203/rs.3.rs-3831019/v1" target="_blank" rel="noopener">10.21203/rs.3.rs-3831019/v1</a></span>
           </div>
           
           <div class="abstract">
@@ -264,7 +485,7 @@
           </div>
           
           <div class="publication-actions">
-            <a href="https://doi.org/10.21203/rs.3.rs-3831019/v1" target="_blank" class="pub-btn primary">
+            <a href="https://doi.org/10.21203/rs.3.rs-3831019/v1" target="_blank" rel="noopener" class="pub-btn primary">
               <i class="fas fa-external-link-alt"></i> View Preprint
             </a>
             <a href="forebrain-assembloids.html" class="pub-btn secondary">
@@ -286,9 +507,7 @@
                 <option value="bibtex">BibTeX</option>
               </select>
             </div>
-            <div class="citation-text" id="citation-text-forebrain">
-              Rauthan, R., Bharti, V., Mittal, A., et al. (2023). An Interface of Genetically Engineered Human Forebrain Assembloids and Polymeric Nanofiber Scaffolds for Multiscale Profiling of Interneuron Migration Disorders. Under revision at Stem Cell Reports. https://doi.org/10.21203/rs.3.rs-3831019/v1
-            </div>
+            <div class="citation-text" id="citation-text-forebrain">Rauthan, R., Bharti, V., Agashe, A., Singh, P., York, H. M., Nain, A. S., Arumugam, S., &amp; Chakraborty, D. (2024). An interface of genetically engineered human forebrain assembloids and polymeric nanofiber scaffolds for multiscale profiling of interneuron migration disorders. https://doi.org/10.21203/rs.3.rs-3831019/v1</div>
             <button class="copy-citation" data-target="citation-text-forebrain">
               <i class="fas fa-copy"></i> Copy Citation
             </button>
@@ -296,70 +515,43 @@
         </div>
       </div>
       
-      <div class="publication-item review" data-year="2023">
-        <div class="pub-year">2023</div>
+      <div class="publication-item preprint" data-year="2026">
+        <div class="pub-year">2026</div>
         <div class="pub-content">
-          <h3>MLC1 alteration in iPSCs give rise to disease-like cellular vacuolation phenotype in the astrocyte lineage</h3>
+          <h3>Folding on the way in: vectorial substrate recognition by human Hsp60</h3>
           
           <div class="authors">
-            <span class="author">Shyamala Sharma</span>,
-            <span class="author me">Vishal Bharti</span>,
-            <span class="author">Prasanna Kumar Das</span>,
-            <span class="author">Nikhil Masurkar</span>,
-            <span class="author">Chintan Joshi</span>,
-            <span class="author">Gargi Kulkarni</span>,
-            <span class="author">Bharat Gogisetty</span>,
-            <span class="author">Snehal Dhamale</span>,
-            <span class="author">Sudhakar Sivasubbu</span>,
-            <span class="author">Apratim Bajpai</span>,
-            <span class="author">Debojyoti Chakraborty</span>,
-            <span class="author">Sourav Banerjee</span>
+            <span class="author">Kochar M.</span>,
+            <span class="author">Rao S.</span>,
+            <span class="author">Bhattacharjee S.</span>,
+            <span class="author">Goel P.</span>,
+            <span class="author">Timsina H.</span>,
+            <span class="author">Azhar M.K.</span>,
+            <span class="author me">Bharti V.</span>,
+            et al.
           </div>
           
           <div class="journal-info">
-            <span class="journal">bioRxiv</span>
-            <span class="year">2023</span>
-            <span class="doi">DOI: 10.1101/2025.01.06.631607</span>
+            <span class="pub-status">Submitted to <em>Cell</em>, 2026</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="publication-item preprint" data-year="2026">
+        <div class="pub-year">2026</div>
+        <div class="pub-content">
+          <h3>Structural and functional analysis of the Chast-NUCB1 interaction in cardiac hypertrophy</h3>
+          
+          <div class="authors">
+            <span class="author">Azam T.</span>,
+            <span class="author">Kumar A.</span>,
+            <span class="author">Singh P.</span>,
+            <span class="author me">Bharti V.</span>,
+            <span class="author">Ekka M.K.</span>
           </div>
           
-          <div class="abstract">
-            <h4>Abstract</h4>
-            <p>
-              This study investigates the cellular and molecular mechanisms underlying Megalencephalic 
-              Leukoencephalopathy with subcortical Cysts (MLC) using patient-derived iPSCs. I led the 
-              RNA-seq data analysis and developed a diagnostic platform to identify the 132dupC MLC1 
-              gene mutation. Our findings reveal how MLC1 mutations lead to astrocyte dysfunction and 
-              characteristic vacuolation phenotypes, providing insights into disease pathogenesis and 
-              potential therapeutic targets for this rare neurological disorder.
-            </p>
-          </div>
-          
-          <div class="publication-actions">
-            <a href="https://doi.org/10.1101/2025.01.06.631607" target="_blank" class="pub-btn primary">
-              <i class="fas fa-external-link-alt"></i> View Preprint
-            </a>
-            <button class="pub-btn secondary cite-btn" data-pub="mlc1">
-              <i class="fas fa-quote-right"></i> Cite
-            </button>
-          </div>
-          
-          <div class="citation-box" id="cite-mlc1" style="display: none;">
-            <h4>Citation</h4>
-            <div class="citation-format">
-              <label>Format:</label>
-              <select class="citation-format-select" data-pub="mlc1">
-                <option value="apa">APA</option>
-                <option value="mla">MLA</option>
-                <option value="chicago">Chicago</option>
-                <option value="bibtex">BibTeX</option>
-              </select>
-            </div>
-            <div class="citation-text" id="citation-text-mlc1">
-              Sharma, S., Bharti, V., Das, P. K., et al. (2023). MLC1 alteration in iPSCs give rise to disease-like cellular vacuolation phenotype in the astrocyte lineage. bioRxiv. https://doi.org/10.1101/2025.01.06.631607
-            </div>
-            <button class="copy-citation" data-target="citation-text-mlc1">
-              <i class="fas fa-copy"></i> Copy Citation
-            </button>
+          <div class="journal-info">
+            <span class="pub-status">Submitted to the <em>Journal of Biological Chemistry</em>, 2026</span>
           </div>
         </div>
       </div>
@@ -564,28 +756,46 @@
     // Citation format switching
     const citations = {
       tripinrna: {
-        apa: "Rakheja, I., Bharti, V., Maiti, S., & Chakraborty, D. (2024). Development of an In Silico Platform (TRIPinRNA) for the Identification of Novel RNA Intramolecular Triple Helices and Their Validation Using Biophysical Techniques. Biochemistry. https://doi.org/10.1021/acs.biochem.4c00334",
-        mla: 'Rakheja, Isha, et al. "Development of an In Silico Platform (TRIPinRNA) for the Identification of Novel RNA Intramolecular Triple Helices and Their Validation Using Biophysical Techniques." Biochemistry, 2024. https://doi.org/10.1021/acs.biochem.4c00334.',
-        chicago: "Rakheja, Isha, Vishal Bharti, Souvik Maiti, and Debojyoti Chakraborty. 2024. \"Development of an In Silico Platform (TRIPinRNA) for the Identification of Novel RNA Intramolecular Triple Helices and Their Validation Using Biophysical Techniques.\" Biochemistry. https://doi.org/10.1021/acs.biochem.4c00334.",
-        bibtex: "@article{rakheja2024tripinrna,\n  title={Development of an In Silico Platform (TRIPinRNA) for the Identification of Novel RNA Intramolecular Triple Helices and Their Validation Using Biophysical Techniques},\n  author={Rakheja, Isha and Bharti, Vishal and Maiti, Souvik and Chakraborty, Debojyoti},\n  journal={Biochemistry},\n  year={2024},\n  publisher={ACS},\n  doi={10.1021/acs.biochem.4c00334}\n}"
-      },
-      ccn1: {
-        apa: "Rana, P., Rajat, U., Bharti, V., Mondal, T., Baby, B. P., Chakraborty, P., Maiti, S., & Chakraborty, D. (2024). IGF2BP1-Mediated Regulation of CCN1 Expression by Specific Binding to G-Quadruplex Structure in its 3´UTR. Biochemistry. https://doi.org/10.1021/acs.biochem.4c00172",
-        mla: 'Rana, Pallabi, et al. "IGF2BP1-Mediated Regulation of CCN1 Expression by Specific Binding to G-Quadruplex Structure in its 3´UTR." Biochemistry, 2024. https://doi.org/10.1021/acs.biochem.4c00172.',
-        chicago: "Rana, Pallabi, Utkarsh Rajat, Vishal Bharti, et al. 2024. \"IGF2BP1-Mediated Regulation of CCN1 Expression by Specific Binding to G-Quadruplex Structure in its 3´UTR.\" Biochemistry. https://doi.org/10.1021/acs.biochem.4c00172.",
-        bibtex: "@article{rana2024ccn1,\n  title={IGF2BP1-Mediated Regulation of CCN1 Expression by Specific Binding to G-Quadruplex Structure in its 3´UTR},\n  author={Rana, Pallabi and Rajat, Utkarsh and Bharti, Vishal and others},\n  journal={Biochemistry},\n  year={2024},\n  publisher={ACS},\n  doi={10.1021/acs.biochem.4c00172}\n}"
-      },
-      forebrain: {
-        apa: "Rauthan, R., Bharti, V., Mittal, A., et al. (2023). An Interface of Genetically Engineered Human Forebrain Assembloids and Polymeric Nanofiber Scaffolds for Multiscale Profiling of Interneuron Migration Disorders. Under revision at Stem Cell Reports. https://doi.org/10.21203/rs.3.rs-3831019/v1",
-        mla: 'Rauthan, Rahul, et al. "An Interface of Genetically Engineered Human Forebrain Assembloids and Polymeric Nanofiber Scaffolds for Multiscale Profiling of Interneuron Migration Disorders." Under revision at Stem Cell Reports, 2023. https://doi.org/10.21203/rs.3.rs-3831019/v1.',
-        chicago: "Rauthan, Rahul, Vishal Bharti, Aditya Mittal, et al. 2023. \"An Interface of Genetically Engineered Human Forebrain Assembloids and Polymeric Nanofiber Scaffolds for Multiscale Profiling of Interneuron Migration Disorders.\" Under revision at Stem Cell Reports. https://doi.org/10.21203/rs.3.rs-3831019/v1.",
-        bibtex: "@article{rauthan2023forebrain,\n  title={An Interface of Genetically Engineered Human Forebrain Assembloids and Polymeric Nanofiber Scaffolds for Multiscale Profiling of Interneuron Migration Disorders},\n  author={Rauthan, Rahul and Bharti, Vishal and Mittal, Aditya and others},\n  journal={Under revision at Stem Cell Reports},\n  year={2023},\n  doi={10.21203/rs.3.rs-3831019/v1}\n}"
+        apa: "Rakheja, I., Bharti, V., Sahana, S., Das, P. K., Ranjan, G., Kumar, A., Jain, N., & Maiti, S. (2024). Development of an In Silico Platform (TRIPinRNA) for the Identification of Novel RNA Intramolecular Triple Helices and Their Validation Using Biophysical Techniques. Biochemistry, 64(1), 250–265. https://doi.org/10.1021/acs.biochem.4c00334",
+        mla: "Rakheja, Isha, et al. “Development of an in Silico Platform (TRIPinRNA) for the Identification of Novel RNA Intramolecular Triple Helices and Their Validation Using Biophysical Techniques.” Biochemistry, vol. 64, no. 1, Dec. 2024, pp. 250–65. Crossref, https://doi.org/10.1021/acs.biochem.4c00334.",
+        chicago: "Rakheja, Isha, Vishal Bharti, S. Sahana, et al. 2024. “Development of an in Silico Platform (TRIPinRNA) for the Identification of Novel RNA Intramolecular Triple Helices and Their Validation Using Biophysical Techniques.” Biochemistry 64 (1): 250–65. https://doi.org/10.1021/acs.biochem.4c00334.",
+        bibtex: "@article{Rakheja_2024, title={Development of an In Silico Platform (TRIPinRNA) for the Identification of Novel RNA Intramolecular Triple Helices and Their Validation Using Biophysical Techniques}, volume={64}, ISSN={1520-4995}, url={http://dx.doi.org/10.1021/acs.biochem.4c00334}, DOI={10.1021/acs.biochem.4c00334}, number={1}, journal={Biochemistry}, publisher={American Chemical Society (ACS)}, author={Rakheja, Isha and Bharti, Vishal and Sahana, S and Das, Prosad Kumar and Ranjan, Gyan and Kumar, Ajit and Jain, Niyati and Maiti, Souvik}, year={2024}, month=Dec, pages={250–265} }"
       },
       mlc1: {
-        apa: "Sharma, S., Bharti, V., Das, P. K., et al. (2023). MLC1 alteration in iPSCs give rise to disease-like cellular vacuolation phenotype in the astrocyte lineage. bioRxiv. https://doi.org/10.1101/2025.01.06.631607",
-        mla: 'Sharma, Shyamala, et al. "MLC1 alteration in iPSCs give rise to disease-like cellular vacuolation phenotype in the astrocyte lineage." bioRxiv, 2023. https://doi.org/10.1101/2025.01.06.631607.',
-        chicago: "Sharma, Shyamala, Vishal Bharti, Prasanna Kumar Das, et al. 2023. \"MLC1 alteration in iPSCs give rise to disease-like cellular vacuolation phenotype in the astrocyte lineage.\" bioRxiv. https://doi.org/10.1101/2025.01.06.631607.",
-        bibtex: "@article{sharma2023mlc1,\n  title={MLC1 alteration in iPSCs give rise to disease-like cellular vacuolation phenotype in the astrocyte lineage},\n  author={Sharma, Shyamala and Bharti, Vishal and Das, Prasanna Kumar and others},\n  journal={bioRxiv},\n  year={2023},\n  doi={10.1101/2025.01.06.631607}\n}"
+        apa: "Sharma, S., Bharti, V., Das, P. K., Rahman, A., Sharma, H., Rauthan, R., RC, M., Gupta, N., Shukla, R., Mohanty, S., Kabra, M., Francis, K. R., & Chakraborty, D. (2026). MLC1 alteration in human iPSCs give rise to disease-like cellular vacuolation phenotype in the astrocyte lineage. Orphanet Journal of Rare Diseases, 21(1). https://doi.org/10.1186/s13023-026-04316-3",
+        mla: "Sharma, Saumya, et al. “MLC1 Alteration in Human iPSCs Give Rise to Disease-like Cellular Vacuolation Phenotype in the Astrocyte Lineage.” Orphanet Journal of Rare Diseases, vol. 21, no. 1, Mar. 2026. Crossref, https://doi.org/10.1186/s13023-026-04316-3.",
+        chicago: "Sharma, Saumya, Vishal Bharti, Prosad Kumar Das, et al. 2026. “MLC1 Alteration in Human iPSCs Give Rise to Disease-like Cellular Vacuolation Phenotype in the Astrocyte Lineage.” Orphanet Journal of Rare Diseases 21 (1). https://doi.org/10.1186/s13023-026-04316-3.",
+        bibtex: "@article{Sharma_2026, title={MLC1 alteration in human iPSCs give rise to disease-like cellular vacuolation phenotype in the astrocyte lineage}, volume={21}, ISSN={1750-1172}, url={http://dx.doi.org/10.1186/s13023-026-04316-3}, DOI={10.1186/s13023-026-04316-3}, number={1}, journal={Orphanet Journal of Rare Diseases}, publisher={Springer Science and Business Media LLC}, author={Sharma, Saumya and Bharti, Vishal and Das, Prosad Kumar and Rahman, Abdul and Sharma, Harshita and Rauthan, Riya and RC, Madhumita and Gupta, Neerja and Shukla, Rashmi and Mohanty, Sujata and Kabra, Madhulika and Francis, Kevin R. and Chakraborty, Debojyoti}, year={2026}, month=Mar }"
+      },
+      quercetin: {
+        apa: "Rakheja, I., Bharti, V., Singh, V., & Maiti, S. (2026). Quercetin Affects Carcinogenic Phenotype of Breast and Lung Cancer Cells Differentially Through Sterol Regulation Mediated by MALAT1 Perturbation. Chemistry – an Asian Journal, 21(11). https://doi.org/10.1002/asia.70821",
+        mla: "Rakheja, Isha, et al. “Quercetin Affects Carcinogenic Phenotype of Breast and Lung Cancer Cells Differentially through Sterol Regulation Mediated by MALAT1 Perturbation.” Chemistry – an Asian Journal, vol. 21, no. 11, June 2026. Crossref, https://doi.org/10.1002/asia.70821.",
+        chicago: "Rakheja, Isha, Vishal Bharti, Vandana Singh, and Souvik Maiti. 2026. “Quercetin Affects Carcinogenic Phenotype of Breast and Lung Cancer Cells Differentially through Sterol Regulation Mediated by MALAT1 Perturbation.” Chemistry – an Asian Journal 21 (11). https://doi.org/10.1002/asia.70821.",
+        bibtex: "@article{Rakheja_2026, title={Quercetin Affects Carcinogenic Phenotype of Breast and Lung Cancer Cells Differentially Through Sterol Regulation Mediated by MALAT1 Perturbation}, volume={21}, ISSN={1861-471X}, url={http://dx.doi.org/10.1002/asia.70821}, DOI={10.1002/asia.70821}, number={11}, journal={Chemistry – An Asian Journal}, publisher={Wiley}, author={Rakheja, Isha and Bharti, Vishal and Singh, Vandana and Maiti, Souvik}, year={2026}, month=June }"
+      },
+      crisprdx: {
+        apa: "Das, P. K., Aich, M., Adu, P., Bharti, V., Maiti, S., & Chakraborty, D. (2026). CRISPR-cas diagnostics (CRISPR-Dx) of viral pathogens in low and limited resource areas: Current state and future directions. TrAC Trends in Analytical Chemistry, 195, 118590. https://doi.org/10.1016/j.trac.2025.118590",
+        mla: "Das, Prosad Kumar, et al. “CRISPR-Cas Diagnostics (CRISPR-Dx) of Viral Pathogens in Low and Limited Resource Areas: Current State and Future Directions.” TrAC Trends in Analytical Chemistry, vol. 195, Feb. 2026, p. 118590. Crossref, https://doi.org/10.1016/j.trac.2025.118590.",
+        chicago: "Das, Prosad Kumar, Meghali Aich, Patrick Adu, Vishal Bharti, Souvik Maiti, and Debojyoti Chakraborty. 2026. “CRISPR-Cas Diagnostics (CRISPR-Dx) of Viral Pathogens in Low and Limited Resource Areas: Current State and Future Directions.” TrAC Trends in Analytical Chemistry 195 (February): 118590. https://doi.org/10.1016/j.trac.2025.118590.",
+        bibtex: "@article{Das_2026, title={CRISPR-cas diagnostics (CRISPR-Dx) of viral pathogens in low and limited resource areas: Current state and future directions}, volume={195}, ISSN={0165-9936}, url={http://dx.doi.org/10.1016/j.trac.2025.118590}, DOI={10.1016/j.trac.2025.118590}, journal={TrAC Trends in Analytical Chemistry}, publisher={Elsevier BV}, author={Das, Prosad Kumar and Aich, Meghali and Adu, Patrick and Bharti, Vishal and Maiti, Souvik and Chakraborty, Debojyoti}, year={2026}, month=Feb, pages={118590} }"
+      },
+      ccn1: {
+        apa: "Rana, P., Ujjainiya, R., Bharti, V., Maiti, S., & Ekka, M. K. (2024). IGF2BP1-Mediated Regulation of CCN1 Expression by Specific Binding to G-Quadruplex Structure in Its 3′UTR. Biochemistry, 63(17), 2166–2182. https://doi.org/10.1021/acs.biochem.4c00172",
+        mla: "Rana, Priya, et al. “IGF2BP1-Mediated Regulation of CCN1 Expression by Specific Binding to G-Quadruplex Structure in Its 3′UTR.” Biochemistry, vol. 63, no. 17, Aug. 2024, pp. 2166–82. Crossref, https://doi.org/10.1021/acs.biochem.4c00172.",
+        chicago: "Rana, Priya, Rajat Ujjainiya, Vishal Bharti, Souvik Maiti, and Mary K. Ekka. 2024. “IGF2BP1-Mediated Regulation of CCN1 Expression by Specific Binding to G-Quadruplex Structure in Its 3′UTR.” Biochemistry 63 (17): 2166–82. https://doi.org/10.1021/acs.biochem.4c00172.",
+        bibtex: "@article{Rana_2024, title={IGF2BP1-Mediated Regulation of CCN1 Expression by Specific Binding to G-Quadruplex Structure in Its 3′UTR}, volume={63}, ISSN={1520-4995}, url={http://dx.doi.org/10.1021/acs.biochem.4c00172}, DOI={10.1021/acs.biochem.4c00172}, number={17}, journal={Biochemistry}, publisher={American Chemical Society (ACS)}, author={Rana, Priya and Ujjainiya, Rajat and Bharti, Vishal and Maiti, Souvik and Ekka, Mary K.}, year={2024}, month=Aug, pages={2166–2182} }"
+      },
+      stickforstats: {
+        apa: "Bharti, V., & Chakraborty, D. (2026). StickForStats: automated statistical assumption validation for reproducible computational biology. https://doi.org/10.64898/2026.06.15.732278",
+        mla: "Bharti, Vishal, and Debojyoti Chakraborty. StickForStats: Automated Statistical Assumption Validation for Reproducible Computational Biology. June 2026. Crossref, https://doi.org/10.64898/2026.06.15.732278.",
+        chicago: "Bharti, Vishal, and Debojyoti Chakraborty. 2026. StickForStats: Automated Statistical Assumption Validation for Reproducible Computational Biology. June 19. https://doi.org/10.64898/2026.06.15.732278.",
+        bibtex: "@article{Bharti_2026, title={StickForStats: automated statistical assumption validation for reproducible computational biology}, url={http://dx.doi.org/10.64898/2026.06.15.732278}, DOI={10.64898/2026.06.15.732278}, publisher={openRxiv}, author={Bharti, Vishal and Chakraborty, Debojyoti}, year={2026}, month=June }"
+      },
+      forebrain: {
+        apa: "Rauthan, R., Bharti, V., Agashe, A., Singh, P., York, H. M., Nain, A. S., Arumugam, S., & Chakraborty, D. (2024). An interface of genetically engineered human forebrain assembloids and polymeric nanofiber scaffolds for multiscale profiling of interneuron migration disorders. https://doi.org/10.21203/rs.3.rs-3831019/v1",
+        mla: "Rauthan, Riya, et al. An Interface of Genetically Engineered Human Forebrain Assembloids and Polymeric Nanofiber Scaffolds for Multiscale Profiling of Interneuron Migration Disorders. Jan. 2024. Crossref, https://doi.org/10.21203/rs.3.rs-3831019/v1.",
+        chicago: "Rauthan, Riya, Vishal Bharti, Atharva Agashe, et al. 2024. An Interface of Genetically Engineered Human Forebrain Assembloids and Polymeric Nanofiber Scaffolds for Multiscale Profiling of Interneuron Migration Disorders. January 5. https://doi.org/10.21203/rs.3.rs-3831019/v1.",
+        bibtex: "@article{Rauthan_2024, title={An interface of genetically engineered human forebrain assembloids and polymeric nanofiber scaffolds for multiscale profiling of interneuron migration disorders}, url={http://dx.doi.org/10.21203/rs.3.rs-3831019/v1}, DOI={10.21203/rs.3.rs-3831019/v1}, publisher={Springer Science and Business Media LLC}, author={Rauthan, Riya and Bharti, Vishal and Agashe, Atharva and Singh, Praveen and York, Harrison M and Nain, Amrinder S. and Arumugam, Senthil and Chakraborty, Debojyoti}, year={2024}, month=Jan }"
       },
       conference: {
         apa: "Bharti, V., & Chakraborty, D. (2023). Boundary Without Fence. Poster presented at the International Conference: Frontiers in Genome Engineering 2023, BITS Pilani Goa Campus.",

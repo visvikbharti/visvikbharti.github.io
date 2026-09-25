@@ -364,6 +364,13 @@ p { margin-bottom: 1rem; }
   transform: translateY(-3px);
 }
 
+/* Outline buttons sit on the purple-pink gradient here, where purple text vanished */
+.contact .btn.alt {
+  color: #fff;
+  border-color: #fff;
+}
+.contact .btn.alt:hover { background: rgba(255, 255, 255, 0.15); }
+
 .copyright {
   margin-top: 3rem;
   font-size: 0.9rem;

@@ -1,5 +1,12 @@
 /* ===== Initialise GSAP ===== */
 document.addEventListener('DOMContentLoaded', () => {
+    /* Footer year (the HTML holds a fallback for no-JS visitors) -------- */
+    const yearEl = document.getElementById('copyright-year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // Everything below needs GSAP; without it the page stays static and readable.
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || typeof ScrollToPlugin === 'undefined') return;
+
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
     
     /* Smooth scrolling for anchor links --------------------------------- */
@@ -37,20 +44,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   
     /* 2. Count‑up animation in stats ------------------------------------ */
-    gsap.utils.toArray('.num').forEach(el => {
+    // The HTML carries the final numbers; only count up from 0 when motion is welcome.
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMotion) gsap.utils.toArray('.num').forEach(el => {
       const final = +el.dataset.count;
+      let counted = false;
+      const countUp = () => {
+        if (counted) return;
+        counted = true;
+        gsap.fromTo(el, {textContent: 0}, {
+          textContent: final,
+          duration: 2,
+          ease: 'power1.out',
+          snap: {textContent: 1},
+          onUpdate: () => el.textContent = Math.floor(el.textContent)
+        });
+      };
+      // Blank the number only while it is below the fold, so it counts up in view.
+      // Counting on enter-back too means a visitor who lands further down (deep
+      // link, reload) and scrolls up never sees a stuck 0.
+      if (el.getBoundingClientRect().top > window.innerHeight) el.textContent = 0;
       ScrollTrigger.create({
         trigger: el,
         start: 'top 80%',
-        onEnter: () => {
-          gsap.fromTo(el, {textContent: 0}, {
-            textContent: final,
-            duration: 2,
-            ease: 'power1.out',
-            snap: {textContent: 1},
-            onUpdate: () => el.textContent = Math.floor(el.textContent)
-          });
-        }
+        onEnter: countUp,
+        onEnterBack: countUp
       });
     });
   

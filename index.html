@@ -257,20 +257,23 @@
       <div class="split__copy">
         <h3 class="section-title">StickForStats</h3>
         <p>
-          An open-source statistical analysis platform whose Guardian engine checks the assumptions behind a test
-          (normality, variance homogeneity, independence, outliers) before running it, then either reports the
-          result or falls back to the appropriate nonparametric alternative. A companion module re-checks the
-          statistical claims in uploaded manuscripts. <strong>Best Poster Award, EMBO Conference 2025.</strong>
+          An open-source web platform whose Guardian system runs eight assumption validators (normality, variance
+          homogeneity, independence, outliers, sample size, modality, linearity, homoscedasticity) before a test
+          executes, and reroutes to an appropriate nonparametric alternative when a critical assumption fails. A
+          companion module re-checks the statistical claims in manuscripts. Validated against SciPy and R.
+          <strong>Best Poster Award, EMBO Conference 2025.</strong>
         </p>
         <p class="project-status">
           <strong>Status:</strong> Preprint on <a href="https://doi.org/10.64898/2026.06.15.732278" target="_blank" rel="noopener">bioRxiv</a> (2026); in peer review at <em>BMC Bioinformatics</em>. First and corresponding author.
         </p>
         <p>
           <span class="tech-tag">Python</span>
-          <span class="tech-tag">Streamlit</span>
+          <span class="tech-tag">Django</span>
+          <span class="tech-tag">React</span>
           <span class="tech-tag">Statistics</span>
         </p>
         <a class="btn" href="pages/stickforstats.html">Explore Module</a>
+        <a class="btn alt" href="https://github.com/visvikbharti/stickforstats_new" target="_blank" rel="noopener">Code</a>
       </div>
     </div>
 
@@ -349,7 +352,7 @@
         <h3 class="section-title">Confidence Intervals Explorer</h3>
         <p>
           Interactive educational tool for understanding statistical confidence intervals through 
-          visualizations and simulations, part of the StickForStats statistical platform. Deployed on Streamlit
+          visualizations and simulations, built during the early Streamlit prototype of StickForStats. Deployed on Streamlit
           Cloud with real-time parameter adjustment.
         </p>
         <p>
@@ -407,10 +410,10 @@
         <h3 style="margin-top: 1.5rem;">Research Focus</h3>
         <div class="research-positioning" style="margin-top: 1rem;">
           <p style="padding: 1rem; background: rgba(168, 120, 255, 0.1); border-radius: 8px; border-left: 3px solid var(--clr-purple);">
-            <strong>Computational Biology & Single-cell:</strong> I integrate scRNA-seq analysis and repair-pathway modeling to explain CRISPR HDR/NHEJ outcomes and design better editing strategies.
+            <strong>Computational Biology & Single-cell:</strong> I build statistical inference pipelines for single-cell data, most recently contrasting repair-factor requirements at staggered versus blunt CRISPR-induced DNA breaks.
           </p>
           <p style="padding: 1rem; background: rgba(168, 120, 255, 0.1); border-radius: 8px; border-left: 3px solid var(--clr-purple); margin-top: 0.5rem;">
-            <strong>Methods & Statistics:</strong> I build production-grade statistical software for biologists (StickForStats), with validated modules and pedagogy baked in.
+            <strong>Methods & Statistics:</strong> I build open-source statistical software that checks the assumptions behind a test before running it (StickForStats, validated against SciPy and R).
           </p>
         </div>
         <div class="about-links">

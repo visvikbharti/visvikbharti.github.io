@@ -72,10 +72,10 @@
   <section class="filter-section">
     <div class="container">
       <div class="filter-buttons">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="peer-reviewed">Peer-reviewed</button>
-        <button class="filter-btn" data-filter="preprint">Preprints &amp; under review</button>
-        <button class="filter-btn" data-filter="conference">Conference</button>
+        <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-btn" data-filter="peer-reviewed" aria-pressed="false">Peer-reviewed</button>
+        <button class="filter-btn" data-filter="preprint" aria-pressed="false">Preprints &amp; under review</button>
+        <button class="filter-btn" data-filter="conference" aria-pressed="false">Conference</button>
       </div>
     </div>
   </section>
@@ -713,15 +713,20 @@
       btn.addEventListener('click', () => {
         const filter = btn.dataset.filter;
         
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+        filterBtns.forEach(b => {
+          b.classList.toggle('active', b === btn);
+          b.setAttribute('aria-pressed', b === btn);
+        });
         
         publications.forEach(pub => {
-          if (filter === 'all' || pub.classList.contains(filter)) {
-            pub.style.display = 'block';
-          } else {
-            pub.style.display = 'none';
-          }
+          // '' restores the stylesheet's display:flex ('block' stacked the year above the card)
+          pub.style.display = (filter === 'all' || pub.classList.contains(filter)) ? '' : 'none';
+        });
+
+        // Hide a section's heading too when none of its papers match
+        document.querySelectorAll('.publications-section').forEach(section => {
+          const items = section.querySelectorAll('.publication-item');
+          if (items.length) section.hidden = ![...items].some(pub => pub.style.display !== 'none');
         });
       });
     });

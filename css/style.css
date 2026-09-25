@@ -160,6 +160,8 @@ p { margin-bottom: 1rem; }
 .label { font-size: var(--fs-sm); text-transform: uppercase; letter-spacing: .1em; }
 
 /* ----- Split project panels ----- */
+.projects { background: var(--clr-bg-dark); } /* opaque, so the panel it stacks over does not show through */
+
 .projects .split {
   display: grid; 
   grid-template-columns: 1fr 1fr;

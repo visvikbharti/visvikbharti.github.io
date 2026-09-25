@@ -9,6 +9,7 @@ This repository contains my personal academic portfolio, with my research, publi
 - **css/**, **js/**: styles (`vars.css` holds the colour and type variables) and the GSAP scroll logic (`main.js`)
 - **assets/**: images and the hero video
 - **my_cv/Vishal_Bharti_CV.pdf**: the current CV. Keep this filename when replacing it, so the links never go stale.
+  A copy also sits at the old address, `my_cv/Vishal-Bharti-Resume-Updated-Sep-2025.pdf`, so CV links already sent out keep working. Replace both when the CV changes.
 
 ## Development Setup
 

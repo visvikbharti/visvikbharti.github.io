@@ -6,8 +6,8 @@
   <title>StickForStats - Vishal Bharti</title>
 
   <!-- SEO Meta Tags -->
-  <meta name="description" content="StickForStats - Advanced statistical analysis platform with user-friendly interface designed for researchers without extensive statistical knowledge.">
-  <meta name="keywords" content="statistics, data analysis, streamlit, python, research tools, bioinformatics, experimental design">
+  <meta name="description" content="StickForStats - open-source statistical analysis platform whose Guardian engine checks the assumptions behind a test before it runs, and reroutes to a nonparametric alternative when a critical assumption fails.">
+  <meta name="keywords" content="statistics, data analysis, assumption validation, python, django, react, research tools, bioinformatics, reproducibility">
   <meta name="author" content="Vishal Bharti">
   
   <!-- Google Fonts -->
@@ -51,14 +51,14 @@
       <div class="project-meta">
         <div class="tech-tags">
           <span class="tech-tag">Python</span>
-          <span class="tech-tag">Streamlit</span>
+          <span class="tech-tag">Django</span>
+          <span class="tech-tag">React</span>
           <span class="tech-tag">Statistics</span>
           <span class="tech-tag">Data Visualization</span>
-          <span class="tech-tag">Machine Learning</span>
         </div>
         <div class="project-links">
-          <a href="https://visvikbharti-pca-tool.streamlit.app/" target="_blank" rel="noopener" class="btn">Try PCA Module</a>
-          <a href="https://github.com/visvikbharti/" target="_blank" rel="noopener" class="btn alt">
+          <a href="https://visvikbharti-pca-tool.streamlit.app/" target="_blank" rel="noopener" class="btn">Try PCA Prototype</a>
+          <a href="https://github.com/visvikbharti/stickforstats_new" target="_blank" rel="noopener" class="btn alt">
             <i class="fab fa-github"></i> GitHub
           </a>
         </div>
@@ -71,15 +71,20 @@
     <div class="container">
       <h2>Advanced Statistics for Researchers</h2>
       <p>
-        StickForStats is a comprehensive statistical analysis platform designed to enable researchers with 
-        minimal statistical background to perform advanced analyses. The app intelligently suggests appropriate 
-        statistical tests based on data distribution and research questions, providing tools for experimental 
-        design, data analysis, and result interpretation.
+        StickForStats is an open-source web platform that makes statistical assumption checking the default step
+        before every analysis, not an optional extra. Its Guardian engine has eight validators (normality, variance
+        homogeneity, independence, outliers, sample size, modality, linearity, homoscedasticity) and runs the
+        relevant ones before a test executes. It reports the result alongside its assumption checks or, when a critical assumption fails,
+        reroutes to an appropriate nonparametric alternative with a documented decision trail. A companion module
+        re-checks the statistical claims in uploaded manuscripts.
       </p>
       <p>
-        Born from the observation that many researchers struggle with statistical analysis despite its critical 
-        importance in scientific research, StickForStats aims to democratize advanced statistical methods by 
-        making them accessible through an intuitive interface and clear explanations.
+        Built to counter the assumption violations that drive irreproducible results, StickForStats runs on
+        Django REST Framework and React with PostgreSQL, is MIT-licensed, and has been validated against SciPy and R.
+        In the preprint, re-analysing a 91-sample synovial-sarcoma RNA-seq study (GSE271517) with Guardian moved
+        90.6% of 27,221 genes to a rank-based test and changed the differential-expression verdict for 553 of them.
+        The code is on <a href="https://github.com/visvikbharti/stickforstats_new" target="_blank" rel="noopener">GitHub</a>,
+        and a Python SDK and command-line interface are on PyPI (<code>pip install stickforstats</code>).
       </p>
       <p>
         <strong>Current Status:</strong> Preprint on <em>bioRxiv</em> (2026), DOI: <a href="https://doi.org/10.64898/2026.06.15.732278" target="_blank" rel="noopener">10.64898/2026.06.15.732278</a>; in peer review at <em>BMC Bioinformatics</em>. First and corresponding author.
@@ -88,23 +93,23 @@
       <div class="project-features">
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-brain"></i></div>
-          <h3>Intelligent Test Selection</h3>
-          <p>Automatically analyzes your data and research questions to recommend the most appropriate statistical tests</p>
+          <h3>Assumption Validation</h3>
+          <p>Guardian checks a test's assumptions before it runs and reroutes to a nonparametric alternative on critical violations</p>
         </div>
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-flask"></i></div>
           <h3>Experimental Design</h3>
-          <p>Helps design robust experiments with sample size calculations and randomization strategies</p>
+          <p>Power and sample-size analysis, with an optional 50-decimal-digit precision mode</p>
         </div>
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
           <h3>Interactive Visualizations</h3>
-          <p>Creates publication-quality figures with customizable options for different analyses</p>
+          <p>Interactive charts, including forest and volcano plots</p>
         </div>
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-code"></i></div>
           <h3>Transparent Analysis</h3>
-          <p>Shows underlying R/Python code to promote reproducibility and learning</p>
+          <p>Reports assumption checks alongside every result and exports analyses as R or Python code</p>
         </div>
       </div>
     </div>
@@ -118,55 +123,57 @@
       <div class="features-grid">
         <div class="feature-card">
           <i class="fas fa-brain"></i>
-          <h3>Intelligent Test Selection</h3>
+          <h3>Assumption Validation (Guardian)</h3>
           <p>
-            Automatically analyzes your data's characteristics and research questions to recommend the most 
-            appropriate statistical tests, eliminating confusion about which test to use.
+            Before a test executes, Guardian runs the relevant subset of its eight validators in parallel and
+            computes a composite confidence score. Critical violations reroute the analysis to an appropriate
+            nonparametric alternative; an AI Statistical Advisor helps with test selection.
           </p>
         </div>
-        
+
         <div class="feature-card">
           <i class="fas fa-university"></i>
           <h3>Educational Resources</h3>
           <p>
-            Comprehensive learning tools like the Confidence Intervals Explorer that provide deep understanding 
-            of statistical concepts through interactive visualizations and simulations.
+            Five curated biological example datasets with documented analysis vignettes. Early interactive
+            Streamlit prototypes, such as the Confidence Intervals Explorer, explore statistical concepts
+            through visualizations and simulations.
           </p>
         </div>
-        
+
         <div class="feature-card">
           <i class="fas fa-flask"></i>
-          <h3>Experimental Design Assistant</h3>
+          <h3>Power and Sample Size</h3>
           <p>
-            Helps researchers design robust experiments with appropriate sample sizes, power calculations, 
-            and randomization strategies to ensure statistical validity.
+            Power and sample-size analysis for study design, with an optional 50-decimal-digit
+            precision mode, plus effect sizes with confidence intervals.
           </p>
         </div>
-        
+
         <div class="feature-card">
           <i class="fas fa-chart-line"></i>
           <h3>Interactive Visualizations</h3>
           <p>
-            Creates publication-quality visualizations that clearly communicate your findings, with 
-            customizable options for different data types and analyses.
+            Interactive charts built with Recharts, including forest plots for meta-analysis and volcano
+            plots for differential expression.
           </p>
         </div>
-        
+
         <div class="feature-card">
           <i class="fas fa-code"></i>
           <h3>Transparent Analysis</h3>
           <p>
-            Shows the underlying R or Python code for each analysis, promoting reproducibility and 
-            helping users learn statistical programming over time.
+            Reports assumption checks alongside every result, exports analyses as R or Python code,
+            and offers Python and R SDKs for programmatic access.
           </p>
         </div>
-        
+
         <div class="feature-card">
           <i class="fas fa-file-alt"></i>
-          <h3>Automated Reporting</h3>
+          <h3>Manuscript Review</h3>
           <p>
-            Generates comprehensive reports with properly formatted results, appropriate citations, 
-            and interpretations tailored to your field of research.
+            Parses PDF, LaTeX and DOCX manuscripts, extracts their statistical claims and checks each one
+            for internal consistency, with discipline profiles for CONSORT, STROBE, ICH-E9 and JARS-Quant.
           </p>
         </div>
       </div>
@@ -182,49 +189,44 @@
         <div class="module-card">
           <h3>Data Exploration & Visualization</h3>
           <ul>
-            <li>Summary Statistics with appropriate visualizations</li>
-            <li>Principal Component Analysis (PCA)</li>
-            <li>Correlation Analysis with significance testing</li>
-            <li>Distribution Fitting and testing</li>
-            <li>Interactive Heatmaps for multivariate data</li>
+            <li>Correlation Analysis (Pearson r, with Spearman's rho as the alternative when normality or linearity fails)</li>
+            <li>Interactive forest and volcano plots</li>
+            <li>Principal Component Analysis (PCA), an early Streamlit prototype</li>
+            <li>Probability Distributions explorer, an early Streamlit prototype</li>
           </ul>
           <div class="module-links">
             <a href="https://visvikbharti-pca-tool.streamlit.app/" target="_blank" rel="noopener" class="module-link">
-              <i class="fas fa-external-link-alt"></i> Try PCA Module
+              <i class="fas fa-external-link-alt"></i> Try PCA Prototype
             </a>
           </div>
         </div>
-        
+
         <div class="module-card">
           <h3>Hypothesis Testing</h3>
           <ul>
-            <li>Parametric Tests (t-tests, ANOVA, ANCOVA)</li>
-            <li>Non-parametric Tests (Mann-Whitney, Kruskal-Wallis)</li>
-            <li>Multiple Testing Correction (Bonferroni, FDR)</li>
+            <li>Tests checked by Guardian before they run (t-test, ANOVA, regression, chi-square)</li>
+            <li>Recommended Alternatives (Mann-Whitney U, Kruskal-Wallis, Spearman's rho, Welch's t-test, Welch's ANOVA)</li>
+            <li>Multiple Testing Correction (eight FWER and FDR methods, including Bonferroni, Holm-Bonferroni and Benjamini-Hochberg)</li>
             <li>Power Analysis for sample size calculation</li>
-            <li>Equivalence Testing (TOST)</li>
+            <li>Effect sizes with parametric, bootstrap and noncentral confidence intervals</li>
           </ul>
         </div>
-        
+
         <div class="module-card">
-          <h3>Biological Analyses</h3>
+          <h3>Biomedical Analyses</h3>
           <ul>
-            <li>RNA-seq Analysis workflows</li>
-            <li>GO term and KEGG pathway enrichment</li>
-            <li>Clustering Methods (hierarchical, k-means)</li>
-            <li>Time Series Analysis for longitudinal data</li>
-            <li>Survival Analysis (Kaplan-Meier, Cox regression)</li>
+            <li>Per-gene differential expression with assumption checks and Benjamini-Hochberg FDR correction</li>
+            <li>Survival Analysis (Kaplan-Meier, Cox proportional hazards, log-rank test)</li>
+            <li>Meta-analysis (fixed and random effects, heterogeneity, Egger's publication-bias test)</li>
+            <li>Causal inference (propensity-score matching, inverse-probability weighting, difference-in-differences, mediation)</li>
           </ul>
         </div>
-        
+
         <div class="module-card">
           <h3>Educational Tools</h3>
           <ul>
-            <li>Confidence Intervals Explorer</li>
-            <li>Statistical Concept Visualizations</li>
-            <li>Method Comparison Tools</li>
-            <li>Interactive Tutorials</li>
-            <li>Mathematical Derivations with visualizations</li>
+            <li>Confidence Intervals Explorer, an early Streamlit prototype</li>
+            <li>Five curated biological example datasets with documented analysis vignettes</li>
           </ul>
           <div class="module-links">
             <a href="https://visvikbharti-confidence-intervals-explorer.streamlit.app/" target="_blank" rel="noopener" class="module-link">
@@ -239,37 +241,40 @@
   <!-- ================= Demo Modules ================= -->
   <section class="project-section alt-bg">
     <div class="container">
-      <h2>Try StickForStats Modules</h2>
-      
+      <h2>Try the Early Streamlit Prototypes</h2>
+      <p>
+        StickForStats began as standalone Streamlit apps before moving to Django and React. Three of those
+        early interactive prototypes are still online. They sleep when idle, so the first load may take a minute.
+      </p>
+
       <div class="demo-grid">
         <div class="demo-item">
-          <h3>PCA Module</h3>
+          <h3>PCA Prototype</h3>
           <p>
-            The Principal Component Analysis module allows researchers to upload datasets, perform PCA with 
-            automatic preprocessing, visualize results with customizable 2D/3D plots, and generate 
-            publication-ready figures.
+            An early Principal Component Analysis module that lets researchers upload datasets, perform PCA with
+            automatic preprocessing, and visualize results with customizable 2D/3D plots.
           </p>
           <a href="https://visvikbharti-pca-tool.streamlit.app/" target="_blank" rel="noopener" class="btn">
-            <i class="fas fa-external-link-alt"></i> Try PCA Module
+            <i class="fas fa-external-link-alt"></i> Try PCA Prototype
           </a>
         </div>
-        
+
         <div class="demo-item">
           <h3>Probability Distributions</h3>
           <p>
-            Explore common statistical distributions interactively, understand how parameters affect 
-            distribution shapes, fit distributions to your data, and calculate probabilities and 
+            An early prototype for exploring common statistical distributions interactively: see how parameters
+            affect distribution shapes, fit distributions to your data, and calculate probabilities and
             critical values.
           </p>
           <a href="https://visvikbharti-probability-distributions-tool.streamlit.app/" target="_blank" rel="noopener" class="btn">
-            <i class="fas fa-external-link-alt"></i> Try Distributions Module
+            <i class="fas fa-external-link-alt"></i> Try Distributions Prototype
           </a>
         </div>
         
         <div class="demo-item">
           <h3>Confidence Intervals Explorer</h3>
           <p>
-            Understand the theoretical foundations of confidence intervals through interactive simulations, 
+            An early prototype for understanding confidence intervals through interactive simulations:
             visualize how sample size affects precision, and compare frequentist and Bayesian approaches.
           </p>
           <a href="https://visvikbharti-confidence-intervals-explorer.streamlit.app/" target="_blank" rel="noopener" class="btn">
@@ -318,7 +323,7 @@
           <div class="timeline-content">
             <h3>2025</h3>
             <h4>Best Poster Award</h4>
-            <p>EMBO Conference 2025, CCMB Hyderabad.</p>
+            <p>EMBO Conference 2025, CCMB Hyderabad, for the poster &ldquo;StickForStats: Publish Research with Confidence&rdquo;. Sole author and presenter.</p>
           </div>
         </div>
         
@@ -348,9 +353,9 @@
             and appropriate statistical analysis of results.
           </p>
           <p class="use-case-example">
-            <strong>Example:</strong> A molecular biologist comparing gene expression changes across 
-            multiple treatment conditions can use StickForStats to determine the appropriate statistical 
-            test, perform the analysis, and generate publication-ready figures.
+            <strong>Example:</strong> A molecular biologist comparing gene expression changes across
+            multiple treatment conditions can use StickForStats to check each test's assumptions, switch
+            to a nonparametric alternative where they fail, and correct for multiple testing.
           </p>
         </div>
         
@@ -358,13 +363,13 @@
           <h3>Clinical Researchers</h3>
           <p>
             Medical professionals conducting clinical studies who need robust statistical methods for 
-            patient data. StickForStats provides specialized tools for survival analysis, repeated 
-            measures, and other clinical research methods.
+            patient data. StickForStats provides tools for survival analysis, meta-analysis, causal
+            inference, and manuscript review against CONSORT and ICH-E9.
           </p>
           <p class="use-case-example">
-            <strong>Example:</strong> A clinical researcher studying drug efficacy can use StickForStats 
-            to perform power analysis for study design, analyze treatment outcomes with appropriate 
-            controls for confounding variables, and generate comprehensive reports.
+            <strong>Example:</strong> A clinical researcher studying drug efficacy can use StickForStats
+            to perform power analysis for study design, adjust for confounding with methods such as
+            propensity-score matching, and check the manuscript's statistics before submission.
           </p>
         </div>
         
@@ -376,9 +381,9 @@
             educational resource.
           </p>
           <p class="use-case-example">
-            <strong>Example:</strong> A PhD student can not only analyze their data but also learn 
-            statistical concepts through the interactive tutorials and code transparency, building 
-            valuable data science skills.
+            <strong>Example:</strong> A PhD student can see which assumptions each test needs and whether
+            their data meet them, work through the documented analysis vignettes, and export the analysis
+            as R or Python code.
           </p>
         </div>
       </div>
@@ -394,33 +399,34 @@
         <div class="tech-stack-section">
           <h3>Frontend</h3>
           <ul>
-            <li><strong>Streamlit:</strong> Python-based web application framework</li>
-            <li><strong>Plotly:</strong> Interactive visualization library</li>
-            <li><strong>Altair:</strong> Declarative statistical visualization</li>
-            <li><strong>Matplotlib/Seaborn:</strong> Publication-quality visualizations</li>
-            <li><strong>HTML/CSS/JavaScript:</strong> Custom UI components</li>
+            <li><strong>React 18:</strong> User interface</li>
+            <li><strong>Material-UI 5:</strong> UI components</li>
+            <li><strong>Recharts:</strong> Interactive visualizations, including forest and volcano plots</li>
+            <li><strong>jStat:</strong> Client-side computations</li>
           </ul>
         </div>
-        
+
         <div class="tech-stack-section">
           <h3>Backend</h3>
           <ul>
-            <li><strong>Python:</strong> Core application logic</li>
-            <li><strong>NumPy/Pandas:</strong> Data manipulation and analysis</li>
-            <li><strong>SciPy:</strong> Scientific computing and statistics</li>
-            <li><strong>scikit-learn:</strong> Machine learning algorithms</li>
-            <li><strong>statsmodels:</strong> Statistical models and tests</li>
-            <li><strong>R (via rpy2):</strong> Integration with specialized R packages</li>
+            <li><strong>Python 3.11, Django 4.2 and Django REST Framework:</strong> Application layer with Guardian integration</li>
+            <li><strong>NumPy/SciPy:</strong> Array operations and statistical functions</li>
+            <li><strong>statsmodels:</strong> Regression diagnostics and GLMs</li>
+            <li><strong>lifelines:</strong> Survival analysis</li>
+            <li><strong>scikit-learn:</strong> Machine learning utilities</li>
+            <li><strong>mpmath:</strong> Optional 50-decimal-digit precision mode</li>
+            <li><strong>Celery with Redis:</strong> Long-running analyses</li>
           </ul>
         </div>
-        
+
         <div class="tech-stack-section">
           <h3>Deployment</h3>
           <ul>
-            <li><strong>Docker:</strong> Containerization for consistent deployment</li>
-            <li><strong>GitHub Actions:</strong> CI/CD pipeline</li>
-            <li><strong>Streamlit Cloud:</strong> Hosting individual modules</li>
-            <li><strong>GCP/AWS:</strong> Cloud infrastructure for full application</li>
+            <li><strong>Docker and Docker Compose:</strong> Containerized deployment of the full stack</li>
+            <li><strong>PostgreSQL 15 and Redis:</strong> Relational storage, caching and task queues</li>
+            <li><strong>GitHub Actions:</strong> CI running more than 1,500 automated tests on every commit</li>
+            <li><strong>PyPI:</strong> Python client SDK and command-line interface</li>
+            <li><strong>Streamlit Cloud:</strong> Hosting the early standalone prototypes</li>
           </ul>
         </div>
       </div>
@@ -438,8 +444,8 @@
       
       <ul class="vision-list">
         <li>
-          <strong>Reducing the statistical knowledge barrier</strong> by creating intuitive interfaces 
-          that guide users through appropriate analyses
+          <strong>Reducing the statistical knowledge barrier</strong> by checking assumptions automatically
+          and guiding users to an appropriate analysis
         </li>
         <li>
           <strong>Improving reproducibility in research</strong> by providing standardized analysis 
@@ -454,8 +460,8 @@
           upon analytical approaches
         </li>
         <li>
-          <strong>Supporting open science principles</strong> by making the entire platform open-source 
-          and freely available
+          <strong>Supporting open science principles</strong> by making the entire platform open-source
+          under the MIT license
         </li>
       </ul>
       
@@ -483,7 +489,7 @@
             Help develop new modules, improve existing functionality, or fix bugs. We welcome 
             contributions from developers of all skill levels.
           </p>
-          <a href="https://github.com/visvikbharti/" target="_blank" rel="noopener" class="btn alt">GitHub Repository</a>
+          <a href="https://github.com/visvikbharti/stickforstats_new" target="_blank" rel="noopener" class="btn alt">GitHub Repository</a>
         </div>
         
         <div class="involvement-card">
@@ -519,7 +525,7 @@
       </p>
       <div class="contact-buttons">
         <a href="mailto:vishalvikashbharti@gmail.com?subject=StickForStats%20Inquiry" class="btn">Email Me</a>
-        <a href="https://github.com/visvikbharti/" target="_blank" rel="noopener" class="btn alt">GitHub</a>
+        <a href="https://github.com/visvikbharti/stickforstats_new" target="_blank" rel="noopener" class="btn alt">GitHub</a>
       </div>
     </div>
   </section>

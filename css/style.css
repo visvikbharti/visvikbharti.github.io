@@ -110,7 +110,8 @@ p { margin-bottom: 1rem; }
   transition: color 0.3s;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
   color: var(--clr-neon);
   text-decoration: none;
 }

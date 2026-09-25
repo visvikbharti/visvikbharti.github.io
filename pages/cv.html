@@ -70,12 +70,15 @@
     <div class="container">
       <h2>Professional Summary</h2>
       <p class="summary-text">
-        Bioinformatician with expertise in computational genomics, RNA biology, and statistical tool development. 
-        Currently serving as Project Associate-II at CSIR-IGIB, leading multiple research projects including 
-        RNA structure analysis, DNA repair mechanisms, and developing user-friendly bioinformatics tools. 
-        Strong background in single-cell genomics, machine learning applications in biology, and creating 
-        educational platforms for statistical analysis. Proven track record of publications in peer-reviewed 
-        journals and successful deployment of production-ready applications.
+        I build computational and statistical methods for genome engineering and RNA biology, currently as
+        Project Associate-II in the RNA Biology Group at CSIR-IGIB. The question I keep returning to is
+        whether a biological conclusion actually follows from the data that produced it, and it runs through
+        most of what I have done: a co-first-author method for predicting intramolecular RNA triple helices
+        (Biochemistry, ACS), a three-layer inference pipeline contrasting repair-factor requirements at staggered
+        versus blunt DNA double-strand breaks, and StickForStats, an open-source platform that validates the
+        assumptions behind a statistical test before running it. I came to biology from electronics engineering,
+        taught myself the field over two years, and entered through an M.Tech at IIT Guwahati (GATE-BT All-India
+        Rank 127, top ~1%).
       </p>
     </div>
   </section>
@@ -94,11 +97,10 @@
           <h4>Institute of Genomics and Integrative Biology (CSIR-IGIB), New Delhi</h4>
           <p class="exp-supervisor">Supervisor: Dr. Debojyoti Chakraborty</p>
           <ul>
-            <li>Developing TRIPinRNA, an in silico platform for predicting intramolecular RNA triple helix structures</li>
-            <li>Leading multi-layer computational pipeline development for DNA repair mechanism analysis using scRNA-seq data</li>
-            <li>Creating StickForStats, a comprehensive statistical toolkit for researchers with limited statistical backgrounds (bioRxiv preprint, DOI: <a href="https://doi.org/10.64898/2026.06.15.732278" target="_blank" rel="noopener">10.64898/2026.06.15.732278</a>; in peer review at <em>BMC Bioinformatics</em>)</li>
-            <li>Conducting computational analyses for G-quadruplex structures and their role in gene regulation</li>
-            <li>Managing collaborations with experimental biologists and providing computational support</li>
+            <li>Co-developed (co-first author) TRIPinRNA, an in silico platform for predicting intramolecular RNA triple helix structures; co-supervised with Dr. Souvik Maiti</li>
+            <li>Designed and built the computational arm of a single-cell DNA repair study: a three-layer statistical-inference pipeline contrasting repair-factor requirements at staggered versus blunt-ended breaks from scRNA-seq data</li>
+            <li>Built StickForStats, an open-source statistical-analysis platform whose Guardian engine validates the assumptions behind a test before it runs (bioRxiv preprint, DOI: <a href="https://doi.org/10.64898/2026.06.15.732278" target="_blank" rel="noopener">10.64898/2026.06.15.732278</a>; in peer review at <em>BMC Bioinformatics</em>)</li>
+            <li>Computational and proteomics analysis of IGF2BP1-G-quadruplex regulation of CCN1 expression (<em>Biochemistry</em>, ACS); co-supervised with Dr. Mary K. Ekka</li>
           </ul>
         </div>
         
@@ -110,8 +112,8 @@
           <h4>Indian Institute of Technology Guwahati</h4>
           <p class="exp-supervisor">Supervisor: Dr. Vibin Ramakrishnan</p>
           <ul>
-            <li>Led computational analysis for investigating Ashwagandha and Yogaraj Guggulu efficacy for osteoarthritis treatment</li>
-            <li>Developed hybrid Proteomics-Cheminformatics-Network medicine approach</li>
+            <li>Carried out a hybrid proteomics-cheminformatics-network-medicine analysis of Ashwagandha and Yograj Guggulu for osteoarthritis</li>
+            <li>Performed protein-protein-interaction analysis and computational drug repurposing</li>
             <li>Analyzed proteomics data and performed network pharmacology studies</li>
           </ul>
         </div>
@@ -244,7 +246,7 @@
         <div class="project-summary">
           <h3>TRIPinRNA Platform</h3>
           <p>
-            Developed an in silico platform for predicting intramolecular RNA triple helix structures. 
+            Co-developed an in silico platform for predicting intramolecular RNA triple helix structures.
             Published in Biochemistry (ACS) 64(1):250-265 (2024); co-first author (equal contribution).
           </p>
           <a href="tripinrna.html" class="project-link">View Details →</a>
@@ -262,9 +264,9 @@
         <div class="project-summary">
           <h3>StickForStats Statistical Toolkit</h3>
           <p>
-            Built a comprehensive statistical platform with modules for confidence intervals, PCA, 
-            and quality control, deployed for research workshops and PhD curricula.
-            Described in a bioRxiv preprint (DOI: <a href="https://doi.org/10.64898/2026.06.15.732278" target="_blank" rel="noopener">10.64898/2026.06.15.732278</a>), in peer review at <em>BMC Bioinformatics</em>; first and corresponding author.
+            Built an open-source platform whose Guardian engine runs eight assumption validators before a test
+            executes and, on critical violations, reroutes to an appropriate nonparametric alternative.
+            Validated against SciPy and R. Described in a bioRxiv preprint (DOI: <a href="https://doi.org/10.64898/2026.06.15.732278" target="_blank" rel="noopener">10.64898/2026.06.15.732278</a>), in peer review at <em>BMC Bioinformatics</em>; first and corresponding author.
           </p>
           <a href="stickforstats.html" class="project-link">View Details →</a>
         </div>
@@ -272,8 +274,8 @@
         <div class="project-summary">
           <h3>RNA Lab Navigator</h3>
           <p>
-            Developed an AI-powered RAG system for laboratory knowledge management with sub-5-second 
-            response times and enterprise-grade security.
+            Developed a retrieval-augmented research assistant over internal lab documents and the primary
+            literature, for fast, grounded literature triage in a wet-dry lab. In routine use by about 21 researchers.
           </p>
           <a href="rna-lab-navigator.html" class="project-link">View Details →</a>
         </div>
@@ -289,22 +291,29 @@
       <div class="awards-grid">
         <div class="award-item">
           <div class="award-icon"><i class="fas fa-trophy"></i></div>
+          <h3>Best Poster Award, EMBO Conference 2025</h3>
+          <p>CCMB Hyderabad (2025)</p>
+          <p>For StickForStats (poster "StickForStats: Publish Research with Confidence"). Sole author and presenter.</p>
+        </div>
+
+        <div class="award-item">
+          <div class="award-icon"><i class="fas fa-trophy"></i></div>
           <h3>Graduate Assistantship</h3>
-          <p>IIT Guwahati (2020-2022)</p>
-          <p>Awarded for academic excellence during MTech program</p>
+          <p>Ministry of Education, Government of India (2020-2022)</p>
+          <p>Financial assistantship during MTech program</p>
         </div>
         
         <div class="award-item">
           <div class="award-icon"><i class="fas fa-medal"></i></div>
           <h3>GATE Biotechnology - Rank 127</h3>
-          <p>Top 1% (2020)</p>
+          <p>Top ~1% (2020)</p>
           <p>All India Rank 127 in Graduate Aptitude Test in Engineering</p>
         </div>
         
         <div class="award-item">
           <div class="award-icon"><i class="fas fa-award"></i></div>
-          <h3>GATE Electronics - Qualified</h3>
-          <p>Top 3% (2018)</p>
+          <h3>GATE Electronics &amp; Communication</h3>
+          <p>Top ~3 percentile (2018)</p>
           <p>Qualified GATE in Electronics and Communication Engineering</p>
         </div>
         

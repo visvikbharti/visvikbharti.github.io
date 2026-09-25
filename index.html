@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,7 +17,7 @@
   <meta property="og:url" content="https://visvikbharti.github.io">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=IBM+Plex+Mono:wght@400;600&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -33,6 +33,9 @@
 
   <!-- Portfolio logic -->
   <script defer src="js/main.js"></script>
+  <script defer src="js/hero-cells.js"></script>
+  <script defer src="js/ascii-photo.js"></script>
+  <script defer src="js/project-art.js"></script>
 </head>
 
 <body>
@@ -40,14 +43,14 @@
 
   <!-- Navigation -->
   <nav class="main-nav">
-    <a href="#hero" class="nav-logo">VB</a>
+    <a href="#hero" class="nav-logo"><span class="nav-logo__mark" aria-hidden="true">VB</span><span>Vishal Bharti</span></a>
     <ul class="nav-links">
       <li><a href="#research-interests">Research</a></li>
       <li><a href="#research">Publications</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="my_cv/Vishal_Bharti_CV.pdf">CV</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="my_cv/Vishal_Bharti_CV.pdf" class="nav-cta">CV &#8599;</a></li>
+      <li><a href="#contact" class="nav-cta nav-cta--alt">Contact</a></li>
     </ul>
   </nav>
 
@@ -55,17 +58,28 @@
 
   <!-- ================= Hero ================= -->
   <section id="hero" class="panel hero">
-    <video class="bg-video" autoplay muted loop playsinline aria-hidden="true">
-      <source src="assets/hero.mp4" type="video/mp4" />
-    </video>
+    <canvas id="hero-cells" class="hero__canvas" aria-hidden="true"></canvas>
+    <div class="hero__crosshair" aria-hidden="true"><span class="hero__readout"></span></div>
 
     <div class="hero__content">
-      <h1><span class="outline">Decoding</span> <span class="neon">Life</span></h1>
+      <h1>
+        <span class="sr-only">Decoding Life</span>
+        <span aria-hidden="true"><span class="scramble" data-text="Decoding">Decoding</span> <span class="neon scramble" data-text="Life">Life</span></span>
+      </h1>
       <p class="tagline">Bioinformatics · AI · Statistical Engineering</p>
       <div class="hero-cta">
         <a href="#projects" class="btn">View Projects</a>
         <a href="#research-interests" class="btn alt">Research</a>
       </div>
+    </div>
+
+    <div class="hud hud--left" aria-hidden="true">
+      <div>Cells <b id="hud-cells">0</b> &middot; Breaks <b id="hud-breaks">0</b> &middot; Repaired <b id="hud-repaired">0</b> &middot; Died <b id="hud-died">0</b></div>
+      <div class="hud__hint"><span class="hint-fine">Click</span><span class="hint-touch">Tap</span> a cell to break its DNA</div>
+    </div>
+    <div class="hud hud--right" aria-hidden="true">
+      <div>CSIR-IGIB &middot; New Delhi</div>
+      <div>IST <b id="hud-ist">--:--:--</b> &middot; UTC <b id="hud-utc">--:--:--</b> <span class="dot">&#9679;</span></div>
     </div>
   </section>
 
@@ -253,7 +267,7 @@
   <section id="projects" class="panel projects">
     <h2 class="sr-only">Projects</h2>
     <div class="split">
-      <div class="split__img" style="background-image:url('assets/portraits/stickforstats.jpg')"></div>
+      <div class="split__img split__img--art" data-art="stats" aria-hidden="true"></div>
       <div class="split__copy">
         <h3 class="section-title">StickForStats</h3>
         <p>
@@ -272,13 +286,15 @@
           <span class="tech-tag">React</span>
           <span class="tech-tag">Statistics</span>
         </p>
-        <a class="btn" href="pages/stickforstats.html">Explore Module</a>
-        <a class="btn alt" href="https://github.com/visvikbharti/stickforstats_new" target="_blank" rel="noopener">Code</a>
+        <div class="split__actions">
+          <a class="btn" href="pages/stickforstats.html">Explore Module</a>
+          <a class="btn alt" href="https://github.com/visvikbharti/stickforstats_new" target="_blank" rel="noopener">Code</a>
+        </div>
       </div>
     </div>
 
     <div class="split">
-      <div class="split__img"></div>
+      <div class="split__img split__img--art" data-art="audit" aria-hidden="true"></div>
       <div class="split__copy">
         <h3 class="section-title">Checkability Audit</h3>
         <p>
@@ -293,12 +309,14 @@
           <span class="tech-tag">Reproducibility</span>
           <span class="tech-tag">PubMed Central</span>
         </p>
-        <a class="btn alt" href="#research">In Publications</a>
+        <div class="split__actions">
+          <a class="btn alt" href="#research">In Publications</a>
+        </div>
       </div>
     </div>
 
     <div class="split">
-      <div class="split__img" style="background-image:url('assets/portraits/tripinrna.jpg')"></div>
+      <div class="split__img split__img--art" data-art="triplex" aria-hidden="true"></div>
       <div class="split__copy">
         <h3 class="section-title">TRIPinRNA</h3>
         <p>
@@ -310,13 +328,15 @@
           <span class="tech-tag">RNA Biology</span>
           <span class="tech-tag">Bioinformatics</span>
         </p>
-        <a class="btn" href="pages/tripinrna.html">See Research</a>
-        <a class="btn alt" href="https://pubs.acs.org/doi/10.1021/acs.biochem.4c00334" target="_blank" rel="noopener">View Paper</a>
+        <div class="split__actions">
+          <a class="btn" href="pages/tripinrna.html">See Research</a>
+          <a class="btn alt" href="https://pubs.acs.org/doi/10.1021/acs.biochem.4c00334" target="_blank" rel="noopener">View Paper</a>
+        </div>
       </div>
     </div>
 
     <div class="split">
-      <div class="split__img" style="background-image:url('assets/portraits/dna-repair.jpg')"></div>
+      <div class="split__img split__img--art" data-art="dna-break" aria-hidden="true"></div>
       <div class="split__copy">
         <h3 class="section-title">DNA Repair Analysis</h3>
         <p>
@@ -328,12 +348,14 @@
           <span class="tech-tag">scRNA-seq</span>
           <span class="tech-tag">Genomics</span>
         </p>
-        <a class="btn" href="pages/dna-repair.html">View Project</a>
+        <div class="split__actions">
+          <a class="btn" href="pages/dna-repair.html">View Project</a>
+        </div>
       </div>
     </div>
 
     <div class="split">
-      <div class="split__img" style="background-image:url('assets/portraits/g-quadruplex.jpg')"></div>
+      <div class="split__img split__img--art" data-art="g4" aria-hidden="true"></div>
       <div class="split__copy">
         <h3 class="section-title">G-Quadruplexes in CCN1</h3>
         <p>
@@ -345,12 +367,14 @@
           <span class="tech-tag">Proteomics</span>
           <span class="tech-tag">RNA Biology</span>
         </p>
-        <a class="btn" href="pages/g-quadruplex-ccn1.html">View Project</a>
+        <div class="split__actions">
+          <a class="btn" href="pages/g-quadruplex-ccn1.html">View Project</a>
+        </div>
       </div>
     </div>
 
     <div class="split">
-      <div class="split__img" style="background-image:url('assets/portraits/brain-organoids.jpg')"></div>
+      <div class="split__img split__img--art" data-art="assembloid" aria-hidden="true"></div>
       <div class="split__copy">
         <h3 class="section-title">Forebrain Assembloids</h3>
         <p>
@@ -362,12 +386,14 @@
           <span class="tech-tag">Network Analysis</span>
           <span class="tech-tag">Neuroscience</span>
         </p>
-        <a class="btn" href="pages/forebrain-assembloids.html">View Project</a>
+        <div class="split__actions">
+          <a class="btn" href="pages/forebrain-assembloids.html">View Project</a>
+        </div>
       </div>
     </div>
 
     <div class="split">
-      <div class="split__img" style="background-image:url('assets/portraits/confidence-intervals.jpg')"></div>
+      <div class="split__img split__img--art" data-art="ci" aria-hidden="true"></div>
       <div class="split__copy">
         <h3 class="section-title">Confidence Intervals Explorer</h3>
         <p>
@@ -381,13 +407,15 @@
           <span class="tech-tag">Plotly</span>
           <span class="tech-tag">Statistics</span>
         </p>
-        <a class="btn" href="pages/confidence-intervals.html">View Project</a>
-        <a class="btn alt" href="https://visvikbharti-confidence-intervals-explorer.streamlit.app/" target="_blank" rel="noopener">Try Demo</a>
+        <div class="split__actions">
+          <a class="btn" href="pages/confidence-intervals.html">View Project</a>
+          <a class="btn alt" href="https://visvikbharti-confidence-intervals-explorer.streamlit.app/" target="_blank" rel="noopener">Try Demo</a>
+        </div>
       </div>
     </div>
 
     <div class="split">
-      <div class="split__img" style="background-image:url('assets/portraits/rna-lab-nav.jpg')"></div>
+      <div class="split__img split__img--art" data-art="rag" aria-hidden="true"></div>
       <div class="split__copy">
         <h3 class="section-title">RNA Lab Navigator</h3>
         <p>
@@ -401,7 +429,9 @@
           <span class="tech-tag">Docker</span>
           <span class="tech-tag">RAG</span>
         </p>
-        <a class="btn" href="pages/rna-lab-navigator.html">View Project</a>
+        <div class="split__actions">
+          <a class="btn" href="pages/rna-lab-navigator.html">View Project</a>
+        </div>
       </div>
     </div>
 
@@ -427,12 +457,12 @@
           analyzing complex biological data.
         </p>
         
-        <h3 style="margin-top: 1.5rem;">Research Focus</h3>
-        <div class="research-positioning" style="margin-top: 1rem;">
-          <p style="padding: 1rem; background: rgba(168, 120, 255, 0.1); border-radius: 8px; border-left: 3px solid var(--clr-purple);">
+        <h3 class="about__sub">Research Focus</h3>
+        <div class="research-positioning">
+          <p>
             <strong>Computational Biology & Single-cell:</strong> I build statistical inference pipelines for single-cell data, most recently contrasting repair-factor requirements at staggered versus blunt CRISPR-induced DNA breaks.
           </p>
-          <p style="padding: 1rem; background: rgba(168, 120, 255, 0.1); border-radius: 8px; border-left: 3px solid var(--clr-purple); margin-top: 0.5rem;">
+          <p>
             <strong>Methods & Statistics:</strong> I build open-source statistical software that checks the assumptions behind a test before running it (StickForStats, validated against SciPy and R).
           </p>
         </div>
@@ -445,6 +475,39 @@
         </div>
       </div>
       <img src="assets/photos/speaking-fge-2023.jpg" width="1600" height="1066" loading="lazy" alt="Vishal Bharti at the podium at Frontiers in Genome Engineering 2023" />
+    </div>
+
+    <div class="path">
+      <p class="path__label">Path</p>
+      <ol class="path__list">
+        <li class="path__step">
+          <figure class="ascii-photo"><img src="assets/photos/campus-iem-kolkata.jpg" width="1200" height="900" loading="lazy" alt="Institute of Engineering and Management, Salt Lake, Kolkata" /></figure>
+          <div class="path__body">
+            <span class="path__years">2014&ndash;2018</span>
+            <p class="path__what">B.Tech, Electronics &amp; Communication Engineering</p>
+            <p class="path__where">Institute of Engineering &amp; Management, Kolkata</p>
+            <small class="path__credit">Photo: Pinakpani, <a href="https://commons.wikimedia.org/wiki/File:Institute_of_Engineering_and_Management_01.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>; cropped and rendered as characters</small>
+          </div>
+        </li>
+        <li class="path__step">
+          <figure class="ascii-photo"><img src="assets/photos/campus-iit-guwahati.jpg" width="1200" height="900" loading="lazy" alt="Tree-lined road on the IIT Guwahati campus" /></figure>
+          <div class="path__body">
+            <span class="path__years">2020&ndash;2022</span>
+            <p class="path__what">M.Tech, Biotechnology</p>
+            <p class="path__where">Indian Institute of Technology Guwahati</p>
+            <small class="path__credit">Photo: Nilotpal Hazarika123, <a href="https://commons.wikimedia.org/wiki/File:Beautiful_IIT_Guwahati_Campus,Assam,India.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>; cropped and rendered as characters</small>
+          </div>
+        </li>
+        <li class="path__step">
+          <figure class="ascii-photo"><img src="assets/photos/campus-csir-igib-south.jpg" width="1200" height="900" loading="lazy" alt="CSIR-IGIB South Campus, New Delhi" /></figure>
+          <div class="path__body">
+            <span class="path__years">2023&ndash;</span>
+            <p class="path__what">RNA Biology Group (Dr. Debojyoti Chakraborty)</p>
+            <p class="path__where">CSIR-Institute of Genomics and Integrative Biology, New Delhi</p>
+            <small class="path__credit">Photo: Singhprtk, <a href="https://commons.wikimedia.org/wiki/File:CSIR-IGIB,_South_Campus.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>; cropped and rendered as characters</small>
+          </div>
+        </li>
+      </ol>
     </div>
   </section>
 
@@ -567,6 +630,12 @@
     <p class="copyright">
       © <span id="copyright-year">2026</span> Vishal Bharti. All rights reserved.
     </p>
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <span>DNA repair</span><span>CRISPR-Cas9</span><span>Single-cell genomics</span><span>Statistical inference</span><span>Reproducibility</span><span>RNA structure</span><span>Research software</span>
+        <span>DNA repair</span><span>CRISPR-Cas9</span><span>Single-cell genomics</span><span>Statistical inference</span><span>Reproducibility</span><span>RNA structure</span><span>Research software</span>
+      </div>
+    </div>
   </section>
 
   </main>

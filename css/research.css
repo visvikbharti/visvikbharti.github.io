@@ -1,353 +1,331 @@
-/* ----- Research Page Styles ----- */
+/* ----- Research page (pages/research.html) -----
+   Builds on vars.css + style.css: black page, 1px rules, mono headings,
+   square cells, neon green as the only accent. Page background, body text
+   colour, .container, .btn, the publication list and the footer all come
+   from style.css. */
 
-/* Base Styles */
-.research-page {
-  background-color: var(--clr-bg-dark);
-  color: var(--clr-gray-300);
-  padding-top: 60px; /* Space for fixed nav */
-}
-
-/* Research Hero */
+/* ----- Hero ----- */
 .research-hero {
-  padding: 6rem 0 4rem;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.8), var(--clr-bg-dark));
-  text-align: center;
+  /* clear the fixed 64px nav, then give the title room */
+  padding: calc(64px + clamp(3.5rem, 8vw, 7rem)) 0 clamp(3rem, 6vw, 5rem);
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  text-align: left;
 }
 
 .research-title {
-  font-size: 4rem;
-  margin-bottom: 2rem;
-  color: white;
-  font-weight: 700;
+  margin-bottom: .45em;
+  /* same scale as the other subpage heroes; 12vw keeps 'Publications'
+     inside a 320px screen */
+  font-size: min(var(--fs-xl), 12vw);
+  font-weight: var(--fw-regular);
+  letter-spacing: -.05em;
+  line-height: 1;
+  color: var(--fg);
 }
 
 .research-description {
-  font-size: 1.3rem;
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 62ch;
+  margin: 0;
+  font-size: clamp(1.0625rem, .5vw + .9rem, 1.25rem);
   line-height: 1.6;
+  color: var(--fg-muted);
 }
 
-/* Research Section */
+/* ----- Sections ----- */
 .research-section {
-  padding: 4rem 0;
+  padding: clamp(4rem, 7vw, 6.5rem) 0;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
 }
+/* the hero already draws the rule above the first section */
+.research-hero + .research-section { border-top: 0; }
 
 .research-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: white;
+  margin-bottom: .9em;
+  font-size: var(--fs-lg);
+  color: var(--fg);
+  counter-increment: section;
+}
+/* running index above each section title, as on index.html ("01 —");
+   the second declaration hides it from screen readers where supported */
+.research-section h2::before {
+  content: counter(section, decimal-leading-zero) " \2014";
+  content: counter(section, decimal-leading-zero) " \2014" / "";
+  display: block;
+  margin-bottom: 1.1em;
+  font-size: var(--fs-sm);
+  letter-spacing: .12em;
+  color: var(--accent);
 }
 
 .research-section p {
-  margin-bottom: 1.5rem;
+  max-width: 72ch;
+  margin-bottom: 1.25rem;
   line-height: 1.7;
-  max-width: 85ch;
+  /* long DOIs may break anywhere so they never set a minimum width */
+  overflow-wrap: anywhere;
 }
 
-.alt-bg {
-  background-color: rgba(255, 255, 255, 0.03);
-}
+/* Alternate sections sit one step up; small grey labels switch to
+   --fg-muted there because --fg-dim drops under 4.5:1 on --bg-raise */
+.alt-bg { background: var(--bg-raise); }
 
-/* Research Interests */
-.research-interests {
+/* ----- Research interests: chips like .tech-tag -----
+   (style.css gives the homepage .research-interests a bordered grid;
+   undo that here) */
+.research-section .research-interests {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 2rem;
+  gap: .5rem;
+  margin-top: 1.5rem;
+  border: 0;
 }
 
 .interest-tag {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 0.5rem 1rem;
-  border-radius: 25px;
-  font-size: 0.9rem;
-  transition: all 0.3s;
-}
-
-.interest-tag:hover {
-  background: var(--clr-purple);
-  transform: translateY(-2px);
-}
-
-/* Publications Grid */
-.publications-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.publication-card {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  padding: 2rem;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.publication-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.publication-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.publication-year {
-  color: var(--clr-neon);
-  font-weight: 600;
-}
-
-.publication-type {
-  font-size: 0.85rem;
-  color: var(--clr-purple);
-}
-
-.publication-card h3 {
-  color: white;
-  margin-bottom: 1rem;
-  line-height: 1.4;
-}
-
-.authors {
-  color: var(--clr-gray-300);
-  margin-bottom: 0.5rem;
-  font-size: 0.95rem;
-}
-
-.authors strong {
-  color: var(--clr-neon);
-}
-
-.journal {
-  font-style: italic;
-  color: var(--clr-purple);
-  margin-bottom: 1rem;
-}
-
-.publication-description {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  letter-spacing: .02em;
   line-height: 1.6;
-  margin-bottom: 1.5rem;
+  color: var(--fg);
 }
 
-.publication-links {
-  display: flex;
-  gap: 1rem;
+/* ----- Publications: shared list from style.css ----- */
+/* .pub-content is a flex item: min-width 0 lets it shrink below its
+   longest word, and 'anywhere' lets a DOI wrap inside it */
+.research-section .pub-content { min-width: 0; }
+.research-section .pub-citation {
+  max-width: none;
+  margin-bottom: 0;
+  overflow-wrap: anywhere;
 }
+.research-section h2 + .pub-group-title { margin-top: 0; }
+.alt-bg .pub-group-title { color: var(--fg-muted); }
+/* the shared row hover is --bg-raise, which this band already uses */
+.alt-bg .publication-item:hover { background: var(--bg); }
 
-.pub-link {
-  padding: 0.5rem 1rem;
-  background: var(--clr-purple);
-  color: white;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background 0.3s;
-}
+.research-section .center { text-align: left; }
+.research-section .center.mt-2 { margin-top: 2.5rem; }
 
-.pub-link:hover {
-  background: var(--clr-pink);
-}
-
-.pub-link.alt {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.pub-link.alt:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* Presentations */
-.presentations {
-  margin-top: 3rem;
-  padding-top: 3rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
+/* Conference presentations: a labelled list of rows, like the awards list */
+.presentations { margin-top: 4rem; }
 
 .presentations h3 {
-  color: white;
-  margin-bottom: 2rem;
+  margin: 0;
+  padding-bottom: .75rem;
+  font-size: .75rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  border-bottom: 1px solid var(--line);
+}
+.alt-bg .presentations h3 { color: var(--fg-muted); }
+
+.presentation-item {
+  max-width: 1000px;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--line);
 }
 
 .presentation-item h4 {
-  color: white;
-  margin-bottom: 0.5rem;
+  margin-bottom: .4rem;
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: -.01em;
+  line-height: 1.3;
+  color: var(--fg);
 }
 
-.presentation-details {
-  color: var(--clr-gray-300);
-  line-height: 1.6;
+.research-section .presentation-details {
+  margin-bottom: 0;
+  line-height: 1.65;
+  color: var(--fg-muted);
 }
 
-/* Projects Grid */
-.projects-grid {
+/* ----- Shared cell grid: cards share 1px borders, like .interests-grid ----- */
+.projects-grid,
+.methodology-grid,
+.collaborations-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+  gap: 0;
+  margin-top: 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
 }
 
-.project-card {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  padding: 2rem;
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
+.research-section p + .collaborations-grid { margin-top: 1.25rem; }
+
+.projects-grid       { grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); }
+.methodology-grid    { grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); }
+.collaborations-grid { grid-template-columns: minmax(0, 1fr); }
+/* three cards: one column, then all three in a row, never a 2 + 1 layout
+   with an open cell */
+@media (min-width: 900px) {
+  .collaborations-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
-.project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+.project-card,
+.methodology-card,
+.collaboration-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(1.5rem, 2.5vw, 2rem);
+  text-align: left;
+  background: transparent;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  transition: background .2s;
 }
 
-.project-icon {
-  font-size: 3rem;
-  color: var(--clr-neon);
-  margin-bottom: 1.5rem;
-}
+.project-card:hover { background: var(--bg-raise); }
 
-.project-card h3 {
-  color: white;
-  margin-bottom: 1rem;
-}
-
-.project-card p {
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-}
-
-.project-link {
-  color: var(--clr-purple);
-  font-weight: 600;
-  transition: color 0.3s;
-}
-
-.project-link:hover {
-  color: var(--clr-pink);
-}
-
-/* Methodology Grid */
-.methodology-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.methodology-card {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  padding: 2rem;
-  text-align: center;
-}
-
+.project-icon,
 .methodology-icon {
-  font-size: 2.5rem;
-  color: var(--clr-purple);
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--accent);
 }
 
-.methodology-card h3 {
-  color: white;
-  margin-bottom: 1rem;
+.project-card h3,
+.methodology-card h3,
+.collaboration-card h3 {
+  margin-bottom: .75rem;
+  font-size: 1.05rem;
+  letter-spacing: -.01em;
+  line-height: 1.3;
+  color: var(--fg);
 }
 
-/* Timeline */
+.project-card p,
+.methodology-card p,
+.collaboration-card p {
+  margin-bottom: 1rem;
+  font-size: .9375rem;
+  line-height: 1.65;
+}
+.project-card p:last-of-type { margin-bottom: 1.5rem; }
+.project-card p:last-child,
+.methodology-card p:last-child,
+.collaboration-card p:last-child { margin-bottom: 0; }
+
+/* "View Project Details": the secondary .btn look, pinned to the card foot */
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  margin-top: auto;
+  padding: .8em 1.3em;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--fg);
+  transition: border-color .2s, color .2s;
+}
+.project-link:hover {
+  border-color: var(--cream);
+  color: var(--cream);
+  text-decoration: none;
+}
+
+/* ----- Timeline: 1px rail, square markers, mono dates ----- */
 .timeline {
   position: relative;
   max-width: 900px;
-  margin: 3rem auto;
+  margin: .5rem 0 0;
+  padding-left: 2rem;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: .5rem;
+  bottom: 0;
+  left: 4px;
+  width: 1px;
+  background: var(--line);
 }
 
 .timeline-item {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  padding: 2rem;
-  margin-bottom: 2rem;
   position: relative;
-  border-left: 3px solid var(--clr-purple);
+  padding: 0 0 2.75rem;
+  background: none;
+  border: 0;
+  border-radius: 0;
 }
+.timeline-item:last-child { padding-bottom: 0; }
 
 .timeline-marker {
   position: absolute;
-  left: -8px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--clr-neon);
-  box-shadow: 0 0 10px var(--clr-neon);
+  top: .2rem;
+  left: -2rem;
+  width: 9px;
+  height: 9px;
+  background: var(--bg);
+  border: 1px solid var(--fg-dim);
+  border-radius: 0;
+  box-shadow: none;
+}
+/* the first entry is the current position */
+.timeline-item:first-child .timeline-marker {
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
 .timeline-content h3 {
-  color: var(--clr-purple);
-  margin-bottom: 0.5rem;
+  margin-bottom: .6rem;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  letter-spacing: .06em;
+  color: var(--accent);
 }
 
 .timeline-content h4 {
-  color: white;
-  margin-bottom: 1rem;
+  margin-bottom: .6rem;
+  font-family: var(--font-mono);
+  font-size: clamp(1.05rem, .4vw + .95rem, 1.25rem);
+  font-weight: var(--fw-bold);
+  letter-spacing: -.02em;
+  line-height: 1.3;
+  color: var(--fg);
 }
 
-/* Collaborations */
-.collaborations-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+.timeline-content p { margin-bottom: 0; }
+
+/* ----- Collaborations ----- */
+.research-section .collaboration-cta {
+  max-width: 72ch;
+  margin: 2.5rem 0 0;
+  font-size: 1.0625rem;
+  text-align: left;
 }
 
-.collaboration-card {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  padding: 2rem;
-}
-
-.collaboration-card h3 {
-  color: white;
-  margin-bottom: 1rem;
-}
-
-.collaboration-cta {
-  text-align: center;
-  margin-top: 3rem;
-  font-size: 1.1rem;
-}
-
-.collaboration-cta a {
-  color: var(--clr-neon);
-}
-
-/* Contact Section */
-.contact-section {
-  text-align: center;
-}
+/* ----- Contact ----- */
+.contact-section { text-align: left; }
 
 .contact-buttons {
   display: flex;
-  gap: 1rem;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: .75rem;
   margin-top: 2rem;
 }
 
-/* Responsive Design */
+/* ----- Phones ----- */
 @media (max-width: 768px) {
-  .research-title {
-    font-size: 3rem;
-  }
-  
-  .research-description {
-    font-size: 1.1rem;
-  }
-  
-  .publications-grid,
-  .projects-grid,
-  .methodology-grid,
-  .collaborations-grid {
-    grid-template-columns: 1fr;
-  }
+  .research-hero { padding-top: calc(56px + 3.5rem); }
+  .presentations { margin-top: 3rem; }
+  .timeline { padding-left: 1.75rem; }
+  .timeline-marker { left: -1.75rem; }
 }
-/* The shared publication list (same markup as the home page) keeps its own spacing */
-.research-section .pub-citation { margin-bottom: 0; max-width: none; }

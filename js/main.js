@@ -1,15 +1,53 @@
 /* ===== Initialise GSAP ===== */
+document.documentElement.classList.replace('no-js', 'js');
+
 document.addEventListener('DOMContentLoaded', () => {
     /* Footer year (the HTML holds a fallback for no-JS visitors) -------- */
     const yearEl = document.getElementById('copyright-year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* Headline decodes from random bases (the real text is in the DOM for screen readers) */
+    // Time-based, so a throttled tab can never leave it half-decoded; skipped if the page
+    // opens in a background tab (e.g. a search result opened with Cmd/Ctrl-click).
+    if (!reduceMotion && !document.hidden) document.querySelectorAll('.scramble').forEach((el, i) => {
+      const text = el.dataset.text || el.textContent;
+      const duration = 1000 + i * 350;
+      const start = performance.now();
+      const tick = () => {
+        const done = Math.floor(text.length * Math.min(1, (performance.now() - start) / duration));
+        el.textContent = text.slice(0, done) +
+          text.slice(done).replace(/\S/g, () => 'ATGC'[Math.floor(Math.random() * 4)]);
+        if (done < text.length) setTimeout(tick, 45);
+      };
+      tick();
+    });
+
+    /* HUD clock: New Delhi and UTC */
+    const ist = document.getElementById('hud-ist'), utc = document.getElementById('hud-utc');
+    if (ist && utc) {
+      const fmt = zone => new Intl.DateTimeFormat('en-GB', { timeZone: zone, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+      const fIst = fmt('Asia/Kolkata'), fUtc = fmt('UTC');
+      const tickClock = () => { const now = new Date(); ist.textContent = fIst.format(now); utc.textContent = fUtc.format(now); };
+      tickClock();
+      setInterval(tickClock, 1000);
+    }
+
+    /* Project images that do not exist yet: let the copy take the full width */
+    const imageChecks = [...document.querySelectorAll('.split__img:not([data-art])')].map(el => new Promise(resolve => {
+      const m = /url\(["']?([^"')]+)["']?\)/.exec(el.style.backgroundImage || '');
+      if (!m) { el.closest('.split').classList.add('split--noimg'); return resolve(); }
+      const probe = new Image();
+      probe.onload = () => resolve();
+      probe.onerror = () => { el.closest('.split').classList.add('split--noimg'); resolve(); };
+      probe.src = m[1];
+    }));
+
     // Everything below needs GSAP; without it the page stays static and readable.
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || typeof ScrollToPlugin === 'undefined') return;
 
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     /* Smooth scrolling for anchor links --------------------------------- */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -42,15 +80,15 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   
-    /* 1. Hero colour‑shift on scroll ------------------------------------ */
-    if (!reduceMotion) gsap.to('#hero .bg-video', {
+    /* 1. Hero tissue fades as you scroll past it --------------------- */
+    if (!reduceMotion) gsap.to('#hero-cells', {
       scrollTrigger: {
         trigger: '#hero',
         start: 'top top',
         end: 'bottom top',
         scrub: true
       },
-      filter: 'contrast(130%) saturate(200%) brightness(1)'
+      opacity: 0.25
     });
   
     /* 2. Count‑up animation in stats ------------------------------------ */
@@ -124,5 +162,8 @@ document.addEventListener('DOMContentLoaded', () => {
         invalidateOnRefresh: true
       });
     });
+
+    // Panel heights change when missing project images collapse; re-measure the pins
+    Promise.all(imageChecks).then(() => ScrollTrigger.refresh());
   });
   

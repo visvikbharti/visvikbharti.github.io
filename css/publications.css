@@ -1,449 +1,486 @@
-/* ----- Publications Page Styles ----- */
+/* ----- Publications page -----
+   Black page, 1px rules, monospace headings and labels, cream buttons,
+   neon green only for dates, links and status. The shared pieces
+   (.container, nav, .btn, .pub-status, .site-footer) live in style.css. */
 
-/* Base Styles */
-.publications-page {
-  background-color: var(--clr-bg-dark);
-  color: var(--clr-gray-300);
-  padding-top: 60px;
-}
+/* The fixed nav's height is added to the hero's top padding instead */
+.publications-page { padding-top: 0; }
 
-/* Publications Hero */
+/* ----- Hero ----- */
 .publications-hero {
-  padding: 6rem 0 4rem;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.8), var(--clr-bg-dark));
-  background-size: cover;
-  text-align: center;
+  padding: calc(64px + clamp(3.5rem, 8vw, 7rem)) 0 clamp(3rem, 6vw, 5rem);
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  text-align: left;
 }
 
 .publications-title {
-  font-size: 4rem;
-  margin-bottom: 1.5rem;
-  color: white;
-  font-weight: 700;
+  margin-bottom: .45em;
+  font-size: min(var(--fs-xl), 12vw); /* 'Publications' stays on one line at 320px */
+  letter-spacing: -.05em;
+  line-height: 1;
+  color: var(--fg);
 }
 
 .publications-description {
-  font-size: 1.3rem;
-  max-width: 700px;
-  margin: 0 auto 3rem;
-  line-height: 1.6;
+  max-width: 44rem;
+  margin: 0 0 clamp(2.5rem, 5vw, 3.5rem);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--fg-muted);
 }
 
+/* Counts as bordered cells, like the stats strip on the home page */
 .publication-stats {
-  display: flex;
-  gap: 3rem;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  max-width: 960px;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  font-family: var(--font-mono);
 }
 
 .stat-item {
-  text-align: center;
+  padding: 1.5rem 1.5rem 1.4rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  text-align: left;
 }
 
 .stat-number {
   display: block;
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--clr-neon);
-  margin-bottom: 0.5rem;
+  margin-bottom: .6rem;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-regular);
+  line-height: 1;
+  letter-spacing: -.04em;
+  color: var(--fg);
 }
 
 .stat-label {
-  font-size: 1rem;
-  color: var(--clr-gray-300);
+  display: block;
+  font-size: .6875rem;
+  line-height: 1.5;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
 }
 
-/* Filter Section */
+/* ----- Filters ----- */
 .filter-section {
-  padding: 2rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem 0;
+  background: var(--bg);
 }
 
 .filter-buttons {
   display: flex;
-  gap: 1rem;
-  justify-content: center;
   flex-wrap: wrap;
+  gap: .5rem;
+  justify-content: flex-start;
 }
 
 .filter-btn {
-  padding: 0.75rem 1.5rem;
+  padding: .7em 1.1em;
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: var(--clr-gray-300);
-  border-radius: 30px;
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
+  letter-spacing: .06em;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.3s;
-  font-size: 0.9rem;
+  transition: background .2s, color .2s, border-color .2s;
 }
 
 .filter-btn:hover {
-  border-color: var(--clr-purple);
-  color: var(--clr-purple);
+  border-color: var(--cream);
+  color: var(--cream);
 }
 
-.filter-btn.active {
-  background: var(--clr-purple);
-  color: white;
-  border-color: var(--clr-purple);
+.filter-btn.active,
+.filter-btn.active:hover {
+  background: var(--cream);
+  border-color: var(--cream);
+  color: #000;
 }
 
-/* Publications Section */
+/* ----- Sections ----- */
 .publications-section {
-  padding: 4rem 0;
+  padding: clamp(4rem, 7vw, 6.5rem) 0;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
 }
+
+.publications-section.alt-bg { background: var(--bg-raise); }
 
 .publications-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  color: white;
-  text-align: center;
+  max-width: 24ch;
+  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
+  font-size: var(--fs-lg);
+  letter-spacing: -.04em;
+  color: var(--fg);
+  text-align: left;
 }
 
-/* Publication Items */
+/* ----- Publication rows: separated by 1px rules, date in the left column ----- */
 .publication-item {
-  display: flex;
-  gap: 2rem;
-  margin-bottom: 3rem;
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 15px;
-  padding: 2rem;
-  transition: transform 0.3s, box-shadow 0.3s;
+  display: grid;
+  grid-template-columns: 6rem minmax(0, 1fr);
+  gap: 1.5rem;
+  max-width: none;
+  margin: 0;
+  padding: 2rem 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  box-shadow: none;
+  transform: none;
 }
 
+.publications-section h2 + .publication-item { border-top: 1px solid var(--line); }
+
+/* No lift or glow; inside a raised section the row simply stays flat */
 .publication-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transform: none;
+  box-shadow: none;
 }
+.alt-bg .publication-item:hover { background: transparent; }
 
 .pub-year {
-  flex-shrink: 0;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--clr-purple);
-  margin-top: 0.5rem;
-  min-width: 3em; /* keeps cards aligned when an item has no year (e.g. an undated preprint) */
+  margin-top: 0;
+  padding-top: .3rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  letter-spacing: .06em;
+  color: var(--accent);
 }
 
 .pub-content {
   flex-grow: 1;
+  min-width: 0;
 }
 
 .publication-item h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: white;
+  max-width: 62rem;
+  margin-bottom: .75rem;
+  font-size: clamp(1.0625rem, .4vw + .95rem, 1.25rem);
   line-height: 1.4;
+  letter-spacing: -.02em;
+  color: var(--fg);
 }
 
 .authors {
+  max-width: 62rem;
   margin-bottom: 1rem;
+  font-size: .9375rem;
   line-height: 1.6;
+  color: var(--fg-muted);
 }
 
-.author {
-  color: var(--clr-gray-300);
-}
+.author { color: var(--fg-muted); }
 
 .author.me {
   font-weight: 600;
-  color: var(--clr-neon);
+  color: var(--fg);
 }
 
 .contribution {
-  font-size: 0.85rem;
-  color: var(--clr-purple);
-  margin-top: 0.5rem;
-  font-style: italic;
+  margin-top: .4rem;
+  font-family: var(--font-mono);
+  font-size: .6875rem;
+  font-style: normal;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
 }
 
+/* Venue, year, status and DOI on one monospace line */
 .journal-info {
   display: flex;
-  gap: 1.5rem;
   flex-wrap: wrap;
+  gap: .4rem 1.5rem;
   margin-bottom: 1.5rem;
-  font-size: 0.95rem;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  line-height: 1.5;
+  color: var(--fg-muted);
 }
+
+.venue { color: var(--fg-muted); }
 
 .journal {
-  font-weight: 600;
-  color: white;
+  font-weight: var(--fw-bold);
+  color: var(--fg);
 }
 
-.year {
-  color: var(--clr-gray-300);
-}
+.journal-info .year,
+.journal-info .conference,
+.journal-info .location { color: var(--fg-muted); }
 
 .doi {
-  color: var(--clr-purple);
+  color: var(--fg-muted);
+  overflow-wrap: anywhere;
 }
 
-.doi a {
-  color: inherit;
-}
+.doi a { color: var(--accent); }
 
-.conference,
-.location {
-  color: var(--clr-gray-300);
+/* Status keeps the accent from style.css; a small square marks it */
+.journal-info .pub-status::before {
+  content: "";
+  display: inline-block;
+  width: .45em;
+  height: .45em;
+  margin-right: .55em;
+  vertical-align: .1em;
+  background: var(--accent);
 }
+.journal-info .pub-status em { color: inherit; }
 
-/* Abstract */
+/* Summary: a quiet block set off by a single rule */
 .abstract {
-  background: rgba(255, 255, 255, 0.02);
-  border-radius: 10px;
-  padding: 1.5rem;
+  max-width: 75ch;
   margin-bottom: 1.5rem;
+  padding: .15rem 0 .15rem 1.25rem;
+  background: transparent;
+  border-left: 1px solid var(--line-strong);
+  border-radius: 0;
 }
 
-.abstract h4 {
-  color: white;
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
+.abstract h4,
+.citation-box h4 {
+  margin-bottom: .6rem;
+  font-family: var(--font-mono);
+  font-size: .6875rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
 }
 
 .abstract p {
+  margin-bottom: 0;
+  font-size: .9375rem;
   line-height: 1.7;
-  text-align: justify;
+  text-align: left;
+  color: var(--fg-muted);
 }
 
-/* Publication Actions */
+/* ----- Buttons: same shape as .btn in style.css ----- */
 .publication-actions {
   display: flex;
-  gap: 1rem;
   flex-wrap: wrap;
+  gap: .5rem;
 }
 
-.pub-btn {
-  padding: 0.6rem 1.2rem;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: all 0.3s;
+.pub-btn,
+.copy-citation,
+.profile-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
+  gap: .5em;
+  padding: .75em 1.2em;
+  border: 1px solid var(--cream);
+  border-radius: 0;
+  background: var(--cream);
+  color: #000;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
+  letter-spacing: .06em;
+  text-transform: uppercase;
   text-decoration: none;
+  cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s;
 }
 
-.pub-btn.primary {
-  background: var(--clr-purple);
-  color: white;
+.pub-btn:hover,
+.copy-citation:hover,
+.profile-btn:hover { text-decoration: none; }
+
+.pub-btn.primary:hover,
+.copy-citation:hover {
+  background: transparent;
+  color: var(--cream);
 }
 
-.pub-btn.primary:hover {
-  background: var(--clr-pink);
-  transform: translateY(-2px);
+.pub-btn.secondary,
+.profile-btn {
+  background: transparent;
+  border-color: var(--line-strong);
+  color: var(--fg);
 }
 
-.pub-btn.secondary {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--clr-gray-300);
+.pub-btn.secondary:hover,
+.profile-btn:hover {
+  background: transparent;
+  border-color: var(--cream);
+  color: var(--cream);
 }
 
-.pub-btn.secondary:hover {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-}
-
-/* Citation Box */
+/* ----- Citation panel ----- */
 .citation-box {
-  margin-top: 1.5rem;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  padding: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.citation-box h4 {
-  color: white;
-  margin-bottom: 1rem;
+  max-width: 62rem;
+  margin-top: 1.25rem;
+  padding: 1.25rem;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 0;
 }
 
 .citation-format {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  gap: .75rem;
+  margin-bottom: .9rem;
 }
 
 .citation-format label {
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: .6875rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
 }
 
 .citation-format-select {
-  padding: 0.4rem 0.8rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  border-radius: 5px;
+  padding: .45rem .75rem;
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  color: var(--fg);
+  color-scheme: dark;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
   cursor: pointer;
+}
+.citation-format-select:hover { border-color: var(--cream); }
+.citation-format-select option {
+  background: var(--bg);
+  color: var(--fg);
 }
 
 .citation-text {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 1rem;
-  border-radius: 5px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.85rem;
-  line-height: 1.6;
   margin-bottom: 1rem;
+  padding: 1rem;
+  background: var(--bg-raise);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  line-height: 1.65;
+  color: var(--fg);
   white-space: pre-wrap;
   word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
-.copy-citation {
-  padding: 0.5rem 1rem;
-  background: var(--clr-purple);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.copy-citation:hover {
-  background: var(--clr-pink);
-}
-
-/* Research Metrics */
+/* ----- Open access + profiles ----- */
 .metrics-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  max-width: 1000px;
-  margin: 0 auto 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 0;
+  max-width: 48rem;
+  margin: 0 0 3rem;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
 }
 
 .metric-card {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  padding: 2rem;
-  text-align: center;
-  transition: transform 0.3s;
+  padding: 1.75rem;
+  background: transparent;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  text-align: left;
 }
 
-.metric-card:hover {
-  transform: translateY(-5px);
-}
+.metric-card:hover { transform: none; }
 
 .metric-icon {
-  font-size: 3rem;
-  color: var(--clr-neon);
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--accent);
 }
 
 .metric-card h3 {
-  color: white;
-  margin-bottom: 1rem;
+  margin-bottom: .5rem;
+  font-size: .9375rem;
+  letter-spacing: -.01em;
+  color: var(--fg);
 }
 
-.metric-value {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--clr-purple);
-  margin-bottom: 0.5rem;
+.metric-card p {
+  margin-bottom: 0;
+  font-size: .9375rem;
+  line-height: 1.6;
+  color: var(--fg-muted);
 }
 
-/* Profiles Section */
 .profiles-section {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
+  text-align: left;
 }
 
 .profiles-section h3 {
-  color: white;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  font-size: .8125rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--fg);
 }
 
 .profile-links {
   display: flex;
-  gap: 1rem;
-  justify-content: center;
   flex-wrap: wrap;
+  gap: .5rem;
+  justify-content: flex-start;
 }
 
-.profile-btn {
-  padding: 0.75rem 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: var(--clr-gray-300);
-  border-radius: 30px;
-  text-decoration: none;
-  transition: all 0.3s;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
+/* ----- Contact ----- */
+.contact-section { text-align: left; }
 
-.profile-btn:hover {
-  background: var(--clr-purple);
-  color: white;
-  border-color: var(--clr-purple);
-}
-
-/* Contact Section */
-.contact-section {
-  text-align: center;
+.contact-section p {
+  max-width: 44rem;
+  font-size: 1.0625rem;
+  color: var(--fg-muted);
 }
 
 .contact-buttons {
   display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 2rem;
   flex-wrap: wrap;
+  gap: .75rem;
+  justify-content: flex-start;
+  margin-top: 2rem;
 }
 
-/* Responsive Design */
+/* ----- Phones ----- */
 @media (max-width: 768px) {
-  .publications-title {
-    font-size: 3rem;
-  }
-  
-  .publications-description {
-    font-size: 1.1rem;
-  }
-  
+  .publications-hero { padding-top: calc(56px + 3.5rem); }
+
   .publication-item {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .pub-year {
-    font-size: 1.2rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: .6rem;
+    padding: 1.75rem 0;
   }
 
-  .pub-year:empty {
-    display: none;
-  }
-  
-  .publication-item h3 {
-    font-size: 1.3rem;
-  }
-  
+  .pub-year { padding-top: 0; }
+  .pub-year:empty { display: none; }
+
   .journal-info {
     flex-direction: column;
-    gap: 0.5rem;
+    gap: .35rem;
   }
-  
-  .publication-actions {
-    flex-direction: column;
-  }
-  
-  .pub-btn {
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .metrics-grid {
-    grid-template-columns: 1fr;
-  }
+
+  .abstract { padding-left: 1rem; }
+  .citation-box { padding: 1rem; }
 }

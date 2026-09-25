@@ -1,383 +1,538 @@
-/* ----- CV Page Styles ----- */
+/* ----- CV page -----
+   Black page, 1px rules, mono headings and labels, neon green as the only accent.
+   Shared pieces (nav, .btn, .container, .site-footer, .pub-status) come from style.css.
+   Small text sits on --fg-muted rather than --fg-dim throughout: .alt-bg sections and
+   hovered cells use --bg-raise, where --fg-dim falls to 4.3:1. */
 
-/* Base Styles */
 .cv-page {
-  background-color: var(--clr-bg-dark);
-  color: var(--clr-gray-300);
-  padding-top: 60px;
+  background: var(--bg);
+  color: var(--fg-muted);
 }
 
-/* CV Hero */
+/* ----- Hero ----- */
 .cv-hero {
-  padding: 6rem 0 4rem;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.8), var(--clr-bg-dark));
-  background-size: cover;
-  text-align: center;
+  padding: calc(64px + clamp(3.5rem, 8vw, 6.5rem)) 0 clamp(3rem, 6vw, 4.5rem);
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  text-align: left;
 }
 
 .cv-title {
-  font-size: 4rem;
-  margin-bottom: 1rem;
-  color: white;
-  font-weight: 700;
+  font-size: var(--fs-xl);
+  letter-spacing: -.05em;
+  line-height: 1;
+  margin-bottom: .35em;
+  color: var(--fg);
 }
 
 .cv-subtitle {
-  font-size: 1.5rem;
-  color: var(--clr-purple);
-  margin-bottom: 2rem;
+  max-width: 60rem;
+  margin-bottom: 0;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
 }
 
 .cv-contact {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-  margin-bottom: 2rem;
+  gap: .75rem 2rem;
+  margin: 2rem 0;
+  padding: 1rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  letter-spacing: .02em;
 }
 
 .cv-contact a {
-  color: var(--clr-gray-300);
-  transition: color 0.3s;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: .6rem;
+  min-width: 0;
+  color: var(--fg);
+  overflow-wrap: anywhere;
+  transition: color .2s;
 }
+.cv-contact a i { color: var(--fg-muted); transition: color .2s; }
 
-.cv-contact a:hover {
-  color: var(--clr-neon);
+.cv-contact a:hover,
+.cv-contact a:hover i {
+  color: var(--accent);
   text-decoration: none;
 }
 
 .cv-actions {
   display: flex;
-  gap: 1rem;
-  justify-content: center;
+  flex-wrap: wrap;
+  gap: .75rem;
+  justify-content: flex-start;
 }
 
-/* CV Sections */
+/* ----- Sections ----- */
 .cv-section {
-  padding: 4rem 0;
+  padding: clamp(4rem, 7vw, 6rem) 0;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
 }
+.cv-hero + .cv-section { border-top: 0; }
+.cv-section.alt-bg { background: var(--bg-raise); }
 
+/* Section titles carry the same running index as the home page, e.g. "03 —" */
 .cv-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: white;
-  text-align: center;
+  counter-increment: section;
+  font-size: var(--fs-lg);
+  margin-bottom: .9em;
+  color: var(--fg);
+  text-align: left;
+}
+.cv-section h2::before {
+  content: counter(section, decimal-leading-zero) " \2014";
+  display: block;
+  margin-bottom: 1.1em;
+  font-size: var(--fs-sm);
+  letter-spacing: .12em;
+  color: var(--accent);
 }
 
 .section-subtitle {
-  text-align: center;
-  margin-bottom: 3rem;
-  font-size: 1.1rem;
-  color: var(--clr-gray-300);
+  max-width: 68ch;
+  margin: 0 0 2.5rem;
+  text-align: left;
+  font-size: 1rem;
+  color: var(--fg-muted);
 }
 
 .summary-text {
-  max-width: 800px;
-  margin: 0 auto;
-  line-height: 1.8;
-  font-size: 1.1rem;
+  max-width: 72ch;
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--fg-muted);
 }
 
-/* Experience Timeline */
+/* ----- Experience: vertical rule with square markers ----- */
 .experience-timeline {
+  position: relative;
   max-width: 900px;
-  margin: 0 auto;
+  margin: 0;
+  border-left: 1px solid var(--line);
 }
 
 .experience-item {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  padding: 2.5rem;
-  margin-bottom: 2rem;
   position: relative;
-  border-left: 3px solid var(--clr-purple);
+  margin: 0;
+  padding: 0 0 3rem 2rem;
+  background: none;
+  border: 0;
+  border-radius: 0;
+}
+.experience-item:last-child { padding-bottom: 0; }
+
+/* Square marker centred on the rule; the first (current) role is the accent */
+.experience-item::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: calc(var(--fs-md) * .575 - 4.5px); /* centred on the h3's first line (line-height 1.15) */
+  width: 9px;
+  height: 9px;
+  background: var(--bg-raise);
+  border: 1px solid var(--fg-muted);
+}
+.experience-item:first-child::before {
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
 .exp-header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
+  align-items: baseline;
+  gap: .35rem 1.5rem;
+  margin-bottom: .5rem;
 }
 
 .experience-item h3 {
-  color: white;
-  font-size: 1.5rem;
+  margin: 0;
+  font-size: var(--fs-md);
+  color: var(--fg);
 }
 
 .exp-date {
-  color: var(--clr-neon);
-  font-size: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  letter-spacing: .06em;
+  color: var(--accent);
+  white-space: nowrap;
 }
 
 .experience-item h4 {
-  color: var(--clr-purple);
-  margin-bottom: 0.5rem;
+  margin: 0 0 .35rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: var(--fw-bold);
+  line-height: 1.45;
+  color: var(--fg);
 }
 
 .exp-supervisor {
-  font-style: italic;
-  margin-bottom: 1.5rem;
-  color: var(--clr-gray-300);
+  margin-bottom: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  font-style: normal;
+  letter-spacing: .02em;
+  color: var(--fg-muted);
 }
 
 .experience-item ul {
-  padding-left: 1.5rem;
+  max-width: 75ch;
+  margin: 0;
+  padding-left: 1.1rem;
+  list-style: square;
 }
 
 .experience-item li {
-  margin-bottom: 0.75rem;
-  line-height: 1.6;
+  margin-bottom: .6rem;
+  padding-left: .25rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
 }
+.experience-item li:last-child { margin-bottom: 0; }
+.experience-item li::marker { color: var(--fg-muted); }
 
-/* Education Grid */
+/* ----- Education: bordered cells with shared edges ----- */
 .education-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  max-width: none;
+  margin: 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
 }
 
 .education-item {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  padding: 2rem;
-  text-align: center;
+  padding: 2rem 1.75rem;
+  background: transparent;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  text-align: left;
+  transition: background .2s;
 }
+.education-item:hover { background: var(--bg-raise); }
 
 .edu-icon {
-  font-size: 3rem;
-  color: var(--clr-neon);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--accent);
 }
 
 .education-item h3 {
-  color: white;
-  margin-bottom: 0.5rem;
+  margin-bottom: .4rem;
+  font-size: 1.125rem;
+  letter-spacing: -.02em;
+  line-height: 1.3;
+  color: var(--fg);
 }
 
 .education-item h4 {
-  color: var(--clr-purple);
-  margin-bottom: 1rem;
+  margin: 0 0 .75rem;
+  font-family: var(--font-sans);
+  font-size: .9375rem;
+  font-weight: var(--fw-bold);
+  line-height: 1.45;
+  color: var(--fg);
 }
 
 .edu-institution {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: .35rem;
+  font-weight: var(--fw-regular);
+  font-size: .9375rem;
+  line-height: 1.5;
+  color: var(--fg-muted);
 }
 
 .edu-details {
-  color: var(--clr-gray-300);
-  margin-bottom: 1rem;
+  margin-bottom: 0;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  letter-spacing: .04em;
+  line-height: 1.6;
+  color: var(--accent);
 }
 
 .thesis-info {
+  margin: 1.25rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
   text-align: left;
-  font-size: 0.9rem;
+  font-size: .9375rem;
   line-height: 1.6;
+  color: var(--fg-muted);
 }
 
 .thesis-info strong {
-  color: var(--clr-neon);
+  margin-right: .25rem;
+  font-family: var(--font-mono);
+  font-size: .6875rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--fg);
 }
 
-/* Skills Grid */
+/* ----- Technical skills (extends .skills-grid / .skill-category in style.css) ----- */
 .skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  max-width: none;
+  margin: 0;
 }
 
 .skill-category {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  padding: 2rem;
+  padding: 1.5rem;
+  background: transparent;
+  border-radius: 0;
 }
 
 .skill-category h3 {
-  color: white;
-  margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: .6rem;
+  margin-bottom: 1rem;
 }
 
 .skill-category i {
-  color: var(--clr-purple);
+  width: 1.1em;
+  text-align: center;
+  color: var(--accent);
 }
 
 .skill-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: .4rem;
 }
 
+/* Same chip as .tech-tag */
 .skill-tag {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  transition: all 0.3s;
+  display: inline-block;
+  padding: .25rem .6rem;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  letter-spacing: .02em;
+  line-height: 1.5;
+  color: var(--fg);
 }
 
-.skill-tag:hover {
-  background: var(--clr-purple);
-  color: white;
-  transform: translateY(-2px);
-}
-
-/* Projects Overview */
+/* ----- Key research projects ----- */
 .projects-overview {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  max-width: none;
+  margin: 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
 }
 
 .project-summary {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  padding: 2rem;
-  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.75rem;
+  background: transparent;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  transition: background .2s;
 }
-
-.project-summary:hover {
-  transform: translateY(-5px);
-}
+.project-summary:hover { background: var(--bg-raise); }
 
 .project-summary h3 {
-  color: white;
-  margin-bottom: 1rem;
+  margin-bottom: .75rem;
+  font-size: 1.125rem;
+  letter-spacing: -.02em;
+  line-height: 1.3;
+  color: var(--fg);
 }
 
 .project-summary p {
+  flex: 1;
   margin-bottom: 1.5rem;
-  line-height: 1.6;
+  font-size: .9375rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
 }
 
+/* Secondary button, as .btn.alt */
 .project-link {
-  color: var(--clr-neon);
-  font-weight: 600;
-  transition: color 0.3s;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  padding: .8em 1.3em;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--fg);
+  transition: border-color .2s, color .2s;
 }
 
 .project-link:hover {
-  color: var(--clr-pink);
+  border-color: var(--cream);
+  color: var(--cream);
+  text-decoration: none;
 }
 
-/* Awards Grid */
+/* ----- Awards: rows separated by 1px rules ----- */
 .awards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  display: block;
+  max-width: 1000px;
+  margin: 0;
+  border-top: 1px solid var(--line);
 }
 
 .award-item {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  padding: 2rem;
-  text-align: center;
-  transition: transform 0.3s;
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  gap: .2rem 1.25rem;
+  padding: 1.4rem 0;
+  background: none;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  text-align: left;
 }
 
-.award-item:hover {
-  transform: translateY(-5px);
-}
-
+/* Icon in a small outlined square, like the nav mark */
 .award-icon {
-  font-size: 2.5rem;
-  color: var(--clr-neon);
-  margin-bottom: 1rem;
+  grid-column: 1;
+  grid-row: 1 / span 3;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin: 0;
+  border: 1px solid var(--line-strong);
+  font-size: .875rem;
+  color: var(--fg);
 }
+
+.award-item > :not(.award-icon) { grid-column: 2; }
 
 .award-item h3 {
-  color: white;
-  margin-bottom: 0.5rem;
+  margin-bottom: .1rem;
+  font-size: 1.05rem;
+  letter-spacing: -.01em;
+  line-height: 1.35;
+  color: var(--fg);
+}
+
+.award-item p {
+  margin-bottom: 0;
+  font-size: .9375rem;
+  line-height: 1.6;
+  color: var(--fg-muted);
 }
 
 .award-item p:first-of-type {
-  color: var(--clr-purple);
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: .2rem;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  font-weight: var(--fw-regular);
+  letter-spacing: .04em;
+  color: var(--accent);
 }
 
-/* Publications Preview */
+/* ----- Selected publications: rows separated by 1px rules ----- */
 .publications-preview {
-  max-width: 900px;
-  margin: 0 auto 2rem;
+  max-width: 1000px;
+  margin: 0 0 2.5rem;
+  border-top: 1px solid var(--line);
 }
 
 .pub-preview {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin: 0;
+  padding: 1.5rem 0;
+  background: none;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
 }
 
 .pub-preview h3 {
-  color: white;
-  margin-bottom: 0.5rem;
-  font-size: 1.2rem;
+  margin-bottom: .6rem;
+  font-size: 1rem;
+  letter-spacing: -.01em;
+  line-height: 1.45;
+  color: var(--fg);
 }
 
 .pub-authors {
-  color: var(--clr-purple);
-  margin-bottom: 0.25rem;
+  margin-bottom: .25rem;
+  font-size: .9375rem;
+  color: var(--fg-muted);
 }
 
 .pub-journal {
-  font-style: italic;
-  color: var(--clr-gray-300);
+  margin-bottom: 0;
+  font-size: .9375rem;
+  font-style: normal;
+  color: var(--fg-muted);
+  overflow-wrap: anywhere;
 }
 
 .center-btn {
-  display: block;
-  width: fit-content;
-  margin: 2rem auto 0;
+  display: inline-flex;
+  width: auto;
+  margin: 0;
 }
 
-/* Contact Section */
+/* ----- Contact ----- */
 .contact-section {
-  background: rgba(255, 255, 255, 0.03);
-  text-align: center;
+  background: var(--bg-raise);
+  text-align: left;
+}
+
+.contact-section p {
+  max-width: 44rem;
+  margin-bottom: 0;
+  font-size: 1.0625rem;
+  color: var(--fg-muted);
 }
 
 .contact-buttons {
   display: flex;
-  gap: 1rem;
-  justify-content: center;
+  flex-wrap: wrap;
+  gap: .75rem;
+  justify-content: flex-start;
   margin-top: 2rem;
 }
 
-/* Legacy styles kept for compatibility */
+/* ----- Legacy CV markup (not on the current page), kept in the new style ----- */
 .cv-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem clamp(1.25rem, 5vw, 3rem);
 }
 
 .timeline {
   position: relative;
-  margin-left: 20px;
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 2px;
-  background: rgba(255, 255, 255, 0.1);
+  margin-left: 0;
+  border-left: 1px solid var(--line);
 }
 
 .timeline-item {
@@ -387,44 +542,48 @@
 }
 
 .timeline-item::before {
-  content: '';
+  content: "";
   position: absolute;
   left: -5px;
-  top: 0;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--clr-purple);
+  top: .5rem;
+  width: 9px;
+  height: 9px;
+  background: var(--bg);
+  border: 1px solid var(--fg-muted);
+}
+.timeline-item:first-child::before {
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
-/* Responsive Design */
+/* ----- Tablets ----- */
+@media (max-width: 900px) {
+  .education-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ----- Phones ----- */
 @media (max-width: 768px) {
-  .cv-title {
-    font-size: 3rem;
-  }
-  
-  .cv-subtitle {
-    font-size: 1.2rem;
-  }
-  
+  .cv-hero { padding-top: calc(56px + 3.5rem); }
+
   .cv-contact {
     flex-direction: column;
-    gap: 1rem;
+    align-items: flex-start;
+    gap: .6rem;
   }
-  
+
   .exp-header {
     flex-direction: column;
     align-items: flex-start;
   }
-  
-  .education-grid,
-  .skills-grid,
-  .projects-overview,
-  .awards-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .cv-section h2 {
-    font-size: 2rem;
-  }
+
+  .experience-item { padding-left: 1.5rem; }
+
+  .projects-overview { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .skills-grid { grid-template-columns: 1fr; }
+  .education-item,
+  .project-summary { padding: 1.75rem 1.25rem; }
 }

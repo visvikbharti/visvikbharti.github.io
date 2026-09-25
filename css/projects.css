@@ -1,383 +1,366 @@
-/* ----- Projects Page Styles ----- */
+/* ----- Projects page (pages/projects.html) -----
+   Black page, 1px rules, square bordered cells, mono headings and labels.
+   Shared pieces (nav, .container, .btn, .project-status, .site-footer)
+   come from style.css. */
 
-/* Base Styles */
 .projects-page {
-  background-color: var(--clr-bg-dark);
-  color: var(--clr-gray-300);
-  padding-top: 60px;
+  background: var(--bg);
+  color: var(--fg-muted);
 }
 
-/* Projects Hero */
+/* ----- Hero ----- */
 .projects-hero {
-  padding: 6rem 0 4rem;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.8), var(--clr-bg-dark));
-  text-align: center;
+  padding: calc(64px + clamp(3.5rem, 8vw, 6.5rem)) 0 clamp(3rem, 6vw, 4.5rem);
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  text-align: left;
 }
 
 .projects-title {
-  font-size: 4rem;
-  margin-bottom: 2rem;
-  color: white;
-  font-weight: 700;
+  margin-bottom: 1.5rem;
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-regular);
+  letter-spacing: -.05em;
+  line-height: 1;
+  color: var(--fg);
 }
 
 .projects-description {
-  font-size: 1.3rem;
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 44rem;
+  margin: 0;
+  font-size: clamp(1rem, .4vw + .9rem, 1.1875rem);
   line-height: 1.6;
+  color: var(--fg-muted);
 }
 
-/* Project Stats */
+/* ----- Bordered cell grids (stats, projects, output) -----
+   Each cell draws its own 1px border and overlaps its neighbour by 1px, so
+   borders read as shared rules and cells hidden by the filter leave no gaps. */
+.stats-grid,
+.projects-grid,
+.impact-grid {
+  display: grid;
+  gap: 0;
+  padding: 0 1px 1px 0;
+}
+
+.stat-item,
+.project-card,
+.impact-item {
+  position: relative;
+  margin: 0 -1px -1px 0;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+}
+
+/* ----- Stats ----- */
 .project-stats {
-  padding: 4rem 0;
-  background: rgba(255, 255, 255, 0.03);
+  padding: clamp(2.5rem, 5vw, 3.5rem) 0;
+  background: var(--bg);
 }
 
 .stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  text-align: center;
+  grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr));
+  text-align: left;
 }
 
 .stat-item {
-  padding: 2rem;
+  padding: 1.75rem 1.5rem;
 }
 
 .stat-number {
   display: block;
-  font-size: 3.5rem;
-  font-weight: 700;
-  color: var(--clr-neon);
-  margin-bottom: 0.5rem;
+  margin-bottom: .75rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-regular);
+  line-height: 1;
+  letter-spacing: -.04em;
+  color: var(--fg);
 }
 
 .stat-label {
-  font-size: 1.1rem;
-  color: var(--clr-gray-300);
-  line-height: 1.4;
+  font-family: var(--font-mono);
+  font-size: .6875rem;
+  line-height: 1.5;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--fg-dim);          /* black cell only: 4.6:1 */
 }
 
-/* Projects Section */
-.projects-section {
-  padding: 4rem 0;
+/* ----- Sections ----- */
+.projects-section,
+.impact-section,
+.ongoing-section,
+.cta-section {
+  padding: clamp(4rem, 8vw, 6.5rem) 0;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+  text-align: left;
 }
 
-.projects-section h2 {
-  font-size: 2.5rem;
+.projects-section.alt-bg { background: var(--bg-raise); }
+
+.projects-section h2,
+.impact-section h2,
+.ongoing-section h2,
+.cta-section h2 {
   margin-bottom: 2rem;
-  color: white;
+  font-size: var(--fs-lg);
+  color: var(--fg);
+  text-align: left;
 }
 
-.projects-section.alt-bg {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-/* Filter Buttons */
+/* ----- Filter buttons: outline, active = cream ----- */
 .filter-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 3rem;
+  gap: .5rem;
+  margin-bottom: 2rem;
 }
 
 .filter-btn {
-  padding: 0.75rem 1.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 25px;
-  color: var(--clr-gray-300);
+  padding: .8em 1.3em;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  font-weight: var(--fw-bold);
+  line-height: 1.65; /* match .btn (inherits body 1.65); <button> would otherwise get line-height: normal */
+  letter-spacing: .06em;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.3s;
-  font-size: 0.95rem;
+  transition: background .2s, color .2s, border-color .2s;
 }
 
 .filter-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
+  border-color: var(--cream);
+  color: var(--cream);
 }
 
-.filter-btn.active {
-  background: var(--clr-purple);
-  color: white;
-  border-color: var(--clr-purple);
+.filter-btn.active,
+.filter-btn.active:hover {
+  background: var(--cream);
+  border-color: var(--cream);
+  color: #000;
 }
 
-/* Projects Grid */
+/* ----- Project cards ----- */
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
 }
 
-/* Project Card */
 .project-card {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 15px;
-  padding: 2.5rem;
-  transition: all 0.3s;
-  position: relative;
-  overflow: hidden;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  transition: background .2s, border-color .2s;
 }
 
-.project-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(to right, var(--clr-purple), var(--clr-neon));
-  transform: translateX(-100%);
-  transition: transform 0.3s;
+.project-card:hover,
+.project-card:focus-within {
+  z-index: 1;
+  border-color: var(--line-strong);
 }
-
-.project-card:hover::before {
-  transform: translateX(0);
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  background: rgba(255, 255, 255, 0.08);
-}
+.project-card:hover { background: var(--bg-raise); }
+.alt-bg .project-card:hover { background: var(--bg); }
 
 .project-icon {
-  font-size: 3rem;
-  color: var(--clr-neon);
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
   margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 80px;
-  height: 80px;
-  background: rgba(0, 240, 255, 0.1);
-  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  background: transparent;
+  color: var(--accent);
+  font-size: 1rem;
 }
 
 .project-card h3 {
-  color: white;
-  margin-bottom: 1rem;
-  font-size: 1.4rem;
+  margin-bottom: .75rem;
+  font-size: 1.125rem;
   line-height: 1.3;
+  letter-spacing: -.02em;
+  color: var(--fg);
 }
 
 .project-card p {
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  color: var(--clr-gray-300);
+  margin-bottom: 1.25rem;
+  font-size: .9375rem;
+  line-height: 1.65;
+  color: var(--fg-muted);
 }
 
-/* Project Tags */
+.project-card .project-status { overflow-wrap: break-word; }
+
+/* Tags: like .tech-tag */
 .project-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: .4rem;
   margin-bottom: 1.5rem;
 }
+.project-card > .project-tags:last-child { margin-bottom: 0; }
 
 .tag {
-  padding: 0.3rem 0.8rem;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  font-size: 0.85rem;
-  color: var(--clr-gray-300);
+  display: inline-block;
+  padding: .25rem .6rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  line-height: 1.4;
+  letter-spacing: .02em;
+  color: var(--fg);
 }
 
-/* Project Links */
+/* Links: primary = cream fill, .external = outline (same as .btn / .btn.alt) */
 .project-links {
   display: flex;
-  gap: 1rem;
   flex-wrap: wrap;
+  gap: .5rem;
 }
 
 .project-link {
-  padding: 0.6rem 1.2rem;
-  background: var(--clr-purple);
-  color: white;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: all 0.3s;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: .5em;
+  padding: .8em 1.3em;
+  border: 1px solid var(--cream);
+  border-radius: 0;
+  background: var(--cream);
+  color: #000;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  font-weight: var(--fw-bold);
+  line-height: 1.65; /* match .btn (inherits body 1.65); <button> would otherwise get line-height: normal */
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background .2s, color .2s, border-color .2s;
 }
 
 .project-link:hover {
-  background: var(--clr-pink);
-  transform: translateY(-2px);
+  background: transparent;
+  color: var(--cream);
+  text-decoration: none;
 }
 
 .project-link.external {
-  background: rgba(255, 255, 255, 0.1);
+  background: transparent;
+  border-color: var(--line-strong);
+  color: var(--fg);
 }
 
 .project-link.external:hover {
-  background: rgba(255, 255, 255, 0.2);
+  border-color: var(--cream);
+  color: var(--cream);
 }
 
-/* Impact Section */
-.impact-section {
-  padding: 4rem 0;
-  background: rgba(255, 255, 255, 0.03);
-  text-align: center;
-}
+.project-link i { font-size: .9em; }
 
-.impact-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  color: white;
-}
-
+/* ----- Research output ----- */
 .impact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  max-width: 1000px;
-  margin: 0 auto;
+  grid-template-columns: repeat(auto-fill, minmax(min(18rem, 100%), 1fr));
+  max-width: none;
+  margin: 0;
 }
 
 .impact-item {
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  transition: transform 0.3s;
-}
-
-.impact-item:hover {
-  transform: translateY(-5px);
+  padding: clamp(1.5rem, 3vw, 2rem);
 }
 
 .impact-item i {
-  font-size: 3rem;
-  color: var(--clr-neon);
-  margin-bottom: 1rem;
+  display: block;
+  margin-bottom: 1.25rem;
+  font-size: 1.1rem;
+  color: var(--accent);
 }
 
 .impact-item h3 {
-  color: white;
-  margin-bottom: 0.5rem;
+  margin-bottom: .5rem;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  letter-spacing: -.02em;
+  color: var(--fg);
 }
 
-/* Ongoing Section */
-.ongoing-section {
-  padding: 4rem 0;
+.impact-item p {
+  margin: 0;
+  font-size: .9375rem;
 }
 
-.ongoing-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: white;
-  text-align: center;
-}
+/* ----- Ongoing development: rows on 1px rules, accent square = current ----- */
+.ongoing-section h2 { margin-bottom: 1rem; }
 
 .section-subtitle {
-  text-align: center;
-  font-size: 1.2rem;
-  margin-bottom: 3rem;
-  color: var(--clr-gray-300);
+  max-width: 44rem;
+  margin: 0 0 2rem;
+  font-size: 1.0625rem;
+  text-align: left;
+  color: var(--fg-muted);
 }
 
 .ongoing-list {
   max-width: 900px;
-  margin: 0 auto;
+  margin: 0;
+  border-top: 1px solid var(--line);
 }
 
 .ongoing-item {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 2rem;
-  border-radius: 10px;
-  margin-bottom: 1.5rem;
-  border-left: 3px solid var(--clr-purple);
+  position: relative;
+  margin: 0;
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+}
+
+.ongoing-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(1.5rem + .35rem);
+  width: .5rem;
+  height: .5rem;
+  background: var(--accent);
 }
 
 .ongoing-item h3 {
-  color: var(--clr-neon);
-  margin-bottom: 0.5rem;
+  margin-bottom: .5rem;
+  font-size: 1.0625rem;
+  line-height: 1.3;
+  letter-spacing: -.02em;
+  color: var(--fg);
 }
 
-/* CTA Section */
-.cta-section {
-  padding: 4rem 0;
-  background: rgba(255, 255, 255, 0.03);
-  text-align: center;
-}
+.ongoing-item p { margin: 0; }
 
-.cta-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: white;
-}
+/* ----- Collaboration call ----- */
+.cta-section h2 { margin-bottom: 1.25rem; }
 
 .cta-section p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 44rem;
+  margin: 0 0 2rem;
+  font-size: 1.0625rem;
 }
 
 .cta-buttons {
   display: flex;
-  gap: 1rem;
-  justify-content: center;
   flex-wrap: wrap;
+  gap: .75rem;
+  justify-content: flex-start;
 }
 
-/* Site Footer */
-.site-footer {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 3rem 0;
-  text-align: center;
-  margin-top: 0;
-}
-
-.footer-links {
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-  margin-top: 1rem;
-  flex-wrap: wrap;
-}
-
-.footer-links a {
-  color: var(--clr-gray-300);
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.footer-links a:hover {
-  color: var(--clr-neon);
-}
-
-/* Responsive Design */
+/* ----- Phones ----- */
 @media (max-width: 768px) {
-  .projects-title {
-    font-size: 3rem;
-  }
-  
-  .projects-description {
-    font-size: 1.1rem;
-  }
-  
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .stat-number {
-    font-size: 2.5rem;
-  }
-  
-  .filter-buttons {
-    justify-content: center;
-  }
-  
-  .project-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 2rem;
-  }
+  .projects-hero { padding-top: calc(56px + 3.5rem); }
+
+  .filter-buttons { gap: .4rem; }
+  .filter-btn { padding: .8em 1em; }
 }

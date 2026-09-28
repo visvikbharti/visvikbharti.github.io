@@ -32,6 +32,7 @@
   let cells = [], debris = [];
   let owner, depth;               // per character: index of the cell drawn there, and its ellipse depth
   const tally = { breaks: 0, repaired: 0, died: 0 };
+  let hudShown = false;            // the counters stay hidden until the first frame fills them in
   let hover = -1, nextBreak = 0, running = false, lastFrame = 0, raf = 0;
 
   const rand = (a, b) => a + Math.random() * (b - a);
@@ -247,6 +248,7 @@
       hud.breaks.textContent = tally.breaks;
       hud.repaired.textContent = tally.repaired;
       hud.died.textContent = tally.died;
+      if (!hudShown) { hudShown = true; hud.cells.closest('.hud').classList.add('is-live'); }
     }
   }
 

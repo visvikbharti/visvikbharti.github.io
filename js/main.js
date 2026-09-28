@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const fIst = fmt('Asia/Kolkata'), fUtc = fmt('UTC');
       const tickClock = () => { const now = new Date(); ist.textContent = fIst.format(now); utc.textContent = fUtc.format(now); };
       tickClock();
+      ist.closest('.hud').classList.add('is-live');
       setInterval(tickClock, 1000);
     }
 

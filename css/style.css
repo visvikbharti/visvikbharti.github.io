@@ -266,7 +266,7 @@ p { margin-bottom: 1rem; }
 .hud--left  { left: clamp(1.25rem, 5vw, 6rem); }
 .hud--right { right: clamp(1.25rem, 3vw, 2.5rem); text-align: right; }
 .hud b { color: var(--fg); font-weight: var(--fw-regular); }
-.no-js .hud { display: none; }          /* live counters and clock need JavaScript */
+.hud:not(.is-live) { visibility: hidden; }  /* shown once its script has filled it in; never without JavaScript */
 .hint-touch { display: none; }
 @media (pointer: coarse) { .hint-fine { display: none; } .hint-touch { display: inline; } }
 .hud .dot { color: var(--accent); }

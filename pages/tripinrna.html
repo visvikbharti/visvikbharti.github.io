@@ -6,8 +6,8 @@
   <title>TRIPinRNA - Vishal Bharti</title>
 
   <!-- SEO Meta Tags -->
-  <meta name="description" content="TRIPinRNA - In silico platform for predicting intramolecular RNA triple helix structures with applications in gene regulation mechanisms.">
-  <meta name="keywords" content="RNA, triple helix, bioinformatics, genomics, python, gene regulation, X chromosome inactivation">
+  <meta name="description" content="TRIPinRNA: a Python platform that searches the human transcriptome for intramolecular RNA triple helices (Biochemistry, co-first author).">
+  <meta name="keywords" content="RNA, triple helix, lncRNA, transcriptome, bioinformatics, python, X chromosome inactivation">
   <meta name="author" content="Vishal Bharti">
   
   <!-- Google Fonts -->
@@ -55,7 +55,7 @@
           <span class="tech-tag">Python</span>
           <span class="tech-tag">RNA Biology</span>
           <span class="tech-tag">Bioinformatics</span>
-          <span class="tech-tag">Gene Regulation</span>
+          <span class="tech-tag">Transcriptomics</span>
           <span class="tech-tag">X Chromosome Inactivation</span>
         </div>
         <div class="project-links">
@@ -73,34 +73,32 @@
     <div class="container">
       <h2>Project Overview</h2>
       <p>
-        TRIPinRNA is an innovative in silico platform for predicting intramolecular RNA triple helix structures.
-        Triple helices are non-canonical RNA structures that play crucial roles in gene regulation, including X 
-        chromosome inactivation, genomic imprinting, and telomere maintenance. However, identifying and studying
-        these structures experimentally is challenging and resource-intensive.
+        TRIPinRNA is a Python-based in silico platform that searches whole transcriptomes for sequences that could
+        fold into intramolecular RNA triple helices. In the human transcriptome only two such structures were well
+        known, the stability elements at the 3&prime; ends of the lncRNAs MALAT1 and NEAT1, and the study asked whether
+        triple helices are really that rare or had simply not been looked for.
       </p>
       <p>
-        As co-first author, I co-developed this Python method to predict potential triple helices in RNA sequences,
-        using an algorithm that evaluates sequence complementarity, structural constraints, and thermodynamic
-        properties. Collaborators carried out the biophysical validation, and the work was co-supervised by
-        Dr. Souvik Maiti. The platform provides researchers with a valuable resource for investigating
-        the functional roles of RNA triple helices in various biological contexts.
+        As co-first author, I co-developed the search code and performed the bioinformatics analysis, and co-wrote
+        the paper. Collaborators carried out the biophysical validation, and the work was co-supervised by
+        Dr. Souvik Maiti.
       </p>
 
       <div class="project-features">
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-dna"></i></div>
-          <h3>Triple Helix Prediction</h3>
-          <p>Advanced algorithms to identify potential triple helix forming sequences in RNA</p>
+          <h3>Transcriptome-Wide Search</h3>
+          <p>Scans every transcript, noncoding and protein-coding, for the three strands of a triple helix</p>
         </div>
         <div class="feature">
-          <div class="feature-icon"><i class="fas fa-temperature-high"></i></div>
-          <h3>Thermodynamic Analysis</h3>
-          <p>Evaluation of stability and formation likelihood based on thermodynamic parameters</p>
+          <div class="feature-icon"><i class="fas fa-code-branch"></i></div>
+          <h3>Two Search Modes</h3>
+          <p>With a gap nucleotide in the Hoogsteen strand, as in MALAT1 and NEAT1, or with a continuous strand</p>
         </div>
         <div class="feature">
-          <div class="feature-icon"><i class="fas fa-project-diagram"></i></div>
-          <h3>Structural Visualization</h3>
-          <p>Interactive visualization of predicted triple helix structures and their features</p>
+          <div class="feature-icon"><i class="fas fa-table"></i></div>
+          <h3>Complete Output</h3>
+          <p>Every predicted triplex, with its strand sequences and start and end positions, written to a CSV file</p>
         </div>
       </div>
     </div>
@@ -160,18 +158,18 @@
     <div class="container">
       <h2>Technical Approach</h2>
       <p>
-        The development of TRIPinRNA involved several key technical components and algorithms:
+        TRIPinRNA is a sequence-pattern (string-match) search modelled on the MALAT1 and NEAT1 triple helices:
       </p>
       
       <div class="approach-steps">
         <div class="approach-step">
           <div class="step-number">1</div>
           <div class="step-content">
-            <h3>Sequence Complementarity Analysis</h3>
+            <h3>Core Triplex Search</h3>
             <p>
-              Algorithm to identify potential triplex-forming sequences based on Hoogsteen and Watson-Crick
-              base-pairing rules. This step evaluates whether segments of a single RNA strand can fold back
-              on one another to form a stable intramolecular triple helix.
+              A sliding window looks for a Hoogsteen strand of 7 to 15 nucleotides, a downstream Crick strand that
+              matches it, and a further downstream Watson strand complementary to both, with 3 to 100 nucleotides
+              between the Hoogsteen and Crick strands and between the Crick and Watson strands.
             </p>
           </div>
         </div>
@@ -179,11 +177,11 @@
         <div class="approach-step">
           <div class="step-number">2</div>
           <div class="step-content">
-            <h3>Structural Constraint Evaluation</h3>
+            <h3>Gap and No-Gap Modes</h3>
             <p>
-              Assessment of structural feasibility based on constraints like loop length, distance between
-              interacting regions, and steric considerations. These constraints ensure that the predicted
-              structures can physically form within the RNA molecule.
+              In &ldquo;with-gap&rdquo; mode the Hoogsteen strand carries one gap nucleotide, placed anywhere except the
+              three nucleotides at either end, as in MALAT1 and NEAT1; &ldquo;without-gap&rdquo; mode looks for a
+              continuous strand.
             </p>
           </div>
         </div>
@@ -191,11 +189,12 @@
         <div class="approach-step">
           <div class="step-number">3</div>
           <div class="step-content">
-            <h3>Thermodynamic Stability Calculation</h3>
+            <h3>Stems and Loops</h3>
             <p>
-              Implementation of energy models to evaluate the stability of predicted triple helices,
-              incorporating nearest-neighbor parameters and environmental factors. This step assesses
-              whether the structures are energetically favorable.
+              Once the core triplex is found, the sequences between the strands are checked for an upper and a lower
+              stem of at least 3 base pairs with a loop of at least 3 nucleotides; without a stem, the segment is
+              reported as a loop. No base-composition rule is imposed, so canonical and noncanonical triplexes are both
+              found, and pyrimidine-only and uridine-only hits are filtered afterwards.
             </p>
           </div>
         </div>
@@ -203,11 +202,10 @@
         <div class="approach-step">
           <div class="step-number">4</div>
           <div class="step-content">
-            <h3>Visualization Pipeline</h3>
+            <h3>Output and Scale</h3>
             <p>
-              Creation of a visualization system to represent predicted triple helices and their features
-              in an intuitive and informative manner. The visualizations help researchers understand the
-              structural details and potential biological significance.
+              The input is a zipped FASTA file and the output a CSV of every predicted triplex. The transcriptome runs
+              were executed on an HPC cluster under the SLURM scheduler, and the code for both modes is on GitHub.
             </p>
           </div>
         </div>

@@ -76,7 +76,7 @@
         TRIPinRNA is a Python-based in silico platform that searches whole transcriptomes for sequences that could
         fold into intramolecular RNA triple helices. In the human transcriptome only two such structures were well
         known, the stability elements at the 3&prime; ends of the lncRNAs MALAT1 and NEAT1, and the study asked whether
-        triple helices are really that rare or had simply not been looked for.
+        triple helices are really that rare or had been missed by the search methods used so far.
       </p>
       <p>
         As co-first author, I co-developed the search code and performed the bioinformatics analysis, and co-wrote
@@ -110,7 +110,7 @@
       <h2>Research Impact</h2>
       <p>
         The Biochemistry paper ran TRIPinRNA on the GENCODE human transcriptome (release 44), long noncoding and
-        protein-coding, and tested selected predictions by biophysics.
+        protein-coding, and on part of the NONCODE lncRNA database, and tested selected predictions by biophysics.
       </p>
       
       <div class="impact-grid">
@@ -118,7 +118,8 @@
           <h3>X Chromosome Inactivation</h3>
           <p>
             Predicted triplex-forming sequences in six lncRNAs involved in X-chromosome inactivation: XIST, TSIX,
-            JPX, FTX, FIRRE and XACT. The predicted triple helices of JPX, FTX and XACT formed in vitro.
+            JPX, FTX, FIRRE and XACT. One predicted triplex each from JPX, FTX and XACT, made as a synthetic RNA,
+            formed a triple helix in vitro.
           </p>
         </div>
         
@@ -134,9 +135,10 @@
         <div class="impact-card">
           <h3>Beyond Existing Tools</h3>
           <p>
-            Other triplex search programs allow at most 10 nucleotides between strands, too few for MALAT1-like
-            triple helices; TRIPinRNA allows up to 100. In the comparison, Infernal recovered only MALAT1 and NEAT1
-            in the human genome, and AlphaFold3 did not predict triple helices in TRIPinRNA's hits.
+            Several earlier triplex search programs allow at most 10 nucleotides between strands, too few for
+            MALAT1-like triple helices, and one that allows longer gaps (NeSSie) is too lenient to give a workable
+            number of hits; TRIPinRNA allows 3 to 100. An earlier Infernal-based search found only MALAT1 and NEAT1 in
+            the human genome, and AlphaFold3 did not predict triple helices in TRIPinRNA's hits.
           </p>
         </div>
         
@@ -221,14 +223,15 @@
           <div class="finding-icon"><i class="fas fa-dna"></i></div>
           <h3>Thousands of Candidates</h3>
           <p>
-            10,769 candidate triplex sites in human lncRNA transcripts (without-gap search) and 90,836 in
-            protein-coding transcripts, where essentially only the MALAT1 and NEAT1 triple helices were known.
+            In a human transcriptome where essentially only the MALAT1 and NEAT1 triple helices were well known, the
+            without-gap search predicted 10,769 candidate triplex sites in lncRNA transcripts and tens of thousands
+            in protein-coding transcripts.
           </p>
         </div>
         
         <div class="finding-card">
           <div class="finding-icon"><i class="fas fa-flask"></i></div>
-          <h3>Noncanonical Triplexes Form</h3>
+          <h3>Noncanonical Triplexes Form In Vitro</h3>
           <p>
             Heteropurine-pyrimidine triple helices, usually expected to be destabilizing, gave triple-helix signatures
             in vitro, though they were less thermally stable than canonical ones.
@@ -239,8 +242,9 @@
           <div class="finding-icon"><i class="fas fa-chart-line"></i></div>
           <h3>Link to GC Content</h3>
           <p>
-            Triplex occurrence correlated strongly with local GC content: lncRNA transcripts with hits were more
-            AU-rich than average, and coding transcripts with hits had GC-rich 5&prime; UTRs and AU-rich 3&prime; UTRs.
+            Transcripts with predicted triplexes differed in GC content from the transcriptome average: lncRNA
+            transcripts with hits had slightly lower GC (mean 44.5&ndash;44.8% against 46.6%), and coding transcripts
+            with hits had higher GC in their 5&prime; UTRs and lower GC in their 3&prime; UTRs.
           </p>
         </div>
         
@@ -266,12 +270,12 @@
         <p class="authors">Isha Rakheja*, <strong>Vishal Bharti*</strong>, S Sahana, Prosad Kumar Das, Gyan Ranjan, Ajit Kumar, Niyati Jain, and Souvik Maiti<br>*Equal contribution.</p>
         <p class="journal"><em>Biochemistry</em> (ACS) 64(1):250-265 (2025). DOI: <a href="https://doi.org/10.1021/acs.biochem.4c00334" target="_blank" rel="noopener">10.1021/acs.biochem.4c00334</a></p>
         <p class="abstract">
-          <strong>Summary:</strong> TRIPinRNA, a Python-based in silico platform, performs a comprehensive
-          sequence-pattern search for potential triplex formation in the human transcriptome, noncoding as well as
-          coding. Using it, the study reports the putative occurrence of canonical (homopyrimidine) and noncanonical
-          (heteropurine-pyrimidine) triple helices, validates the formation of both types by biophysical approaches,
-          and finds that triplex occurrence correlates strongly with local GC content. TRIPinRNA can be used to find
-          triplex structures in any organism with an annotated transcriptome.
+          <strong>Summary:</strong> TRIPinRNA is a Python tool that scans human long noncoding and protein-coding
+          transcripts for sequence patterns that could fold into intramolecular RNA triple helices. With it, the study
+          predicts both canonical (homopyrimidine) and noncanonical (heteropurine-pyrimidine) triplexes, shows with
+          biophysical tests on selected candidates that both kinds form in vitro, and reports a strong correlation
+          between triplex occurrence and local GC content. The tool can be applied to any organism with an annotated
+          transcriptome.
         </p>
         <div class="publication-links">
           <a href="https://pubs.acs.org/doi/10.1021/acs.biochem.4c00334" target="_blank" rel="noopener" class="btn">View Full Paper</a>
@@ -309,10 +313,10 @@
         </div>
         
         <div class="direction-item">
-          <h3>What Makes a Triplex Stable</h3>
+          <h3>What Governs a Triplex</h3>
           <p>
-            Relating loop length, strand length and the presence of a stem to triple-helix stability, and asking
-            whether triplexes predicted in coding sequences relate to nonsense-mediated decay.
+            Relating loop length, strand length and the presence of a stem to when triple helices form and how stable
+            they are, and asking whether triplexes predicted in coding sequences relate to nonsense-mediated decay.
           </p>
         </div>
         

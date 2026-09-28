@@ -449,11 +449,13 @@ p { margin-bottom: 1rem; }
   list-style: none;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;                               /* the 1px rules between steps, in any column count */
+  background: var(--line);
   border: 1px solid var(--line);
 }
-.path__step { border-left: 1px solid var(--line); }
-.path__step:first-child { border-left: 0; }
+.path__step { background: var(--bg); }
+@media (max-width: 1080px) { .path__list { grid-template-columns: repeat(2, 1fr); } }
 .path__body { padding: 1.25rem 1.25rem 1.5rem; }
 .path__years {
   font-family: var(--font-mono);
@@ -472,6 +474,23 @@ p { margin-bottom: 1rem; }
   letter-spacing: .02em;
 }
 .path__credit a { color: var(--fg-dim); text-decoration: underline; }
+
+/* A step with no photo: a double helix drawn in characters */
+.path__frame {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #050505;
+  border-bottom: 1px solid var(--line);
+}
+.path__frame pre {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  line-height: 1.15;
+  color: var(--fg-dim);
+}
 
 /* A photo shown as characters; the real photo shows on hover (js/ascii-photo.js) */
 .ascii-photo {
@@ -838,8 +857,6 @@ p { margin-bottom: 1rem; }
 
   .about__grid { grid-template-columns: 1fr; }
   .path__list { grid-template-columns: 1fr; }
-  .path__step { border-left: 0; border-top: 1px solid var(--line); }
-  .path__step:first-child { border-top: 0; }
 
   .award-item { grid-template-columns: 1fr; gap: .25rem; }
   .future-research .research-interests { grid-template-columns: 1fr; }

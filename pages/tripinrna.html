@@ -109,44 +109,42 @@
     <div class="container">
       <h2>Research Impact</h2>
       <p>
-        Our publication in Biochemistry
-        demonstrates the tool's capabilities and its applications in understanding complex regulatory
-        mechanisms.
+        The Biochemistry paper ran TRIPinRNA on the GENCODE human transcriptome (release 44), long noncoding and
+        protein-coding, and tested selected predictions by biophysics.
       </p>
       
       <div class="impact-grid">
         <div class="impact-card">
           <h3>X Chromosome Inactivation</h3>
           <p>
-            Identified potential triple helix structures in XIST RNA that may play roles in silencing
-            the X chromosome. These predictions provide new avenues for experimental validation and
-            deeper understanding of the molecular mechanisms involved in dosage compensation.
+            Predicted triplex-forming sequences in six lncRNAs involved in X-chromosome inactivation: XIST, TSIX,
+            JPX, FTX, FIRRE and XACT. The predicted triple helices of JPX, FTX and XACT formed in vitro.
           </p>
         </div>
         
         <div class="impact-card">
-          <h3>Gene Regulation Mechanisms</h3>
+          <h3>Coding Transcripts and UTRs</h3>
           <p>
-            Discovered triple helix structures in the 3' UTRs of various genes, suggesting roles in
-            post-transcriptional regulation. These findings contribute to our understanding of how
-            RNA structure influences gene expression and cellular function.
+            In protein-coding transcripts more than half of the predicted hits lay in 3&prime; UTRs. Transcripts with
+            hits had higher GC content in their 5&prime; UTRs and lower in their 3&prime; UTRs than average, a bias
+            absent from their coding sequences.
           </p>
         </div>
         
         <div class="impact-card">
-          <h3>Methodological Advances</h3>
+          <h3>Beyond Existing Tools</h3>
           <p>
-            Developed novel computational approaches for predicting RNA triple helices, addressing
-            limitations in existing methods. The algorithms incorporate sequence complementarity,
-            structural constraints, and thermodynamic considerations.
+            Other triplex search programs allow at most 10 nucleotides between strands, too few for MALAT1-like
+            triple helices; TRIPinRNA allows up to 100. In the comparison, Infernal recovered only MALAT1 and NEAT1
+            in the human genome, and AlphaFold3 did not predict triple helices in TRIPinRNA's hits.
           </p>
         </div>
         
         <div class="impact-card">
           <h3>Experimental Validation</h3>
           <p>
-            Predicted triple helices were validated by collaborators using biophysical techniques,
-            as reported in the publication.
+            Collaborators validated selected predictions with circular dichroism, UV melting and thermal difference
+            spectra, as reported in the publication.
           </p>
         </div>
       </div>
@@ -221,37 +219,37 @@
       <div class="findings-grid">
         <div class="finding-card">
           <div class="finding-icon"><i class="fas fa-dna"></i></div>
-          <h3>Triple Helix Prevalence</h3>
+          <h3>Thousands of Candidates</h3>
           <p>
-            Discovered that triple helices are more prevalent in the human transcriptome than previously
-            thought, with particular enrichment in long non-coding RNAs involved in gene regulation.
+            10,769 candidate triplex sites in human lncRNA transcripts (without-gap search) and 90,836 in
+            protein-coding transcripts, where essentially only the MALAT1 and NEAT1 triple helices were known.
           </p>
         </div>
         
         <div class="finding-card">
-          <div class="finding-icon"><i class="fas fa-microscope"></i></div>
-          <h3>Functional Associations</h3>
+          <div class="finding-icon"><i class="fas fa-flask"></i></div>
+          <h3>Noncanonical Triplexes Form</h3>
           <p>
-            Identified associations between triple helix structures and specific functional roles,
-            including chromatin interactions, RNA-protein binding, and RNA stability regulation.
+            Heteropurine-pyrimidine triple helices, usually expected to be destabilizing, gave triple-helix signatures
+            in vitro, though they were less thermally stable than canonical ones.
           </p>
         </div>
         
         <div class="finding-card">
           <div class="finding-icon"><i class="fas fa-chart-line"></i></div>
-          <h3>Evolutionary Conservation</h3>
+          <h3>Link to GC Content</h3>
           <p>
-            Observed significant evolutionary conservation of triple helix forming sequences across
-            mammalian species, suggesting important functional roles that have been preserved.
+            Triplex occurrence correlated strongly with local GC content: lncRNA transcripts with hits were more
+            AU-rich than average, and coding transcripts with hits had GC-rich 5&prime; UTRs and AU-rich 3&prime; UTRs.
           </p>
         </div>
         
         <div class="finding-card">
           <div class="finding-icon"><i class="fas fa-search"></i></div>
-          <h3>Novel RNA Motifs</h3>
+          <h3>A Canonical Triplex in JPX</h3>
           <p>
-            Discovered novel sequence motifs associated with triple helix formation that were not
-            previously characterized in the literature, expanding our understanding of RNA structures.
+            A uridine-only triple helix predicted in JPX, the lncRNA that activates XIST, melted in two transitions
+            (about 58 and 75 &deg;C) and gave a CD signature practically identical to that of the MALAT1 triple helix.
           </p>
         </div>
       </div>
@@ -268,17 +266,12 @@
         <p class="authors">Isha Rakheja*, <strong>Vishal Bharti*</strong>, S Sahana, Prosad Kumar Das, Gyan Ranjan, Ajit Kumar, Niyati Jain, and Souvik Maiti<br>*Equal contribution.</p>
         <p class="journal"><em>Biochemistry</em> (ACS) 64(1):250-265 (2024). DOI: <a href="https://doi.org/10.1021/acs.biochem.4c00334" target="_blank" rel="noopener">10.1021/acs.biochem.4c00334</a></p>
         <p class="abstract">
-          <strong>Summary:</strong> RNA molecules can form a variety of secondary and tertiary structures
-          that play important roles in cellular processes. One such structure is the triple helix, where
-          a third strand interacts with a duplex through Hoogsteen or reverse Hoogsteen base pairing.
-          In this study, we present TRIPinRNA, a computational platform for predicting intramolecular 
-          RNA triple helices. The platform incorporates algorithms for sequence complementarity analysis,
-          structural constraint evaluation, and thermodynamic stability calculation. We validate our
-          predictions using biophysical techniques including circular dichroism spectroscopy and thermal
-          melting experiments. Our findings reveal that triple helices are more prevalent in the human
-          transcriptome than previously recognized, with particular enrichment in long non-coding RNAs
-          involved in gene regulation. This platform provides researchers with a valuable resource for
-          investigating the functional roles of RNA triple helices in various biological contexts.
+          <strong>Summary:</strong> TRIPinRNA, a Python-based in silico platform, performs a comprehensive
+          sequence-pattern search for potential triplex formation in the human transcriptome, noncoding as well as
+          coding. Using it, the study reports the putative occurrence of canonical (homopyrimidine) and noncanonical
+          (heteropurine-pyrimidine) triple helices, validates the formation of both types by biophysical approaches,
+          and finds that triplex occurrence correlates strongly with local GC content. TRIPinRNA can be used to find
+          triplex structures in any organism with an annotated transcriptome.
         </p>
         <div class="publication-links">
           <a href="https://pubs.acs.org/doi/10.1021/acs.biochem.4c00334" target="_blank" rel="noopener" class="btn">View Full Paper</a>

@@ -475,23 +475,6 @@ p { margin-bottom: 1rem; }
 }
 .path__credit a { color: var(--fg-dim); text-decoration: underline; }
 
-/* A step with no photo: a double helix drawn in characters */
-.path__frame {
-  display: grid;
-  place-items: center;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  background: #050505;
-  border-bottom: 1px solid var(--line);
-}
-.path__frame pre {
-  margin: 0;
-  font-family: var(--font-mono);
-  font-size: .75rem;
-  line-height: 1.15;
-  color: var(--fg-dim);
-}
-
 /* A photo shown as characters; the real photo shows on hover (js/ascii-photo.js) */
 .ascii-photo {
   position: relative;

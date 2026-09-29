@@ -1,9 +1,10 @@
 /* ===== Project drawings in characters =====
-   Each .split__img[data-art] panel gets a small animated scene drawn on a character grid,
-   in the same language as the hero: grey glyphs, one green accent. Scenes animate only while
-   on screen (~20 fps) and are drawn once, still, under reduced motion. */
+   Each .split__img[data-art] panel (and the About story's .journey__art) gets a small animated
+   scene drawn on a character grid, in the same language as the hero: grey glyphs, one green
+   accent. Scenes animate only while on screen (~20 fps) and are drawn once, still, under
+   reduced motion. */
 (() => {
-  const panels = [...document.querySelectorAll('.split__img[data-art]')];
+  const panels = [...document.querySelectorAll('.split__img[data-art], .journey__art[data-art]')];
   if (!panels.length) return;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -21,6 +22,50 @@
     return ((n ^ (n >>> 15)) >>> 0) / 4294967296;
   };
   const pick = (str, a, b) => str[Math.floor(hash(a, b) * str.length) % str.length];
+  const ease = x => (x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x));
+
+  /* Ubiquitin, PDB 1UBQ: sequence and C-alpha trace (0.1 Å units), centred and turned to its principal
+     axes by a proper rotation, so the fold is not mirrored */
+  const UBQ_SEQ = 'MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG';
+  const UBQ_CA = [
+    119,-60,-37,89,-79,-25,65,-64,1,33,-77,16,0,-58,18,-24,-73,44,-61,-65,40,-88,-65,66,-103,-97,52,-72,-118,59,
+    -60,-118,23,-23,-108,19,-12,-95,-15,25,-96,-26,38,-67,-47,71,-61,-64,83,-26,-58,114,-4,-56,120,19,-26,120,
+    48,-51,84,42,-60,59,67,-47,29,57,-26,6,68,-55,24,42,-76,20,14,-50,-18,22,-49,-20,19,-87,-2,-15,-86,-28,-26,
+    -59,-56,-14,-82,-42,-32,-111,-39,-65,-92,-70,-66,-69,-92,-39,-85,-95,-16,-55,-97,21,-65,-68,42,-52,-92,67,
+    -36,-105,39,-13,-70,28,-1,-55,39,32,-19,24,36,-4,20,71,32,12,81,47,15,115,16,33,127,19,61,101,-7,66,72,14,
+    67,40,10,99,18,8,97,-20,37,119,-30,63,103,-7,84,73,-18,87,40,2,123,50,10,110,81,28,94,57,53,124,33,55,103,4,
+    42,127,-25,36,123,-58,17,97,-81,30,79,-54,51,41,-57,55,19,-26,50,-17,-27,62,-45,-17,38,-77,-2,53,-105,7,29,
+    -123,40,32,-156,37,11,-174,69,-1,-209,65,12,-227,48,41];
+  const NATIVE = Array.from({ length: UBQ_SEQ.length }, (_, i) => UBQ_CA.slice(i * 3, i * 3 + 3).map(v => v / 10));
+  const TILT = 0.35;                                  // the view looks slightly down on the chain
+  const UBQ_X = 23.1, UBQ_Y = 14.3;                   // how far the fold reaches across and up, turned any way (Å)
+  // The k-th random shape the chain tries: a random walk of 3.8 Å steps, loosely held near the centre,
+  // then centred and shrunk (never stretched) to reach no further than the fold does
+  const coils = new Map();
+  const coil = k => {
+    if (coils.has(k)) return coils.get(k);
+    const P = [];
+    let x = 0, y = 0, z = 0, dx = 1, dy = 0, dz = 0;
+    for (let i = 0; i < NATIVE.length; i++) {
+      dx = dx * 0.5 + hash(k, i * 3 + 1) * 2 - 1 - x * 0.015;
+      dy = dy * 0.5 + hash(k, i * 3 + 2) * 2 - 1 - y * 0.045;
+      dz = dz * 0.5 + hash(k, i * 3 + 3) * 2 - 1 - z * 0.015;
+      const n = Math.hypot(dx, dy, dz) || 1;
+      x += dx / n * 3.8; y += dy / n * 3.8; z += dz / n * 3.8;
+      P.push([x, y, z]);
+    }
+    const m = [0, 1, 2].map(a => P.reduce((s, p) => s + p[a], 0) / P.length);
+    P.forEach(p => { for (let a = 0; a < 3; a++) p[a] -= m[a]; });
+    const across = Math.max(...P.map(p => Math.hypot(p[0], p[2])));
+    const up = Math.max(...P.map(p => Math.abs(p[1]) * Math.cos(TILT) + Math.hypot(p[0], p[2]) * Math.sin(TILT)));
+    const f = Math.min(1, UBQ_X / across, UBQ_Y / up);
+    P.forEach(p => { for (let a = 0; a < 3; a++) p[a] *= f; });
+    if (coils.size > 48) coils.clear();
+    coils.set(k, P);
+    return P;
+  };
+  // Seconds into the 16 s story: circuit, release, random search, fold, hold, back to the circuit
+  const FOLD = { circuit: 3, release: 4.2, search: 8.6, fold: 10.8, hold: 14.6, loop: 16 };
 
   /* A character grid: the brightest (or accented) glyph wins each cell */
   class Grid {
@@ -234,7 +279,83 @@
       });
       g.text(q.x - 1, q.y, '(?)', 7, true);
     },
+
+    // From circuits to cells (About): a clocked circuit trace goes slack, tries shapes at random while the
+    // Levinthal count runs (3^76 shapes at 1e13 a second), then folds into ubiquitin with nothing directing it
+    fold(g, t) {
+      const { cols, rows } = g, cw = g.cw || 7.2, N = UBQ_SEQ.length;
+      const { circuit: C1, release: R1, search: S1, fold: F1, hold: H1, loop: L } = FOLD;
+      const T = reduceMotion ? 12 : t % L, run = Math.floor(t / L);
+      const W = cols * cw, H = (rows - 4) * LINE;                          // the bottom rows hold the readout
+      const s = Math.min(W * 0.45 / UBQ_X, H * 0.46 / UBQ_Y), ox = W * 0.5, oy = H * 0.52;   // px per Å, centre
+
+      // the circuit: four rows of 19 nodes, wired as one serpentine trace (in Å, to blend with the chain)
+      const circ = i => {
+        const r = Math.floor(i / 19), j = r % 2 ? 18 - (i % 19) : i % 19;
+        return [(-0.37 * W + j * 0.74 * W / 18) / s, (0.3 * H - r * 0.2 * H) / s];
+      };
+      // the chain: random shapes (0.4 s each, blended), then the fold, N-terminus first
+      const shape = T => {
+        const u = Math.max(0, T - C1) / 0.4, k = Math.floor(u), f = ease(u - k);
+        const a = coil(run * 97 + k), b = coil(run * 97 + k + 1);
+        return a.map((p, i) => p.map((v, x) => v + (b[i][x] - v) * f));
+      };
+      let chain = NATIVE;
+      if (T < S1) chain = shape(T);
+      else if (T < F1) {
+        const from = shape(S1), u = (T - S1) / (F1 - S1);
+        chain = from.map((p, i) => { const f = ease(u * 1.6 - i / N * 0.6); return p.map((v, x) => v + (NATIVE[i][x] - v) * f); });
+      }
+      const w = T < C1 ? 0 : T < R1 ? ease((T - C1) / (R1 - C1)) : T < H1 ? 1 : 1 - ease((T - H1) / (L - H1));
+      const th = reduceMotion ? 0.6 : t * 0.3, ct = Math.cos(th), st = Math.sin(th), cp = Math.cos(TILT), sp = Math.sin(TILT);
+      const P = chain.map((p, i) => {
+        const x1 = p[0] * ct + p[2] * st, z1 = -p[0] * st + p[2] * ct;
+        const y2 = p[1] * cp - z1 * sp, z2 = p[1] * sp + z1 * cp;
+        const [cx, cy] = circ(i), X = cx + (x1 - cx) * w, Y = cy + (y2 - cy) * w;
+        return { c: (ox + X * s) / cw, r: (oy - Y * s) / LINE, d: Math.max(-1, Math.min(1, z2 * w / 22)) };
+      });
+
+      // bonds, drawn with the character closest to their direction; the back is dimmer
+      for (let i = 0; i < N - 1; i++) {
+        const a = P[i], b = P[i + 1], dc = b.c - a.c, dr = b.r - a.r, n = Math.max(Math.abs(dc), Math.abs(dr), 1);
+        const ang = Math.atan2(-dr * LINE, dc * cw) * 180 / Math.PI, aa = Math.abs(ang);
+        const ch = aa < 22.5 || aa > 157.5 ? '-' : aa > 67.5 && aa < 112.5 ? '|' : (ang > 0) === (aa < 90) ? '/' : '\\';
+        for (let k = 1; k < n; k++) g.put(a.c + dc * k / n, a.r + dr * k / n, ch, 2 + Math.round((a.d + b.d) / 2 + 1));
+      }
+      // residues: circuit nodes decode into the sequence as the trace goes slack, and back again
+      P.forEach((p, i) => {
+        const named = reduceMotion || (T < H1 ? T > C1 + hash(i, 5) * (R1 - C1) : T < H1 + hash(i, 6) * (L - H1));
+        g.put(p.c, p.r, named ? UBQ_SEQ[i] : 'o', w ? 4 + Math.round((p.d + 1) * 1.5) : 6);
+      });
+      // the clock pulse runs once along the trace before the controller goes away
+      if (!reduceMotion && T < C1) {
+        [0, 0.35, 0.7].forEach((back, j) => {
+          const q = T / C1 * (N - 1) - back;
+          if (q < 0) return;
+          const k = Math.min(N - 2, Math.floor(q)), f = q - k;
+          g.put(P[k].c + (P[k + 1].c - P[k].c) * f, P[k].r + (P[k + 1].r - P[k].r) * f, j ? '*' : '@', 7, true);
+        });
+      }
+
+      // readout
+      const hr = rows - 4, hv = 14, sci = x => x.toExponential(1).replace('e+', 'e');
+      const folded = T >= F1 && T < H1 + 0.6;
+      g.text(2, hr, 'controller', 4);
+      g.text(hv, hr, T < C1 || T >= H1 + 0.6 ? 'clock' : 'none', folded ? 7 : 6, folded);
+      if (T < C1 || T >= H1 + 0.6) {
+        g.text(2, hr + 1, 'trace', 4); g.text(hv, hr + 1, '76 nodes', 6);
+      } else if (T < S1) {
+        const wide = cols >= 52, tried = T - C1 < 0.1 ? '0' : sci((T - C1) * 1e13);
+        g.text(2, hr + 1, 'shapes', 4); g.text(hv, hr + 1, `3^76 ≈ 1.8e36${wide ? `   tried ${tried}` : ''}`, 6);
+        g.text(2, hr + 2, 'to try all', 4);
+        g.text(hv, hr + 2, `≈ 5.8e15 yr${wide ? '   universe ≈ 1.4e10 yr' : ' (universe 1.4e10)'}`, 6);
+      } else {
+        g.text(2, hr + 1, T < F1 ? 'folding' : 'folded', 4);
+        g.text(hv, hr + 1, 'ubiquitin, 76 residues (PDB 1UBQ)', 6);
+      }
+    },
   };
+  SCENES.fold.fromStart = true;                                         // a story: begin at the circuit
 
   /* ---------- rendering ---------- */
   function setup(panel) {
@@ -245,7 +366,10 @@
     panel.appendChild(canvas);
     const ctx = canvas.getContext('2d');
     let grid, cw = 7.2, W = 0, H = 0, raf = 0, running = false, last = 0;
-    const t0 = performance.now() - hash(panels.indexOf(panel)) * 20000;
+    // Scenes start at a random phase. A 'fromStart' scene tells a story, so it starts at 0 when first
+    // seen and pauses, rather than skipping ahead, while off screen.
+    let t0 = performance.now() - (scene.fromStart ? 0 : hash(panels.indexOf(panel)) * 20000), paused = t0;
+    const clock = () => ((scene.fromStart && !running ? paused : performance.now()) - t0) / 1000;
 
     const size = () => {
       W = panel.clientWidth; H = panel.clientHeight;
@@ -256,6 +380,7 @@
       ctx.font = FONT;
       cw = ctx.measureText('M').width || 7.2;
       grid = new Grid(Math.ceil(W / cw), Math.ceil(H / LINE));
+      grid.cw = cw;
       return true;
     };
     const draw = t => {
@@ -282,16 +407,20 @@
       last = now;
       draw((now - t0) / 1000);
     };
-    const start = () => { if (!running && !reduceMotion) { running = true; raf = requestAnimationFrame(frame); } };
-    const stop = () => { running = false; cancelAnimationFrame(raf); };
+    const start = () => {
+      if (running || reduceMotion) return;
+      if (scene.fromStart) t0 += performance.now() - paused;
+      running = true; raf = requestAnimationFrame(frame);
+    };
+    const stop = () => { if (running) paused = performance.now(); running = false; cancelAnimationFrame(raf); };
 
     size();
-    draw(reduceMotion ? 6 : (performance.now() - t0) / 1000);
+    draw(reduceMotion ? 6 : clock());
     let onScreen = false;
     new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; onScreen && !document.hidden ? start() : stop(); }).observe(panel);
     document.addEventListener('visibilitychange', () => (document.hidden || !onScreen ? stop() : start()));
     let rt;
-    window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { grid = null; draw((performance.now() - t0) / 1000); }, 200); });
+    window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { grid = null; draw(reduceMotion ? 6 : clock()); }, 200); });
   }
 
   const ready = document.fonts && document.fonts.load ? document.fonts.load(FONT) : Promise.resolve();

@@ -155,6 +155,7 @@ p { margin-bottom: 1rem; }
 
 .nav-links a {
   color: var(--fg);
+  white-space: nowrap;                    /* 'CV' and its arrow never split over two lines */
   transition: color .2s;
 }
 
@@ -831,6 +832,12 @@ p { margin-bottom: 1rem; }
 .mt-2 { margin-top: 2rem; }
 .mt-3 { margin-top: 3rem; }
 .panel { position: relative; overflow: hidden; }
+
+/* ----- Between phone and wide: the menu needs the name's room, so only the VB mark shows ----- */
+@media (min-width: 769px) and (max-width: 960px) {
+  .nav-logo span:not(.nav-logo__mark) { display: none; }
+  .nav-links { gap: 1.25rem; }
+}
 
 /* ----- Phones ----- */
 @media (max-width: 768px) {

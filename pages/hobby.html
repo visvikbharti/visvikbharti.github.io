@@ -158,22 +158,30 @@
           <p class="hb-kicker">Design</p>
           <h3>Parametric CAD, shared with the simulator</h3>
           <p>
-            My own OpenSCAD model keeps every dimension as a variable, and the simulator reads the same numbers:
-            240 mm legs, a body 4 mm longer so that it carries the robot at rest, a 35 mm slot for each leg&rsquo;s lift,
-            an 8 mm aluminium axle on 608ZZ bearings, and servo bays, a display window and a speaker grille in the
-            body. Change one number and the whole robot rescales.
+            My own OpenSCAD model keeps every dimension as a variable, and the simulator uses the same numbers:
+            240 mm legs, a body 4 mm longer so that it carries the robot at rest, a 35 mm slot in the body for the
+            lift, legs that swing on 608ZZ bearings around an 8 mm aluminium axle, and servo bays, a display window
+            and a speaker grille in the body. Change one number and the whole robot rescales.
           </p>
           <p>
-            The first build uses the community&rsquo;s V3 chassis; this model is the platform for a later version with
-            my own look.
+            Drawing it up found four bugs, fixed in v0.3.1: the lift slot was on the wrong part, one leg was not
+            mirrored, a servo bay was out of place and the face panels were turned. The first build uses the
+            community&rsquo;s V3 chassis; this model is the platform for a later version with my own look.
           </p>
         </div>
         <figure class="scene-fig">
           <div class="scene scene--tall scene--drag" data-scene="tars-cad" aria-hidden="true"></div>
-          <figcaption>tars.scad v0.3, exported part by part and drawn in characters. It opens up to show the parts;
+          <figcaption>tars.scad v0.3.1, exported part by part and drawn in characters. It opens up to show the parts;
             drag to turn it.</figcaption>
         </figure>
       </div>
+
+      <figure class="hb-drawing reveal">
+        <img src="../assets/hobby/tars-drawing.png" width="1600" height="1008" loading="lazy"
+          alt="Dimensioned drawing of the TARS chassis: a front view with the 166 mm width, 240 mm legs, 244 mm body, display window and speaker grille; a side view with the 55 mm depth, the axle 25 mm below the tops and the 35 mm lift slot in the body; a top view; and notes">
+        <figcaption>The dimensioned drawing of tars.scad v0.3.1, generated from the model&rsquo;s own numbers by the
+          project&rsquo;s drawing script (recoloured for this page).</figcaption>
+      </figure>
 
       <div class="hb-block reveal">
         <div class="hb-dials" data-widget="dials">
@@ -225,7 +233,7 @@
           <p class="hb-sub">Done and left</p>
           <ul class="hb-check">
             <li class="done">Personality: humor and honesty settings, chat, terminal app</li>
-            <li class="done">Parametric CAD</li>
+            <li class="done">Parametric CAD (v0.3.1) and its dimensioned drawing</li>
             <li class="done">Physics simulation of the walking gait</li>
             <li class="done">Parts list, priced from Indian stores on 10 August 2026</li>
             <li class="done">Chassis print quoted and in the cart</li>
@@ -353,11 +361,11 @@
         </div>
       </div>
 
-      <figure class="hb-drawing hb-block reveal">
+      <figure class="hb-drawing reveal">
         <img src="../assets/hobby/quad-frame-drawing.png" width="1600" height="1008" loading="lazy"
           alt="Dimensioned drawing of the quadrotor frame: a top view with the 46 mm arm, 65.05 mm motor spacing, 55 mm propellers and 10.05 mm tip clearance; a side view of the stack heights; and notes on parts and the 32.1 g mass budget">
-        <figcaption class="scene-fig"><span class="hb-note">The dimensioned drawing, generated from the same numbers
-          by the project&rsquo;s drawing script (recoloured for this page).</span></figcaption>
+        <figcaption>The dimensioned drawing, generated from the same numbers by the project&rsquo;s drawing script
+          (recoloured for this page).</figcaption>
       </figure>
 
       <div class="hb-block reveal">

@@ -370,7 +370,7 @@
     font: 8, line: 10, data: ['tars-cad.json'], drag: true,
     init([d]) {
       const P = d.parts;
-      return { d, body: meshFromPacked(P.body), leg: meshFromPacked(P.leg), axle: meshFromPacked(P.axle), az: 0.9, el: 0.28 };
+      return { d, body: meshFromPacked(P.body), leg: meshFromPacked(P.leg), legR: meshFromPacked(P.leg_right), axle: meshFromPacked(P.axle), az: 0.9, el: 0.28 };
     },
     draw(g, R, t, st, W, H) {
       const { d } = st;
@@ -381,7 +381,7 @@
       const ly = d.legY + d.explodeLeg * e;
       R.mesh(st.body, I3, [0, 0, 0], 1);
       R.mesh(st.leg, I3, [0, -ly, d.legZ], 1);
-      R.mesh(st.leg, I3, [0, ly, d.legZ], 1);
+      R.mesh(st.legR, I3, [0, ly, d.legZ], 1);        // the right leg is mirrored: its bearing seat faces the body
       R.mesh(st.axle, I3, [0, -d.explodeAxle * e, 0], 2);
       // dimensions from tars.scad, in green
       const yx = ly + 20 + 34;
@@ -392,13 +392,13 @@
       if (lab) g.text(Math.round(lab[0]) + 1, Math.round(lab[1]), '240 mm', 7, true);
       if (e > 0.85) {
         const tb = R.proj([0, 0, 262]), tl = R.proj([0, ly, d.legZ + 250]), ta = R.proj([0, -83 - d.explodeAxle * e - 8, 219]);
-        if (tb) g.text(Math.round(tb[0]) - 12, Math.round(tb[1]) - 1, 'body: Pi 5, battery, servos', 6);
-        if (tl) g.text(Math.round(tl[0]) - 6, Math.round(tl[1]) - 1, 'leg: 35 mm lift slot', 6);
+        if (tb) g.text(Math.round(tb[0]) - 12, Math.round(tb[1]) - 1, 'body: Pi 5, servos, 35 mm lift slot', 6);
+        if (tl) g.text(Math.round(tl[0]) - 6, Math.round(tl[1]) - 1, 'leg: swings on a 608ZZ', 6);
         if (ta) g.rtext(Math.round(ta[0]) - 2, Math.round(ta[1]) - 2, '8 mm axle', 7, true);
       }
-      const faces = st.body.nf + 2 * st.leg.nf + st.axle.nf;
+      const faces = st.body.nf + st.leg.nf + st.legR.nf + st.axle.nf;
       hud(g, [
-        ['TARS.SCAD V0.3  PARAMETRIC OPENSCAD', 4],
+        ['TARS.SCAD V0.3.1  PARAMETRIC OPENSCAD', 4],
         [e > 0.5 ? '> exploded view' : '> assembled', 7, true],
         [`${faces.toLocaleString('en-US')} faces   drag to turn`, 5],
       ]);

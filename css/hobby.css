@@ -254,9 +254,18 @@
 .hb-photo { margin: 0; min-width: 0; }
 .hb-photo .ascii-photo { aspect-ratio: 3 / 4; border: 1px solid var(--line); }
 
-/* the dimensioned drawing, recoloured into the site's palette */
-.hb-drawing { margin: 0; }
+/* the dimensioned drawings, recoloured into the site's palette */
+.hb-drawing { margin: 0 0 clamp(3.5rem, 7vw, 6rem); }
 .hb-drawing img { display: block; width: 100%; height: auto; border: 1px solid var(--line); background: #000; }
+.hb-drawing figcaption {
+  margin-top: .75rem;
+  font-family: var(--font-mono);
+  font-size: .6875rem;
+  line-height: 1.6;
+  letter-spacing: .02em;
+  color: var(--fg-dim);
+}
+.alt .hb-drawing figcaption { color: var(--fg-muted); }   /* --fg-dim is below 4.5:1 on --bg-raise */
 
 /* ----- Done / left, and what it costs ----- */
 .hb-status { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 4vw, 4rem); }

@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Vishal Bharti's personal academic portfolio, deployed with GitHub Pages at https://visvikbharti.github.io/:
 - `index.html`: the single-page site (hero, research interests and question, stats, publications, awards, projects, about with the "From circuits to cells" story and "Path", skills, future research, contact)
-- `pages/`: publications, research, CV, about, the project overview, one detail page per project, and `hobby.html` (two hobby robots; linked from the Projects page and the subpage footers, not from the home page)
+- `pages/`: publications, research, CV, about, the project overview, one detail page per project, and `hobby.html` (two hobby robots; in the main menu of every page, the Projects page and the subpage footers)
 - `css/`: `vars.css` (design tokens), `style.css` (shared components), plus one stylesheet per subpage family (`project.css` for the 7 project pages, `publications.css`, `research.css`, `cv.css`, `about.css`, `projects.css`, `hobby.css`)
 - `js/`: `main.js` (GSAP scroll logic, counters, headline decode, HUD clock), `hero-cells.js` (hero canvas), `project-art.js` (project panel drawings and the About story drawing), `ascii-photo.js` (character-rendered photos; `data-invert` for dark subjects on light backgrounds), `robots.js` (the hobby page's scenes and widgets)
 - `assets/photos/`: photos (the campus photos are Wikimedia Commons, CC BY-SA 4.0, credited on the page); `assets/hobby/`: the hobby page's data (JSON) and photos; `my_cv/`: the CV

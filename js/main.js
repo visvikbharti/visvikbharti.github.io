@@ -13,12 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // opens in a background tab (e.g. a search result opened with Cmd/Ctrl-click).
     if (!reduceMotion && !document.hidden) document.querySelectorAll('.scramble').forEach((el, i) => {
       const text = el.dataset.text || el.textContent;
+      const glyphs = el.dataset.glyphs || 'ATGC';                     // DNA bases on the home page
       const duration = 1000 + i * 350;
       const start = performance.now();
       const tick = () => {
         const done = Math.floor(text.length * Math.min(1, (performance.now() - start) / duration));
         el.textContent = text.slice(0, done) +
-          text.slice(done).replace(/\S/g, () => 'ATGC'[Math.floor(Math.random() * 4)]);
+          text.slice(done).replace(/\S/g, () => glyphs[Math.floor(Math.random() * glyphs.length)]);
         if (done < text.length) setTimeout(tick, 45);
       };
       tick();

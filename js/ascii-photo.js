@@ -39,9 +39,11 @@
     try { px = sctx.getImageData(0, 0, cols, rows).data; } catch (e) { return; }
 
     // luminance, then edges (Sobel): outlines carry a picture far better than flat tone does
-    const lum = new Float32Array(cols * rows);
+    // data-invert draws dark subjects on a light background (a black print against a white wall) in bright glyphs
+    const lum = new Float32Array(cols * rows), invert = fig.hasAttribute('data-invert');
     for (let i = 0; i < cols * rows; i++) {
-      lum[i] = (0.2126 * px[i * 4] + 0.7152 * px[i * 4 + 1] + 0.0722 * px[i * 4 + 2]) / 255;
+      const l = (0.2126 * px[i * 4] + 0.7152 * px[i * 4 + 1] + 0.0722 * px[i * 4 + 2]) / 255;
+      lum[i] = invert ? 1 - l : l;
     }
     // stretch each photo's tones between its 2nd and 98th percentile
     const sorted = Float32Array.from(lum).sort();

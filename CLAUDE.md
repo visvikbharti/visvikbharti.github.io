@@ -8,10 +8,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Vishal Bharti's personal academic portfolio, deployed with GitHub Pages at https://visvikbharti.github.io/:
 - `index.html`: the single-page site (hero, research interests and question, stats, publications, awards, projects, about with the "From circuits to cells" story and "Path", skills, future research, contact)
-- `pages/`: publications, research, CV, about, the project overview and one detail page per project
-- `css/`: `vars.css` (design tokens), `style.css` (shared components), plus one stylesheet per subpage family (`project.css` for the 7 project pages, `publications.css`, `research.css`, `cv.css`, `about.css`, `projects.css`)
-- `js/`: `main.js` (GSAP scroll logic, counters, headline decode, HUD clock), `hero-cells.js` (hero canvas), `project-art.js` (project panel drawings and the About story drawing), `ascii-photo.js` (character-rendered photos)
-- `assets/photos/`: photos (the campus photos are Wikimedia Commons, CC BY-SA 4.0, credited on the page); `my_cv/`: the CV
+- `pages/`: publications, research, CV, about, the project overview, one detail page per project, and `hobby.html` (two hobby robots; linked from the Projects page and the subpage footers, not from the home page)
+- `css/`: `vars.css` (design tokens), `style.css` (shared components), plus one stylesheet per subpage family (`project.css` for the 7 project pages, `publications.css`, `research.css`, `cv.css`, `about.css`, `projects.css`, `hobby.css`)
+- `js/`: `main.js` (GSAP scroll logic, counters, headline decode, HUD clock), `hero-cells.js` (hero canvas), `project-art.js` (project panel drawings and the About story drawing), `ascii-photo.js` (character-rendered photos; `data-invert` for dark subjects on light backgrounds), `robots.js` (the hobby page's scenes and widgets)
+- `assets/photos/`: photos (the campus photos are Wikimedia Commons, CC BY-SA 4.0, credited on the page); `assets/hobby/`: the hobby page's data (JSON) and photos; `my_cv/`: the CV
 
 The legacy site, the weekly progress log and old drafts were removed from the repository in September 2026 (see git history).
 
@@ -36,7 +36,7 @@ When testing in Chrome, cached JS/CSS is common. Load the page with a new query 
 - Colours (`vars.css`): black `--bg`, raised panels `--bg-raise`, 1px rules `--line` / `--line-strong`, text `--fg` / `--fg-muted` / `--fg-dim`, cream `--cream` for primary buttons, neon green `--accent` as the ONLY accent. No purple, pink, gradients, rounded corners, shadows or hover lifts. Text contrast must be >= 4.5:1.
 - Type: `--font-mono` (Geist Mono) for headings, nav, labels, buttons, tags and numbers; `--font-sans` (Geist) for body text.
 - Components: square `.btn` (cream fill) and `.btn.alt` (outline); `.tech-tag`; 1px-bordered cell grids; section titles get an automatic index ("01 —") via CSS counters.
-- Canvas art: `hero-cells.js` (tissue, click-to-break, HUD) and `project-art.js` (`.split__img[data-art]` scenes: stats, audit, dna-break, triplex, g4, assembloid, ci, rag; plus `.journey__art[data-art="fold"]` in About: a circuit trace that goes slack, searches at random, and folds into ubiquitin from the real PDB 1UBQ C-alpha trace, as a 16 s story that starts from the beginning when first seen). Both animate only while on screen, draw a still frame under `prefers-reduced-motion`, and use an integer hash for randomness.
+- Canvas art: `hero-cells.js` (tissue, click-to-break, HUD) and `project-art.js` (`.split__img[data-art]` scenes: stats, audit, dna-break, triplex, g4, assembloid, ci, rag; plus `.journey__art[data-art="fold"]` in About: a circuit trace that goes slack, searches at random, and folds into ubiquitin from the real PDB 1UBQ C-alpha trace, as a 16 s story that starts from the beginning when first seen). `robots.js` (hobby page) is a small z-buffered renderer that draws meshes as shaded glyphs with outline edges and replays `assets/hobby/*.json`: MuJoCo and quadsim runs and OpenSCAD meshes exported from the two robot repos (exporter notes in `_handover/hobby-export/`). All of them animate only while on screen, draw a still frame under `prefers-reduced-motion`, and use an integer hash for randomness. `main.js` decodes `.scramble` headlines from DNA letters, or from `data-glyphs` (binary on the hobby page).
 - Accessibility: skip links and `<main>` on every page; decorative canvases `aria-hidden`; the decoding headline keeps its real text in an `.sr-only` span; stat tiles use `role="group"` + `aria-label`.
 
 ## Architecture notes
@@ -53,6 +53,7 @@ There is no build step, so some facts are repeated. Update every copy together:
 - **StickForStats status:** `index.html`, `pages/stickforstats.html`, `pages/projects.html`, `pages/research.html`, `pages/cv.html`.
 - **Checkability audit status** ("in preparation for submission to Nature Human Behaviour"): the publication entries on `index.html`, `pages/research.html`, `pages/publications.html` and `pages/cv.html`, and the project cards on `index.html`, `pages/projects.html` and `pages/research.html`.
 - **Role text** ('Project Associate-II'): home About, `pages/cv.html` (x2), `pages/research.html` (x2), `pages/about.html`.
+- **Hobby robots** (`pages/hobby.html`): the numbers come from github.com/visvikbharti/Interstellar-TARS-robot-project and github.com/visvikbharti/micro-agile-robot-2026 (gait, tests, engine agreement, costs); the Projects page "Outside the Lab" block summarises them. If a simulation changes, re-export the JSON and update the text.
 - **CV:** `my_cv/Vishal_Bharti_CV.pdf`, with a copy at the old address `my_cv/Vishal-Bharti-Resume-Updated-Sep-2025.pdf` so old links keep working. Replace both.
 
 ## Content rules

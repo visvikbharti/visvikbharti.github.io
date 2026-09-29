@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hobby: Two Robots - Vishal Bharti</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Two robots Vishal Bharti builds in his own time: a walking TARS from Interstellar and a palm-sized quadrotor inspired by Vijay Kumar's flying robots. CAD, physics simulation, a 3D-printed frame, and what it would take to finish them.">
+  <meta name="keywords" content="TARS, Interstellar, robot, quadrotor, MuJoCo, OpenSCAD, simulation, 3D printing, Crazyflie, minimum snap">
+  <meta name="author" content="Vishal Bharti">
+  <meta property="og:title" content="Two robots, almost finished | Vishal Bharti">
+  <meta property="og:description" content="A walking TARS from Interstellar and a palm-sized quadrotor: designed in code, tested in simulation, paused until the last parts are funded.">
+  <meta property="og:image" content="https://visvikbharti.github.io/assets/hobby/quad-print-over-cad.jpg">
+  <meta property="og:url" content="https://visvikbharti.github.io/pages/hobby.html">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- Core styles -->
+  <link rel="stylesheet" href="../css/vars.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/hobby.css" />
+
+  <!-- Portfolio logic -->
+  <script defer src="../js/main.js"></script>
+  <script defer src="../js/ascii-photo.js"></script>
+  <script defer src="../js/robots.js"></script>
+</head>
+
+<body class="hobby-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <a href="../index.html" class="nav-logo"><span class="nav-logo__mark" aria-hidden="true">VB</span><span>Vishal Bharti</span></a>
+    <ul class="nav-links">
+      <li><a href="research.html">Research</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../my_cv/Vishal_Bharti_CV.pdf" class="nav-cta">CV &#8599;</a></li>
+      <li><a href="../index.html#contact" class="nav-cta nav-cta--alt">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main">
+
+  <!-- ================= Hero ================= -->
+  <section class="hb-hero" aria-labelledby="hb-heading">
+    <div class="hb-hero__scene" data-scene="hero" aria-hidden="true"></div>
+    <div class="hb-hero__content">
+      <p class="tagline">Hobby &middot; built after hours</p>
+      <h1 id="hb-heading">
+        <span class="sr-only">Two robots, almost finished.</span>
+        <span aria-hidden="true"><span class="scramble" data-glyphs="01" data-text="Two robots,">Two robots,</span> <span class="neon scramble" data-glyphs="01" data-text="almost finished.">almost finished.</span></span>
+      </h1>
+      <p class="hb-lede">
+        A walking TARS from <em>Interstellar</em>, and a palm-sized quadrotor inspired by Vijay Kumar&rsquo;s
+        flying robots. I designed both in code, tested them in physics simulation and priced every part. Both are
+        paused until I can pay for the last parts, and both matter a lot to me.
+      </p>
+      <div class="hero-cta">
+        <a href="#tars" class="btn">TARS</a>
+        <a href="#quad" class="btn alt">Quadrotor</a>
+        <a href="#help" class="btn alt">Help finish them</a>
+      </div>
+    </div>
+    <div class="hud hud--left" aria-hidden="true">
+      <div id="hb-hud-left">TARS</div>
+      <div>Replayed from my simulations</div>
+    </div>
+    <div class="hud hud--right" aria-hidden="true">
+      <div id="hb-hud-right">Swarm</div>
+    </div>
+  </section>
+
+  <!-- ================= Numbers ================= -->
+  <section class="hb-stats" aria-label="The two robots in numbers">
+    <div class="hb-stat" role="group" aria-label="TARS walks 36 centimetres in 15 seconds in simulation">
+      <span class="hb-stat__num"><span data-count="36">36</span> cm</span>
+      <span class="hb-stat__label">TARS walks in 15 s, in MuJoCo</span>
+    </div>
+    <div class="hb-stat" role="group" aria-label="The gait stays upright at 15 of 15 solver and physics settings">
+      <span class="hb-stat__num"><span data-count="15">15</span>/15</span>
+      <span class="hb-stat__label">Solver settings where it stays upright</span>
+    </div>
+    <div class="hb-stat" role="group" aria-label="87 automated tests pass in the quadrotor simulator">
+      <span class="hb-stat__num" data-count="87">87</span>
+      <span class="hb-stat__label">Tests pass in the quadrotor simulator</span>
+    </div>
+    <div class="hb-stat" role="group" aria-label="Two physics engines agree to 0.4 millimetres">
+      <span class="hb-stat__num"><span data-count="0.4" data-dec="1">0.4</span> mm</span>
+      <span class="hb-stat__label">Gap between two physics engines</span>
+    </div>
+  </section>
+
+  <!-- ================= TARS ================= -->
+  <section class="hb-section" id="tars">
+    <div class="container">
+      <h2 class="hb-title">TARS, from Interstellar</h2>
+      <div class="hb-intro">
+        <p>
+          A 25-centimetre TARS that walks on its slabs and talks with the film&rsquo;s adjustable humor and honesty
+          settings. A Raspberry Pi 5 will be its brain, running a personality I wrote on the Claude API. The chassis
+          is the TARS-AI community&rsquo;s V3, a proven walking design that continues Charlie Diaz&rsquo;s original
+          build.
+        </p>
+        <div class="tech-tags">
+          <span class="tech-tag">Raspberry Pi 5</span>
+          <span class="tech-tag">MuJoCo</span>
+          <span class="tech-tag">OpenSCAD</span>
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Claude API</span>
+          <span class="tech-tag">MG996R servos</span>
+        </div>
+        <div class="hb-links">
+          <a href="https://github.com/visvikbharti/Interstellar-TARS-robot-project" target="_blank" rel="noopener" class="btn"><i class="fab fa-github" aria-hidden="true"></i> TARS on GitHub</a>
+          <a href="#tars-left" class="btn alt">What&rsquo;s left</a>
+        </div>
+      </div>
+
+      <div class="hb-split reveal">
+        <figure class="scene-fig">
+          <div class="scene scene--tall" data-scene="tars-walk" aria-hidden="true"></div>
+          <figcaption>The 15-second MuJoCo run, replayed and drawn in characters: the body&rsquo;s two slabs and the two
+            outer legs, with a ruler measured from the start.</figcaption>
+        </figure>
+        <div class="hb-copy">
+          <p class="hb-kicker">Simulation</p>
+          <h3>The gait: a crutch vault</h3>
+          <p>
+            Four servos, two per leg: one lifts, one swings. The legs press down while they are vertical, so the
+            weight stays over the feet. They rotate back 12&deg; with the body off the ground, so it swings forward
+            over the planted feet. The body sets down and the unloaded legs swing forward again. It never has to
+            balance.
+          </p>
+          <p>
+            In MuJoCo, with the servo torque capped at an MG996R&rsquo;s, it walks 36 cm in 15 s and never tilts more
+            than 12&deg;. The first version of the gait walked only at MuJoCo&rsquo;s default 2 ms time step and tipped
+            over at finer ones, so this one is checked at 15 settings: time steps from 2 ms to 0.25 ms, three
+            integrators, two friction models, floors from slippery to grippy, servos 20% weaker, and a lighter or
+            heavier body. It stays upright in all of them.
+          </p>
+          <ul class="hb-facts">
+            <li><span>Swing servo, peak</span> 0.30 N&middot;m of about 1.0</li>
+            <li><span>Lift, peak</span> about 11 N of 55</li>
+            <li><span>Cycle</span> 1.8 s, 4.3 cm a step</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="hb-split hb-split--flip reveal">
+        <div class="hb-copy">
+          <p class="hb-kicker">Design</p>
+          <h3>Parametric CAD, shared with the simulator</h3>
+          <p>
+            My own OpenSCAD model keeps every dimension as a variable, and the simulator reads the same numbers:
+            240 mm legs, a body 4 mm longer so that it carries the robot at rest, a 35 mm slot for each leg&rsquo;s lift,
+            an 8 mm aluminium axle on 608ZZ bearings, and servo bays, a display window and a speaker grille in the
+            body. Change one number and the whole robot rescales.
+          </p>
+          <p>
+            The first build uses the community&rsquo;s V3 chassis; this model is the platform for a later version with
+            my own look.
+          </p>
+        </div>
+        <figure class="scene-fig">
+          <div class="scene scene--tall scene--drag" data-scene="tars-cad" aria-hidden="true"></div>
+          <figcaption>tars.scad v0.3, exported part by part and drawn in characters. It opens up to show the parts;
+            drag to turn it.</figcaption>
+        </figure>
+      </div>
+
+      <div class="hb-block reveal">
+        <div class="hb-dials" data-widget="dials">
+          <div class="hb-copy">
+            <p class="hb-kicker">Software</p>
+            <h3>Its personality already runs</h3>
+            <p>
+              TARS talks today, in a terminal, through the Claude API; without a key it falls back to a few canned
+              lines. Set its dials the way Cooper does. The text on the right is the instruction my code gives the
+              model at each setting.
+            </p>
+            <p class="cue"><span class="cue-light" aria-hidden="true"></span> Cue light (on when humor passes 60%)</p>
+          </div>
+          <div>
+            <div class="dial">
+              <label for="dial-humor">Humor <span><output data-out="humor" for="dial-humor">75</output>%</span></label>
+              <input id="dial-humor" class="hb-range" type="range" name="humor" min="0" max="100" step="5" value="75">
+            </div>
+            <div class="dial">
+              <label for="dial-honesty">Honesty <span><output data-out="honesty" for="dial-honesty">90</output>%</span></label>
+              <input id="dial-honesty" class="hb-range" type="range" name="honesty" min="0" max="100" step="5" value="90">
+            </div>
+            <p class="dial-say" data-say aria-live="polite"></p>
+            <p class="dial-directive" data-directive="humor">Humor setting: 75%. Your signature deadpan. Regular dry wit, light sarcasm, the occasional absurd deadpan claim (delivered completely straight, then walked back — 'That was a joke. I have a cue light I can use to show you when I'm joking, if you like.').</p>
+            <p class="dial-directive" data-directive="honesty">Honesty setting: 90%. Honest and direct, but you understand that absolute honesty isn't always the most diplomatic nor the safest form of communication with emotional beings. Soften delivery slightly when kindness matters; never actually lie about anything important.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hb-block reveal">
+        <p class="hb-kicker">Chassis</p>
+        <h3>Sixteen print beds, in the cart</h3>
+        <p>
+          The V3 parts are split by the load they carry: PETG with at least three walls wherever the body&rsquo;s weight
+          passes, PLA for lids and panels, TPU for the feet and white PLA for the T-A-R-S letters. I packed them into
+          16 print beds for the online service that printed the quadrotor frame. The order was quoted at
+          &#8377;5,199.19 including GST on 10 August 2026 and is waiting in the cart.
+        </p>
+        <figure class="scene-fig">
+          <div class="scene scene--beds" data-scene="tars-beds" aria-hidden="true"></div>
+          <figcaption>The 16 beds seen from above, heights drawn in characters as a slicer would build them up. Parts:
+            <a href="https://github.com/TARS-AI-Community/TARS-AI" target="_blank" rel="noopener">TARS-AI Community V3</a>,
+            CC BY-NC 4.0.</figcaption>
+        </figure>
+      </div>
+
+      <div class="hb-status reveal" id="tars-left">
+        <div>
+          <p class="hb-sub">Done and left</p>
+          <ul class="hb-check">
+            <li class="done">Personality: humor and honesty settings, chat, terminal app</li>
+            <li class="done">Parametric CAD</li>
+            <li class="done">Physics simulation of the walking gait</li>
+            <li class="done">Parts list, priced from Indian stores on 10 August 2026</li>
+            <li class="done">Chassis print quoted and in the cart</li>
+            <li>Parts and print ordered</li>
+            <li>Voice: wake word, speech to text, TARS, text to speech</li>
+            <li>The gait on real servos</li>
+            <li>Final assembly</li>
+          </ul>
+        </div>
+        <div>
+          <table class="hb-costs">
+            <caption>What it would take to finish</caption>
+            <tbody>
+              <tr><th scope="row">Electronics: Raspberry Pi 5 (8 GB), six MG996R servos, servo driver, 2S battery with protection board and charger, two regulators, microphone, amplifier, speaker, bearings, wiring</th><td>&#8377;31,450&ndash;31,750</td></tr>
+              <tr><th scope="row">The 5-inch screen the V3 lid is cut for, in place of the parts list&rsquo;s 2.4-inch one</th><td>+&#8377;3,216</td></tr>
+              <tr><th scope="row">Chassis print, 16 beds</th><td>&#8377;5,199.19</td></tr>
+              <tr class="total"><th scope="row">In all</th><td>about &#8377;40,000</td></tr>
+            </tbody>
+          </table>
+          <p class="hb-note">The Raspberry Pi alone is &#8377;19,999. Prices as checked on 10 August 2026.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Quadrotor ================= -->
+  <section class="hb-section alt" id="quad">
+    <div class="container">
+      <h2 class="hb-title">A palm-sized quadrotor</h2>
+      <div class="hb-intro">
+        <p>
+          In his TED talk <em>Robots that fly &hellip; and cooperate</em>, Vijay Kumar shows palm-sized quadrotors
+          flipping through hoops and nine of them flying in formation. I wrote a simulator that does the same from
+          scratch in Python: the full rigid-body dynamics of a 33-gram Crazyflie-class quadrotor, minimum-snap
+          trajectories, a geometric controller and swarm flight. Then I designed its physical twin and had the frame
+          printed.
+        </p>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">NumPy &amp; SciPy</span>
+          <span class="tech-tag">MuJoCo</span>
+          <span class="tech-tag">OpenSCAD</span>
+          <span class="tech-tag">Crazyflie</span>
+        </div>
+        <div class="hb-links">
+          <a href="https://github.com/visvikbharti/micro-agile-robot-2026" target="_blank" rel="noopener" class="btn"><i class="fab fa-github" aria-hidden="true"></i> Quadrotor on GitHub</a>
+          <a href="#quad-left" class="btn alt">What&rsquo;s left</a>
+        </div>
+      </div>
+
+      <div class="hb-split reveal">
+        <div class="hb-scale" data-widget="scale">
+          <label for="scale-r">Size, relative to the simulated quadrotor <output for="scale-r">1.00x</output></label>
+          <input id="scale-r" class="hb-range" type="range" min="-2" max="1" step="0.05" value="0">
+          <ul class="sc-rows">
+            <li class="sc-row" data-pow="3"><span class="sc-name">Mass <small>r&sup3;</small></span><span class="sc-val">x1.00</span><span class="sc-bar" aria-hidden="true"></span></li>
+            <li class="sc-row" data-pow="5"><span class="sc-name">Inertia <small>r&#8309;</small></span><span class="sc-val">x1.00</span><span class="sc-bar" aria-hidden="true"></span></li>
+            <li class="sc-row" data-pow="4"><span class="sc-name">Rotor torque <small>r&#8308;</small></span><span class="sc-val">x1.00</span><span class="sc-bar" aria-hidden="true"></span></li>
+            <li class="sc-row" data-pow="-1"><span class="sc-name">Turning speed <small>1/r</small></span><span class="sc-val">x1.00</span><span class="sc-bar" aria-hidden="true"></span></li>
+          </ul>
+          <p class="sc-note" data-note aria-live="polite">The 33 g Crazyflie-class quadrotor the simulator models.</p>
+        </div>
+        <div class="hb-copy">
+          <p class="hb-kicker">The idea</p>
+          <h3>Why small robots are agile</h3>
+          <p>
+            Kumar&rsquo;s scaling argument: shrink a quadrotor by a factor <em>r</em> and its mass falls as
+            <em>r</em>&sup3;, its inertia as <em>r</em>&#8309; and the torque its rotors can apply as <em>r</em>&#8308;.
+            How fast it can start to turn, torque over inertia, grows as 1/<em>r</em>. Halve the robot and it can flip
+            about twice as fast. Try the slider.
+          </p>
+        </div>
+      </div>
+
+      <div class="hb-block reveal">
+        <p class="hb-kicker">Simulation</p>
+        <h3>Nine robots, one formation</h3>
+        <p>
+          Nine simulated quadrotors hold a 3&times;3 grid, blend into a ring, then a V, and fly a circle lap in
+          formation. Each robot&rsquo;s place is assigned with the Hungarian algorithm, as in Kumar&rsquo;s lab, and every
+          change of formation is smooth enough to differentiate. The formation error stayed under 0.31 mm, and no two
+          robots came closer than 0.40 m. Flown again with no central control, each robot correcting only from
+          neighbours within 1.2 m and with 30% of its sensing dropped, the formation still held to under a millimetre.
+        </p>
+        <figure class="scene-fig">
+          <div class="scene scene--wide" data-scene="quad-swarm" aria-hidden="true"></div>
+          <figcaption>The 30-second quadsim run, replayed; robots drawn four times their size, with their trails and
+            shadows. The green line joins the closest pair.</figcaption>
+        </figure>
+        <div class="hb-pair">
+          <figure class="scene-fig">
+            <div class="scene" data-scene="quad-gates" aria-hidden="true"></div>
+            <figcaption>
+              <strong>Minimum snap.</strong> A smooth path through two gates and past a box, planned by the method of
+              Mellinger and Kumar (2011) and flown by a geometric controller (Lee, Leok and McClamroch, 2010): 4.1 m/s at
+              its fastest, tracked to 1.4 mm RMS. Shown at half speed.
+            </figcaption>
+          </figure>
+          <figure class="scene-fig">
+            <div class="scene" data-scene="quad-chase" aria-hidden="true"></div>
+            <figcaption>
+              <strong>Checking my own physics.</strong> The same vehicle rebuilt in DeepMind&rsquo;s MuJoCo engine flies the
+              same controller through two figure-eight laps at up to 2.5 m/s. Tracking error: 45.9 mm in MuJoCo,
+              46.2 mm in my simulator; the two engines agree to 0.4 mm. The camera rides behind the frame&rsquo;s mesh.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="hb-split reveal">
+        <figure class="scene-fig">
+          <div class="scene scene--tall scene--drag" data-scene="quad-frame" aria-hidden="true"></div>
+          <figcaption>frame.scad, rendered to a mesh and drawn in characters, with its 55 mm propellers. Drag to turn
+            it.</figcaption>
+        </figure>
+        <div class="hb-copy">
+          <p class="hb-kicker">Design</p>
+          <h3>A frame bound to the simulator</h3>
+          <p>
+            The frame is parametric OpenSCAD tied to the simulator&rsquo;s numbers: 46 mm arms, motors 65.05 mm apart,
+            55 mm propellers with 10.05 mm between their tips, and press-fit rings for 7&times;16 mm coreless motors.
+            The model refuses to render if the geometry drifts from the simulation. In PLA it weighs about 6 g, and the
+            whole robot is budgeted at 32.1 g against the 33 g it is simulated at.
+          </p>
+        </div>
+      </div>
+
+      <figure class="hb-drawing hb-block reveal">
+        <img src="../assets/hobby/quad-frame-drawing.png" width="1600" height="1008" loading="lazy"
+          alt="Dimensioned drawing of the quadrotor frame: a top view with the 46 mm arm, 65.05 mm motor spacing, 55 mm propellers and 10.05 mm tip clearance; a side view of the stack heights; and notes on parts and the 32.1 g mass budget">
+        <figcaption class="scene-fig"><span class="hb-note">The dimensioned drawing, generated from the same numbers
+          by the project&rsquo;s drawing script (recoloured for this page).</span></figcaption>
+      </figure>
+
+      <div class="hb-block reveal">
+        <p class="hb-kicker">Printed</p>
+        <h3>Printed, and it fits</h3>
+        <p>
+          An online print service printed the frame and delivered it on 10 August 2026. It matched the CAD, and the
+          press-fit motor bores came out true. Hover over a picture to see the photograph.
+        </p>
+        <div class="hb-photos">
+          <figure class="hb-photo">
+            <figure class="ascii-photo" data-invert><img src="../assets/hobby/quad-print-over-cad.jpg" width="720" height="960" loading="lazy" alt="The printed black frame held up in front of a laptop that shows the same frame in OpenSCAD"></figure>
+            <figcaption>Held over its own CAD</figcaption>
+          </figure>
+          <figure class="hb-photo">
+            <figure class="ascii-photo" data-invert><img src="../assets/hobby/quad-print-rings.jpg" width="720" height="960" loading="lazy" alt="The printed frame at an angle, showing the motor rings at the ends of the arms and the strap slots in the centre plate"></figure>
+            <figcaption>Motor rings and strap slots</figcaption>
+          </figure>
+          <figure class="hb-photo">
+            <figure class="ascii-photo" data-invert><img src="../assets/hobby/quad-print-underside.jpg" width="720" height="960" loading="lazy" alt="The underside of the printed frame, with the textured finish of the print bed"></figure>
+            <figcaption>The underside, printed flat with no supports</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="hb-status reveal" id="quad-left">
+        <div>
+          <p class="hb-sub">Done and left</p>
+          <ul class="hb-check">
+            <li class="done">Simulator, with 87 passing tests</li>
+            <li class="done">Cross-check in MuJoCo</li>
+            <li class="done">Frame designed and printed</li>
+            <li class="done">A flight-test plan, and a ten-chapter course on the maths behind it</li>
+            <li>Flight hardware</li>
+            <li>First autonomous flight</li>
+          </ul>
+        </div>
+        <div>
+          <table class="hb-costs">
+            <caption>What it would take to finish</caption>
+            <tbody>
+              <tr><th scope="row">Crazyflie 2.1+ with Flow deck v2 and Crazyradio, plus spares, delivered to India</th><td>about $470&ndash;560</td></tr>
+              <tr><th scope="row">Motors, propellers, flight controller and batteries for the printed frame</th><td>about &#8377;5,000&ndash;8,000</td></tr>
+            </tbody>
+          </table>
+          <p class="hb-note">
+            The Crazyflie is the platform for autonomous flight: its Flow deck gives it a position estimate, and its
+            firmware runs the same family of controller as my simulator. The printed frame is its hand-flown twin.
+            Both figures are estimates from the project&rsquo;s sourcing notes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Inspiration ================= -->
+  <section class="hb-section" id="inspiration">
+    <div class="container">
+      <h2 class="hb-title">Inspiration</h2>
+      <div class="hb-cards reveal">
+        <article class="hb-card">
+          <p class="hb-kicker">Film &middot; 2014</p>
+          <h3><em>Interstellar</em></h3>
+          <p>TARS: four slabs, a dry wit, and a humor setting and an honesty setting that the crew can turn up or
+            down. My build keeps both settings.</p>
+        </article>
+        <article class="hb-card">
+          <p class="hb-kicker">Build &middot; Charlie Diaz</p>
+          <h3>The first walking desk-sized TARS</h3>
+          <p>Charlie Diaz&rsquo;s 3D-printed TARS walks on a Raspberry Pi, with a hidden sliding joint that lifts the legs
+            clear as they swing past the body. The TARS-AI community&rsquo;s V3, which my build uses, continues his
+            design.</p>
+          <a class="more" href="https://www.hackster.io/charlesdiaz/how-to-build-your-own-replica-of-tars-from-interstellar-224833" target="_blank" rel="noopener">His build guide &#8599;</a>
+        </article>
+        <article class="hb-card">
+          <p class="hb-kicker">Talk &middot; TED 2012</p>
+          <h3>Vijay Kumar, <em>Robots that fly &hellip; and cooperate</em></h3>
+          <p>Palm-sized quadrotors from his lab at Penn: why small robots are agile, how they fly minimum-snap paths
+            and how they fly as a swarm. The quadrotor project starts from this talk.</p>
+          <a class="more" href="https://www.ted.com/talks/vijay_kumar_robots_that_fly_and_cooperate" target="_blank" rel="noopener">Watch the talk &#8599;</a>
+        </article>
+        <article class="hb-card">
+          <p class="hb-kicker">Papers</p>
+          <h3>The ideas inside the simulator</h3>
+          <ul class="hb-refs">
+            <li>Mellinger &amp; Kumar, minimum-snap trajectories, <a href="https://doi.org/10.1109/ICRA.2011.5980409" target="_blank" rel="noopener">ICRA 2011</a></li>
+            <li>Lee, Leok &amp; McClamroch, geometric control on SE(3), <a href="https://doi.org/10.1109/CDC.2010.5717652" target="_blank" rel="noopener">CDC 2010</a></li>
+            <li>Kushleyev, Mellinger, Powers &amp; Kumar, a swarm of agile micro quadrotors, <a href="https://doi.org/10.1007/s10514-013-9349-9" target="_blank" rel="noopener"><em>Autonomous Robots</em> 2013</a></li>
+            <li>Turpin, Michael &amp; Kumar, aggressive formation flight, <a href="https://doi.org/10.1007/s10514-012-9279-y" target="_blank" rel="noopener"><em>Autonomous Robots</em> 2012</a></li>
+          </ul>
+        </article>
+      </div>
+      <p class="hb-attrib">
+        TARS is a character from <em>Interstellar</em> (2014); this is a fan-made project, not affiliated with the
+        film or its makers. The V3 chassis is based on the mechanical puppet designs by Christopher Nolan, Nathan
+        Crowley and the production team who originally brought TARS to life, miniaturized CAD by Charlie Diaz, with
+        additional modifications by the TARS-AI Community (CC BY-NC 4.0). The personality is inspired by Bill
+        Irwin&rsquo;s portrayal of TARS in the film.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= Help ================= -->
+  <section class="hb-section alt hb-help" id="help">
+    <div class="container">
+      <h2 class="hb-title">Help finish them</h2>
+      <p>
+        Both robots are paused for one reason: the last parts cost more than I can spend on them right now. If you
+        would like to sponsor a part, lend a 3D printer or a room to fly in, or build something together, I would love
+        to hear from you.
+      </p>
+      <div class="hb-links">
+        <a href="mailto:vishalvikashbharti@gmail.com?subject=Your%20robots" class="btn">Email me</a>
+        <a href="https://github.com/visvikbharti/Interstellar-TARS-robot-project" target="_blank" rel="noopener" class="btn alt"><i class="fab fa-github" aria-hidden="true"></i> TARS</a>
+        <a href="https://github.com/visvikbharti/micro-agile-robot-2026" target="_blank" rel="noopener" class="btn alt"><i class="fab fa-github" aria-hidden="true"></i> Quadrotor</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Footer ================= -->
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="copyright-year">2026</span> Vishal Bharti. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="projects.html">Projects</a>
+        <a href="hobby.html" aria-current="page">Hobby</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

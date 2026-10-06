@@ -136,12 +136,12 @@
       if (!reduceMotion) for (let c = 0; c < cols; c++) g.put(c, Math.round(scan), c % 2 ? '-' : '.', 4);
     },
 
-    // DNA repair: blunt (SpCas9) and staggered (FnCas9) double-strand breaks, ends drifting and rejoining
+    // DNA repair: blunt (SpCas9) and 2-3-base staggered (en1FnCas9) double-strand breaks, ends drifting and rejoining
     'dna-break'(g, t) {
       const { cols, rows } = g;
       const comp = { A: 'T', T: 'A', G: 'C', C: 'G' };
       const gap = reduceMotion ? 1.5 : 1.2 + 1.2 * (0.5 + 0.5 * Math.sin(t * 0.7));
-      [['SpCas9 · blunt', 0.3, 0], ['FnCas9 · staggered', 0.7, 4]].forEach(([label, fy, over], k) => {
+      [['SpCas9 · blunt', 0.3, 0], ['en1FnCas9 · staggered', 0.7, 3]].forEach(([label, fy, over], k) => {
         const cy = rows * fy, A = rows * 0.085, L = cols * 0.34, mid = Math.round(cols / 2);
         g.text(Math.round(cols * 0.08), Math.round(cy - A - 3), label, 5);
         for (let c = Math.round(cols * 0.06); c < cols * 0.94; c++) {

@@ -6,13 +6,13 @@
   <title>Vishal Bharti · Bioinformatics & Computational Biology</title>
 
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Vishal Bharti, computational biologist at CSIR-IGIB. Working on whether a cell repairs a Cas9 DNA break or dies, and on whether biological conclusions follow from their data.">
+  <meta name="description" content="Vishal Bharti, computational biologist at CSIR-IGIB. Works on whether biological conclusions follow from their data; next, wants to find out whether a cell repairs a Cas9 DNA break or dies.">
   <meta name="keywords" content="computational biology, DNA repair, CRISPR, single-cell, reproducibility, statistics, StickForStats, RNA biology, TRIPinRNA, bioinformatics">
   <meta name="author" content="Vishal Bharti">
   
   <!-- Open Graph tags for better social media sharing -->
   <meta property="og:title" content="Vishal Bharti | Bioinformatics & Computational Biology">
-  <meta property="og:description" content="Vishal Bharti, computational biologist at CSIR-IGIB. Working on whether a cell repairs a Cas9 DNA break or dies, and on whether biological conclusions follow from their data.">
+  <meta property="og:description" content="Vishal Bharti, computational biologist at CSIR-IGIB. Works on whether biological conclusions follow from their data; next, wants to find out whether a cell repairs a Cas9 DNA break or dies.">
   <meta property="og:image" content="https://visvikbharti.github.io/assets/portraits/profile-photo.jpg">
   <meta property="og:url" content="https://visvikbharti.github.io">
 
@@ -91,8 +91,8 @@
       <div class="research-question-teaser">
         <p>
           <strong>The thread through my work:</strong> whether a biological conclusion actually follows from the data
-          that produced it. It connects my CRISPR repair analysis, StickForStats, and a pre-registered audit of whether
-          published statistical results can be checked by recomputation.
+          that produced it. It connects my analyses for a colleague's CRISPR DNA-repair study, StickForStats, and a
+          pre-registered audit of whether published statistical results can be checked by recomputation.
         </p>
         <p>
           <strong>What I want to find out next:</strong> after a Cas9 break, whether a cell repairs or dies, whether the
@@ -105,7 +105,7 @@
         <div class="interest-item">
           <i class="fas fa-dna"></i>
           <h3>Single-Cell DNA Repair Biology</h3>
-          <p>Developing computational pipelines to decipher repair mechanisms in CRISPR-edited cells using scRNA-seq data</p>
+          <p>Single-cell RNA-seq analysis of a CRISPRi screen of DNA-repair genes, comparing how cells repair staggered and blunt Cas9-cut DNA ends</p>
         </div>
         <div class="interest-item">
           <i class="fas fa-chart-bar"></i>
@@ -333,11 +333,13 @@
       <div class="split__copy">
         <h3 class="section-title">DNA Repair Analysis</h3>
         <p>
-          Developed a three-layer computational pipeline to decipher repair factor requirements in 
-          staggered versus blunt-end DNA breaks using scRNA-seq data and advanced statistical methods.
+          Analysed single-cell RNA-seq data for a colleague's PhD study of how CRISPRi cells repair staggered
+          (en1FnCas9) versus blunt (SpCas9) DNA ends: Seurat QC, integration and differential expression, gene-set
+          comparisons and GO enrichment, with the heat map and volcano plots credited in her thesis.
         </p>
         <p>
-          <span class="tech-tag">R</span>
+          <span class="tech-tag">R (Seurat)</span>
+          <span class="tech-tag">Python</span>
           <span class="tech-tag">scRNA-seq</span>
           <span class="tech-tag">Genomics</span>
         </p>
@@ -441,8 +443,9 @@
         <h2 class="section-title">About Me</h2>
         <p>
           Electronics-engineer-turned-bioinformatician, currently working as a Project Associate-II at
-          <strong>CSIR-IGIB</strong> under Dr. Debojyoti Chakraborty. My work spans single-cell genomics,
-          RNA structure analysis, CRISPR repair screens, and open-source statistical software.
+          <strong>CSIR-IGIB</strong> under Dr. Debojyoti Chakraborty. My work spans single-cell genomics
+          (including the single-cell RNA-seq data of a pooled CRISPRi DNA-repair screen), RNA structure analysis, and
+          open-source statistical software.
         </p>
         <p>
           I hold an MTech in Biotechnology from <strong>IIT Guwahati</strong> and a BTech in Electronics
@@ -453,7 +456,7 @@
         <h3 class="about__sub">Research Focus</h3>
         <div class="research-positioning">
           <p>
-            <strong>Computational Biology & Single-cell:</strong> I build statistical inference pipelines for single-cell data, most recently contrasting repair-factor requirements at staggered versus blunt CRISPR-induced DNA breaks.
+            <strong>Computational Biology & Single-cell:</strong> I build analysis pipelines for single-cell data; for example, I re-analysed scRNA-seq data from a colleague's CRISPRi DNA-repair experiment, comparing cells that did or did not accurately repair reporter DNA pre-cut with staggered (en1FnCas9) or blunt (SpCas9) ends.
           </p>
           <p>
             <strong>Methods & Statistics:</strong> I build open-source statistical software that checks the assumptions behind a test before running it (StickForStats, validated against SciPy and R).
@@ -599,11 +602,13 @@
       <div class="interest-card interest-card--lead">
         <h3>The repair-or-die decision</h3>
         <p>
-          SpCas9 leaves blunt DNA ends. FnCas9 leaves a staggered overhang of two to five bases. That difference is
-          small, and it is enough to change which repair pathway a cell commits to. I want to understand the decision
-          one level above pathway choice: whether a cell repairs at all, or dies, and whether the structure of a break
-          and the manner of its delivery propagate upward into that commitment. In our single-cell data we recovered
-          pathway-specific signatures and no death signature at all, and that absence is what I want to work on.
+          SpCas9 leaves predominantly blunt DNA ends; en1FnCas9, an engineered FnCas9 variant, leaves a staggered
+          5&prime; overhang of two to three bases, and the lab has reported higher rates of homology-directed repair
+          with FnCas9 and en1FnCas9. I want to understand the decision one level above pathway choice: whether a cell
+          repairs at all, or dies, and whether the structure of a break and the manner of its delivery propagate upward
+          into that commitment. The single-cell CRISPRi data I analysed for a colleague cannot answer this: the break
+          there was on a reporter plasmid cut before transfection, quality control removed cells with high
+          mitochondrial read fractions (the usual sign of dying cells), and no cell-death analysis was run.
         </p>
         <p>
           The second half of the question is whether that decision is made cell by cell or coordinated across

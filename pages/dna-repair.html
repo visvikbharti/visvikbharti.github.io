@@ -6,8 +6,8 @@
   <title>DNA Repair Mechanisms Analysis - Vishal Bharti</title>
 
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Three-layer computational pipeline analyzing DNA repair factor requirements in staggered vs blunt-end breaks using scRNA-seq data.">
-  <meta name="keywords" content="DNA repair, NHEJ, HDR, single-cell RNA-seq, genomics, computational biology, CRISPR">
+  <meta name="description" content="Single-cell RNA-seq analysis (Seurat, gene-set comparisons, GO enrichment) for a CSIR-IGIB PhD study of how CRISPRi cells repair staggered versus blunt Cas9-cut DNA ends.">
+  <meta name="keywords" content="DNA repair, double-strand break repair, staggered ends, blunt ends, NHEJ, HDR, CRISPRi, single-cell RNA-seq, computational biology, CRISPR-Cas9">
   <meta name="author" content="Vishal Bharti">
   
   <!-- Google Fonts -->
@@ -51,9 +51,11 @@
   <section class="project-hero">
     <div class="container">
       <h1 class="project-title">DNA Repair Mechanisms Analysis</h1>
+      <p class="tagline">Single-cell analysis for a CRISPRi study of staggered- versus blunt-end DNA repair (a lab colleague's PhD project, Chakraborty lab, CSIR-IGIB)</p>
       <div class="project-meta">
         <div class="tech-tags">
-          <span class="tech-tag">R</span>
+          <span class="tech-tag">R (Seurat)</span>
+          <span class="tech-tag">Python</span>
           <span class="tech-tag">scRNA-seq</span>
           <span class="tech-tag">Genomics</span>
           <span class="tech-tag">Statistical Analysis</span>
@@ -61,9 +63,6 @@
         </div>
         <div class="project-links">
           <a href="#research" class="btn">View Research</a>
-          <a href="https://github.com/visvikbharti/" target="_blank" rel="noopener" class="btn alt">
-            <i class="fab fa-github"></i> GitHub
-          </a>
         </div>
       </div>
     </div>
@@ -74,40 +73,56 @@
     <div class="container">
       <h2>Project Overview</h2>
       <p>
-        This research project focuses on deciphering the molecular mechanisms that determine DNA repair pathway choice 
-        between Non-Homologous End Joining (NHEJ) and Homology-Directed Repair (HDR) in response to different types 
-        of DNA breaks. Understanding these mechanisms is crucial for improving genome editing technologies and developing 
-        targeted cancer therapies.
+        This page describes the computational analysis I did for a PhD study in Dr. Debojyoti Chakraborty's lab at
+        CSIR-IGIB. The study asked which DNA-repair genes matter for accurately repairing a Cas9-made double-strand
+        break, and whether the answer differs between staggered (overhanging) and blunt DNA ends. Knowing this could
+        help make genome editing more precise.
       </p>
       <p>
-        A colleague led the experimental work and generated the single-cell RNA sequencing data from CRISPR-edited
-        cells. I designed and built the computational arm: a three-layer statistical-inference pipeline to analyze
-        that data. This approach allows us to understand how different DNA break configurations (staggered versus
-        blunt-end) influence the cellular repair machinery at single-cell resolution.
+        A lab colleague led the study as her PhD project (Chapter 3 of her thesis): she carried out the experiments
+        and generated the single-cell RNA-seq data. Her HEK293T cells expressed a catalytically dead Cas9 repressor
+        (dCas9-KRAB) and carried a pooled CRISPRi library of guides against DNA-repair genes. She transfected them
+        with a fluorescent ZsGreen reporter plasmid that had been cut beforehand to leave staggered ends (with
+        en1FnCas9, an engineered FnCas9 variant) or blunt ends (with SpCas9). She then sorted the cells that had
+        accurately repaired the reporter from those that had not, and profiled them by BD Rhapsody single-cell
+        RNA-seq. An earlier single-cell analysis of the data is also acknowledged in the thesis.
+      </p>
+      <p>
+        From October 2024 to January 2025 I re-analysed the data, starting from the BD Rhapsody count matrices. I did
+        the quality control, integration and differential expression in Seurat, compared gene sets between the
+        staggered- and blunt-end conditions, and ran Gene Ontology enrichment. I also made the heat map and volcano
+        plots in her thesis (Fig. 3.8, credited to me).
+      </p>
+      <p>
+        The analysis compares sorted populations, not individual cells. Each condition was a single sample, cells were
+        not linked to their CRISPRi guide, and the candidate genes it points to still need experimental validation.
       </p>
 
       <div class="project-features">
         <div class="feature">
-          <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
-          <h3>Multi-Layer Analysis</h3>
-          <p>Three-layer inference method combining QC, statistical analysis, and pathway enrichment</p>
+          <div class="feature-icon"><i class="fas fa-microscope"></i></div>
+          <h3>Re-analysis from Count Matrices</h3>
+          <p>Seurat quality control, integration and differential expression of each sorted population against the control sample</p>
         </div>
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-dna"></i></div>
-          <h3>Break Type Comparison</h3>
-          <p>Systematic comparison of repair responses to staggered vs blunt-end DNA breaks</p>
+          <h3>Staggered versus Blunt Ends</h3>
+          <p>Gene-set comparisons between cells that did and did not accurately repair the reporter, for each end type</p>
         </div>
         <div class="feature">
-          <div class="feature-icon"><i class="fas fa-chart-scatter"></i></div>
-          <h3>Single-Cell Resolution</h3>
-          <p>High-resolution analysis of cellular heterogeneity in DNA repair responses</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon"><i class="fas fa-project-diagram"></i></div>
-          <h3>Network Analysis</h3>
-          <p>Comprehensive protein-protein interaction networks revealing repair factor dependencies</p>
+          <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
+          <h3>Enrichment and Figures</h3>
+          <p>Gene Ontology enrichment (DAVID) and the heat map and volcano plots used in the thesis</p>
         </div>
       </div>
+
+      <p class="mt-2">
+        Separately, in May&ndash;June 2024, I did an analysis for another chapter of the same thesis. I screened
+        ClinVar's pathogenic 1-, 2- and 3-bp deletions (the May-2024 release, on GRCh38) for an NGG PAM placed so that
+        a Cas9 cut followed by templated fill-in could, in principle, re-add the lost bases, and made the plots for it,
+        re-plotted for the thesis in January 2025 (Fig. 5.2 of her thesis, credited to me). It is a census of where a
+        suitable PAM exists on the reference plus strand; it does not model the repair product or check the protein.
+      </p>
     </div>
   </section>
 
@@ -116,20 +131,19 @@
     <div class="container">
       <h2>Computational Pipeline</h2>
       <p>
-        The analysis pipeline was designed to extract meaningful biological insights from complex single-cell data 
-        while maintaining statistical rigor and reproducibility.
+        The single-cell processing was a scripted Seurat 4 pipeline on the institute's HPC cluster. I did the gene-set
+        comparisons and figures in Python and the enrichment in DAVID.
       </p>
       
       <div class="approach-steps">
         <div class="approach-step">
           <div class="step-number">1</div>
           <div class="step-content">
-            <h3>Quality Control & Data Integration</h3>
+            <h3>Quality Control and Integration</h3>
             <p>
-              Implemented stringent quality control workflow with optimized parameters (nFeature: 500-6500, 
-              nCount: 1000-45000) to ensure high-quality single-cell data. Integrated multiple experimental 
-              batches using advanced computational methods to minimize batch effects while preserving biological 
-              variation.
+              Per-sample cell filters (500&ndash;6,500 genes, 1,000&ndash;45,000 UMIs and under 12% mitochondrial
+              reads per cell), log-normalisation, and Seurat's standard CCA-anchor integration of the five samples,
+              with conservative settings.
             </p>
           </div>
         </div>
@@ -137,11 +151,9 @@
         <div class="approach-step">
           <div class="step-number">2</div>
           <div class="step-content">
-            <h3>Layer 1: Initial Statistical Analysis</h3>
+            <h3>Differential Expression</h3>
             <p>
-              Performed differential expression analysis to identify genes responding to different DNA break types. 
-              This layer revealed initial candidates showing break-type-specific expression patterns, providing 
-              the foundation for deeper pathway analysis.
+              Seurat FindMarkers (Wilcoxon rank-sum test) comparing each sorted population with the control sample.
             </p>
           </div>
         </div>
@@ -149,11 +161,11 @@
         <div class="approach-step">
           <div class="step-number">3</div>
           <div class="step-content">
-            <h3>Layer 2: Pathway Enrichment</h3>
+            <h3>Gene-Set Comparison</h3>
             <p>
-              Conducted comprehensive pathway enrichment analysis using multiple databases (GO, KEGG, Reactome) 
-              to identify biological processes and molecular functions associated with different repair responses. 
-              This revealed key pathways differentially activated between break types.
+              Among the CRISPRi library genes, I took those expressed at lower levels than in the control in cells
+              that had not repaired the reporter, checked their status in the cells that had repaired it, and
+              compared the resulting lists between staggered and blunt ends.
             </p>
           </div>
         </div>
@@ -161,61 +173,55 @@
         <div class="approach-step">
           <div class="step-number">4</div>
           <div class="step-content">
-            <h3>Layer 3: Network Integration</h3>
+            <h3>Enrichment and Figures</h3>
             <p>
-              Integrated protein-protein interaction networks with expression data to identify hub genes and 
-              regulatory modules. This final layer provided mechanistic insights into how repair factors 
-              coordinate their activities in response to different DNA lesions.
+              Gene Ontology over-representation analysis (DAVID) of the resulting lists, and the heat map, volcano
+              plots and Venn diagrams, made in Python.
             </p>
           </div>
         </div>
       </div>
+
+      <p class="mt-2">
+        <strong>Limits:</strong> each condition was a single sample, so cells served as replicates; differential
+        expression was run on the integrated (batch-corrected) data; and because individual cells were not linked to
+        their CRISPRi guide, every comparison is between sorted populations. The gene lists are candidates, not tested
+        dependencies. An exploratory three-step filter I tried in December 2024 was superseded and is not part of
+        these results.
+      </p>
     </div>
   </section>
 
   <!-- ================= Key Findings ================= -->
   <section class="project-section">
     <div class="container">
-      <h2>Key Discoveries</h2>
+      <h2>What the Analysis Produced</h2>
       
       <div class="findings-grid">
         <div class="finding-card">
+          <div class="finding-icon"><i class="fas fa-dna"></i></div>
+          <h3>Candidate Genes for Each End Type</h3>
+          <p>
+            Gene-set comparisons between the staggered- and blunt-end conditions, giving candidate DNA-repair genes
+            for each end type.
+          </p>
+        </div>
+        
+        <div class="finding-card">
+          <div class="finding-icon"><i class="fas fa-layer-group"></i></div>
+          <h3>Heat Map and Volcano Plots</h3>
+          <p>
+            Gene Ontology enrichment of those lists, shown as a heat map, and volcano plots for the staggered- and
+            blunt-end conditions (Fig. 3.8 of her thesis, credited to me).
+          </p>
+        </div>
+        
+        <div class="finding-card">
           <div class="finding-icon"><i class="fas fa-microscope"></i></div>
-          <h3>Break-Specific Repair Factors</h3>
+          <h3>Validation Still Needed</h3>
           <p>
-            Identified 77 genes specifically upregulated in response to staggered breaks (FZ+) and 
-            5 genes specific to blunt-end breaks (SZ+), revealing distinct molecular signatures for 
-            different DNA lesion types.
-          </p>
-        </div>
-        
-        <div class="finding-card">
-          <div class="finding-icon"><i class="fas fa-network-wired"></i></div>
-          <h3>Overlapping Repair Networks</h3>
-          <p>
-            Discovered 23 genes showing FZ+/SZ- patterns and 2 genes with SZ+/FZ- patterns, 
-            indicating complex regulatory networks that fine-tune repair pathway choice based 
-            on break configuration.
-          </p>
-        </div>
-        
-        <div class="finding-card">
-          <div class="finding-icon"><i class="fas fa-clock"></i></div>
-          <h3>Temporal Dynamics</h3>
-          <p>
-            Revealed time-dependent activation of repair pathways, with early response genes 
-            showing break-type-independent activation followed by specialized repair factor 
-            recruitment based on lesion characteristics.
-          </p>
-        </div>
-        
-        <div class="finding-card">
-          <div class="finding-icon"><i class="fas fa-cells"></i></div>
-          <h3>Cell Cycle Dependencies</h3>
-          <p>
-            Demonstrated how cell cycle status influences repair pathway choice, with HDR 
-            preference in S/G2 phases and NHEJ dominance in G1, modulated by break type 
-            and local chromatin context.
+            The thesis proposes candidate repair genes for each end type from this single-cell analysis and notes
+            that they still need experimental validation.
           </p>
         </div>
       </div>
@@ -229,29 +235,29 @@
       
       <div class="tech-details">
         <div class="tech-detail">
-          <h3>Data Processing</h3>
+          <h3>Data</h3>
           <ul>
-            <li><strong>Samples:</strong> Cells with SpCas9 (blunt-end) or FnCas9 (staggered) breaks</li>
+            <li><strong>Samples:</strong> Five sample-tagged populations of HEK293T CRISPRi cells (dCas9-KRAB with a pooled DNA-repair guide library): a control, the cells that did (FZ2+) or did not (FZ2&minus;) accurately repair a reporter cut with en1FnCas9 to leave staggered ends, and the same two populations for a reporter cut with SpCas9 to leave blunt ends (SZ2+, SZ2&minus;)</li>
+            <li><strong>Platform:</strong> BD Rhapsody whole-transcriptome single-cell RNA-seq; I started from the BD pipeline's count matrices</li>
           </ul>
         </div>
         
         <div class="tech-detail">
           <h3>Computational Tools</h3>
           <ul>
-            <li><strong>Seurat v4:</strong> Single-cell data analysis</li>
-            <li><strong>edgeR/DESeq2:</strong> Differential expression</li>
-            <li><strong>clusterProfiler:</strong> Pathway enrichment</li>
-            <li><strong>igraph:</strong> Network analysis</li>
-            <li><strong>Custom R scripts:</strong> Specialized analyses</li>
+            <li><strong>R 4.1.0 with Seurat 4.0.4 (institute HPC):</strong> QC, normalisation, integration, clustering, UMAP and differential expression</li>
+            <li><strong>DAVID (web Functional Annotation Chart):</strong> Gene Ontology enrichment</li>
+            <li><strong>Python (pandas, NumPy, matplotlib, seaborn, matplotlib-venn, adjustText):</strong> Gene-set comparisons and figures</li>
           </ul>
         </div>
         
         <div class="tech-detail">
-          <h3>Statistical Methods</h3>
+          <h3>Methods</h3>
           <ul>
-            <li><strong>Normalization:</strong> SCTransform with regression</li>
-            <li><strong>Batch Correction:</strong> Harmony integration</li>
-            <li><strong>Network Analysis:</strong> Weighted correlation networks</li>
+            <li><strong>Normalisation:</strong> LogNormalize</li>
+            <li><strong>Integration:</strong> Seurat CCA anchors (FindIntegrationAnchors and IntegrateData)</li>
+            <li><strong>Differential expression:</strong> Wilcoxon rank-sum test, each sorted population against the control</li>
+            <li><strong>Enrichment:</strong> Over-representation against DAVID's whole-genome background</li>
           </ul>
         </div>
       </div>
@@ -261,49 +267,13 @@
   <!-- ================= Research Impact ================= -->
   <section class="project-section">
     <div class="container">
-      <h2>Research Impact & Applications</h2>
+      <h2>Why It Matters</h2>
       <p>
-        This research has significant implications for multiple fields, from basic molecular biology to 
-        clinical applications in cancer therapy and genome editing.
+        Cas9 enzymes leave breaks with different end structures, and how cells repair staggered versus blunt breaks
+        had not been systematically investigated. Knowing which repair factors each end type relies on could help
+        steer repair towards precise, template-directed outcomes in therapeutic genome editing. The candidate genes
+        from this analysis still need experimental validation.
       </p>
-      
-      <div class="impact-grid">
-        <div class="impact-card">
-          <h3>Genome Editing Optimization</h3>
-          <p>
-            Our findings provide crucial insights for designing more efficient CRISPR strategies by 
-            understanding how different Cas enzymes and guide RNA designs influence repair outcomes. 
-            This knowledge can be applied to improve knock-in efficiency and reduce unwanted mutations.
-          </p>
-        </div>
-        
-        <div class="impact-card">
-          <h3>Cancer Therapy Development</h3>
-          <p>
-            Understanding repair pathway dependencies offers new therapeutic targets for cancer treatment. 
-            By identifying factors specific to each repair pathway, we can develop strategies to sensitize 
-            cancer cells to DNA-damaging therapies.
-          </p>
-        </div>
-        
-        <div class="impact-card">
-          <h3>Biomarker Discovery</h3>
-          <p>
-            The repair factor signatures identified in this study serve as potential biomarkers for 
-            predicting cellular responses to DNA damage, which could guide personalized treatment 
-            strategies in precision medicine.
-          </p>
-        </div>
-        
-        <div class="impact-card">
-          <h3>Fundamental Biology</h3>
-          <p>
-            This work advances our understanding of how cells maintain genome integrity by revealing 
-            the complex decision-making processes that govern DNA repair pathway choice at the 
-            single-cell level.
-          </p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -312,16 +282,18 @@
     <div class="container">
       <h2>Collaborative Research</h2>
       <p>
-        This project represents a collaborative effort between computational and experimental biologists, 
-        combining cutting-edge single-cell technologies with advanced computational analyses.
+        This was a lab colleague's PhD study; I contributed the downstream single-cell analysis and, for another
+        chapter of her thesis, a ClinVar analysis.
       </p>
       
       <div class="collaboration-details">
-        <p><strong>Principal Investigator:</strong> Dr. Debojyoti Chakraborty, IGIB CSIR</p>
-        <p><strong>Experimental Work:</strong> Led by a colleague, who generated the scRNA-seq data</p>
-        <p><strong>Computational Analysis:</strong> Three-layer inference pipeline designed and built by Vishal Bharti</p>
-        <p><strong>Duration:</strong> 2023 - Present</p>
-        <p><strong>Status:</strong> Manuscript in preparation</p>
+        <p><strong>Principal Investigator:</strong> Dr. Debojyoti Chakraborty, CSIR-IGIB, New Delhi</p>
+        <p><strong>Study and Experiments:</strong> A lab colleague (PhD project; Chapter 3 of her thesis)</p>
+        <p><strong>Earlier Analysis:</strong> An earlier single-cell analysis of the data is also acknowledged in the thesis</p>
+        <p><strong>My Contribution:</strong> Downstream re-analysis, and the heat map and volcano plots credited in her thesis (Fig.&nbsp;3.8)</p>
+        <p><strong>ClinVar Analysis:</strong> Deletion analysis and its plots for another chapter of her thesis (Fig.&nbsp;5.2)</p>
+        <p><strong>Duration of My Part:</strong> Single-cell analysis October 2024 &ndash; January 2025; ClinVar analysis May&ndash;June 2024</p>
+        <p><strong>Status:</strong> A manuscript from Dr. Chakraborty's group using these data is in preparation</p>
       </div>
     </div>
   </section>
@@ -333,42 +305,16 @@
 
       <div class="research-question-teaser">
         <p>
-          <strong>The question this work led to:</strong> SpCas9 leaves blunt ends and FnCas9 a staggered overhang of
-          two to five bases, and that small difference changes which repair pathway a cell commits to. In our
-          single-cell data we recovered pathway-specific signatures and no death signature at all. The next question
-          sits one level above pathway choice: whether a cell repairs at all, or dies, and whether that decision is
-          made cell by cell or coordinated across neighbours.
+          <strong>The question this work led to:</strong> SpCas9 leaves predominantly blunt DNA ends, while
+          en1FnCas9, an engineered FnCas9 variant, leaves a staggered 5&prime; overhang of two to three bases, and the
+          lab has reported higher rates of homology-directed repair with FnCas9 and en1FnCas9. The question I want to
+          work on sits one level above pathway choice: after a Cas9 break in the genome, whether a cell repairs at
+          all, or dies, and whether that decision is made cell by cell or coordinated across neighbours. The
+          single-cell data I analysed cannot answer it: there the break was on a reporter plasmid cut before
+          transfection, quality control removed cells with high mitochondrial read fractions (the usual sign of dying
+          cells), and no cell-death analysis was run.
           <a href="../index.html#future-research">The repair-or-die decision &rarr;</a>
         </p>
-      </div>
-      
-      <div class="future-plans">
-        <div class="future-item">
-          <h3>Machine Learning Integration</h3>
-          <ul>
-            <li>Develop predictive models for repair pathway choice</li>
-            <li>Create algorithms to design optimal CRISPR strategies</li>
-            <li>Build tools for automated analysis of repair outcomes</li>
-          </ul>
-        </div>
-        
-        <div class="future-item">
-          <h3>Expanded Cell Type Analysis</h3>
-          <ul>
-            <li>Extend analysis to primary cells and tissues</li>
-            <li>Compare repair mechanisms across cell types</li>
-            <li>Investigate tissue-specific repair preferences</li>
-          </ul>
-        </div>
-        
-        <div class="future-item">
-          <h3>Clinical Translation</h3>
-          <ul>
-            <li>Validate findings in patient-derived samples</li>
-            <li>Develop diagnostic tools based on repair signatures</li>
-            <li>Design targeted therapies exploiting repair dependencies</li>
-          </ul>
-        </div>
       </div>
     </div>
   </section>
@@ -376,23 +322,8 @@
   <!-- ================= Publications ================= -->
   <section class="project-section alt-bg">
     <div class="container">
-      <h2>Related Publications</h2>
-      
-      <div class="publication-highlight">
-        <h3>Deciphering DNA Repair Factor Requirements in Staggered versus Blunt-End DNA Breaks through Multi-Layer Inference Analysis</h3>
-        <p class="authors"><strong>Bharti, V.</strong>, et al.</p>
-        <p class="journal">Manuscript in preparation</p>
-        <p class="abstract">
-          <strong>Summary:</strong> DNA double-strand breaks (DSBs) can occur with different end configurations, 
-          yet how these structural differences influence repair pathway choice remains poorly understood. Here, 
-          we present a comprehensive single-cell RNA sequencing analysis of cellular responses to staggered versus 
-          blunt-end DNA breaks induced by different CRISPR-Cas systems. Through our three-layer computational 
-          pipeline, we identified distinct molecular signatures associated with each break type, revealing 
-          previously uncharacterized repair factor dependencies. Our findings demonstrate that break geometry 
-          significantly influences the recruitment and activity of repair factors, with implications for 
-          genome editing applications and cancer therapy development.
-        </p>
-      </div>
+      <h2>Publication Status</h2>
+      <p>A manuscript from Dr. Chakraborty's group using these data is in preparation.</p>
     </div>
   </section>
 
@@ -406,7 +337,7 @@
       </p>
       <div class="contact-buttons">
         <a href="mailto:vishalvikashbharti@gmail.com?subject=DNA%20Repair%20Research%20Inquiry" class="btn">Email Me</a>
-        <a href="https://github.com/visvikbharti/" target="_blank" rel="noopener" class="btn alt">GitHub</a>
+        <a href="https://github.com/visvikbharti/" target="_blank" rel="noopener" class="btn alt">GitHub profile</a>
       </div>
     </div>
   </section>

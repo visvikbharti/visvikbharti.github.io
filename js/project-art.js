@@ -1,10 +1,10 @@
 /* ===== Project drawings in characters =====
-   Each .split__img[data-art] panel (and the About story's .journey__art) gets a small animated
-   scene drawn on a character grid, in the same language as the hero: grey glyphs, one green
-   accent. Scenes animate only while on screen (~20 fps) and are drawn once, still, under
-   reduced motion. */
+   Each .split__img[data-art] panel (the About story's .journey__art, and the subpage heroes'
+   .hero-art__frame) gets a small animated scene drawn on a character grid, in the same language
+   as the hero: grey glyphs, one green accent. Scenes animate only while on screen (~20 fps) and
+   are drawn once, still, under reduced motion. */
 (() => {
-  const panels = [...document.querySelectorAll('.split__img[data-art], .journey__art[data-art]')];
+  const panels = [...document.querySelectorAll('.split__img[data-art], .journey__art[data-art], .hero-art__frame[data-art]')];
   if (!panels.length) return;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -93,8 +93,11 @@
     // StickForStats: a histogram, the fitted curve in green, and assumption checks ticking off
     stats(g, t) {
       const { cols, rows } = g;
-      const base = Math.round(rows * 0.78), c0 = Math.round(cols * 0.1), c1 = Math.round(cols * 0.9);
-      const H = rows * 0.46, bins = 21, bw = (c1 - c0) / bins;
+      // A short panel (a subpage hero) stacks the checklist above the histogram, one row apart, so the
+      // curve never runs through the check names; tall panels keep the original layout
+      const compact = rows < 28, checksTop = compact ? 1 : Math.round(rows * 0.1), checkGap = compact ? 1 : 2;
+      const base = Math.round(rows * (compact ? 0.88 : 0.78)), c0 = Math.round(cols * 0.1), c1 = Math.round(cols * 0.9);
+      const H = compact ? Math.min(rows * 0.46, base - checksTop - 4 * checkGap - 2) : rows * 0.46, bins = 21, bw = (c1 - c0) / bins;
       for (let i = 0; i < bins; i++) {
         const z = -3 + 6 * (i + 0.5) / bins;
         const h = Math.max(1, Math.round(Math.exp(-z * z / 2) * H * (0.86 + 0.14 * Math.sin(t * 1.1 + i * 1.9)) + hash(i) * 2));
@@ -110,7 +113,7 @@
       const checks = ['normality', 'variance homogeneity', 'independence', 'outliers'];
       const shown = reduceMotion ? checks.length : Math.floor(t * 0.8) % (checks.length + 2);
       checks.forEach((name, i) => {
-        const r = Math.round(rows * 0.1) + i * 2, done = i < shown;
+        const r = checksTop + i * checkGap, done = i < shown;
         g.text(c0, r, '[ ]', 4); if (done) g.put(c0 + 1, r, 'x', 7, true);
         g.text(c0 + 4, r, name, done ? 6 : 4);
       });
@@ -123,9 +126,12 @@
       const nx = Math.floor((cols - 4) / (dw + gx)), ny = Math.floor((rows - 4) / (dh + gy));
       const ox = Math.round((cols - nx * (dw + gx) + gx) / 2), oy = Math.round((rows - ny * (dh + gy) + gy) / 2);
       const scan = reduceMotion ? rows : (t * 5) % (rows + 10);
+      // about 1 in 10 papers is checkable; a small wall still gets at least one, so it never shows none
+      let minId = 0;
+      for (let id = 1; id < nx * ny; id++) if (hash(id, 7) < hash(minId, 7)) minId = id;
       for (let j = 0; j < ny; j++) for (let i = 0; i < nx; i++) {
         const x = ox + i * (dw + gx), y = oy + j * (dh + gy), id = j * nx + i;
-        const checkable = hash(id, 7) < 0.1;
+        const checkable = hash(id, 7) < 0.1 || id === minId;
         const read = scan > y + dh, reading = scan >= y && scan <= y + dh;
         for (let l = 0; l < dh - 1; l++) {
           const len = Math.round(dw * (0.45 + 0.55 * hash(id, l)));
@@ -145,21 +151,22 @@
         const cy = rows * fy, A = rows * 0.085, L = cols * 0.34, mid = Math.round(cols / 2);
         g.text(Math.round(cols * 0.08), Math.round(cy - A - 3), label, 5);
         for (let c = Math.round(cols * 0.06); c < cols * 0.94; c++) {
-          const right = c >= mid;
-          const cc = c + (right ? gap : -gap);                          // the two halves pull apart
+          // the two halves pull apart, each strand at its own cut: for the staggered break the strands
+          // part 'over' bases apart, so each end keeps a single-stranded overhang
+          const cc = c + (c >= mid ? gap : -gap), cb = c + (c >= mid + over ? gap : -gap);
           const ph = TAU * c / L + t * 0.8;
           const s = Math.sin(ph), y1 = cy + A * s, y2 = cy - A * s;
           const base = pick('ATGC', c, k);
           // top strand is cut at mid; the bottom strand at mid (blunt) or mid + overhang (staggered)
           const topGap = c === mid - 1 || c === mid, botGap = c === mid + over - 1 || c === mid + over;
           if (!topGap) g.put(cc, y1, base, s > 0 ? 7 : 4);
-          if (!botGap) g.put(cc, y2, comp[base], s > 0 ? 4 : 7);
-          if (c % 2 === 0 && !topGap && !botGap) {
+          if (!botGap) g.put(cb, y2, comp[base], s > 0 ? 4 : 7);
+          if (c % 2 === 0 && !topGap && !botGap && cc === cb) {             // no base pairs across an overhang
             const lo = Math.min(y1, y2) + 1, hi = Math.max(y1, y2) - 1;
             for (let r = Math.round(lo); r <= Math.round(hi); r++) g.put(cc, r, ':', 2);
           }
           if (topGap && c === mid) g.put(cc, y1, '/', 7, true);
-          if (botGap && c === mid + over) g.put(cc, y2, '/', 7, true);
+          if (botGap && c === mid + over) g.put(cb, y2, '/', 7, true);
         }
       });
     },
@@ -191,7 +198,7 @@
       g.text(Math.round(cols * 0.1), Math.round(rows * 0.12), "5'", 4);
     },
 
-    // G-quadruplex: three stacked G-tetrads turning around a K+ ion
+    // G-quadruplex: three stacked G-tetrads turning, with a K+ ion between each pair of tetrads
     g4(g, t) {
       const { cols, rows } = g;
       const cx = cols * 0.5, rx = cols * 0.16, ry = rows * 0.07;
@@ -208,7 +215,7 @@
           for (let s = 0.12; s < 0.9; s += 0.08) g.put(a.x + (b.x - a.x) * s, a.y + (b.y - a.y) * s, '·', 5);
         }
         tet.forEach(p => g.put(p.x, p.y, 'G', p.front ? 7 : 5));
-        g.text(cx - 1, rows * levels[k], 'K+', 7, true);
+        if (k) g.text(cx - 1, rows * (levels[k - 1] + levels[k]) / 2, 'K+', 7, true);
       });
     },
 
@@ -216,7 +223,8 @@
     assembloid(g, t) {
       const { cols, rows } = g;
       const cy = rows * 0.5, R = Math.min(cols * 0.2, rows * 0.36);
-      const L = { x: cols * 0.36, y: cy }, Rt = { x: cols * 0.64, y: cy };
+      const off = Math.min(cols * 0.14, R * 0.85);                       // overlapping: the spheroids are fused
+      const L = { x: cols * 0.5 - off, y: cy }, Rt = { x: cols * 0.5 + off, y: cy };
       [L, Rt].forEach((s, k) => {
         for (let r = Math.round(s.y - R / 2) - 1; r <= s.y + R / 2 + 1; r++) {
           for (let c = Math.round(s.x - R) - 1; c <= s.x + R + 1; c++) {
@@ -356,6 +364,55 @@
     },
   };
   SCENES.fold.fromStart = true;                                         // a story: begin at the circuit
+  // (SCENES.pubs below is a story too: its entries start dropping when the drawing is first seen)
+
+  // Publications page: every entry on the page drops into its year column, in page order; peer-reviewed
+  // papers in green. The data are the page's own list (.publication-item, its data-year and its kind),
+  // so the drawing follows the list when an entry is added. Undated entries stand under 'n.d.'.
+  let PUBS;
+  const pubItems = () => PUBS || (PUBS = [...document.querySelectorAll('.publication-item')].map(el => ({
+    year: el.dataset.year || 'n.d.',
+    kind: el.classList.contains('peer-reviewed') ? 'peer' : el.classList.contains('conference') ? 'conf' : 'pre',
+  })));
+  SCENES.pubs = (g, t) => {
+    const { cols, rows } = g;
+    const items = pubItems();
+    if (!items.length) return;
+    const years = [...new Set(items.map(p => p.year))].sort((a, b) => (a === 'n.d.') - (b === 'n.d.') || a.localeCompare(b));
+    // legend: one row when it fits, two otherwise
+    const legend = [['==', 'peer-reviewed', true], ['::', 'preprint / ms', false], ['~~', 'conference', false]];
+    let lc = 2, lr = 1;
+    legend.forEach(([mark, name, green]) => {
+      if (lc + mark.length + name.length + 1 > cols - 1) { lc = 2; lr++; }
+      g.text(lc, lr, mark, 7, green); g.text(lc + mark.length + 1, lr, name, 5);
+      lc += mark.length + name.length + 4;
+    });
+    const axis = rows - 3, top = lr + 2;
+    const colW = Math.floor((cols - 4) / years.length), pw = Math.max(3, Math.min(colW - 2, 8));
+    const stack = years.map(y => items.filter(p => p.year === y).length);
+    const unit = Math.max(1, Math.min(3, Math.floor((axis - top) / Math.max(...stack))));
+    const ph = Math.min(unit, 2);
+    const x0 = j => 2 + j * colW + Math.floor((colW - pw) / 2);
+    for (let c = 2; c < 2 + colW * years.length; c++) g.put(c, axis, '_', 4);
+    years.forEach((y, j) => g.text(x0(j) + Math.floor((pw - y.length) / 2), axis + 1, y, 6));
+    // one entry every 0.45 s, a 0.35 s drop, then the full picture holds before it starts over
+    const STEP = 0.45, DROP = 0.35, cycle = 0.6 + items.length * STEP + 4.5;
+    const T = reduceMotion ? cycle : t % cycle;
+    const seen = years.map(() => 0);
+    items.forEach((p, i) => {
+      const j = years.indexOf(p.year), k = seen[j]++;
+      const t0 = 0.6 + i * STEP;
+      if (T < t0) return;
+      const rEnd = axis - (k + 1) * unit + (unit - ph);
+      const r = Math.round(top + (rEnd - top) * ease((T - t0) / DROP));
+      const x = x0(j), fresh = T - t0 < DROP + 0.4;
+      const titleCh = p.kind === 'conf' ? '~' : p.kind === 'pre' ? ':' : '=';
+      for (let c = 0; c < pw; c++) g.put(x + c, r, titleCh, p.kind === 'pre' ? 7 : 6, p.kind === 'peer');
+      if (ph > 1) for (let c = 0; c < pw - 2; c++) g.put(x + c, r + 1, '-', fresh ? 6 : 4);
+    });
+  };
+
+  SCENES.pubs.fromStart = true;
 
   /* ---------- rendering ---------- */
   function setup(panel) {
@@ -365,7 +422,7 @@
     canvas.setAttribute('aria-hidden', 'true');
     panel.appendChild(canvas);
     const ctx = canvas.getContext('2d');
-    let grid, cw = 7.2, W = 0, H = 0, raf = 0, running = false, last = 0;
+    let grid, cw = 7.2, W = 0, H = 0, raf = 0, running = false, last = 0, font = FONT, line = LINE, held = false;
     // Scenes start at a random phase. A 'fromStart' scene tells a story, so it starts at 0 when first
     // seen and pauses, rather than skipping ahead, while off screen.
     let t0 = performance.now() - (scene.fromStart ? 0 : hash(panels.indexOf(panel)) * 20000), paused = t0;
@@ -377,9 +434,9 @@
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = W * dpr; canvas.height = H * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.font = FONT;
+      ctx.font = font;
       cw = ctx.measureText('M').width || 7.2;
-      grid = new Grid(Math.ceil(W / cw), Math.ceil(H / LINE));
+      grid = new Grid(Math.ceil(W / cw), Math.ceil(H / line));
       grid.cw = cw;
       return true;
     };
@@ -389,12 +446,12 @@
       scene(grid, t);
       ctx.fillStyle = '#000';
       ctx.fillRect(0, 0, W, H);
-      ctx.font = FONT;
+      ctx.font = font;
       ctx.textBaseline = 'top';
       const buckets = GREYS.map(() => []), accents = [];
       for (let k = 0; k < grid.ch.length; k++) {
         if (!grid.ch[k]) continue;
-        const x = (k % grid.cols) * cw, y = Math.floor(k / grid.cols) * LINE;
+        const x = (k % grid.cols) * cw, y = Math.floor(k / grid.cols) * line;
         (grid.ac[k] ? accents : buckets[Math.max(0, grid.lv[k])]).push(x, y, grid.ch[k]);
       }
       buckets.forEach((b, i) => { ctx.fillStyle = GREYS[i]; for (let j = 0; j < b.length; j += 3) ctx.fillText(b[j + 2], b[j], b[j + 1]); });
@@ -408,7 +465,7 @@
       draw((now - t0) / 1000);
     };
     const start = () => {
-      if (running || reduceMotion) return;
+      if (running || reduceMotion || held) return;
       if (scene.fromStart) t0 += performance.now() - paused;
       running = true; raf = requestAnimationFrame(frame);
     };
@@ -416,13 +473,36 @@
 
     size();
     draw(reduceMotion ? 6 : clock());
+    panel.setPaused = p => { held = p; if (p) stop(); else if (onScreen && !document.hidden) start(); };
     let onScreen = false;
     new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; onScreen && !document.hidden ? start() : stop(); }).observe(panel);
     document.addEventListener('visibilitychange', () => (document.hidden || !onScreen ? stop() : start()));
+    // Re-measure when the panel itself changes size (a window resize, or the layout around it settling,
+    // e.g. the Pause button below a hero drawing), not only on window resize
     let rt;
-    window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { grid = null; draw(reduceMotion ? 6 : clock()); }, 200); });
+    const resized = () => { clearTimeout(rt); rt = setTimeout(() => { grid = null; draw(reduceMotion ? 6 : clock()); }, 150); };
+    if ('ResizeObserver' in window) new ResizeObserver(resized).observe(panel);
+    else window.addEventListener('resize', resized);
   }
 
   const ready = document.fonts && document.fonts.load ? document.fonts.load(FONT) : Promise.resolve();
-  Promise.race([ready, new Promise(r => setTimeout(r, 1500))]).then(() => panels.forEach(setup), () => panels.forEach(setup));
+  // Subpage heroes: a Pause button under each drawing, which keeps moving beside the page's opening text
+  // (no button under reduced motion, where the drawing is a still frame)
+  const addPauseButtons = () => {
+    if (reduceMotion) return;
+    document.querySelectorAll('.hero-art').forEach(fig => {
+      const frame = fig.querySelector('.hero-art__frame');
+      if (!frame) return;
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'hero-art__toggle'; b.textContent = 'Pause animation';
+      b.addEventListener('click', () => {
+        const pause = b.textContent === 'Pause animation';
+        if (frame.setPaused) frame.setPaused(pause);
+        b.textContent = pause ? 'Play animation' : 'Pause animation';
+      });
+      fig.appendChild(b);
+    });
+  };
+  const mount = () => { addPauseButtons(); panels.forEach(setup); };   // buttons first: the frames are measured in their final layout
+  Promise.race([ready, new Promise(r => setTimeout(r, 1500))]).then(mount, mount);
 })();

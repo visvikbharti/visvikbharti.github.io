@@ -25,6 +25,43 @@ document.addEventListener('DOMContentLoaded', () => {
       tick();
     });
 
+    /* Subpages: content eases in as it reaches the viewport.
+       Plain IntersectionObserver: these pages load no GSAP (the GSAP block below returns early there).
+       Without JS, or under reduced motion, everything is simply shown. */
+    if (!reduceMotion && 'IntersectionObserver' in window) {
+      const CARDS = '.feature-card, .finding-card, .impact-card, .module-card, .use-case-card, .approach-step, ' +
+        '.direction-item, .future-item, .background-item, .timeline-item, .audience-card, .capability-card, ' +
+        '.involvement-card, .demo-item, .ux-item, .publication-item, .presentation-item';
+      const targets = [];
+      document.querySelectorAll('.project-section .container, .research-section .container, .publications-section .container')
+        .forEach(box => [...box.children].forEach(el => {
+          const cards = el.matches(CARDS) ? [] : el.querySelectorAll(CARDS);
+          cards.length ? targets.push(...cards) : targets.push(el);
+        }));
+      targets.push(...document.querySelectorAll('.hero-split__copy .tech-tag, .hero-split__copy .btn, .hero-art'));
+      // Elements that arrive together cascade, top to bottom; one that scrolls in alone appears at once
+      const byPosition = (a, b) => a.boundingClientRect.top - b.boundingClientRect.top || a.boundingClientRect.left - b.boundingClientRect.left;
+      const io = new IntersectionObserver(entries => {
+        entries.filter(e => e.isIntersecting).sort(byPosition).forEach((e, i) => {
+          const el = e.target;
+          io.unobserve(el);
+          el.style.setProperty('--reveal-delay', `${Math.min(i, 8) * 60}ms`);
+          el.classList.add('is-in');
+          setTimeout(() => { el.classList.remove('io-reveal', 'is-in'); el.style.removeProperty('--reveal-delay'); }, 1300 + Math.min(i, 8) * 60);
+        });
+      }, { rootMargin: '0px 0px -6% 0px' });
+      // Never hide what a visitor has already seen: once the page has painted, blocks already on screen stay
+      const painted = !!(performance.getEntriesByType && performance.getEntriesByType('paint').length);
+      const onScreen = el => painted && el.getBoundingClientRect().top < innerHeight;
+      targets.forEach(el => { if (onScreen(el)) return; el.classList.add('io-reveal'); io.observe(el); });
+      // Tabbing into a block that has not arrived yet shows it at once
+      document.addEventListener('focusin', e => {
+        const el = e.target.closest && e.target.closest('.io-reveal');
+        if (!el) return;
+        io.unobserve(el); el.classList.remove('io-reveal', 'is-in'); el.style.removeProperty('--reveal-delay');
+      });
+    }
+
     /* HUD clock: New Delhi and UTC */
     const ist = document.getElementById('hud-ist'), utc = document.getElementById('hud-utc');
     if (ist && utc) {

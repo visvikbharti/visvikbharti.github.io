@@ -41,6 +41,61 @@
 /* the hero already draws the rule above the first section */
 .research-hero + .research-section { border-top: 0; }
 
+/* ----- Research stage: the research areas, drawn live across the full width (js/project-art.js) ----- */
+.research-hero--stage { padding-top: calc(64px + clamp(2.5rem, 5vw, 4.5rem)); padding-bottom: clamp(2rem, 4vw, 3rem); border-bottom: 0; }
+/* wide screens: the title and the description side by side, so the stage starts higher */
+@media (min-width: 960px) {
+  .research-hero--stage .container { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: 1rem 4rem; align-items: end; }
+  .research-hero--stage .research-title { margin-bottom: 0; }
+  .research-hero--stage .research-description { font-size: 1.0625rem; }
+}
+.research-stage { background: var(--bg); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.research-stage__art { position: relative; height: clamp(300px, 48vh, 560px); background: var(--bg); }
+.research-stage__art canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.research-stage__bar {
+  display: grid; gap: 1.5rem 3rem;
+  padding-top: clamp(1.5rem, 3vw, 2.25rem); padding-bottom: clamp(1.75rem, 3vw, 2.5rem);
+}
+@media (min-width: 960px) { .research-stage__bar { grid-template-columns: minmax(0, 1fr) auto; align-items: end; } }
+.research-stage__slides { min-width: 0; }
+.stage-slide:not(.is-active) { display: none; }
+.stage-slide__kicker {
+  margin: 0 0 .6rem; font-family: var(--font-mono); font-size: .75rem;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--accent);
+}
+.stage-slide__title { margin: 0 0 .55rem; font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.4rem); letter-spacing: -.03em; color: var(--fg); }
+.stage-slide__text { max-width: 64ch; margin: 0 0 .9rem; font-size: 1.0625rem; line-height: 1.6; color: var(--fg-muted); }
+.stage-slide__link { font-family: var(--font-mono); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; }
+.research-stage__controls { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+.stage-btn {
+  min-width: 44px; height: 44px; padding: 0 .9rem;
+  border: 1px solid var(--line-strong); background: var(--bg); color: var(--fg);
+  font-family: var(--font-mono); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+}
+.stage-btn:hover, .stage-btn:focus-visible { border-color: var(--fg); }
+.stage-dots { display: flex; gap: 6px; margin: 0 .35rem; }
+.stage-dot { display: flex; align-items: center; width: 30px; height: 44px; padding: 0; border: 0; background: none; cursor: pointer; }
+.stage-dot span { position: relative; display: block; width: 100%; height: 3px; overflow: hidden; background: var(--line-strong); }
+.stage-dot span::after {
+  content: ''; position: absolute; inset: 0; background: var(--accent);
+  transform: scaleX(0); transform-origin: left center;
+}
+/* the active marker fills over 5 s; when it is full, js/research-stage.js moves to the next area */
+.stage-dot.is-active span::after { animation: stage-fill 5s linear forwards; }
+.research-stage.is-paused .stage-dot.is-active span::after { animation-play-state: paused; }
+.stage-dot:hover span, .stage-dot:focus-visible span { background: var(--fg-dim); }
+@keyframes stage-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .stage-dot.is-active span::after { animation: none; transform: scaleX(1); }
+}
+.research-stage + .research-section { border-top: 0; }
+
+/* Publications: a pointer to the full list on publications.html */
+.pubs-pointer { max-width: 64ch; margin: 0 0 2rem; font-size: 1.0625rem; line-height: 1.65; color: var(--fg-muted); }
+.selected-pubs { margin: 0 0 2.25rem; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.selected-pubs li { padding: 1rem 0; border-bottom: 1px solid var(--line); line-height: 1.6; color: var(--fg-muted); }
+.selected-pubs strong { color: var(--fg); font-weight: var(--fw-medium, 500); }
+
 .research-section h2 {
   margin-bottom: .9em;
   font-size: var(--fs-lg);

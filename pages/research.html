@@ -21,12 +21,12 @@
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/research.css" />
 
-  <!-- GSAP + ScrollTrigger -->
-  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
 
   <!-- Portfolio logic -->
   <script defer src="../js/main.js"></script>
+  <script defer src="../js/point-art.js"></script>
+  <!-- Without JS the research areas are a plain list -->
+  <noscript><style>.stage-slide:not(.is-active){display:block}.research-stage__controls,.research-stage__art{display:none}</style></noscript>
 </head>
 
 <body class="research-page">
@@ -48,9 +48,9 @@
   <main id="main">
 
   <!-- ================= Research Hero ================= -->
-  <section class="research-hero">
+  <section class="research-hero research-hero--stage">
     <div class="container">
-      <h1 class="research-title">Research & Publications</h1>
+      <h1 class="research-title"><span class="sr-only">Research</span><span aria-hidden="true" class="scramble" data-text="Research">Research</span></h1>
       <p class="research-description">
         The thread through my work is whether a biological conclusion actually follows from the data that
         produced it. What I want to find out next is the repair-or-die decision: after a Cas9 break, whether a
@@ -58,6 +58,64 @@
         commitment, and whether the decision is made cell by cell or coordinated across neighbours
         (<a href="../index.html#future-research">more</a>).
       </p>
+    </div>
+  </section>
+
+  <!-- ================= Research areas, drawn live (js/project-art.js) ================= -->
+  <section class="research-stage" aria-roledescription="carousel" aria-label="Research areas">
+    <div class="research-stage__art" aria-hidden="true"></div>
+    <div class="container research-stage__bar">
+      <div class="research-stage__slides" aria-live="off">
+        <article class="stage-slide is-active" data-scene="triplex" aria-roledescription="slide" aria-label="1 of 6">
+          <p class="stage-slide__kicker">01 / 06 &middot; RNA structure</p>
+          <h2 class="stage-slide__title">RNA triple helices</h2>
+          <p class="stage-slide__text">TRIPinRNA searches the human transcriptome for sequences that can fold back into intramolecular RNA triple helices. Co-developed, co-first author (<em>Biochemistry</em>, 2025).</p>
+          <a class="stage-slide__link" href="tripinrna.html">TRIPinRNA &rarr;</a>
+        </article>
+        <article class="stage-slide" data-scene="g4" aria-roledescription="slide" aria-label="2 of 6">
+          <p class="stage-slide__kicker">02 / 06 &middot; RNA structure</p>
+          <h2 class="stage-slide__title">G-quadruplexes in gene regulation</h2>
+          <p class="stage-slide__text">Computational and proteomics analysis of how IGF2BP1 regulates CCN1 expression by binding a G-quadruplex in its 3&prime; UTR (<em>Biochemistry</em>, 2024).</p>
+          <a class="stage-slide__link" href="g-quadruplex-ccn1.html">G-quadruplexes in CCN1 &rarr;</a>
+        </article>
+        <article class="stage-slide" data-scene="sort" aria-roledescription="slide" aria-label="3 of 6">
+          <p class="stage-slide__kicker">03 / 06 &middot; Genome engineering</p>
+          <h2 class="stage-slide__title">DNA repair after Cas9 breaks</h2>
+          <p class="stage-slide__text">Single-cell RNA-seq analysis for a colleague&rsquo;s CRISPRi study of how cells repair staggered (en1FnCas9) versus blunt (SpCas9) DNA ends.</p>
+          <a class="stage-slide__link" href="dna-repair.html">DNA repair analysis &rarr;</a>
+        </article>
+        <article class="stage-slide" data-scene="assembloid" aria-roledescription="slide" aria-label="4 of 6">
+          <p class="stage-slide__kicker">04 / 06 &middot; Neurodevelopment</p>
+          <h2 class="stage-slide__title">Human forebrain assembloids</h2>
+          <p class="stage-slide__text">RNA-seq analyses of human forebrain assembloids for the study of interneuron-migration disorders (preprint, under revision at <em>Stem Cell Reports</em>).</p>
+          <a class="stage-slide__link" href="forebrain-assembloids.html">Forebrain assembloids &rarr;</a>
+        </article>
+        <article class="stage-slide" data-scene="checks" aria-roledescription="slide" aria-label="5 of 6">
+          <p class="stage-slide__kicker">05 / 06 &middot; Statistical methods</p>
+          <h2 class="stage-slide__title">Assumption checks before the test</h2>
+          <p class="stage-slide__text">StickForStats runs eight assumption validators before a test executes, and reroutes to a nonparametric alternative when a critical one fails (<em>bioRxiv</em>, 2026; in review at <em>BMC Bioinformatics</em>).</p>
+          <a class="stage-slide__link" href="stickforstats.html">StickForStats &rarr;</a>
+        </article>
+        <article class="stage-slide" data-scene="audit" aria-roledescription="slide" aria-label="6 of 6">
+          <p class="stage-slide__kicker">06 / 06 &middot; Reproducibility</p>
+          <h2 class="stage-slide__title">Can published statistics be checked?</h2>
+          <p class="stage-slide__text">A pre-registered audit of whether the p-values printed in biomedical articles can be recomputed from the reported test statistics and degrees of freedom (in preparation).</p>
+          <a class="stage-slide__link" href="publications.html">In Publications &rarr;</a>
+        </article>
+      </div>
+      <div class="research-stage__controls">
+        <button type="button" class="stage-btn" data-stage="prev" aria-label="Previous research area">&larr;</button>
+        <div class="stage-dots">
+          <button type="button" class="stage-dot" aria-label="Slide 1: RNA triple helices"><span></span></button>
+          <button type="button" class="stage-dot" aria-label="Slide 2: G-quadruplexes in gene regulation"><span></span></button>
+          <button type="button" class="stage-dot" aria-label="Slide 3: DNA repair after Cas9 breaks"><span></span></button>
+          <button type="button" class="stage-dot" aria-label="Slide 4: Human forebrain assembloids"><span></span></button>
+          <button type="button" class="stage-dot" aria-label="Slide 5: Assumption checks before the test"><span></span></button>
+          <button type="button" class="stage-dot" aria-label="Slide 6: Can published statistics be checked?"><span></span></button>
+        </div>
+        <button type="button" class="stage-btn" data-stage="next" aria-label="Next research area">&rarr;</button>
+        <button type="button" class="stage-btn stage-btn--pause" data-stage="pause">Pause</button>
+      </div>
     </div>
   </section>
 
@@ -86,108 +144,20 @@
     </div>
   </section>
 
-  <!-- ================= Publications ================= -->
+  <!-- ================= Publications (the full list is on publications.html) ================= -->
   <section class="research-section alt-bg">
     <div class="container">
       <h2>Publications</h2>
-      
-      <h3 class="pub-group-title">Peer-reviewed</h3>
-      <div class="publications-list">
-        <div class="publication-item">
-          <span class="pub-number">1.</span>
-          <div class="pub-content">
-            <p class="pub-citation">Rakheja I.*, <strong>Bharti V.</strong>*, et al. (2025). Development of an in silico platform (TRIPinRNA) for the identification of novel RNA intramolecular triple helices and their validation using biophysical techniques. <em>Biochemistry</em> (ACS) 64(1):250-265. *Equal contribution. DOI: <a href="https://doi.org/10.1021/acs.biochem.4c00334" target="_blank" rel="noopener">10.1021/acs.biochem.4c00334</a></p>
-          </div>
-        </div>
-
-        <div class="publication-item">
-          <span class="pub-number">2.</span>
-          <div class="pub-content">
-            <p class="pub-citation">Sharma S., <strong>Bharti V.</strong>, et al. (2026). MLC1 alteration in human iPSCs give rise to disease-like cellular vacuolation phenotype in the astrocyte lineage. <em>Orphanet Journal of Rare Diseases</em> 21:176. DOI: <a href="https://doi.org/10.1186/s13023-026-04316-3" target="_blank" rel="noopener">10.1186/s13023-026-04316-3</a></p>
-          </div>
-        </div>
-
-        <div class="publication-item">
-          <span class="pub-number">3.</span>
-          <div class="pub-content">
-            <p class="pub-citation">Rakheja I., <strong>Bharti V.</strong>, Singh V., Maiti S. (2026). Quercetin affects carcinogenic phenotype of breast and lung cancer cells differentially through sterol regulation mediated by MALAT1 perturbation. <em>Chemistry - An Asian Journal</em> 21(11):e70821. DOI: <a href="https://doi.org/10.1002/asia.70821" target="_blank" rel="noopener">10.1002/asia.70821</a></p>
-          </div>
-        </div>
-
-        <div class="publication-item">
-          <span class="pub-number">4.</span>
-          <div class="pub-content">
-            <p class="pub-citation">Das P.K., Aich M., Adu P., <strong>Bharti V.</strong>, Maiti S., Chakraborty D. (2026). CRISPR-Cas diagnostics (CRISPR-Dx) of viral pathogens in low- and limited-resource areas. <em>TrAC Trends in Analytical Chemistry</em> 195:118590. DOI: <a href="https://doi.org/10.1016/j.trac.2025.118590" target="_blank" rel="noopener">10.1016/j.trac.2025.118590</a></p>
-          </div>
-        </div>
-
-        <div class="publication-item">
-          <span class="pub-number">5.</span>
-          <div class="pub-content">
-            <p class="pub-citation">Rana P., Ujjainiya R., <strong>Bharti V.</strong>, Maiti S., Ekka M.K. (2024). IGF2BP1-mediated regulation of CCN1 expression by specific binding to a G-quadruplex structure in its 3' UTR. <em>Biochemistry</em> (ACS) 63(17):2166-2182. DOI: <a href="https://doi.org/10.1021/acs.biochem.4c00172" target="_blank" rel="noopener">10.1021/acs.biochem.4c00172</a></p>
-          </div>
-        </div>
-      </div>
-
-      <h3 class="pub-group-title">Preprints and manuscripts</h3>
-      <div class="publications-list">
-        <div class="publication-item">
-          <span class="pub-number">6.</span>
-          <div class="pub-content">
-            <p class="pub-citation"><strong>Bharti V.</strong>, Chakraborty D. (2026). StickForStats: automated statistical assumption validation for reproducible computational biology. <em>bioRxiv</em>. DOI: <a href="https://doi.org/10.64898/2026.06.15.732278" target="_blank" rel="noopener">10.64898/2026.06.15.732278</a>. First and corresponding author; <span class="pub-status">in peer review at <em>BMC Bioinformatics</em></span>.</p>
-          </div>
-        </div>
-
-        <div class="publication-item">
-          <span class="pub-number">7.</span>
-          <div class="pub-content">
-            <p class="pub-citation"><strong>Bharti V.</strong>, Chakraborty D. (2026). Most biomedical articles print no statistical result checkable by recomputation: a pre-registered audit with a 20,000-article out-of-sample replication. First and corresponding author; <span class="pub-status">in preparation for submission to <em>Nature Human Behaviour</em></span>.</p>
-          </div>
-        </div>
-
-        <div class="publication-item">
-          <span class="pub-number">8.</span>
-          <div class="pub-content">
-            <p class="pub-citation">Rauthan R., <strong>Bharti V.</strong>, et al. An interface of genetically engineered human forebrain assembloids and polymeric nanofiber scaffolds for multiscale profiling of interneuron-migration disorders. <em>Research Square</em> preprint, <span class="pub-status">under revision at <em>Stem Cell Reports</em></span>. DOI: <a href="https://doi.org/10.21203/rs.3.rs-3831019/v1" target="_blank" rel="noopener">10.21203/rs.3.rs-3831019/v1</a></p>
-          </div>
-        </div>
-
-        <div class="publication-item">
-          <span class="pub-number">9.</span>
-          <div class="pub-content">
-            <p class="pub-citation">Kochar M., Rao S., Bhattacharjee S., Goel P., Timsina H., Azhar M.K., <strong>Bharti V.</strong>, et al. Folding on the way in: vectorial substrate recognition by human Hsp60. <span class="pub-status">Submitted to <em>Cell</em>, 2026</span>.</p>
-          </div>
-        </div>
-
-        <div class="publication-item">
-          <span class="pub-number">10.</span>
-          <div class="pub-content">
-            <p class="pub-citation">Azam T., Kumar A., Singh P., <strong>Bharti V.</strong>, Ekka M.K. Structural and functional analysis of the Chast-NUCB1 interaction in cardiac hypertrophy. <span class="pub-status">Submitted to the <em>Journal of Biological Chemistry</em>, 2026</span>.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="center mt-2">
-        <a href="publications.html" class="btn alt">Full list with citations</a>
-      </div>
-      
-      <div class="presentations">
-        <h3>Conference Presentations</h3>
-        <div class="presentation-item">
-          <h4>StickForStats: Publish Research with Confidence</h4>
-          <p class="presentation-details">
-            <strong>Vishal Bharti</strong>, Debojyoti Chakraborty<br>
-            Poster presentation at the EMBO Conference 2025, CCMB Hyderabad. <strong>Best Poster Award.</strong> First author and presenter. <a href="../assets/posters/StickForStats_EMBO-CCMB-2025_poster.pdf" target="_blank" rel="noopener">View the poster (PDF, 2.4 MB)</a>
-          </p>
-        </div>
-        <div class="presentation-item">
-          <h4>Boundary Without Fence</h4>
-          <p class="presentation-details">
-            <strong>Vishal Bharti</strong>, Debojyoti Chakraborty<br>
-            Poster presentation at the international conference "Frontiers in Genome Engineering 2023," BITS Pilani Goa Campus.
-          </p>
-        </div>
-      </div>
+      <p class="pubs-pointer">
+        The full list, with summaries, citations and the conference posters, is on the Publications page.
+      </p>
+      <h3 class="pub-group-title">Selected</h3>
+      <ul class="selected-pubs">
+        <li><strong>TRIPinRNA</strong>: an in silico platform for the identification of RNA intramolecular triple helices. <em>Biochemistry</em> (ACS), 2025. Co-first author.</li>
+        <li><strong>StickForStats</strong>: automated statistical assumption validation for reproducible computational biology. <em>bioRxiv</em>, 2026; in peer review at <em>BMC Bioinformatics</em>. First and corresponding author.</li>
+        <li><strong>Checkability audit</strong>: most biomedical articles print no statistical result checkable by recomputation. In preparation. First and corresponding author.</li>
+      </ul>
+      <a href="publications.html" class="btn alt">All publications &rarr;</a>
     </div>
   </section>
 

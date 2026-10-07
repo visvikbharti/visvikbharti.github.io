@@ -30,41 +30,12 @@
   color: var(--fg-muted);
 }
 
-/* Counts as bordered cells, like the stats strip on the home page */
-.publication-stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
-  max-width: 960px;
-  border-top: 1px solid var(--line);
-  border-left: 1px solid var(--line);
-  font-family: var(--font-mono);
-}
+@media (max-width: 959px) { .publications-hero .hero-split .publications-description { margin-bottom: 0; } }
 
-.stat-item {
-  padding: 1.5rem 1.5rem 1.4rem;
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  text-align: left;
-}
-
-.stat-number {
-  display: block;
-  margin-bottom: .6rem;
-  font-size: var(--fs-lg);
-  font-weight: var(--fw-regular);
-  line-height: 1;
-  letter-spacing: -.04em;
-  color: var(--fg);
-}
-
-.stat-label {
-  display: block;
-  font-size: .6875rem;
-  line-height: 1.5;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--fg-dim);
-}
+/* Filtering: the entries that stay cascade back in (the inline script adds .pub-in) */
+@keyframes pub-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.publication-item.pub-in { animation: pub-in .45s cubic-bezier(.2, .7, .2, 1) both; animation-delay: var(--pub-delay, 0ms); }
+@media (prefers-reduced-motion: reduce) { .publication-item.pub-in { animation: none; } }
 
 /* ----- Filters ----- */
 .filter-section {
@@ -382,49 +353,7 @@
   overflow-wrap: anywhere;
 }
 
-/* ----- Open access + profiles ----- */
-.metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
-  gap: 0;
-  max-width: 48rem;
-  margin: 0 0 3rem;
-  border-top: 1px solid var(--line);
-  border-left: 1px solid var(--line);
-}
-
-.metric-card {
-  padding: 1.75rem;
-  background: transparent;
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  border-radius: 0;
-  text-align: left;
-}
-
-.metric-card:hover { transform: none; }
-
-.metric-icon {
-  margin-bottom: 1.25rem;
-  font-size: 1.1rem;
-  line-height: 1;
-  color: var(--accent);
-}
-
-.metric-card h3 {
-  margin-bottom: .5rem;
-  font-size: .9375rem;
-  letter-spacing: -.01em;
-  color: var(--fg);
-}
-
-.metric-card p {
-  margin-bottom: 0;
-  font-size: .9375rem;
-  line-height: 1.6;
-  color: var(--fg-muted);
-}
-
+/* ----- Academic profiles ----- */
 .profiles-section {
   max-width: none;
   margin: 0;

@@ -21,12 +21,12 @@
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/publications.css" />
 
-  <!-- GSAP + ScrollTrigger -->
-  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
 
   <!-- Portfolio logic -->
   <script defer src="../js/main.js"></script>
+  <script defer src="../js/project-art.js"></script>
+  <!-- Without JS there is no drawing: the copy takes the full width -->
+  <noscript><style>.hero-art{display:none}.hero-split{grid-template-columns:minmax(0,1fr)}</style></noscript>
 </head>
 
 <body class="publications-page">
@@ -49,26 +49,18 @@
 
   <!-- ================= Publications Hero ================= -->
   <section class="publications-hero">
-    <div class="container">
-      <h1 class="publications-title">Publications</h1>
-      <p class="publications-description">
-        My research contributions to the field of bioinformatics and computational biology, 
-        featuring peer-reviewed articles, preprints, and manuscripts in review or in preparation.
-      </p>
-      <div class="publication-stats">
-        <div class="stat-item">
-          <span class="stat-number">5</span>
-          <span class="stat-label">Peer-Reviewed Articles</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">5</span>
-          <span class="stat-label">Preprints &amp; Manuscripts</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">2</span>
-          <span class="stat-label">Conference Presentations</span>
-        </div>
+    <div class="container hero-split">
+      <div class="hero-split__copy">
+        <h1 class="publications-title"><span class="sr-only">Publications</span><span aria-hidden="true" class="scramble" data-text="Publications">Publications</span></h1>
+        <p class="publications-description">
+          My research contributions to the field of bioinformatics and computational biology, 
+          featuring peer-reviewed articles, preprints, and manuscripts in review or in preparation.
+        </p>
       </div>
+      <figure class="hero-art">
+        <div class="hero-art__frame" data-art="pubs" aria-hidden="true"></div>
+        <figcaption>Each entry on this page, dropping into its year; peer-reviewed in green</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -186,11 +178,11 @@
             <h4>Summary</h4>
             <p>
               This study investigates the cellular and molecular mechanisms underlying Megalencephalic
-              Leukoencephalopathy with subcortical Cysts (MLC) using patient-derived iPSCs. I led the
-              RNA-seq analysis and a computational approach to detect the 132dupC MLC1
-              mutation. Our findings reveal how MLC1 mutations lead to astrocyte dysfunction and 
-              characteristic vacuolation phenotypes, providing insights into the pathogenesis of this
-              rare neurological disorder.
+              Leukoencephalopathy with subcortical Cysts (MLC) using patient-derived iPSCs. I did all of
+              the study&rsquo;s computational work and image analysis, including the RNA-seq analysis and a
+              computational approach to detect the 132dupC MLC1 mutation. The
+              study shows that MLC1 alteration in human iPSCs gives rise to a disease-like cellular
+              vacuolation phenotype in the astrocyte lineage.
             </p>
           </div>
           
@@ -452,8 +444,8 @@
         </div>
       </div>
       
-      <div class="publication-item preprint">
-        <div class="pub-year" aria-hidden="true"></div>
+      <div class="publication-item preprint" data-year="2024">
+        <div class="pub-year">2024</div>
         <div class="pub-content">
           <h3>An interface of genetically engineered human forebrain assembloids and polymeric nanofiber scaffolds for multiscale profiling of interneuron-migration disorders</h3>
           
@@ -615,7 +607,7 @@
       <div class="publication-item conference" data-year="2023">
         <div class="pub-year">2023</div>
         <div class="pub-content">
-          <h3>Boundary Without Fence</h3>
+          <h3>Boundary Without Fence: Could Synthetic Organelles Unlock the Next Level of CRISPR Precision?</h3>
           
           <div class="authors">
             <span class="author me">Vishal Bharti</span>,
@@ -631,15 +623,21 @@
           <div class="abstract">
             <h4>Summary</h4>
             <p>
-              This poster presented our work on understanding how chromatin boundaries are established 
-              and maintained without physical barriers. Using computational approaches to analyze CTCF 
-              binding sites and chromatin accessibility data, we demonstrated how dynamic interactions 
-              between architectural proteins create functional boundaries in the genome. The work has 
-              implications for understanding gene regulation and chromatin organization in health and disease.
+              A concept poster on liquid&ndash;liquid phase separation in membraneless condensates: how
+              condensates behave (droplets fuse and recover after photobleaching), how they form through
+              protein&ndash;protein, protein&ndash;RNA and RNA&ndash;RNA interactions (with the Flory&ndash;Huggins
+              interaction parameter), and why they matter as reaction crucibles and for sequestering molecules.
+              It then asks whether synthetic organelles, engineered condensates such as the light-inducible
+              CasDrop droplets, could carry CRISPR to its target with more precision than viral vectors
+              (adeno-associated virus, lentivirus, adenovirus), which can induce immune reactions. The figures
+              are adapted from the cited studies.
             </p>
           </div>
           
           <div class="publication-actions">
+            <a href="../assets/posters/Boundary-Without-Fence_FGE-2023_poster.pdf" target="_blank" rel="noopener" class="pub-btn primary">
+              <i class="fas fa-file-pdf"></i> Poster (PDF)
+            </a>
             <button class="pub-btn secondary cite-btn" data-pub="conference">
               <i class="fas fa-quote-right"></i> Cite
             </button>
@@ -656,7 +654,7 @@
                 <option value="bibtex">BibTeX</option>
               </select>
             </div>
-            <div class="citation-text" id="citation-text-conference">Bharti, V., & Chakraborty, D. (2023). Boundary Without Fence. Poster presented at the International Conference: Frontiers in Genome Engineering 2023, BITS Pilani Goa Campus.</div>
+            <div class="citation-text" id="citation-text-conference">Bharti, V., &amp; Chakraborty, D. (2023). Boundary Without Fence: Could Synthetic Organelles Unlock the Next Level of CRISPR Precision? Poster presented at the International Conference: Frontiers in Genome Engineering 2023, BITS Pilani Goa Campus.</div>
             <button class="copy-citation" data-target="citation-text-conference">
               <i class="fas fa-copy"></i> Copy Citation
             </button>
@@ -666,21 +664,12 @@
     </div>
   </section>
 
-  <!-- ================= Research Metrics ================= -->
+  <!-- ================= Academic profiles ================= -->
   <section class="publications-section alt-bg">
     <div class="container">
-      <h2>Open Access &amp; Profiles</h2>
+      <h2>Academic Profiles</h2>
 
-      <div class="metrics-grid">
-        <div class="metric-card">
-          <div class="metric-icon"><i class="fas fa-lock-open"></i></div>
-          <h3>Open Access</h3>
-          <p>The MLC1 study (<em>Orphanet Journal of Rare Diseases</em>, 2026) and the Quercetin study (<em>Chemistry - An Asian Journal</em>, 2026) are open access.</p>
-        </div>
-      </div>
-      
       <div class="profiles-section">
-        <h3>Academic Profiles</h3>
         <div class="profile-links">
           <a href="https://scholar.google.com/citations?user=-DGZzX8AAAAJ&hl=en" target="_blank" rel="noopener" class="profile-btn">
             <i class="fas fa-graduation-cap"></i> Google Scholar
@@ -747,9 +736,18 @@
           b.setAttribute('aria-pressed', b === btn);
         });
         
+        let shown = 0;
         publications.forEach(pub => {
           // '' restores the stylesheet's display:grid ('block' stacked the year above the card)
-          pub.style.display = (filter === 'all' || pub.classList.contains(filter)) ? '' : 'none';
+          const show = filter === 'all' || pub.classList.contains(filter);
+          pub.style.display = show ? '' : 'none';
+          // the entries that stay cascade back in (publications.css; skipped under reduced motion)
+          pub.classList.remove('pub-in');
+          if (show) {
+            void pub.offsetWidth;
+            pub.style.setProperty('--pub-delay', `${Math.min(shown++, 8) * 50}ms`);
+            pub.classList.add('pub-in');
+          }
         });
 
         // Hide a section's heading too when none of its papers match
@@ -831,10 +829,10 @@
         bibtex: "@article{Rauthan_2024, title={An interface of genetically engineered human forebrain assembloids and polymeric nanofiber scaffolds for multiscale profiling of interneuron migration disorders}, url={http://dx.doi.org/10.21203/rs.3.rs-3831019/v1}, DOI={10.21203/rs.3.rs-3831019/v1}, publisher={Springer Science and Business Media LLC}, author={Rauthan, Riya and Bharti, Vishal and Agashe, Atharva and Singh, Praveen and York, Harrison M and Nain, Amrinder S. and Arumugam, Senthil and Chakraborty, Debojyoti}, year={2024}, month=Jan }"
       },
       conference: {
-        apa: "Bharti, V., & Chakraborty, D. (2023). Boundary Without Fence. Poster presented at the International Conference: Frontiers in Genome Engineering 2023, BITS Pilani Goa Campus.",
-        mla: 'Bharti, Vishal, and Debojyoti Chakraborty. "Boundary Without Fence." Poster presented at the International Conference: Frontiers in Genome Engineering 2023, BITS Pilani Goa Campus, 2023.',
-        chicago: "Bharti, Vishal, and Debojyoti Chakraborty. 2023. \"Boundary Without Fence.\" Poster presented at the International Conference: Frontiers in Genome Engineering 2023, BITS Pilani Goa Campus.",
-        bibtex: "@inproceedings{bharti2023boundary,\n  title={Boundary Without Fence},\n  author={Bharti, Vishal and Chakraborty, Debojyoti},\n  booktitle={International Conference: Frontiers in Genome Engineering 2023},\n  year={2023},\n  organization={BITS Pilani Goa Campus}\n}"
+        apa: "Bharti, V., & Chakraborty, D. (2023). Boundary Without Fence: Could Synthetic Organelles Unlock the Next Level of CRISPR Precision? Poster presented at the International Conference: Frontiers in Genome Engineering 2023, BITS Pilani Goa Campus.",
+        mla: 'Bharti, Vishal, and Debojyoti Chakraborty. "Boundary Without Fence: Could Synthetic Organelles Unlock the Next Level of CRISPR Precision?" Poster presented at the International Conference: Frontiers in Genome Engineering 2023, BITS Pilani Goa Campus, 2023.',
+        chicago: "Bharti, Vishal, and Debojyoti Chakraborty. 2023. \"Boundary Without Fence: Could Synthetic Organelles Unlock the Next Level of CRISPR Precision?\" Poster presented at the International Conference: Frontiers in Genome Engineering 2023, BITS Pilani Goa Campus.",
+        bibtex: "@inproceedings{bharti2023boundary,\n  title={Boundary Without Fence: Could Synthetic Organelles Unlock the Next Level of CRISPR Precision?},\n  author={Bharti, Vishal and Chakraborty, Debojyoti},\n  booktitle={International Conference: Frontiers in Genome Engineering 2023},\n  year={2023},\n  organization={BITS Pilani Goa Campus}\n}"
       },
       embo2025: {
         apa: "Bharti, V., & Chakraborty, D. (2025). StickForStats: Publish Research with Confidence. Poster presented at the EMBO Conference 2025, CCMB Hyderabad.",

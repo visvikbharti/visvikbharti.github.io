@@ -21,12 +21,12 @@
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/project.css" />
 
-  <!-- GSAP + ScrollTrigger -->
-  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
 
   <!-- Portfolio logic -->
   <script defer src="../js/main.js"></script>
+  <script defer src="../js/point-art.js"></script>
+  <!-- Without JS there is no drawing: the copy takes the full width -->
+  <noscript><style>.hero-art{display:none}.hero-split{grid-template-columns:minmax(0,1fr)}.publications-hero .hero-split{grid-template-areas:"copy" "stats"}</style></noscript>
 </head>
 
 <body class="project-page">
@@ -49,26 +49,32 @@
 
   <!-- ================= Project Hero ================= -->
   <section class="project-hero">
-    <div class="container">
-      <h1 class="project-title">Confidence Intervals Explorer</h1>
-      <p class="tagline">Master statistical inference through interactive visualizations and simulations</p>
-      <div class="project-meta">
-        <div class="tech-tags">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">Streamlit</span>
-          <span class="tech-tag">Statistics</span>
-          <span class="tech-tag">Education</span>
-          <span class="tech-tag">Data Visualization</span>
-        </div>
-        <div class="project-links">
-          <a href="https://visvikbharti-confidence-intervals-explorer.streamlit.app/" target="_blank" rel="noopener" class="btn">
-            <i class="fas fa-external-link-alt"></i> Try Live Demo
-          </a>
-          <a href="https://github.com/visvikbharti/confidence-intervals-explorer" target="_blank" rel="noopener" class="btn alt">
-            <i class="fab fa-github"></i> GitHub
-          </a>
+    <div class="container hero-split">
+      <div class="hero-split__copy">
+        <h1 class="project-title"><span class="sr-only">Confidence Intervals Explorer</span><span aria-hidden="true" class="scramble" data-text="Confidence Intervals Explorer" data-glyphs="0123456789">Confidence Intervals Explorer</span></h1>
+        <p class="tagline">Master statistical inference through interactive visualizations and simulations</p>
+        <div class="project-meta">
+          <div class="tech-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Streamlit</span>
+            <span class="tech-tag">Statistics</span>
+            <span class="tech-tag">Education</span>
+            <span class="tech-tag">Data Visualization</span>
+          </div>
+          <div class="project-links">
+            <a href="https://visvikbharti-confidence-intervals-explorer.streamlit.app/" target="_blank" rel="noopener" class="btn">
+              <i class="fas fa-external-link-alt"></i> Try Live Demo
+            </a>
+            <a href="https://github.com/visvikbharti/confidence-intervals-explorer" target="_blank" rel="noopener" class="btn alt">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </div>
         </div>
       </div>
+      <figure class="hero-art">
+        <div class="hero-art__frame" data-points="ci" aria-hidden="true"></div>
+        <figcaption>95% confidence intervals from repeated samples scrolling past the true mean (green); the few that miss it stand out</figcaption>
+      </figure>
     </div>
   </section>
 

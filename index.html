@@ -45,9 +45,9 @@
   <nav class="main-nav">
     <a href="#hero" class="nav-logo"><span class="nav-logo__mark" aria-hidden="true">VB</span><span>Vishal Bharti</span></a>
     <ul class="nav-links">
-      <li><a href="#research-interests">Research</a></li>
-      <li><a href="#research">Publications</a></li>
-      <li><a href="#projects">Projects</a></li>
+      <li><a href="pages/research.html">Research</a></li>
+      <li><a href="pages/publications.html">Publications</a></li>
+      <li><a href="pages/projects.html">Projects</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="pages/hobby.html">Hobby</a></li>
       <li><a href="my_cv/Vishal_Bharti_CV.pdf" class="nav-cta">CV &#8599;</a></li>
@@ -70,7 +70,7 @@
       <p class="tagline">Bioinformatics · AI · Statistical Engineering</p>
       <div class="hero-cta">
         <a href="#projects" class="btn">View Projects</a>
-        <a href="#research-interests" class="btn alt">Research</a>
+        <a href="pages/research.html" class="btn alt">Research</a>
       </div>
     </div>
 
@@ -117,6 +117,10 @@
           <h3>RNA Structure & Function</h3>
           <p>Computational prediction of RNA triple helices and G-quadruplexes in gene regulation</p>
         </div>
+      </div>
+
+      <div class="center mt-2">
+        <a href="pages/research.html" class="btn alt">View Research</a>
       </div>
     </div>
   </section>
@@ -222,7 +226,7 @@
     </div>
 
     <div class="center mt-2">
-      <a href="pages/research.html" class="btn alt">View All Research</a>
+      <a href="pages/publications.html" class="btn alt">View All Publications</a>
     </div>
   </section>
 
@@ -262,7 +266,7 @@
       <div class="split__copy">
         <h3 class="section-title">StickForStats</h3>
         <p>
-          An open-source web platform whose Guardian system runs eight assumption validators (normality, variance
+          An open-source web platform whose Guardian system runs the relevant subset of its eight assumption validators (normality, variance
           homogeneity, independence, outliers, sample size, modality, linearity, homoscedasticity) before a test
           executes, and reroutes to an appropriate nonparametric alternative when a critical assumption fails. A
           companion module re-checks the statistical claims in manuscripts. Validated against SciPy and R.
@@ -290,7 +294,7 @@
       <div class="split__copy">
         <h3 class="section-title">Checkability Audit</h3>
         <p>
-          A pre-registered audit of whether published biomedical statistics can be recomputed at all. With the protocol frozen before any data were fetched, 3,000 randomly sampled PubMed Central Open Access research articles (2020&ndash;2025) were checked for results whose p-value can be recomputed from the printed test statistic and degrees of freedom, and every estimate was replicated out of sample on a further 20,000 articles. The measurement pipeline is deterministic, with no machine learning in it, so every number reproduces from committed code.
+          A pre-registered audit of whether published biomedical statistics can be recomputed at all. With the protocol frozen before any data were fetched, 3,000 randomly sampled PubMed Central Open Access research articles (2020&ndash;2025) were checked for results whose p-value can be recomputed from the printed test statistic and degrees of freedom, and every frozen estimate was re-estimated out of sample on a further 20,000 articles. The measurement pipeline is deterministic, with no machine learning in it, so every number reproduces from committed code.
         </p>
         <p class="project-status">
           <strong>Status:</strong> In preparation for submission to <em>Nature Human Behaviour</em>. First and corresponding author.
@@ -373,8 +377,8 @@
       <div class="split__copy">
         <h3 class="section-title">Forebrain Assembloids</h3>
         <p>
-          Computational analysis of RNA-seq data from human forebrain assembloids to understand 
-          interneuron migration disorders and their role in neurodevelopmental conditions.
+          Computational and statistical analysis for a study of interneuron migration in ERBB4-knockout human
+          forebrain assembloids: RNA-seq with GO and pathway enrichment, a protein-interaction network, the pathway analysis of the sorted interneurons&rsquo; proteomics and, in the submitted manuscript, a pan-tissue correlation of the control assembloids.
         </p>
         <p>
           <span class="tech-tag">RNA-seq</span>

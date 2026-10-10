@@ -292,6 +292,8 @@ p { margin-bottom: 1rem; }
 
 /* ----- Split project panels ----- */
 .projects { background: var(--bg); counter-reset: project; }
+/* the closing button keeps the room the other sections end with, so it shows before About slides over it */
+.projects > .center { padding-bottom: clamp(5rem, 8vw, 8rem); }
 
 .projects .split {
   display: grid;

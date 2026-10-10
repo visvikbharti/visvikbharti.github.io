@@ -26,7 +26,7 @@
   <script defer src="../js/main.js"></script>
   <script defer src="../js/point-art.js"></script>
   <!-- Without JS the research areas are a plain list -->
-  <noscript><style>.stage-slide:not(.is-active){display:block}.research-stage__controls,.research-stage__art{display:none}</style></noscript>
+  <noscript><style>.research-stage__slides{display:block}.stage-slide:not(.is-active){visibility:visible}.research-stage__controls,.research-stage__art{display:none}.stage-slide+.stage-slide{margin-top:2.5rem;padding-top:2.5rem;border-top:1px solid var(--line)}</style></noscript>
 </head>
 
 <body class="research-page">
@@ -61,60 +61,62 @@
     </div>
   </section>
 
-  <!-- ================= Research areas, drawn live (js/project-art.js) ================= -->
-  <section class="research-stage" aria-roledescription="carousel" aria-label="Research areas">
+  <!-- ================= Research areas, drawn live (js/point-art.js) ================= -->
+  <section class="research-stage" aria-label="Research areas">
     <div class="research-stage__art" aria-hidden="true"></div>
     <div class="container research-stage__bar">
+      <div class="research-stage__controls">
+        <button type="button" class="stage-btn stage-btn--pause" data-stage="pause">Pause</button>
+        <div class="stage-nav">
+          <button type="button" class="stage-btn" data-stage="prev" aria-label="Previous research area">&larr;</button>
+          <div class="stage-dots">
+            <button type="button" class="stage-dot" aria-label="Slide 1: RNA triple helices"><span></span></button>
+            <button type="button" class="stage-dot" aria-label="Slide 2: G-quadruplexes in gene regulation"><span></span></button>
+            <button type="button" class="stage-dot" aria-label="Slide 3: DNA repair after Cas9 breaks"><span></span></button>
+            <button type="button" class="stage-dot" aria-label="Slide 4: Human forebrain assembloids"><span></span></button>
+            <button type="button" class="stage-dot" aria-label="Slide 5: Assumption checks before the test"><span></span></button>
+            <button type="button" class="stage-dot" aria-label="Slide 6: Can published statistics be checked?"><span></span></button>
+          </div>
+          <button type="button" class="stage-btn" data-stage="next" aria-label="Next research area">&rarr;</button>
+        </div>
+      </div>
       <div class="research-stage__slides" aria-live="off">
-        <article class="stage-slide is-active" data-scene="triplex" aria-roledescription="slide" aria-label="1 of 6">
+        <article class="stage-slide is-active" data-scene="triplex">
           <p class="stage-slide__kicker">01 / 06 &middot; RNA structure</p>
           <h2 class="stage-slide__title">RNA triple helices</h2>
-          <p class="stage-slide__text">TRIPinRNA searches the human transcriptome for sequences that can fold back into intramolecular RNA triple helices. Co-developed, co-first author (<em>Biochemistry</em>, 2025).</p>
+          <p class="stage-slide__text">TRIPinRNA searches the human transcriptome for sequences that could fold back into intramolecular RNA triple helices. Co-developed, co-first author (<em>Biochemistry</em>, 2025).</p>
           <a class="stage-slide__link" href="tripinrna.html">TRIPinRNA &rarr;</a>
         </article>
-        <article class="stage-slide" data-scene="g4" aria-roledescription="slide" aria-label="2 of 6">
+        <article class="stage-slide" data-scene="g4">
           <p class="stage-slide__kicker">02 / 06 &middot; RNA structure</p>
           <h2 class="stage-slide__title">G-quadruplexes in gene regulation</h2>
-          <p class="stage-slide__text">Computational and proteomics analysis of how IGF2BP1 regulates CCN1 expression by binding a G-quadruplex in its 3&prime; UTR (<em>Biochemistry</em>, 2024).</p>
+          <p class="stage-slide__text">Computational and proteomics analysis for a study of how IGF2BP1 regulates CCN1 expression by binding a G-quadruplex in its 3&prime; UTR (<em>Biochemistry</em>, 2024).</p>
           <a class="stage-slide__link" href="g-quadruplex-ccn1.html">G-quadruplexes in CCN1 &rarr;</a>
         </article>
-        <article class="stage-slide" data-scene="sort" aria-roledescription="slide" aria-label="3 of 6">
+        <article class="stage-slide" data-scene="sort">
           <p class="stage-slide__kicker">03 / 06 &middot; Genome engineering</p>
           <h2 class="stage-slide__title">DNA repair after Cas9 breaks</h2>
           <p class="stage-slide__text">Single-cell RNA-seq analysis for a colleague&rsquo;s CRISPRi study of how cells repair staggered (en1FnCas9) versus blunt (SpCas9) DNA ends.</p>
           <a class="stage-slide__link" href="dna-repair.html">DNA repair analysis &rarr;</a>
         </article>
-        <article class="stage-slide" data-scene="assembloid" aria-roledescription="slide" aria-label="4 of 6">
+        <article class="stage-slide" data-scene="assembloid">
           <p class="stage-slide__kicker">04 / 06 &middot; Neurodevelopment</p>
           <h2 class="stage-slide__title">Human forebrain assembloids</h2>
-          <p class="stage-slide__text">RNA-seq analyses of human forebrain assembloids for the study of interneuron-migration disorders (preprint, under revision at <em>Stem Cell Reports</em>).</p>
+          <p class="stage-slide__text">RNA-seq, GO and pathway enrichment, protein-network and statistical analyses for a study of interneuron migration in ERBB4-knockout human forebrain assembloids (preprint, under revision at <em>Stem Cell Reports</em>).</p>
           <a class="stage-slide__link" href="forebrain-assembloids.html">Forebrain assembloids &rarr;</a>
         </article>
-        <article class="stage-slide" data-scene="checks" aria-roledescription="slide" aria-label="5 of 6">
+        <article class="stage-slide" data-scene="checks">
           <p class="stage-slide__kicker">05 / 06 &middot; Statistical methods</p>
           <h2 class="stage-slide__title">Assumption checks before the test</h2>
-          <p class="stage-slide__text">StickForStats runs eight assumption validators before a test executes, and reroutes to a nonparametric alternative when a critical one fails (<em>bioRxiv</em>, 2026; in review at <em>BMC Bioinformatics</em>).</p>
+          <p class="stage-slide__text">StickForStats runs the relevant subset of its eight assumption validators before a test executes, and reroutes to a nonparametric alternative when a critical one fails (<em>bioRxiv</em>, 2026; in review at <em>BMC Bioinformatics</em>).</p>
           <a class="stage-slide__link" href="stickforstats.html">StickForStats &rarr;</a>
         </article>
-        <article class="stage-slide" data-scene="audit" aria-roledescription="slide" aria-label="6 of 6">
+        <article class="stage-slide" data-scene="audit">
           <p class="stage-slide__kicker">06 / 06 &middot; Reproducibility</p>
           <h2 class="stage-slide__title">Can published statistics be checked?</h2>
-          <p class="stage-slide__text">A pre-registered audit of whether the p-values printed in biomedical articles can be recomputed from the reported test statistics and degrees of freedom (in preparation).</p>
+          <p class="stage-slide__text">A pre-registered audit of whether the p-values printed in biomedical articles can be recomputed from the reported test statistics and degrees of freedom (in preparation; poster at ESTIC 2026, New Delhi, 28 October).</p>
           <a class="stage-slide__link" href="publications.html">In Publications &rarr;</a>
         </article>
-      </div>
-      <div class="research-stage__controls">
-        <button type="button" class="stage-btn" data-stage="prev" aria-label="Previous research area">&larr;</button>
-        <div class="stage-dots">
-          <button type="button" class="stage-dot" aria-label="Slide 1: RNA triple helices"><span></span></button>
-          <button type="button" class="stage-dot" aria-label="Slide 2: G-quadruplexes in gene regulation"><span></span></button>
-          <button type="button" class="stage-dot" aria-label="Slide 3: DNA repair after Cas9 breaks"><span></span></button>
-          <button type="button" class="stage-dot" aria-label="Slide 4: Human forebrain assembloids"><span></span></button>
-          <button type="button" class="stage-dot" aria-label="Slide 5: Assumption checks before the test"><span></span></button>
-          <button type="button" class="stage-dot" aria-label="Slide 6: Can published statistics be checked?"><span></span></button>
-        </div>
-        <button type="button" class="stage-btn" data-stage="next" aria-label="Next research area">&rarr;</button>
-        <button type="button" class="stage-btn stage-btn--pause" data-stage="pause">Pause</button>
       </div>
     </div>
   </section>
@@ -155,7 +157,7 @@
       <ul class="selected-pubs">
         <li><strong>TRIPinRNA</strong>: an in silico platform for the identification of RNA intramolecular triple helices. <em>Biochemistry</em> (ACS), 2025. Co-first author.</li>
         <li><strong>StickForStats</strong>: automated statistical assumption validation for reproducible computational biology. <em>bioRxiv</em>, 2026; in peer review at <em>BMC Bioinformatics</em>. First and corresponding author.</li>
-        <li><strong>Checkability audit</strong>: most biomedical articles print no statistical result checkable by recomputation. In preparation. First and corresponding author.</li>
+        <li><strong>Checkability audit</strong>: most biomedical articles print no statistical result checkable by recomputation. In preparation; poster at ESTIC 2026, New Delhi. First and corresponding author.</li>
       </ul>
       <a href="publications.html" class="btn alt">All publications &rarr;</a>
     </div>
@@ -182,8 +184,8 @@
           <div class="project-icon"><i class="fas fa-chart-bar"></i></div>
           <h3>StickForStats Platform Development</h3>
           <p>
-            An open-source React/Django web platform whose Guardian engine runs eight assumption validators before a
-            test executes and, on critical violations, reroutes to an appropriate nonparametric alternative.
+            An open-source React/Django web platform whose Guardian engine runs the relevant subset of its eight assumption
+            validators before a test executes and, on critical violations, reroutes to an appropriate nonparametric alternative.
             MIT-licensed and validated against SciPy and R. It runs at <a href="https://stickforstats.com/" target="_blank" rel="noopener">stickforstats.com</a>.
           </p>
           <p>
@@ -197,7 +199,7 @@
           <div class="project-icon"><i class="fas fa-clipboard-check"></i></div>
           <h3>Checkability Audit</h3>
           <p>
-            A pre-registered audit of whether published biomedical statistics can be recomputed at all. With the protocol frozen before any data were fetched, 3,000 randomly sampled PubMed Central Open Access research articles (2020&ndash;2025) were checked for results whose p-value can be recomputed from the printed test statistic and degrees of freedom, and every estimate was replicated out of sample on a further 20,000 articles. The measurement pipeline is deterministic, with no machine learning in it, so every number reproduces from committed code.
+            A pre-registered audit of whether published biomedical statistics can be recomputed at all. With the protocol frozen before any data were fetched, 3,000 randomly sampled PubMed Central Open Access research articles (2020&ndash;2025) were checked for results whose p-value can be recomputed from the printed test statistic and degrees of freedom, and every frozen estimate was re-estimated out of sample on a further 20,000 articles. The measurement pipeline is deterministic, with no machine learning in it, so every number reproduces from committed code.
           </p>
           <p>
             <span class="pub-status">In preparation for submission to <em>Nature Human Behaviour</em>.</span>
@@ -221,9 +223,11 @@
           <div class="project-icon"><i class="fas fa-brain"></i></div>
           <h3>Human Forebrain Assembloids</h3>
           <p>
-            Conducting computational analyses of RNA-seq data from human forebrain assembloids to understand
-            interneuron migration disorders and their implications for neurodevelopmental conditions.
+            Computational and statistical analysis for a study of interneuron migration in ERBB4-knockout human
+            forebrain assembloids: RNA-seq with GO and pathway enrichment, a protein-interaction network, the pathway analysis of the sorted interneurons&rsquo; proteomics and, in the submitted manuscript, a
+            pan-tissue correlation of the control assembloids.
           </p>
+          <a href="forebrain-assembloids.html" class="project-link">View Project Details</a>
         </div>
         
         <div class="project-card">
@@ -240,7 +244,7 @@
           <div class="project-icon"><i class="fas fa-dna"></i></div>
           <h3>G-Quadruplexes in Gene Regulation</h3>
           <p>
-            Computational and proteomics analysis of how IGF2BP1 regulates CCN1 expression by binding a
+            Computational and proteomics analysis for a study of how IGF2BP1 regulates CCN1 expression by binding a
             G-quadruplex structure in its 3′ UTR (published in <em>Biochemistry</em>, ACS).
           </p>
         </div>

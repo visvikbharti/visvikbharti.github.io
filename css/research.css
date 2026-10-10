@@ -38,10 +38,8 @@
   background: var(--bg);
   border-top: 1px solid var(--line);
 }
-/* the hero already draws the rule above the first section */
-.research-hero + .research-section { border-top: 0; }
 
-/* ----- Research stage: the research areas, drawn live across the full width (js/project-art.js) ----- */
+/* ----- Research stage: the research areas, drawn live across the full width (js/point-art.js) ----- */
 .research-hero--stage { padding-top: calc(64px + clamp(2.5rem, 5vw, 4.5rem)); padding-bottom: clamp(2rem, 4vw, 3rem); border-bottom: 0; }
 /* wide screens: the title and the description side by side, so the stage starts higher */
 @media (min-width: 960px) {
@@ -52,13 +50,15 @@
 .research-stage { background: var(--bg); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .research-stage__art { position: relative; height: clamp(300px, 48vh, 560px); background: var(--bg); }
 .research-stage__art canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* the controls (Pause first, then the markers) sit between the drawing and the slide text, in Tab order */
 .research-stage__bar {
-  display: grid; gap: 1.5rem 3rem;
-  padding-top: clamp(1.5rem, 3vw, 2.25rem); padding-bottom: clamp(1.75rem, 3vw, 2.5rem);
+  display: grid; gap: 1.25rem;
+  padding-top: clamp(1rem, 2vw, 1.5rem); padding-bottom: clamp(1.75rem, 3vw, 2.5rem);
 }
-@media (min-width: 960px) { .research-stage__bar { grid-template-columns: minmax(0, 1fr) auto; align-items: end; } }
-.research-stage__slides { min-width: 0; }
-.stage-slide:not(.is-active) { display: none; }
+/* all slides share one grid cell, so the bar keeps the tallest slide's height and nothing below jumps as they change */
+.research-stage__slides { display: grid; min-width: 0; }
+.stage-slide { grid-area: 1 / 1; min-width: 0; }
+.stage-slide:not(.is-active) { visibility: hidden; }
 .stage-slide__kicker {
   margin: 0 0 .6rem; font-family: var(--font-mono); font-size: .75rem;
   letter-spacing: .08em; text-transform: uppercase; color: var(--accent);
@@ -66,28 +66,34 @@
 .stage-slide__title { margin: 0 0 .55rem; font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.4rem); letter-spacing: -.03em; color: var(--fg); }
 .stage-slide__text { max-width: 64ch; margin: 0 0 .9rem; font-size: 1.0625rem; line-height: 1.6; color: var(--fg-muted); }
 .stage-slide__link { font-family: var(--font-mono); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; }
-.research-stage__controls { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+.research-stage__controls { display: flex; align-items: center; gap: .5rem 1rem; flex-wrap: wrap; }
+.stage-nav { display: flex; align-items: center; gap: .5rem; }
 .stage-btn {
   min-width: 44px; height: 44px; padding: 0 .9rem;
   border: 1px solid var(--line-strong); background: var(--bg); color: var(--fg);
   font-family: var(--font-mono); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
 }
 .stage-btn:hover, .stage-btn:focus-visible { border-color: var(--fg); }
+.stage-btn--pause { min-width: 6em; }          /* the same width for Pause and Play, so nothing after it moves */
 .stage-dots { display: flex; gap: 6px; margin: 0 .35rem; }
 .stage-dot { display: flex; align-items: center; width: 30px; height: 44px; padding: 0; border: 0; background: none; cursor: pointer; }
-.stage-dot span { position: relative; display: block; width: 100%; height: 3px; overflow: hidden; background: var(--line-strong); }
+.stage-dot span { position: relative; display: block; width: 100%; height: 3px; overflow: hidden; background: var(--fg-dim); }
 .stage-dot span::after {
   content: ''; position: absolute; inset: 0; background: var(--accent);
   transform: scaleX(0); transform-origin: left center;
 }
-/* the active marker fills over 5 s; when it is full, js/research-stage.js moves to the next area */
-.stage-dot.is-active span::after { animation: stage-fill 5s linear forwards; }
+/* The active marker is full. While the slideshow runs (js/point-art.js sets .is-auto) it fills over 5 s,
+   and the script moves to the next area when it is full; hovering or scrolling away holds it (.is-paused). */
+.stage-dot.is-active span::after { transform: scaleX(1); }
+.research-stage.is-auto .stage-dot.is-active span::after { animation: stage-fill 5s linear forwards; }
 .research-stage.is-paused .stage-dot.is-active span::after { animation-play-state: paused; }
-.stage-dot:hover span, .stage-dot:focus-visible span { background: var(--fg-dim); }
+.stage-dot:hover span, .stage-dot:focus-visible span { background: var(--fg-muted); }
 @keyframes stage-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @media (prefers-reduced-motion: reduce) {
-  .stage-dot.is-active span::after { animation: none; transform: scaleX(1); }
+  .research-stage.is-auto .stage-dot.is-active span::after { animation: none; }
 }
+/* narrow phones: shorter markers, so the arrows and markers stay on one row */
+@media (max-width: 400px) { .stage-dot { width: 22px; } }
 .research-stage + .research-section { border-top: 0; }
 
 /* Publications: a pointer to the full list on publications.html */
@@ -149,58 +155,8 @@
   color: var(--fg);
 }
 
-/* ----- Publications: shared list from style.css ----- */
-/* .pub-content is a flex item: min-width 0 lets it shrink below its
-   longest word, and 'anywhere' lets a DOI wrap inside it */
-.research-section .pub-content { min-width: 0; }
-.research-section .pub-citation {
-  max-width: none;
-  margin-bottom: 0;
-  overflow-wrap: anywhere;
-}
-.research-section h2 + .pub-group-title { margin-top: 0; }
+/* the 'Selected' publications label: --fg-dim drops under 4.5:1 on --bg-raise */
 .alt-bg .pub-group-title { color: var(--fg-muted); }
-/* the shared row hover is --bg-raise, which this band already uses */
-.alt-bg .publication-item:hover { background: var(--bg); }
-
-.research-section .center { text-align: left; }
-.research-section .center.mt-2 { margin-top: 2.5rem; }
-
-/* Conference presentations: a labelled list of rows, like the awards list */
-.presentations { margin-top: 4rem; }
-
-.presentations h3 {
-  margin: 0;
-  padding-bottom: .75rem;
-  font-size: .75rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--fg-dim);
-  border-bottom: 1px solid var(--line);
-}
-.alt-bg .presentations h3 { color: var(--fg-muted); }
-
-.presentation-item {
-  max-width: 1000px;
-  padding: 1.4rem 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.presentation-item h4 {
-  margin-bottom: .4rem;
-  font-family: var(--font-mono);
-  font-size: 1.05rem;
-  font-weight: var(--fw-bold);
-  letter-spacing: -.01em;
-  line-height: 1.3;
-  color: var(--fg);
-}
-
-.research-section .presentation-details {
-  margin-bottom: 0;
-  line-height: 1.65;
-  color: var(--fg-muted);
-}
 
 /* ----- Shared cell grid: cards share 1px borders, like .interests-grid ----- */
 .projects-grid,
@@ -380,7 +336,6 @@
 /* ----- Phones ----- */
 @media (max-width: 768px) {
   .research-hero { padding-top: calc(56px + 3.5rem); }
-  .presentations { margin-top: 3rem; }
   .timeline { padding-left: 1.75rem; }
   .timeline-marker { left: -1.75rem; }
 }

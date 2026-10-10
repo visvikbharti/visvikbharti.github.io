@@ -33,10 +33,9 @@
   color: var(--fg-muted);
 }
 
-/* ----- Bordered cell grids (stats, projects, output) -----
+/* ----- Bordered cell grids (projects, output) -----
    Each cell draws its own 1px border and overlaps its neighbour by 1px, so
    borders read as shared rules and cells hidden by the filter leave no gaps. */
-.stats-grid,
 .projects-grid,
 .impact-grid {
   display: grid;
@@ -44,7 +43,6 @@
   padding: 0 1px 1px 0;
 }
 
-.stat-item,
 .project-card,
 .impact-item {
   position: relative;
@@ -52,41 +50,6 @@
   border: 1px solid var(--line);
   border-radius: 0;
   background: transparent;
-}
-
-/* ----- Stats ----- */
-.project-stats {
-  padding: clamp(2.5rem, 5vw, 3.5rem) 0;
-  background: var(--bg);
-}
-
-.stats-grid {
-  grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr));
-  text-align: left;
-}
-
-.stat-item {
-  padding: 1.75rem 1.5rem;
-}
-
-.stat-number {
-  display: block;
-  margin-bottom: .75rem;
-  font-family: var(--font-mono);
-  font-size: var(--fs-lg);
-  font-weight: var(--fw-regular);
-  line-height: 1;
-  letter-spacing: -.04em;
-  color: var(--fg);
-}
-
-.stat-label {
-  font-family: var(--font-mono);
-  font-size: .6875rem;
-  line-height: 1.5;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--fg-dim);          /* black cell only: 4.6:1 */
 }
 
 /* ----- Sections ----- */

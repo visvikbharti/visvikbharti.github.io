@@ -38,18 +38,19 @@
   const D = 360, BINS = 24, ZMIN = -3.2, ZMAX = 3.2;
   const zs = Array.from({ length: D }, (_, i) => Math.sqrt(-2 * Math.log(hash(i, 21) * 0.999 + 0.0005)) * Math.cos(TAU * hash(i, 22)));
   zs.sort((a, b) => a - b);
-  for (let k = 0; k < 3; k++) zs[D - 1 - k] = 3.9 + k * 0.45;   // three outliers above the rest
+  for (let k = 0; k < 3; k++) zs[D - 3 + k] = 3.9 + k * 0.45;   // three outliers above the rest, rising
   const binOf = z => clamp(Math.floor((z - ZMIN) / (ZMAX - ZMIN) * BINS), 0, BINS - 1);
   const inBin = new Int16Array(D), binCount = new Int16Array(BINS);
   zs.forEach((z, i) => { const b = binOf(z); inBin[i] = binCount[b]++; });
   const maxBin = Math.max(...binCount);
   const quantile = p => 4.91 * (Math.pow(p, 0.14) - Math.pow(1 - p, 0.14));   // Tukey's approximation of the normal quantile
 
-  // Checkability audit: a wall of 16 x 6 articles, about 1 in 10 checkable, and never none
+  // Checkability audit: a wall of 14 x 6 articles
   const AUD_C = 14, AUD_R = 6;
   const PAGE = [[0, 0], [1, 0], [2, 0], [3, 0], [0, 1], [1, 1], [2, 1], [0, 2], [1, 2], [0, 3], [1, 3]];   // a title, then lines
-  let AUD_MIN = 0;
-  for (let n = 1; n < AUD_C * AUD_R; n++) if (hash(n, 7) < hash(AUD_MIN, 7)) AUD_MIN = n;
+  // a few articles light up as checkable (an illustration, not the audit's measured share; always at least one)
+  const AUD_OK = new Set([...Array(AUD_C * AUD_R).keys()].sort((a, b) => hash(a, 7) - hash(b, 7))
+    .slice(0, Math.max(1, Math.round(AUD_C * AUD_R / 10))));
 
   /* ---------- formations: f(i, t, tl, W, H, o) places point i ---------- */
   // t: seconds since the stage started; tl: seconds since this area came in. A formation sets o.x, o.y,
@@ -62,8 +63,9 @@
   };
 
   const F = {
-    // RNA triple helix (TRIPinRNA): two paired strands and a third (green) in the major groove, joined
-    // by two loops into one molecule, turning about its axis
+    // RNA triple helix (TRIPinRNA): one chain folded three times. Strand 1 pairs with strand 0 (grey rungs)
+    // and with the third strand 2 (green, Hoogsteen pairs, in the major groove); the loops join 1 -> 0 at the
+    // left end and 0 -> 2 at the right, so the third strand pairs with the strand two segments before it
     triplex(i, t, tl, W, H, o) {
       const S = 170, x0 = W * 0.17, L = W * 0.66, cy = H * 0.5, R = Math.min(H * 0.17, W * 0.075);
       const spin = reduceMotion ? 0.6 : t * 0.9, turns = 3.2, phase = [0, 2.3, 4.1];
@@ -84,7 +86,7 @@
       const LOOP = 44;
       if (j < 2 * LOOP) {                           // strand 1 -> 2 at the left end, 2 -> 3 at the right end
         const left = j < LOOP, u = (j % LOOP) / (LOOP - 1);
-        const a = at(left ? 0 : 1, left ? 0 : 1), b = at(left ? 1 : 2, left ? 0 : 1);
+        const a = at(0, left ? 0 : 1), b = at(left ? 1 : 2, left ? 0 : 1);
         o.x = a[0] + (left ? -1 : 1) * R * 1.5 * Math.sin(Math.PI * u); o.y = a[1] + (b[1] - a[1]) * u;
         o.g = false; o.lv = 4; o.s = 1.7; return;
       }
@@ -190,7 +192,7 @@
       const MIG = 8, BODY = 7, LEAD = 12, CONE = 6, TRAIL = 5, PER_M = BODY + LEAD + CONE + TRAIL;
       if (j < MIG * PER_M) {                        // migrating interneurons
         const n = Math.floor(j / PER_M), m = j % PER_M;
-        const y0 = cy + (hash(n, 71) - 0.5) * R * 0.9, y1 = cy + (hash(n, 72) - 0.5) * R * 0.9, bow = (hash(n, 73) - 0.5) * R * 0.9;
+        const y0 = cy + (hash(n, 71) - 0.5) * R * 0.5, y1 = cy + (hash(n, 72) - 0.5) * R * 0.5, bow = (hash(n, 73) - 0.5) * R * 0.3;
         const X0 = vx + R * 0.5, X1 = dx - R * 0.45;
         const path = u => [X0 + (X1 - X0) * u, y0 + (y1 - y0) * u + bow * 4 * u * (1 - u)];
         const cyc = reduceMotion ? 0.3 + 0.08 * n : ((hash(n, 74) + t * 0.075) % 1 + 1) % 1;   // a crossing every ~13 s
@@ -217,7 +219,7 @@
       // histogram, then Q-Q plot; on a project page (tl keeps running) the points then glide back and
       // forth every 6.5 s instead of falling again
       const loop = tl % 6.5, first = tl < 6.5;
-      const ph = reduceMotion ? 0 : ease(clamp((loop - 2.2) / 0.8, 0, 1)) * (1 - ease(clamp((loop - 5.6) / 0.8, 0, 1)));
+      const ph = reduceMotion ? 1 : ease(clamp((loop - 2.2) / 0.8, 0, 1)) * (1 - ease(clamp((loop - 5.6) / 0.8, 0, 1)));
       if (i < D) {
         const z = zs[i], out = i >= D - 3, bw = (x1 - x0) / BINS, step = (base - top) * 0.9 / maxBin;
         const fall = reduceMotion || !first ? 1 : ease(clamp(tl * 1.6 - hash(i, 23) * 0.9, 0, 1));
@@ -249,7 +251,7 @@
         const px = x0 + c * gx, py = y0 + r * gy;
         const [col, ln] = PAGE[m];
         o.x = px + col * gx * 0.18; o.y = py + ln * gy * 0.17;
-        const read = px + gx * 0.4 < beam, ok = hash(n, 7) < 0.1 || n === AUD_MIN;
+        const read = px + gx * 0.4 < beam, ok = AUD_OK.has(n);
         o.g = read && ok; o.lv = read ? (ok ? 7 : 3) : 6; o.s = ln ? 1.7 : 2.3; return;
       }
       const j = i - AUD_C * AUD_R * PER, BEAM = 46;
@@ -319,59 +321,66 @@
 
   // Small labels per formation: [text, x, y, green]; long ones only where there is room
   const LABELS = {
-    triplex: (W, H) => [["5'", W * 0.12, H * 0.4, false], ...(W > 640 ? [['third strand in the major groove', W * 0.17, H * 0.88, true]] : [])],
+    triplex: (W, H) => (W > 640 ? [['third strand in the major groove', W * 0.17, H * 0.88, true]] : []),
     g4: (W, H) => { const x = W * 0.5 + Math.min(W * 0.16, H * 0.36) + 24; return [['G-tetrads', x, H * 0.3, false], [W > 640 ? 'K+ between tetrads' : 'K+', x, H * 0.62, true]]; },
     sort: (W, H) => [[W > 640 ? 'cells with the cut reporter' : 'cells', W * 0.05, H * 0.3, false], ['sort', W * 0.47 - 14, H * 0.22, false],
-      ['repaired', W * (W > 640 ? 0.8 : 0.62), H * 0.18, true], ['not repaired', W * (W > 640 ? 0.8 : 0.62), H * 0.9, false]],
+      ['accurate repair', W * (W > 640 ? 0.78 : 0.58), H * 0.18, true], ['no accurate repair', W * (W > 640 ? 0.78 : 0.58), H * 0.9, false]],
     assembloid: (W, H) => { const R = Math.min(H * 0.38, W * 0.18), y = H * 0.5 + R * 0.8 + 24; return [['dorsal', W * 0.5 - R * 0.86 - 22, y, false], ['ventral', W * 0.5 + R * 0.86 - 25, y, false], [W > 640 ? 'migrating interneurons' : 'interneurons', W * 0.5 - (W > 640 ? 80 : 44), H * 0.5 - R * 0.8 - 20, true]]; },
-    checks: (W, H, tl) => [[!reduceMotion && tl > 2.6 ? 'Q-Q plot: normality check' : 'histogram and fitted normal', W * 0.2, H * 0.12, false]],
+    checks: (W, H, tl) => { const loop = tl % 6.5, qq = reduceMotion || (loop > 2.6 && loop < 6.0);
+      return [[qq ? 'Q-Q plot: normality check' : 'histogram and fitted normal', W * 0.2, H * 0.12, false]]; },
     audit: (W, H) => [[W > 640 ? 'articles read for a recomputable test statistic' : 'reading articles', W * 0.13, H * 0.12, false], ['checkable', W * 0.13, H * 0.93, true]],
   };
 
   /* ---------- rendering ---------- */
   // mount(el, {scenes, labels}) draws into a canvas filling el and returns {show(i), setPaused(p)}.
   // A single-scene mount (a project hero) runs one clock from the start; a stage resets tl at each area.
+  // When a scene changes, each point flies from where it was last drawn. The clock stops while the drawing
+  // is stopped (off screen, hidden tab, paused), so nothing jumps when it starts again.
   const greenFill = a => `rgba(${GREEN[0]},${GREEN[1]},${GREEN[2]},${a})`;
+  const FILLS = Array.from({ length: 16 }, (_, k) => (k % 2 ? greenFill((0.3 + 0.7 * (k >> 1) / 7).toFixed(2)) : GREYS[k >> 1]));
   function mount(el, { scenes, labels }) {
     const canvas = document.createElement('canvas');
     canvas.setAttribute('aria-hidden', 'true');
     el.appendChild(canvas);
     const ctx = canvas.getContext('2d');
-    const cur = {}, prv = {}, single = scenes.length === 1;
-    let W = 0, H = 0, index = 0, from = -1, t0 = performance.now(), since = t0, fromSince = t0;
+    const cur = {}, single = scenes.length === 1;
+    const lastX = new Float32Array(N), lastY = new Float32Array(N), lastS = new Float32Array(N), lastL = new Uint8Array(N), lastG = new Uint8Array(N);
+    const fromX = new Float32Array(N), fromY = new Float32Array(N), fromS = new Float32Array(N), fromL = new Uint8Array(N), fromG = new Uint8Array(N);
+    const buckets = Array.from({ length: 16 }, () => []);          // dim colours first, bright ones on top
+    let W = 0, H = 0, index = 0, morph = false, drawn = false;
+    let t0 = performance.now(), since = t0, stoppedAt = t0, running = false;
+    const clock = () => (running ? performance.now() : stoppedAt);
     const size = () => {
       W = el.clientWidth; H = el.clientHeight;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
-    const draw = now => {
+    const draw = () => {
       if (!W || !H) return;
-      const t = (now - t0) / 1000;
+      const now = clock(), t = (now - t0) / 1000;
       const tl = single ? (reduceMotion ? 1 : t) : (now - since) / 1000;
-      const p = from < 0 || reduceMotion ? 1 : clamp((now - since) / MORPH, 0, 1);
-      const f = F[scenes[index]] || F.triplex, g = p < 1 && from >= 0 ? F[scenes[from]] : null;
+      const p = morph && drawn ? clamp((now - since) / MORPH, 0, 1) : 1;
+      if (p >= 1) morph = false;
+      const f = F[scenes[index]] || F.triplex;
       ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H);
-      const buckets = new Map();                    // points grouped by colour: each colour is set once a frame
+      buckets.forEach(b => { b.length = 0; });
       for (let i = 0; i < N; i++) {
         f(i, t, tl, W, H, cur);
-        let x = cur.x, y = cur.y, lv = cur.lv, gr = cur.g, s = cur.s;
-        if (g) {
-          g(i, t, (now - fromSince) / 1000, W, H, prv);
+        let x = cur.x, y = cur.y, lv = cur.lv, gr = cur.g ? 1 : 0, s = cur.s;
+        if (p < 1) {
           const q = ease(clamp((p - hash(i, 11) * 0.35) / 0.65, 0, 1));   // each point leaves at its own moment
-          x = prv.x + (x - prv.x) * q; y = prv.y + (y - prv.y) * q;
-          if (q < 0.5) { lv = prv.lv; gr = prv.g; s = prv.s; }
+          x = fromX[i] + (x - fromX[i]) * q; y = fromY[i] + (y - fromY[i]) * q;
+          if (q < 0.5) { lv = fromL[i]; gr = fromG[i]; s = fromS[i]; }
         }
-        if (s <= 0) continue;
-        const key = (gr ? 'g' : 'k') + lv;
-        let b = buckets.get(key);
-        if (!b) buckets.set(key, (b = []));
-        b.push(x, y, s);
+        lastX[i] = x; lastY[i] = y; lastS[i] = s; lastL[i] = lv; lastG[i] = gr;
+        if (s > 0) buckets[lv * 2 + gr].push(x, y, s);
       }
-      buckets.forEach((b, key) => {
-        const lv = +key.slice(1);
-        ctx.fillStyle = key[0] === 'g' ? greenFill((0.3 + 0.7 * lv / 7).toFixed(2)) : GREYS[lv];
-        for (let k = 0; k < b.length; k += 3) { const s = b[k + 2]; ctx.fillRect(b[k] - s / 2, b[k + 1] - s / 2, s, s); }
+      drawn = true;
+      buckets.forEach((b, k) => {
+        if (!b.length) return;
+        ctx.fillStyle = FILLS[k];
+        for (let j = 0; j < b.length; j += 3) { const s = b[j + 2]; ctx.fillRect(b[j] - s / 2, b[j + 1] - s / 2, s, s); }
       });
       if (!labels) return;
       ctx.font = FONT; ctx.textBaseline = 'middle';
@@ -382,30 +391,44 @@
       ctx.globalAlpha = 1;
     };
     // run only while on screen, the tab is visible and nobody paused it; under reduced motion draw on request
-    let raf = 0, running = false, onScreen = false, held = false;
-    const frame = now => { raf = requestAnimationFrame(frame); draw(now); };
-    const start = () => { if (!running && !reduceMotion && !held && onScreen && !document.hidden) { running = true; raf = requestAnimationFrame(frame); } };
-    const stop = () => { running = false; cancelAnimationFrame(raf); };
-    const redraw = () => draw(performance.now());
+    let raf = 0, onScreen = false, held = false;
+    const frame = () => { raf = requestAnimationFrame(frame); draw(); };
+    const start = () => {
+      if (running || reduceMotion || held || !onScreen || document.hidden) return;
+      const d = performance.now() - stoppedAt; t0 += d; since += d;   // the clock resumes where it stopped
+      running = true; raf = requestAnimationFrame(frame);
+    };
+    const stop = () => { if (running) stoppedAt = performance.now(); running = false; cancelAnimationFrame(raf); };
     new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; onScreen ? start() : stop(); }).observe(el);
     document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
     let rt;
-    const resized = () => { clearTimeout(rt); rt = setTimeout(() => { size(); redraw(); }, 120); };
+    const resized = () => { clearTimeout(rt); rt = setTimeout(() => { size(); draw(); }, 120); };
     if ('ResizeObserver' in window) new ResizeObserver(resized).observe(el); else window.addEventListener('resize', resized);
-    size(); redraw();
+    // a window moved to a screen with another pixel density keeps its size but needs a new backing store
+    const watchDpr = () => matchMedia(`(resolution: ${window.devicePixelRatio || 1}dppx)`)
+      .addEventListener('change', () => { size(); draw(); watchDpr(); }, { once: true });
+    watchDpr();
+    size(); draw();
     const ready = document.fonts && document.fonts.load ? document.fonts.load(FONT) : Promise.resolve();
-    ready.then(redraw, redraw);
+    ready.then(draw, draw);
     return {
       show(i) {
         const n = scenes.length, next = ((i % n) + n) % n;
-        if (next !== index) { from = index; fromSince = since; index = next; since = performance.now(); }
-        if (!running) redraw();
+        if (next === index) return;
+        fromX.set(lastX); fromY.set(lastY); fromS.set(lastS); fromL.set(lastL); fromG.set(lastG);
+        index = next;
+        // a moving drawing re-forms from where its points are; a stopped one shows the new area at once, settled
+        morph = running; since = clock() - (running ? 0 : 4500);
+        if (!running) draw();
       },
-      setPaused(pause) { held = pause; pause ? stop() : start(); },
+      setPaused(pause) { held = pause; if (pause) stop(); else start(); },
     };
   }
 
   /* ---------- the Research stage: slides, markers, buttons, keys, pause ---------- */
+  // Rotation stops for good once the visitor takes over (a control, the keys, or keyboard focus entering
+  // the stage), as in the WAI carousel pattern; hovering only holds it. Pause stops both the rotation and
+  // the drawing; Play restarts both.
   const root = document.querySelector('.research-stage');
   const art = root && root.querySelector('.research-stage__art');
   const slides = root ? [...root.querySelectorAll('.stage-slide')] : [];
@@ -414,10 +437,18 @@
     const dots = [...root.querySelectorAll('.stage-dot')];
     const live = root.querySelector('.research-stage__slides');
     const pauseBtn = root.querySelector('[data-stage="pause"]');
-    const state = { user: false, hover: false, focus: false, off: false };
-    const sync = () => root.classList.toggle('is-paused', state.user || state.hover || state.focus || state.off);
+    root.setAttribute('aria-roledescription', 'carousel');
+    slides.forEach((s, j) => { s.setAttribute('aria-roledescription', 'slide'); s.setAttribute('aria-label', `${j + 1} of ${slides.length}`); });
+    const state = { rotating: !reduceMotion, drawing: !reduceMotion, hover: false, off: false };
+    const sync = () => {
+      root.classList.toggle('is-auto', state.rotating);               // the markers' 5 s fill, the slideshow's clock
+      root.classList.toggle('is-paused', state.hover || state.off);   // hovering or scrolling away holds it
+      if (live) live.setAttribute('aria-live', state.rotating ? 'off' : 'polite');   // announce only when not rotating
+      if (pauseBtn) pauseBtn.textContent = state.drawing ? 'Pause' : 'Play';
+      stage.setPaused(!state.drawing);
+    };
     let index = 0;
-    const show = (i, byUser) => {
+    const show = i => {
       const n = slides.length; index = ((i % n) + n) % n;
       stage.show(index);
       slides.forEach((s, j) => s.classList.toggle('is-active', j === index));
@@ -425,28 +456,33 @@
         d.classList.remove('is-active'); d.removeAttribute('aria-current');
         if (j === index) { void d.offsetWidth; d.classList.add('is-active'); d.setAttribute('aria-current', 'true'); }
       });
-      if (live) live.setAttribute('aria-live', byUser ? 'polite' : 'off');   // announce only what the visitor chose
     };
-    root.addEventListener('animationend', e => { if (e.animationName === 'stage-fill') show(index + 1, false); });
-    root.querySelector('[data-stage="prev"]').addEventListener('click', () => show(index - 1, true));
-    root.querySelector('[data-stage="next"]').addEventListener('click', () => show(index + 1, true));
-    dots.forEach((d, j) => d.addEventListener('click', () => show(j, true)));
-    root.addEventListener('keydown', e => {
-      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-      e.preventDefault(); show(index + (e.key === 'ArrowLeft' ? -1 : 1), true);
+    const takeOver = () => { if (state.rotating) { state.rotating = false; sync(); } };
+    const go = i => { takeOver(); show(i); };
+    root.addEventListener('animationend', e => { if (e.animationName === 'stage-fill' && state.rotating) show(index + 1); });
+    root.querySelector('[data-stage="prev"]').addEventListener('click', () => go(index - 1));
+    root.querySelector('[data-stage="next"]').addEventListener('click', () => go(index + 1));
+    dots.forEach((d, j) => d.addEventListener('click', () => go(j)));
+    // arrows only on the controls, and never with a modifier (Alt/Cmd + arrow is the browser's Back)
+    const controls = root.querySelector('.research-stage__controls');
+    if (controls) controls.addEventListener('keydown', e => {
+      if ((e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      e.preventDefault(); go(index + (e.key === 'ArrowLeft' ? -1 : 1));
     });
     if (reduceMotion) { if (pauseBtn) pauseBtn.hidden = true; }
     else {
       if (pauseBtn) pauseBtn.addEventListener('click', () => {
-        state.user = !state.user; sync(); pauseBtn.textContent = state.user ? 'Play' : 'Pause';
+        const play = !state.drawing;
+        state.drawing = play; state.rotating = play; if (play) state.hover = false;
+        sync();
       });
       root.addEventListener('mouseenter', () => { state.hover = true; sync(); });
       root.addEventListener('mouseleave', () => { state.hover = false; sync(); });
-      root.addEventListener('focusin', () => { state.focus = true; sync(); });
-      root.addEventListener('focusout', e => { if (!root.contains(e.relatedTarget)) { state.focus = false; sync(); } });
+      root.addEventListener('focusin', e => { if (!root.contains(e.relatedTarget)) takeOver(); });
       new IntersectionObserver(([e]) => { state.off = !e.isIntersecting; sync(); }).observe(root);
     }
-    show(0, false);
+    sync();
+    show(0);
   }
 
   /* ---------- project-page heroes: one formation each, with a Pause button ---------- */

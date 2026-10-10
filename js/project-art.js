@@ -89,6 +89,11 @@
   }
 
   /* ---------- scenes: (grid, t) ---------- */
+  // the checkable papers on an audit wall of n: the lowest hashes, about 1 in 10 (an illustration, not the audit's measured share; always at least one)
+  const auditWalls = new Map();
+  const checkableOf = n => auditWalls.get(n) || auditWalls.set(n, new Set([...Array(n).keys()]
+    .sort((a, b) => hash(a, 7) - hash(b, 7)).slice(0, Math.max(1, Math.round(n / 10))))).get(n);
+
   const SCENES = {
     // StickForStats: a histogram, the fitted curve in green, and assumption checks ticking off
     stats(g, t) {
@@ -126,12 +131,10 @@
       const nx = Math.floor((cols - 4) / (dw + gx)), ny = Math.floor((rows - 4) / (dh + gy));
       const ox = Math.round((cols - nx * (dw + gx) + gx) / 2), oy = Math.round((rows - ny * (dh + gy) + gy) / 2);
       const scan = reduceMotion ? rows : (t * 5) % (rows + 10);
-      // about 1 in 10 papers is checkable; a small wall still gets at least one, so it never shows none
-      let minId = 0;
-      for (let id = 1; id < nx * ny; id++) if (hash(id, 7) < hash(minId, 7)) minId = id;
+      const ok = checkableOf(nx * ny);
       for (let j = 0; j < ny; j++) for (let i = 0; i < nx; i++) {
         const x = ox + i * (dw + gx), y = oy + j * (dh + gy), id = j * nx + i;
-        const checkable = hash(id, 7) < 0.1 || id === minId;
+        const checkable = ok.has(id);
         const read = scan > y + dh, reading = scan >= y && scan <= y + dh;
         for (let l = 0; l < dh - 1; l++) {
           const len = Math.round(dw * (0.45 + 0.55 * hash(id, l)));

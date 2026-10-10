@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!reduceMotion && 'IntersectionObserver' in window) {
       const CARDS = '.feature-card, .finding-card, .impact-card, .module-card, .use-case-card, .approach-step, ' +
         '.direction-item, .future-item, .background-item, .timeline-item, .audience-card, .capability-card, ' +
-        '.involvement-card, .demo-item, .ux-item, .publication-item, .presentation-item';
+        '.involvement-card, .demo-item, .ux-item, .publication-item';
       const targets = [];
       document.querySelectorAll('.project-section .container, .research-section .container, .publications-section .container')
         .forEach(box => [...box.children].forEach(el => {

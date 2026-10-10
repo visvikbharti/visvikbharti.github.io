@@ -360,14 +360,6 @@
   text-align: left;
 }
 
-.profiles-section h3 {
-  margin-bottom: 1rem;
-  font-size: .8125rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--fg);
-}
-
 .profile-links {
   display: flex;
   flex-wrap: wrap;

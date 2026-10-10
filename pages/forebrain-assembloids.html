@@ -6,7 +6,7 @@
   <title>Human Forebrain Assembloids - Vishal Bharti</title>
 
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Computational analysis of RNA-seq data from human forebrain assembloids to understand interneuron migration disorders and neurodevelopmental conditions.">
+  <meta name="description" content="Computational and statistical analysis for a study of interneuron migration in ERBB4-knockout human forebrain assembloids: RNA-seq, GO and pathway enrichment, a protein-interaction network and proteomics pathway analysis.">
   <meta name="keywords" content="forebrain assembloids, organoids, neuroscience, interneuron migration, RNA-seq, network analysis, neurodevelopment">
   <meta name="author" content="Vishal Bharti">
   
@@ -26,7 +26,7 @@
   <script defer src="../js/main.js"></script>
   <script defer src="../js/point-art.js"></script>
   <!-- Without JS there is no drawing: the copy takes the full width -->
-  <noscript><style>.hero-art{display:none}.hero-split{grid-template-columns:minmax(0,1fr)}.publications-hero .hero-split{grid-template-areas:"copy" "stats"}</style></noscript>
+  <noscript><style>.hero-art{display:none}.hero-split{grid-template-columns:minmax(0,1fr)}</style></noscript>
 </head>
 
 <body class="project-page">
@@ -79,37 +79,38 @@
     <div class="container">
       <h2>Project Overview</h2>
       <p>
-        This research combines genetically engineered human forebrain assembloids with polymeric 
-        nanofiber scaffolds to create an advanced model system for studying interneuron migration disorders. 
+        This research combines genetically engineered human forebrain assembloids with polymeric nanofiber scaffolds to create a model system for studying interneuron migration disorders. 
         These disorders are associated with various neurodevelopmental conditions including epilepsy, autism 
         spectrum disorder, and schizophrenia.
       </p>
       <p>
-        I led the RNA-seq, protein-protein interaction network, and pan-tissue analyses to understand the molecular
-        mechanisms underlying interneuron migration defects. This multiscale approach provides insights into how genetic mutations
-        affect brain development at the cellular and molecular levels.
+        The study knocks out ERBB4, a receptor on migrating interneurons whose variants are linked to schizophrenia,
+        epilepsy and intellectual disability, and asks how its loss changes interneuron migration.
+        I did the study&rsquo;s computational and statistical analysis: the RNA-seq analysis of knockout against
+        control assembloids (differential expression, GO and pathway enrichment, and the overlap with epilepsy and
+        intellectual-disability genes), a protein-interaction network of the neuron-migration genes, the pathway analysis of the sorted interneurons&rsquo; proteomics, the statistical tests on the imaging and migration measurements and, in the submitted manuscript, a pan-tissue correlation of the control assembloids.
       </p>
 
       <div class="project-features">
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-brain"></i></div>
-          <h3>3D Brain Organoids</h3>
-          <p>Analysis of sophisticated forebrain assembloids that recapitulate human brain development</p>
+          <h3>Forebrain Assembloids</h3>
+          <p>Dorsal and ventral forebrain organoids fused, so that reporter-labelled interneurons migrate from one into the other</p>
         </div>
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-dna"></i></div>
           <h3>Transcriptomic Profiling</h3>
-          <p>Comprehensive RNA-seq analysis revealing molecular signatures of migration disorders</p>
+          <p>RNA-seq of ERBB4-knockout and control assembloids, with GO and pathway enrichment</p>
         </div>
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-network-wired"></i></div>
           <h3>Network Biology</h3>
-          <p>Protein interaction networks uncovering disease mechanisms and therapeutic targets</p>
+          <p>A protein-interaction network of the neuron-migration genes that the knockout downregulates</p>
         </div>
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
-          <h3>Multi-tissue Analysis</h3>
-          <p>Pan-tissue expression analysis revealing tissue-specific disease signatures</p>
+          <h3>Pan-tissue Correlation</h3>
+          <p>Control assembloid transcriptomes correlated with a panel of human tissues (submitted manuscript)</p>
         </div>
       </div>
     </div>
@@ -169,9 +170,8 @@
           <div class="step-content">
             <h3>RNA-seq Data Processing</h3>
             <p>
-              Processed bulk RNA-seq data from assembloids at multiple developmental time points. Implemented 
-              quality control, read alignment, and quantification pipelines to ensure accurate gene expression 
-              measurements across samples.
+              Bulk RNA-seq of knockout and control assembloids (in the preprint, day 60, four biological replicates
+              each): read quality control and trimming, and transcript quantification with Kallisto.
             </p>
           </div>
         </div>
@@ -181,9 +181,8 @@
           <div class="step-content">
             <h3>Differential Expression Analysis</h3>
             <p>
-              Identified genes differentially expressed between control and disease model assembloids. Applied 
-              statistical methods to account for biological variability and technical factors, revealing key 
-              molecular signatures of migration defects.
+              Genes differentially expressed between knockout and control assembloids, found with DESeq2 under
+              false-discovery-rate control.
             </p>
           </div>
         </div>
@@ -193,9 +192,9 @@
           <div class="step-content">
             <h3>Pathway Enrichment</h3>
             <p>
-              Conducted comprehensive pathway analysis using GO, KEGG, and custom neurodevelopmental gene sets. 
-              This revealed disrupted biological processes including axon guidance, cell adhesion, and 
-              neurotransmitter signaling.
+              GO and KEGG enrichment of the differentially expressed genes in DAVID, and a Fisher&rsquo;s exact test
+              of their overlap with epilepsy and intellectual-disability gene sets. In the preprint, genes for axon
+              guidance and the actin and microtubule cytoskeleton were among those the knockout downregulated.
             </p>
           </div>
         </div>
@@ -203,22 +202,32 @@
         <div class="approach-step">
           <div class="step-number">4</div>
           <div class="step-content">
-            <h3>PPI Network Construction</h3>
+            <h3>Protein-Interaction Network</h3>
             <p>
-              Built protein-protein interaction networks integrating expression data with known interactions. 
-              Identified hub genes and network modules associated with interneuron migration, revealing 
-              potential therapeutic targets.
+              A STRING network of the 25 neuron-migration genes downregulated in the knockout; it centres on RHOA,
+              NTRK2 and FYN.
+            </p>
+          </div>
+        </div>
+
+        <div class="approach-step">
+          <div class="step-number">5</div>
+          <div class="step-content">
+            <h3>Proteomics Pathways</h3>
+            <p>
+              Pathway enrichment of the proteins that differ between knockout and control interneurons sorted from
+              the assembloids, which pointed to SLIT/ROBO and RHO GTPase signalling.
             </p>
           </div>
         </div>
         
         <div class="approach-step">
-          <div class="step-number">5</div>
+          <div class="step-number">6</div>
           <div class="step-content">
-            <h3>Pan-Tissue Analysis</h3>
+            <h3>Pan-Tissue Correlation</h3>
             <p>
-              Compared expression patterns across multiple human tissues to understand tissue-specific effects 
-              of identified genes. This analysis helped distinguish brain-specific pathology from systemic effects.
+              In the submitted manuscript (not in the preprint), the transcriptomes of control assembloids were
+              correlated with those of a panel of human tissues, to see which they most resemble.
             </p>
           </div>
         </div>
@@ -229,34 +238,33 @@
   <!-- ================= Key Findings ================= -->
   <section class="project-section alt-bg">
     <div class="container">
-      <h2>Major Discoveries</h2>
+      <h2>Findings in the Preprint</h2>
       
       <div class="findings-grid">
         <div class="finding-card">
           <div class="finding-icon"><i class="fas fa-microscope"></i></div>
-          <h3>Migration Defect Signatures</h3>
+          <h3>Interneurons Migrate Less</h3>
           <p>
-            Identified molecular signatures specific to interneuron migration defects, including dysregulation 
-            of cell adhesion molecules, cytoskeletal regulators, and guidance receptors critical for proper 
-            neuronal positioning.
+            ERBB4 loss did not stop interneurons forming, but ventral organoids without it sent out fewer neuronal
+            projections, and fewer of their interneurons migrated 100 &micro;m or more in an outgrowth assay.
           </p>
         </div>
         
         <div class="finding-card">
           <div class="finding-icon"><i class="fas fa-project-diagram"></i></div>
-          <h3>Network Disruptions</h3>
+          <h3>RHOA/RAC Signalling</h3>
           <p>
-            Revealed disrupted protein interaction networks centered on key migration regulators. These 
-            network perturbations explain how single gene mutations can lead to widespread developmental 
-            abnormalities.
+            Knockout assembloids downregulated neuron-migration and cytoskeleton genes; a network of the 25
+            downregulated neuron-migration genes centres on RHOA, NTRK2 and FYN, pointing to dysregulated RHOA/RAC
+            signalling.
           </p>
         </div>
         
         <div class="finding-card">
-          <div class="finding-icon"><i class="fas fa-pills"></i></div>
-          <h3>Therapeutic Targets</h3>
+          <div class="finding-icon"><i class="fas fa-flask"></i></div>
+          <h3>Interneuron Proteome</h3>
           <p>
-            Identified druggable pathways and proteins that could be targeted to rescue migration defects.
+            Proteomics of interneurons sorted from the assembloids pointed to SLIT/ROBO and RHO GTPase signalling.
           </p>
         </div>
       </div>
@@ -270,30 +278,31 @@
       
       <div class="tech-details">
         <div class="tech-detail">
-          <h3>Sequencing & Data</h3>
+          <h3>Model & Data</h3>
           <ul>
-            <li><strong>Time Points:</strong> Multiple developmental stages</li>
+            <li><strong>Cells:</strong> IMR90 iPSCs with inducible Cas9 and a GAD1-mClover interneuron reporter; ERBB4 exon 2 deleted</li>
+            <li><strong>RNA-seq (preprint):</strong> Day-60 assembloids, four knockout and four control replicates; NovaSeq 6000, 150 bp paired-end</li>
+            <li><strong>Proteomics:</strong> SWATH-MS of FACS-sorted mClover-positive interneurons</li>
           </ul>
         </div>
         
         <div class="tech-detail">
           <h3>Analysis Tools</h3>
           <ul>
-            <li><strong>STAR:</strong> Read alignment to human genome</li>
-            <li><strong>DESeq2:</strong> Differential expression analysis</li>
-            <li><strong>clusterProfiler:</strong> Pathway enrichment</li>
-            <li><strong>STRING:</strong> PPI network construction</li>
-            <li><strong>Cytoscape:</strong> Network visualization</li>
+            <li><strong>FastQC, Trimmomatic, MultiQC:</strong> Read quality</li>
+            <li><strong>Kallisto, tximport:</strong> Quantification</li>
+            <li><strong>DESeq2:</strong> Differential expression</li>
+            <li><strong>DAVID:</strong> GO and KEGG enrichment</li>
+            <li><strong>STRING:</strong> Protein-interaction network</li>
           </ul>
         </div>
         
         <div class="tech-detail">
           <h3>Statistical Approach</h3>
           <ul>
-            <li><strong>Normalization:</strong> TMM normalization</li>
-            <li><strong>Batch Correction:</strong> ComBat-seq</li>
-            <li><strong>FDR Control:</strong> Benjamini-Hochberg</li>
-            <li><strong>Network Analysis:</strong> Graph theory metrics</li>
+            <li><strong>Differential expression:</strong> DESeq2, Benjamini-Hochberg false discovery rate</li>
+            <li><strong>Gene-set overlap:</strong> Two-sided Fisher&rsquo;s exact test</li>
+            <li><strong>Imaging measures:</strong> Student&rsquo;s t-test and Mann-Whitney test</li>
           </ul>
         </div>
       </div>
@@ -352,14 +361,14 @@
     <div class="container">
       <h2>Collaborative Research Team</h2>
       <p>
-        This interdisciplinary project brings together experts in neuroscience, bioengineering, computational 
-        biology, and clinical medicine to tackle complex questions in brain development.
+        This project brings together stem-cell biology, genome engineering, bioengineering, imaging, proteomics
+        and computational biology to study how human cortical interneurons migrate.
       </p>
       
       <div class="team-details">
         <p><strong>Lead PI:</strong> Dr. Debojyoti Chakraborty, IGIB CSIR</p>
-        <p><strong>Collaborators:</strong> Neuroscientists, Bioengineers, and Clinical Researchers</p>
-        <p><strong>Computational Analysis:</strong> Vishal Bharti - led the RNA-seq, protein-protein interaction network, and pan-tissue analyses</p>
+        <p><strong>Collaborators:</strong> Bioengineering and imaging groups</p>
+        <p><strong>Computational and Statistical Analysis:</strong> Vishal Bharti (RNA-seq, GO and pathway enrichment, the protein-interaction network, the proteomics pathway analysis, the statistics and, in the submitted manuscript, the pan-tissue correlation)</p>
         <p><strong>Duration:</strong> 2023 - Present</p>
         <p><strong>Status:</strong> <em>Research Square</em> preprint; under revision at <em>Stem Cell Reports</em></p>
       </div>
@@ -376,16 +385,13 @@
         <p class="authors">Rauthan R., <strong>Bharti V.</strong>, et al.</p>
         <p class="journal"><em>Research Square</em> preprint; under revision at <em>Stem Cell Reports</em>. DOI: <a href="https://doi.org/10.21203/rs.3.rs-3831019/v1" target="_blank" rel="noopener">10.21203/rs.3.rs-3831019/v1</a></p>
         <p class="abstract">
-          <strong>Summary:</strong> Interneuron migration disorders contribute to various neurodevelopmental 
-          conditions including epilepsy and autism spectrum disorder. Here, we present an innovative platform 
-          combining genetically engineered human forebrain assembloids with polymeric nanofiber scaffolds to 
-          model and analyze these disorders at multiple scales. Through comprehensive transcriptomic profiling 
-          and network analysis, we identify key molecular signatures of migration defects and potential 
-          therapeutic targets. Our findings reveal disrupted cell adhesion, cytoskeletal regulation, and 
-          guidance signaling in disease models. The integration of nanofiber scaffolds provides controlled 
-          physical cues that modulate migration patterns, offering insights into mechanobiological aspects 
-          of neuronal migration. This platform enables drug screening and personalized medicine approaches 
-          for neurodevelopmental disorders, bridging the gap between basic research and clinical applications.
+          <strong>Summary:</strong> ERBB4 variants are linked to schizophrenia, epilepsy and intellectual
+          disability, but its role in the migration of human cortical interneurons was unknown. The study knocks
+          out ERBB4 with CRISPR in human iPSCs that carry an interneuron reporter, derives dorsal and ventral
+          forebrain organoids and fuses them into assembloids, and follows interneuron migration in the
+          assembloids and on nanofiber scaffolds that mimic the fibrous extracellular matrix. ERBB4 loss did not
+          stop interneurons forming but reduced their migration, and the RNA-seq and proteomics pointed to
+          RHOA/RAC and SLIT/ROBO signalling.
         </p>
         <div class="publication-links">
           <a href="https://doi.org/10.21203/rs.3.rs-3831019/v1" target="_blank" rel="noopener" class="btn">View Preprint</a>

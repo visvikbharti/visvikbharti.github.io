@@ -3,8 +3,8 @@
    points takes a research area's shape and keeps moving in it: a turning RNA triple helix, a turning
    G-quadruplex, cells being sorted by a repair reporter, neurons in an assembloid with interneurons
    migrating across it, data checked before a test (histogram, then Q-Q plot), articles read for a
-   recomputable statistic, confidence intervals around a true mean, and a query finding its nearest
-   documents. When the shape changes, the points fly to their new places in under a second.
+   recomputable statistic, confidence intervals around a true mean, and a query picking out the
+   documents it matches. When the shape changes, the points fly to their new places in under a second.
 
    Mounted on
    - the Research stage (.research-stage): the slides under the drawing (.stage-slide, data-scene naming
@@ -281,9 +281,9 @@
       dust(i, t, W, H, o);
     },
 
-    // RNA Lab Navigator: the lab's indexed documents as points in an embedding space, in a few topical
-    // clusters. A query (green) lands, lines reach out to its nearest documents and they light up; then
-    // the next query comes.
+    // RNA Lab Navigator: the lab's indexed documents as points in a few topical clusters. A query (green)
+    // lands, lines reach out to the documents it matches and they light up; then the next query comes.
+    // The app ranks passages by keyword (BM25) score; here the matches are drawn as the nearest points.
     rag: function rag(i, t, tl, W, H, o) {
       const DOCS = 460, K = 6, LINE = 14, CYCLE = 3.4;
       const cyc = reduceMotion ? 1 : Math.floor(t / CYCLE), ph = reduceMotion ? 2.4 : t % CYCLE;

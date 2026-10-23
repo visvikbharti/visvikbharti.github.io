@@ -6,8 +6,8 @@
   <title>RNA Lab Navigator - Vishal Bharti</title>
 
   <!-- SEO Meta Tags -->
-  <meta name="description" content="AI-powered RAG assistant for RNA biology labs with intelligent question-answering, document management, and citation tracking capabilities.">
-  <meta name="keywords" content="RAG, AI, RNA biology, Django, React, PostgreSQL, Weaviate, full-stack development, machine learning">
+  <meta name="description" content="RNA Lab Navigator: retrieval-augmented question answering for an RNA biology lab, with keyword (BM25) retrieval over a Weaviate index of its theses and papers and an LLM answering from the top passages.">
+  <meta name="keywords" content="RAG, RNA biology, Django, React, Weaviate, BM25, OpenAI GPT-4o, Docker">
   <meta name="author" content="Vishal Bharti">
   
   <!-- Google Fonts -->
@@ -52,27 +52,22 @@
     <div class="container hero-split">
       <div class="hero-split__copy">
         <h1 class="project-title"><span class="sr-only">RNA Lab Navigator</span><span aria-hidden="true" class="scramble" data-text="RNA Lab Navigator" data-glyphs="AUGC">RNA Lab Navigator</span></h1>
-        <p class="tagline">Retrieval-augmented research assistant for fast, grounded literature triage in a wet-dry lab</p>
+        <p class="tagline">Retrieval-augmented research assistant for fast literature triage in a wet-dry lab</p>
         <div class="project-meta">
           <div class="tech-tags">
             <span class="tech-tag">Django</span>
             <span class="tech-tag">React</span>
-            <span class="tech-tag">PostgreSQL</span>
             <span class="tech-tag">Weaviate</span>
-            <span class="tech-tag">OpenAI GPT-4</span>
+            <span class="tech-tag">BM25</span>
+            <span class="tech-tag">OpenAI GPT-4o</span>
             <span class="tech-tag">Docker</span>
             <span class="tech-tag">RAG</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/visvikbharti/rna-lab-navigator" target="_blank" rel="noopener" class="btn alt">
-              <i class="fab fa-github"></i> GitHub
-            </a>
           </div>
         </div>
       </div>
       <figure class="hero-art">
         <div class="hero-art__frame" data-points="rag" aria-hidden="true"></div>
-        <figcaption>A query (green) finding the closest passages among the lab&rsquo;s indexed documents</figcaption>
+        <figcaption>A query (green) and the passages that best match its keywords among the lab&rsquo;s indexed documents</figcaption>
       </figure>
     </div>
   </section>
@@ -82,15 +77,18 @@
     <div class="container">
       <h2>Laboratory Knowledge Management</h2>
       <p>
-        RNA Lab Navigator is a sophisticated AI-powered Retrieval-Augmented Generation (RAG) system designed 
-        specifically for RNA biology laboratories. It addresses the critical challenge of knowledge fragmentation 
-        in research environments where valuable insights are scattered across theses, papers, protocols, and 
-        experimental notes.
+        RNA Lab Navigator is a retrieval-augmented question-answering app built for an RNA biology lab, where much
+        of what the lab knows is spread across theses, papers, protocols and experimental notes. It answers from
+        the best-matching passages in the lab's indexed documents; when none is relevant, its prompt allows a
+        general-knowledge answer that says it is not from the documents.
       </p>
       <p>
-        Researchers query internal lab documents and the primary literature in natural language and receive
-        answers with citations to the source documents, for fast, grounded literature triage in a wet-dry lab.
-        It is in routine use by about 21 researchers.
+        Questions in plain English go to keyword (BM25) retrieval over a Weaviate index, with an LLM (OpenAI
+        GPT-4o in 2025) answering from the top passages and the source documents listed under each answer. Used
+        by about 21 lab members during its 2025 local deployment.
+      </p>
+      <p>
+        A public demo on 30 openly licensed papers is being evaluated with a 60-question test set; results and a video will be added here.
       </p>
 
       <!-- Demo video (YouTube), hidden until there is one. To show it, in the comment below: replace VIDEO_ID
@@ -111,18 +109,18 @@
       <div class="project-features">
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-brain"></i></div>
-          <h3>Intelligent Q&A System</h3>
-          <p>Natural language queries answered with citations from your lab's documents</p>
+          <h3>Question Answering</h3>
+          <p>Plain-English questions answered from the best-matching passages, with the source documents listed</p>
         </div>
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-lock"></i></div>
-          <h3>Secure Access</h3>
-          <p>JWT authentication, with access limited to lab members on the institute network</p>
+          <h3>Sign-in</h3>
+          <p>JWT sign-in, with accounts created by an admin; served on the institute network in 2025</p>
         </div>
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-database"></i></div>
           <h3>Lab Document Corpus</h3>
-          <p>PhD theses and papers indexed for semantic search</p>
+          <p>PhD theses and papers, split into overlapping passages and indexed for keyword search</p>
         </div>
       </div>
     </div>
@@ -133,52 +131,48 @@
     <div class="container">
       <h2>Technical Architecture</h2>
       <p>
-        The system employs a modern microservices architecture with clear separation of concerns, 
-        enabling scalability, maintainability, and security.
+        A React front end and a Django REST backend, with Weaviate as the document index and Redis as the cache.
+        In the July 2025 local deployment they ran in Docker containers.
       </p>
-      
+
       <div class="architecture-sections">
         <div class="arch-component">
-          <h3>Frontend (React + TypeScript)</h3>
+          <h3>Frontend (React)</h3>
           <ul>
-            <li>Modern React 18 with TypeScript for type safety</li>
-            <li>Redux Toolkit for state management</li>
-            <li>Material-UI for consistent, responsive design</li>
-            <li>Real-time updates via WebSocket connections</li>
-            <li>Progressive Web App capabilities</li>
+            <li>React 18 single-page app in JavaScript (JSX), built with Vite</li>
+            <li>Tailwind CSS with Headless UI components and Heroicons, and a dark mode</li>
+            <li>Sign-in state and display settings held in React context</li>
+            <li>Each question is one REST request to the backend, answered with one JSON reply</li>
           </ul>
         </div>
-        
+
         <div class="arch-component">
           <h3>Backend (Django + DRF)</h3>
           <ul>
             <li>Django 4.2 with Django REST Framework</li>
-            <li>JWT authentication with refresh token rotation</li>
-            <li>Celery for asynchronous task processing</li>
-            <li>Redis for caching and session management</li>
-            <li>Comprehensive API documentation with Swagger</li>
+            <li>JWT sign-in (Simple JWT), with refresh tokens rotated and blacklisted on the server</li>
+            <li>Redis cache: an identical question asked again within an hour is answered from the cache</li>
+            <li>SQLite for Django's own tables (users, chat sessions)</li>
           </ul>
         </div>
-        
+
         <div class="arch-component">
-          <h3>AI/ML Pipeline</h3>
+          <h3>Retrieval and Answering</h3>
           <ul>
-            <li>OpenAI GPT-4 for response generation</li>
-            <li>Ada-002 embeddings for semantic search</li>
-            <li>Weaviate vector database with HNSW indexing</li>
-            <li>Hybrid search combining semantic and keyword matching</li>
-            <li>Cross-encoder reranking for accuracy</li>
+            <li>Weaviate index of the documents' passages, each with its title, author and year</li>
+            <li>Keyword (BM25) search over each passage's text, title and author</li>
+            <li>The 4 best-matching passages, up to 10,000 characters, go into the prompt</li>
+            <li>OpenAI GPT-4o writes the answer from them, capped at 500 tokens</li>
+            <li>Each answer lists up to 3 source documents (title, author, year)</li>
           </ul>
         </div>
-        
+
         <div class="arch-component">
           <h3>Infrastructure</h3>
           <ul>
-            <li>Docker containerization for all services</li>
-            <li>PostgreSQL for relational data</li>
-            <li>Nginx reverse proxy with SSL termination</li>
-            <li>GitHub Actions for CI/CD pipeline</li>
-            <li>Comprehensive monitoring and logging</li>
+            <li>Docker containers for the front end, the Django backend, Weaviate and Redis</li>
+            <li>Served from a MacBook on the institute network (July 2025)</li>
+            <li>Security and error logs, and each request's response time recorded in the database</li>
           </ul>
         </div>
       </div>
@@ -188,41 +182,41 @@
   <!-- ================= RAG Implementation ================= -->
   <section class="project-section">
     <div class="container">
-      <h2>Advanced RAG Implementation</h2>
+      <h2>RAG Implementation</h2>
       <p>
-        The heart of RNA Lab Navigator is its sophisticated Retrieval-Augmented Generation system, 
-        designed to deliver accurate, contextual responses grounded in the lab's documents.
+        The documents are split into passages and indexed once. For each question, passages are retrieved by
+        keyword, and the model answers from them.
       </p>
-      
+
       <div class="rag-components">
         <div class="rag-component">
-          <h3>1. Document Processing</h3>
-          <p>Intelligent ingestion pipeline handling PDFs, DOCX, and other formats</p>
+          <h3>1. Document Ingestion</h3>
+          <p>Text extracted from the lab's PDF theses and papers</p>
         </div>
-        
+
         <div class="rag-component">
-          <h3>2. Smart Chunking</h3>
-          <p>Context-aware text segmentation preserving semantic integrity</p>
+          <h3>2. Chunking</h3>
+          <p>400-word passages overlapping by 100 words; theses split by chapter first</p>
         </div>
-        
+
         <div class="rag-component">
-          <h3>3. Embedding Generation</h3>
-          <p>High-dimensional vector representations for semantic search</p>
+          <h3>3. Indexing</h3>
+          <p>Each passage stored in Weaviate with its document's title, author and year</p>
         </div>
-        
+
         <div class="rag-component">
-          <h3>4. Hybrid Retrieval</h3>
-          <p>Combining semantic and keyword search for optimal results</p>
+          <h3>4. Keyword Retrieval</h3>
+          <p>BM25 search over each passage's text, title and author; the top 4 go to the model</p>
         </div>
-        
+
         <div class="rag-component">
-          <h3>5. Response Generation</h3>
-          <p>Context-aware answers with accurate citations</p>
+          <h3>5. Answer</h3>
+          <p>The model answers from those passages, and the app lists the source documents</p>
         </div>
       </div>
-      
+
       <div class="rag-details">
-        <h3>Performance Metrics (test deployment, July 2025)</h3>
+        <h3>Response Times (July 2025 test deployment)</h3>
         <ul>
           <li><strong>Average Response Time:</strong> 3.2 seconds</li>
           <li><strong>95th Percentile:</strong> 4.8 seconds</li>
@@ -236,18 +230,18 @@
     <div class="container">
       <h2>Access & Security</h2>
       <p>
-        Protecting sensitive research data is paramount. RNA Lab Navigator uses JWT-based authentication,
-        and access is limited to lab members on the institute network.
+        Lab members sign in with JWT; accounts are created by an admin or PI, with no self-registration. In 2025
+        the app was served on the institute network.
       </p>
 
       <div class="security-features">
         <div class="security-layer">
           <i class="fas fa-shield-alt"></i>
-          <h3>Authentication & Authorization</h3>
+          <h3>Authentication</h3>
           <ul>
-            <li>JWT tokens with 15-minute access token lifetime</li>
-            <li>Refresh token rotation for enhanced security</li>
-            <li>Brute-force protection (Axes)</li>
+            <li>JWT access tokens that expire after 15 minutes</li>
+            <li>Refresh tokens rotated and blacklisted on the server</li>
+            <li>Brute-force protection (django-axes): a one-hour lockout after 5 failed sign-ins</li>
           </ul>
         </div>
 
@@ -256,7 +250,7 @@
           <h3>Network Access</h3>
           <ul>
             <li>Served on the institute network</li>
-            <li>Access limited to lab members</li>
+            <li>Accounts given to lab members</li>
           </ul>
         </div>
       </div>
@@ -268,8 +262,7 @@
     <div class="container">
       <h2>Deployment Challenges & Solutions</h2>
       <p>
-        The journey to production involved navigating complex technical challenges across multiple 
-        deployment platforms, ultimately resulting in a local deployment on the institute network.
+        Hosting was tried on several platforms before the app was deployed locally on the institute network.
       </p>
       
       <div class="deployment-timeline">
@@ -293,16 +286,16 @@
         <div class="deployment-stage">
           <h3>Performance Optimization</h3>
           <p>
-            Cut response times through strategic caching, connection pooling, and query
-            optimization, and by reducing context chunks from 3 to 2.
+            Repeated questions were answered from a one-hour Redis cache, and the prompt was kept small: the 4
+            best-matching passages (down from 5), at most 10,000 characters, with answers capped at 500 tokens.
           </p>
         </div>
         
         <div class="deployment-stage">
-          <h3>Local Deployment Success</h3>
+          <h3>Local Deployment</h3>
           <p>
-            Successfully deployed on institute network using Docker containers on local MacBook,
-            serving 25 documents (7 PhD theses, 18 papers) to lab members. System accessible at institute IP addresses.
+            Deployed in July 2025 in Docker containers on a MacBook on the institute network, serving 25
+            documents (7 PhD theses, 18 papers) to lab members at an institute IP address.
           </p>
         </div>
       </div>
@@ -313,32 +306,30 @@
   <section class="project-section alt-bg">
     <div class="container">
       <h2>Platform Capabilities</h2>
-      
+
       <div class="capabilities-grid">
         <div class="capability-card">
           <h3>Document Management</h3>
           <ul>
-            <li>Support for PDF, DOCX, TXT, and more</li>
-            <li>Automatic metadata extraction</li>
-            <li>Bulk upload capabilities</li>
-            <li>Intelligent categorization</li>
+            <li>PDF theses and papers, split into passages and indexed</li>
+            <li>Title, author and year entered for each document</li>
+            <li>Each document tagged by type (thesis, paper, protocol)</li>
           </ul>
         </div>
-        
+
         <div class="capability-card">
-          <h3>Advanced Search</h3>
+          <h3>Search</h3>
           <ul>
-            <li>Natural language queries</li>
-            <li>Semantic similarity search</li>
-            <li>Author and source filtering</li>
+            <li>Questions in plain language, matched by keyword (BM25)</li>
+            <li>Author names and titles searched along with the text</li>
           </ul>
         </div>
-        
+
         <div class="capability-card">
-          <h3>Collaboration Tools</h3>
+          <h3>Shared Use</h3>
           <ul>
-            <li>Shared document collections</li>
-            <li>Query history</li>
+            <li>One document index for the whole lab</li>
+            <li>Recent chat sessions listed in a sidebar</li>
           </ul>
         </div>
       </div>
@@ -349,36 +340,29 @@
   <section class="project-section">
     <div class="container">
       <h2>Real-World Applications</h2>
-      
+
       <div class="use-case-grid">
         <div class="use-case-card">
           <h3>Literature Review Acceleration</h3>
           <p>
-            Researchers can query the indexed papers and theses in natural language for fast,
-            grounded literature triage. The system provides direct citations back to the source documents.
+            Researchers can query the indexed papers and theses in plain language. Each answer lists up to three
+            source documents (title, author, year) from the passages it was given.
           </p>
         </div>
-        
+
         <div class="use-case-card">
-          <h3>Protocol Standardization</h3>
+          <h3>Finding Methods</h3>
           <p>
-            Lab members can quickly find methods and best practices described in the indexed theses
-            and papers. This ensures consistency and prevents reinventing solutions to solved problems.
+            Lab members can ask how a method was done in the indexed theses and papers, and the answer lists the
+            documents its passages came from.
           </p>
         </div>
-        
+
         <div class="use-case-card">
           <h3>Thesis Knowledge Preservation</h3>
           <p>
-            Graduate student theses contain valuable insights often lost after graduation. The system 
-            preserves this knowledge, making it accessible to future researchers building on previous work.
-          </p>
-        </div>
-        
-        <div class="use-case-card">
-          <h3>Cross-Project Insights</h3>
-          <p>
-            Identify connections between different research projects that might not be obvious.
+            Theses hold much of what a lab learns, and that knowledge is easily lost after graduation. The lab's
+            PhD theses are indexed chapter by chapter, so later students can ask questions of earlier students' work.
           </p>
         </div>
       </div>
@@ -389,39 +373,31 @@
   <section class="project-section alt-bg">
     <div class="container">
       <h2>Technical Achievements</h2>
-      
+
       <div class="achievements-grid">
         <div class="achievement">
           <i class="fas fa-tachometer-alt"></i>
           <h3>Performance Optimization</h3>
           <p>
-            Reduced response time through intelligent caching, query optimization,
-            and asynchronous processing.
+            An identical question asked within an hour is answered from a Redis cache, and the prompt carries only
+            the 4 best-matching passages.
           </p>
         </div>
-        
+
         <div class="achievement">
           <i class="fas fa-shield-alt"></i>
           <h3>Security Implementation</h3>
           <p>
-            JWT authentication with refresh token rotation and brute-force protection, with access
-            limited to lab members on the institute network.
+            JWT sign-in with refresh-token rotation, brute-force protection (django-axes) and accounts created by
+            an admin.
           </p>
         </div>
-        
-        <div class="achievement">
-          <i class="fas fa-chart-line"></i>
-          <h3>Scalability Design</h3>
-          <p>
-            Microservices architecture designed to support horizontal scaling.
-          </p>
-        </div>
-        
+
         <div class="achievement">
           <i class="fas fa-users"></i>
           <h3>User Adoption</h3>
           <p>
-            In routine use by about 21 researchers.
+            Used by about 21 lab members during its 2025 local deployment.
           </p>
         </div>
       </div>
@@ -446,16 +422,8 @@
         <div class="lesson">
           <h3>RAG System Optimization</h3>
           <p>
-            Balancing accuracy with performance requires careful tuning. Reducing context chunks
-            from 3 to 2 improved response times.
-          </p>
-        </div>
-        
-        <div class="lesson">
-          <h3>Security vs Usability</h3>
-          <p>
-            Implementing robust security without hampering user experience requires thoughtful design. 
-            Token refresh mechanisms improved both security and usability.
+            Balancing accuracy with performance requires careful tuning. The answering path sends the model the 4
+            best-matching passages, down from 5, to cut response time.
           </p>
         </div>
         
@@ -517,7 +485,7 @@
       <div class="impact-metrics">
         <div class="metric">
           <h3>Users</h3>
-          <p>In routine use by about 21 researchers</p>
+          <p>Used by about 21 lab members during its 2025 local deployment</p>
         </div>
         <div class="metric">
           <h3>Knowledge Preserved</h3>
@@ -537,7 +505,6 @@
       </p>
       <div class="contact-buttons">
         <a href="mailto:vishalvikashbharti@gmail.com?subject=RNA%20Lab%20Navigator%20Inquiry" class="btn">Email Me</a>
-        <a href="https://github.com/visvikbharti/rna-lab-navigator" target="_blank" rel="noopener" class="btn alt">View on GitHub</a>
       </div>
     </div>
   </section>

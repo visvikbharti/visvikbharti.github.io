@@ -269,7 +269,7 @@
       g.text(cm + 2, 1, 'true mean', 5);
     },
 
-    // RNA Lab Navigator: a query pulls the top documents from a document graph
+    // RNA Lab Navigator: a query pulls its top documents out of the indexed set (the dotted links are decoration)
     rag(g, t) {
       const { cols, rows } = g;
       const q = { x: cols * 0.5, y: rows * 0.5 };

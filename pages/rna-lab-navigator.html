@@ -6,7 +6,7 @@
   <title>RNA Lab Navigator - Vishal Bharti</title>
 
   <!-- SEO Meta Tags -->
-  <meta name="description" content="RNA Lab Navigator: retrieval-augmented question answering for an RNA biology lab, with keyword (BM25) retrieval over a Weaviate index of its theses and papers and an LLM answering from the top passages.">
+  <meta name="description" content="RNA Lab Navigator: retrieval-augmented question answering for an RNA biology lab. Keyword (BM25) retrieval over a Weaviate index of the lab's theses and papers; an LLM answers from the top passages.">
   <meta name="keywords" content="RAG, RNA biology, Django, React, Weaviate, BM25, OpenAI GPT-4o, Docker">
   <meta name="author" content="Vishal Bharti">
   
@@ -78,14 +78,14 @@
       <h2>Laboratory Knowledge Management</h2>
       <p>
         RNA Lab Navigator is a retrieval-augmented question-answering app built for an RNA biology lab, where much
-        of what the lab knows is spread across theses, papers, protocols and experimental notes. It answers from
-        the best-matching passages in the lab's indexed documents; when none is relevant, its prompt allows a
-        general-knowledge answer that says it is not from the documents.
+        of what the lab knows is spread across theses, papers, protocols and experimental notes. It was used by
+        about 21 lab members during its 2025 local deployment.
       </p>
       <p>
         Questions in plain English go to keyword (BM25) retrieval over a Weaviate index, with an LLM (OpenAI
-        GPT-4o in 2025) answering from the top passages and the source documents listed under each answer. Used
-        by about 21 lab members during its 2025 local deployment.
+        GPT-4o in the lab's code) answering from the top passages; the source documents are listed under each
+        answer. When none of the passages is relevant, the prompt allows a general-knowledge answer that says it
+        is not from the documents.
       </p>
       <p>
         A public demo on 30 openly licensed documents is being evaluated with a 60-question test set; results and a video will be added here.
@@ -110,12 +110,12 @@
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-brain"></i></div>
           <h3>Question Answering</h3>
-          <p>Plain-English questions answered from the best-matching passages, with the source documents listed</p>
+          <p>Plain-English questions answered from the best-matching passages, with up to 3 source documents listed</p>
         </div>
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-lock"></i></div>
           <h3>Sign-in</h3>
-          <p>JWT sign-in, with accounts created by an admin; served on the institute network in 2025</p>
+          <p>Sign-in (JWT) for the app's pages, with accounts created by an admin or PI; served on the institute network in 2025</p>
         </div>
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-database"></i></div>
@@ -131,8 +131,9 @@
     <div class="container">
       <h2>Technical Architecture</h2>
       <p>
-        A React front end and a Django REST backend, with Weaviate as the document index and Redis as the cache.
-        In the July 2025 local deployment they ran in Docker containers.
+        A React frontend and a Django REST backend, with Weaviate as the document index and Redis as the cache.
+        In the July 2025 local deployment they ran in Docker containers. The details on this page are from the
+        lab's code as of June 2025.
       </p>
 
       <div class="architecture-sections">
@@ -152,7 +153,6 @@
             <li>Django 4.2 with Django REST Framework</li>
             <li>JWT sign-in (Simple JWT), with refresh tokens rotated and blacklisted on the server</li>
             <li>Redis cache: an identical question asked again within an hour is answered from the cache</li>
-            <li>SQLite for Django's own tables (users, chat sessions)</li>
           </ul>
         </div>
 
@@ -170,9 +170,8 @@
         <div class="arch-component">
           <h3>Infrastructure</h3>
           <ul>
-            <li>Docker containers for the front end, the Django backend, Weaviate and Redis</li>
-            <li>Served from a MacBook on the institute network (July 2025)</li>
-            <li>Security and error logs, and each request's response time recorded in the database</li>
+            <li>Docker containers on a MacBook, served on the institute network (July 2025)</li>
+            <li>Security and error logging, with each request's response time stored in the app's database</li>
           </ul>
         </div>
       </div>
@@ -211,7 +210,7 @@
 
         <div class="rag-component">
           <h3>5. Answer</h3>
-          <p>The model answers from those passages, and the app lists the source documents</p>
+          <p>The model answers from those passages, and the app lists up to 3 of their source documents</p>
         </div>
       </div>
 
@@ -230,8 +229,8 @@
     <div class="container">
       <h2>Access & Security</h2>
       <p>
-        Lab members sign in with JWT; accounts are created by an admin or PI, with no self-registration. In 2025
-        the app was served on the institute network.
+        The app's pages ask lab members to sign in (JWT); accounts are created by an admin or PI, with no
+        self-registration. In 2025 the app was served on the institute network.
       </p>
 
       <div class="security-features">
@@ -312,7 +311,7 @@
           <h3>Document Management</h3>
           <ul>
             <li>PDF theses and papers, split into passages and indexed</li>
-            <li>Title, author and year entered for each document</li>
+            <li>Title (by default the file name), author and year recorded for each document</li>
             <li>Each document tagged by type (thesis, paper, protocol)</li>
           </ul>
         </div>
@@ -320,7 +319,7 @@
         <div class="capability-card">
           <h3>Search</h3>
           <ul>
-            <li>Questions in plain language, matched by keyword (BM25)</li>
+            <li>Questions in plain English, matched by keyword (BM25)</li>
             <li>Author names and titles searched along with the text</li>
           </ul>
         </div>
@@ -329,7 +328,7 @@
           <h3>Shared Use</h3>
           <ul>
             <li>One document index for the whole lab</li>
-            <li>Recent chat sessions listed in a sidebar</li>
+            <li>Recent chat sessions, shared by all users, listed in a sidebar</li>
           </ul>
         </div>
       </div>
@@ -345,16 +344,16 @@
         <div class="use-case-card">
           <h3>Literature Review Acceleration</h3>
           <p>
-            Researchers can query the indexed papers and theses in plain language. Each answer lists up to three
-            source documents (title, author, year) from the passages it was given.
+            Lab members can query the indexed papers and theses in plain English. Each answer lists up to 3 source
+            documents (title, author, year) from the passages the model was given.
           </p>
         </div>
 
         <div class="use-case-card">
           <h3>Finding Methods</h3>
           <p>
-            Lab members can ask how a method was done in the indexed theses and papers, and the answer lists the
-            documents its passages came from.
+            Lab members can ask how a method was done in the indexed theses and papers, and the answer lists up to
+            3 of the documents its passages came from.
           </p>
         </div>
 
@@ -388,8 +387,8 @@
           <i class="fas fa-shield-alt"></i>
           <h3>Security Implementation</h3>
           <p>
-            JWT sign-in with refresh-token rotation, brute-force protection (django-axes) and accounts created by
-            an admin.
+            JWT sign-in for the app's pages, with refresh-token rotation, brute-force protection (django-axes) and
+            accounts created by an admin or PI.
           </p>
         </div>
 
@@ -422,8 +421,8 @@
         <div class="lesson">
           <h3>RAG System Optimization</h3>
           <p>
-            Balancing accuracy with performance requires careful tuning. The answering path sends the model the 4
-            best-matching passages, down from 5, to cut response time.
+            Balancing accuracy with performance requires careful tuning. The app sends the model the 4 best-matching
+            passages, down from 5, to cut response time.
           </p>
         </div>
         

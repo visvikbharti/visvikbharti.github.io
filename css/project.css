@@ -161,13 +161,13 @@
 .tech-stack-grid,
 .involvement-grid                     { grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); }
 .features-grid,
-.security-features                    { grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); }
+.security-features,
+.lessons-learned                      { grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); }
 .impact-grid,
 .future-directions,
 .module-grid,
 .ux-features,
-.architecture-sections,
-.lessons-learned                      { grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); }
+.architecture-sections                { grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); }
 
 .feature,
 .impact-card,

@@ -283,9 +283,10 @@
 
     // RNA Lab Navigator: the lab's indexed documents as points in a few topical clusters. A query (green)
     // lands, lines reach out to the documents it matches and they light up; then the next query comes.
-    // The app ranks passages by keyword (BM25) score; here the matches are drawn as the nearest points.
+    // The app ranks passages by keyword (BM25) score and sends the top 4; here the matches are drawn as the
+    // nearest points.
     rag: function rag(i, t, tl, W, H, o) {
-      const DOCS = 460, K = 6, LINE = 14, CYCLE = 3.4;
+      const DOCS = 460, K = 4, LINE = 14, CYCLE = 3.4;
       const cyc = reduceMotion ? 1 : Math.floor(t / CYCLE), ph = reduceMotion ? 2.4 : t % CYCLE;
       const doc = d => {
         const c = d % 6, cxk = W * (0.24 + 0.52 * hash(c, 91)), cyk = H * (0.22 + 0.56 * hash(c, 92));

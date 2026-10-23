@@ -553,7 +553,7 @@ p { margin-bottom: 1rem; }
 .video-slot { margin: 2rem 0; display: flex; flex-direction: column; gap: .7rem; }
 .video-slot__frame { position: relative; width: 100%; max-width: 56rem; aspect-ratio: 16 / 9; border: 1px solid var(--line); background: var(--bg-raise); }
 .video-slot__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
-.video-slot figcaption { font-family: var(--font-mono); font-size: .75rem; line-height: 1.55; color: var(--fg-dim); }
+.video-slot figcaption { max-width: 56rem; font-family: var(--font-mono); font-size: .75rem; line-height: 1.55; color: var(--fg-dim); }
 .about__video { margin: 0; padding: 0 clamp(1.25rem, 8vw, 8rem) clamp(3rem, 6vw, 5rem); }
 
 /* ----- Contact + footer ----- */

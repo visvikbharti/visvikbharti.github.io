@@ -115,7 +115,7 @@
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-lock"></i></div>
           <h3>Sign-in</h3>
-          <p>Sign-in (JWT) for the app's pages, with accounts created by an admin or PI; served on the institute network in 2025</p>
+          <p>Sign-in (JWT) for the app's pages, with accounts created by an admin or PI; served only on the institute network in 2025</p>
         </div>
         <div class="feature">
           <div class="feature-icon"><i class="fas fa-database"></i></div>
@@ -227,10 +227,10 @@
   <!-- ================= Security Architecture ================= -->
   <section class="project-section alt-bg">
     <div class="container">
-      <h2>Access & Security</h2>
+      <h2>Access</h2>
       <p>
         The app's pages ask lab members to sign in (JWT); accounts are created by an admin or PI, with no
-        self-registration. In 2025 the app was served on the institute network.
+        self-registration. In 2025 the app was served only on the institute network.
       </p>
 
       <div class="security-features">
@@ -286,7 +286,7 @@
           <h3>Performance Optimization</h3>
           <p>
             Repeated questions were answered from a one-hour Redis cache, and the prompt was kept small: the 4
-            best-matching passages (down from 5), at most 10,000 characters, with answers capped at 500 tokens.
+            best-matching passages (down from 5), at most 10,000 characters. Answers were capped at 500 tokens.
           </p>
         </div>
         
@@ -385,7 +385,7 @@
 
         <div class="achievement">
           <i class="fas fa-shield-alt"></i>
-          <h3>Security Implementation</h3>
+          <h3>Sign-in</h3>
           <p>
             JWT sign-in for the app's pages, with refresh-token rotation, brute-force protection (django-axes) and
             accounts created by an admin or PI.

@@ -266,11 +266,11 @@
         </div>
         
         <div class="deployment-stage">
-          <h3>CORS & Authentication</h3>
+          <h3>CORS Configuration</h3>
           <p>
-            Resolved complex cross-origin resource sharing issues between distributed services. 
-            Implemented dynamic CORS configuration to handle Vercel's changing deployment URLs 
-            while maintaining security.
+            During the hosting trials the frontend ran on Vercel, on a different origin from the backend API, so the
+            backend had to accept cross-origin requests. Its CORS settings allowed the Vercel frontend's address and
+            the local development servers; every origin was allowed only in debug mode.
           </p>
         </div>
         

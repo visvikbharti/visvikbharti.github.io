@@ -154,6 +154,7 @@
 .findings-grid,
 .audience-grid,
 .achievements-grid,
+.future-plans,
 .use-case-grid                        { grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); }
 .rag-components                       { grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr)); }
 .background-sections,
@@ -293,6 +294,7 @@
 .direction-item p,
 .background-item p,
 .rag-component p,
+.future-item p,
 .feature-card p,
 .demo-item p,
 .use-case-card p,
@@ -312,6 +314,7 @@
 .direction-item p:last-child,
 .background-item p:last-child,
 .rag-component p:last-child,
+.future-item p:last-child,
 .feature-card p:last-child,
 .demo-item p:last-child,
 .use-case-card p:last-child,

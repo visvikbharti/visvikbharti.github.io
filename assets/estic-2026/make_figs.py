@@ -28,7 +28,7 @@ ax.tick_params(axis="y", length=0); ax.grid(axis="x", color=GRID, lw=0.8); ax.se
 save(fig, "fig1_audit_shares.png")
 
 # 2 RECOVERY forest plot (NEJM abstract values)
-rows = [("Invasive mechanical ventilation",0.64,0.51,0.81),("Oxygen only",0.82,0.72,0.94),("No respiratory support",1.19,0.91,1.55),("All patients",0.83,0.75,0.93)]
+rows = [("Invasive mechanical ventilation",0.64,0.51,0.81),("Oxygen only",0.82,0.72,0.94),("No respiratory support",1.19,0.92,1.55),("All patients",0.83,0.75,0.93)]
 fig, ax = frame("Dexamethasone in COVID-19: the RECOVERY trial", "Source: RECOVERY Collaborative Group, N Engl J Med 2021;384:693-704.\nRate ratio for death within 28 days, with 95% confidence interval.")
 fig.subplots_adjust(left=0.36, right=0.74, bottom=0.25)
 for i,(lab,rr,lo,hi) in enumerate(rows):

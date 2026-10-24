@@ -263,6 +263,7 @@
   font-size: .75rem;
   color: var(--fg-dim);
 }
+.estic-figure__credit a { text-decoration: underline; text-underline-offset: 3px; }     /* the credit's links are not told apart by colour alone */
 .estic-figure--illustration { max-width: 40rem; }   /* the Commons drawing, on its own white ground */
 .estic-section .estic-figure-code {
   margin: -1.25rem 0 2.25rem;

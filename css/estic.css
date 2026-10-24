@@ -245,6 +245,10 @@
   height: auto;
   border: 1px solid var(--line);
 }
+/* Clicking or tapping a figure opens its full-size file in a new tab */
+.estic-figure__link { display: block; cursor: zoom-in; }
+.estic-figure__link:hover { text-decoration: none; }
+.estic-figure__link:hover img { border-color: var(--line-strong); }
 .estic-figure figcaption {
   margin-top: .75rem;
   font-family: var(--font-mono);

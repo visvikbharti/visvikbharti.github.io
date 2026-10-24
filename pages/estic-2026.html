@@ -114,6 +114,12 @@
         to 0.93, P &lt; 0.001).
       </p>
       <p>The benefit depended on how ill patients were:</p>
+      <figure class="estic-figure">
+        <img src="../assets/estic-2026/fig2_recovery_forest.png" width="1600" height="1000" loading="lazy" decoding="async"
+             alt="Forest plot of rate ratios for death within 28 days: invasive ventilation 0.64 (0.51 to 0.81), oxygen only 0.82 (0.72 to 0.94), no respiratory support 1.19 (0.91 to 1.55), all patients 0.83 (0.75 to 0.93).">
+        <figcaption>Figure 1. Dexamethasone in COVID-19: rate ratios for death within 28 days in the RECOVERY trial.</figcaption>
+      </figure>
+      <p class="estic-figure-code"><a href="../assets/estic-2026/make_figs.py" target="_blank" rel="noopener">Code for these figures</a></p>
       <div class="estic-table-wrap">
         <table class="estic-table">
           <thead>
@@ -153,6 +159,11 @@
         freedom, the two-sided p-value is 0.0264, which matches the 0.026 printed. That is what "recompute" means on our
         poster.
       </p>
+      <figure class="estic-figure">
+        <img src="../assets/estic-2026/fig3_t_distribution.png" width="1600" height="1000" loading="lazy" decoding="async"
+             alt="t distribution with 38 degrees of freedom, both tails beyond plus and minus 2.31 shaded; each tail is 1.32%, so the two-sided p-value is 0.0264.">
+        <figcaption>Figure 2. Recomputing the p-value from t(38) = 2.31 with the t distribution.</figcaption>
+      </figure>
       <p>
         When the three numbers disagree, something has gone wrong: a typo, a copying error or the wrong test. A tool
         called statcheck runs this check automatically on psychology papers. It found that about half of the papers it
@@ -174,6 +185,11 @@
         between them: 10 observations from a group with a larger standard deviation and 40 from a group with a smaller
         one, repeated 40,000 times at each ratio of standard deviations.
       </p>
+      <figure class="estic-figure">
+        <img src="../assets/estic-2026/fig4_student_vs_welch.png" width="1600" height="1000" loading="lazy" decoding="async"
+             alt="Student's t-test false positives rise from 5.0% to 29.2% as the small group's SD grows to four times the large group's, while Welch's t-test stays near 5%.">
+        <figcaption>Figure 3. False positives when there is no real difference: Student's t-test against Welch's.</figcaption>
+      </figure>
       <div class="estic-table-wrap">
         <table class="estic-table">
           <thead>
@@ -231,6 +247,11 @@ print("large group SD x 4", false_positive_rates(1, 4))</code></pre>
         of the published trials looked positive. Most of the negative trials were either never published or published
         in a way that made them look positive (Turner et al., 2008).
       </p>
+      <figure class="estic-figure">
+        <img src="../assets/estic-2026/fig5_turner_publication_bias.png" width="1600" height="1000" loading="lazy" decoding="async"
+             alt="51% of 74 FDA-registered antidepressant trials were positive by the FDA's analysis, but 94% looked positive in the published literature.">
+        <figcaption>Figure 4. Antidepressant trials that looked positive: by the FDA's analysis and in the published literature.</figcaption>
+      </figure>
 
       <h3>The Sally Clark case</h3>
       <p>
@@ -264,6 +285,11 @@ print("large group SD x 4", false_positive_rates(1, 4))</code></pre>
         above the 90% threshold was 2.2% a year, not −0.1% (Herndon, Ash and Pollin, 2014). The error came to light
         only because the data and calculations could be checked.
       </p>
+      <figure class="estic-figure">
+        <img src="../assets/estic-2026/fig6_reinhart_rogoff.png" width="1600" height="1000" loading="lazy" decoding="async"
+             alt="Average growth above 90% debt was reported as minus 0.1% a year in 2010 and corrected to 2.2% a year in 2013.">
+        <figcaption>Figure 5. Average growth in countries with public debt above 90% of GDP: as published, and corrected.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -280,6 +306,11 @@ print("large group SD x 4", false_positive_rates(1, 4))</code></pre>
         3,000 articles, then repeated the audit on 20,000 new ones, and the two samples agreed closely. The figures
         below pool both samples. How the scoring rules were set and checked will be described in full in our preprint.
       </p>
+      <figure class="estic-figure">
+        <img src="../assets/estic-2026/fig1_audit_shares.png" width="1600" height="1000" loading="lazy" decoding="async"
+             alt="Of 23,000 articles, 39.70% named a p-value and test but no statistic value, 27.72% had no inferential statistics, 18.03% gave only estimates and confidence intervals, 10.07% had incomplete or unpaired reporting, and 4.49% printed a checkable statistic, df and p.">
+        <figcaption>Figure 6. What 23,000 biomedical articles printed, from both samples pooled.</figcaption>
+      </figure>
       <div class="estic-table-wrap">
         <table class="estic-table">
           <thead>

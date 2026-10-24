@@ -233,6 +233,38 @@
 .estic-code code { font-family: inherit; }
 .estic-code:focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
 
+/* ----- Figures: charts drawn on black for this page (assets/estic-2026/make_figs.py), 1600 x 1000, lazy-loaded,
+   each with a one-line caption. A table after a chart stays: it is the accessible version of the data. ----- */
+.estic-figure {
+  max-width: 56rem;
+  margin: 2rem 0 2.25rem;
+}
+.estic-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+}
+.estic-figure figcaption {
+  margin-top: .75rem;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  line-height: 1.55;
+  color: var(--fg-muted);
+}
+.estic-figure__credit {
+  display: block;
+  margin-top: .3rem;
+  font-size: .75rem;
+  color: var(--fg-dim);
+}
+.estic-figure--illustration { max-width: 40rem; }   /* the Commons drawing, on its own white ground */
+.estic-section .estic-figure-code {
+  margin: -1.25rem 0 2.25rem;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+}
+
 /* ----- How to cite ----- */
 .estic-section .estic-cite {
   max-width: 56rem;

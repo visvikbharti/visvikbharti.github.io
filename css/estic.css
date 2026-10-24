@@ -38,8 +38,32 @@
 }
 
 .estic-authors {
-  margin-bottom: 2rem;
+  margin-bottom: .5rem;
   line-height: 1.6;
+}
+
+/* Affiliations, one per line; the marker hangs so a wrapped line starts under the text */
+.estic-affiliations {
+  margin: 0 0 2rem;
+  padding: 0;
+  list-style: none;
+  font-size: .9375rem;
+  line-height: 1.6;
+  color: var(--fg-muted);
+}
+.estic-affiliations li {
+  padding-left: .65em;
+  text-indent: -.65em;
+}
+
+/* Superscript markers that do not push the line apart */
+.estic-authors sup,
+.estic-affiliations sup {
+  position: relative;
+  top: -.45em;
+  font-size: .7em;
+  line-height: 0;
+  vertical-align: baseline;
 }
 
 /* The poster download (commented out in the page until the poster PDF is in assets/posters/) */

@@ -16,9 +16,6 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
   <!-- Core styles -->
   <link rel="stylesheet" href="../css/vars.css" />
   <link rel="stylesheet" href="../css/style.css" />
@@ -57,15 +54,13 @@
         <strong>Vishal Bharti and Debojyoti Chakraborty</strong><br>
         CSIR-Institute of Genomics and Integrative Biology, New Delhi
       </p>
-      <!-- PLACEHOLDER: poster PDF. The final full-size poster PDF is not in the repository yet. When it arrives,
-           add it under assets/ (the other posters are in assets/posters/), then remove the placeholder note
-           and give the button its address, for example:
-           <a href="../assets/posters/FILE.pdf" class="btn"><i class="fas fa-download" aria-hidden="true"></i> Download the poster (PDF)</a>
-           Until then the button has no href, so it is not a link. -->
+      <!-- Poster download, hidden until the owner sends the final poster PDF. Then put a web-sized copy in
+           assets/posters/ (like the other posters there, a few MB, so it loads on a phone at the venue) and
+           uncomment this paragraph with the file's name in the href:
       <p class="estic-download">
-        <a class="btn estic-placeholder"><i class="fas fa-download" aria-hidden="true"></i> Download the poster (PDF)</a>
-        <span class="estic-placeholder__note">[Placeholder: poster PDF not added yet]</span>
+        <a href="../assets/posters/FILE.pdf" class="btn" download>Download the poster (PDF)</a>
       </p>
+      -->
       <p class="estic-welcome">
         Thank you for scanning the code on our poster. This page tells each story on the poster in more detail, with
         the sources behind it, so you can check every claim yourself.
@@ -80,9 +75,9 @@
       <p class="estic-summary">
         Anyone can check a statistical test result if three numbers are printed together: the test statistic, its
         degrees of freedom and the p-value. We audited 23,000 randomly selected open-access biomedical articles from
-        PubMed Central. Only 4.49% printed even one result with all three, and the pattern held when we repeated the
-        audit on 20,000 new articles. We also built StickForStats, free software that checks a dataset before a test
-        is run and records every analysis so it can be repeated.
+        PubMed Central: a first sample of 3,000, then 20,000 more to check that the result held. Only 4.49% printed
+        even one result with all three. We also built StickForStats, free software that checks a dataset before a
+        test is run and records every analysis so it can be repeated.
       </p>
     </div>
   </section>
@@ -195,7 +190,7 @@
         Welch). This is why many statisticians recommend Welch's test as the default (Ruxton, 2006; Delacre, Lakens and
         Leys, 2017), and why StickForStats checks the spread of the data before it chooses a test.
       </p>
-      <p>The simulation takes a few lines of Python, and running it reproduces the table exactly:</p>
+      <p>The simulation takes a few lines of Python. Running it with NumPy 2.5.3 and SciPy 1.18.1 reproduces the table exactly.</p>
       <pre class="estic-code" tabindex="0"><code class="language-python">import numpy as np
 from scipy import stats
 

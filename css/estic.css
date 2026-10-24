@@ -66,7 +66,10 @@
   vertical-align: baseline;
 }
 
-/* The poster download (commented out in the page until the poster PDF is in assets/posters/) */
+/* The hero: the copy, the poster (its download and a preview, both linked to the PDF) and the welcome line. One column
+   on phones in that order, so the poster follows the authors; side by side from 960 px, the poster in the right column */
+.estic-hero__grid { display: grid; grid-template-columns: minmax(0, 1fr); }
+.estic-poster { margin: 0 0 2rem; }
 .estic-download {
   display: flex;
   flex-wrap: wrap;
@@ -74,7 +77,30 @@
   gap: .75rem 1.25rem;
   margin-bottom: 2.25rem;
 }
+.estic-poster .estic-download { margin-bottom: 1rem; }
 .estic-page .btn { max-width: 100%; }
+.estic-poster__preview { display: block; max-width: 40rem; }
+.estic-poster__preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+}
+.estic-poster__preview:hover { text-decoration: none; }
+.estic-poster__preview:hover img { border-color: var(--line-strong); }
+@media (min-width: 960px) {
+  .estic-hero__grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "copy poster" "welcome poster";
+    column-gap: clamp(2rem, 5vw, 3.5rem);
+    align-items: start;
+  }
+  .estic-hero__copy { grid-area: copy; }
+  .estic-poster { grid-area: poster; margin: 0; }
+  .estic-welcome { grid-area: welcome; }
+  .estic-poster__preview { max-width: none; }
+}
 
 .estic-welcome {
   max-width: 68ch;

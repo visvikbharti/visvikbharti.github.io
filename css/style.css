@@ -874,9 +874,14 @@ p { margin-bottom: 1rem; }
 .panel { position: relative; overflow: hidden; }
 
 /* ----- Between phone and wide: the menu needs the name's room, so only the VB mark shows ----- */
-@media (min-width: 769px) and (max-width: 960px) {
+@media (min-width: 769px) and (max-width: 1040px) {
   .nav-logo span:not(.nav-logo__mark) { display: none; }
   .nav-links { gap: 1.25rem; }
+}
+/* Just above phone width the menu also takes the phones' smaller type */
+@media (min-width: 769px) and (max-width: 860px) {
+  .nav-links { gap: 1.1rem; font-size: .75rem; }
+  .nav-links .nav-cta { padding: .45em .7em; }
 }
 
 /* ----- Phones ----- */

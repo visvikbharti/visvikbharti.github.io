@@ -1,0 +1,271 @@
+/* ----- ESTIC 2026 poster page --------------------------------------------
+   Loaded by pages/estic-2026.html, the page the poster's QR code points to:
+   one long article with tables, a code block and a reference list. Shared
+   pieces (nav, .container, .btn, .site-footer) come from style.css.
+
+   The article numbers its own sections ("1. Why statistics matters"), so
+   these headings get no running "01 —" index; the number is set in accent.
+   Most visitors arrive on a phone: nothing here may be wider than 320px
+   except the code, which scrolls inside its own frame.
+   ------------------------------------------------------------------------ */
+
+.estic-page {
+  background: var(--bg);
+  color: var(--fg-muted);
+}
+
+/* ----- Hero ----- */
+.estic-hero {
+  padding: calc(64px + clamp(3.5rem, 8vw, 7rem)) 0 clamp(3rem, 6vw, 4.5rem);
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.estic-title {
+  max-width: 22ch;
+  margin-bottom: .6em;
+  font-size: clamp(2rem, 2.6vw + 1rem, 3.75rem);
+  letter-spacing: -.05em;
+  line-height: 1.05;
+  overflow-wrap: break-word;
+}
+
+.estic-occasion {
+  max-width: 58ch;
+  margin-bottom: 1.5rem;
+  font-size: clamp(1.0625rem, .5vw + .95rem, 1.25rem);
+  line-height: 1.55;
+}
+
+.estic-authors {
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.estic-download {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem 1.25rem;
+  margin-bottom: 2.25rem;
+}
+.estic-page .btn { max-width: 100%; }
+
+/* The poster PDF is not in the repository yet: a button with no href (so not a link), marked as a placeholder */
+.estic-placeholder,
+.estic-placeholder:hover {
+  border-style: dashed;
+  border-color: var(--line-strong);
+  background: transparent;
+  color: var(--fg-muted);
+  cursor: not-allowed;
+}
+.estic-placeholder__note {
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.estic-welcome {
+  max-width: 68ch;
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--fg);
+}
+
+/* ----- Sections ----- */
+.estic-section {
+  padding: clamp(3.5rem, 7vw, 6rem) 0;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 64px;           /* anchor jumps clear the fixed nav */
+  overflow-wrap: break-word;
+}
+.estic-hero + .estic-section { border-top: 0; }
+
+.estic-section h2 {
+  max-width: 30ch;
+  margin-bottom: 1.2em;
+  font-size: clamp(1.625rem, 1.6vw + 1rem, 2.625rem);
+}
+.estic-num { color: var(--accent); }
+
+.estic-section h3 {
+  max-width: 48ch;                   /* about the width of the text column below it */
+  margin: 3.25rem 0 1rem;
+  font-size: var(--fs-md);
+  line-height: 1.3;
+}
+.estic-section h2 + h3 { margin-top: 0; }
+
+.estic-section p {
+  max-width: 72ch;
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
+}
+
+/* "In one paragraph": the whole story, so it reads a step larger */
+.estic-section .estic-summary {
+  max-width: 64ch;
+  font-size: clamp(1.0625rem, .4vw + .95rem, 1.1875rem);
+  color: var(--fg);
+}
+
+.estic-stat { font-family: var(--font-mono); font-size: .9375em; }
+
+/* ----- Lists ----- */
+.estic-list,
+.estic-steps {
+  max-width: 72ch;
+  margin: 0 0 1.5rem;
+  padding-left: 1.25rem;
+}
+.estic-list { list-style: square; }
+.estic-list li,
+.estic-steps li {
+  margin-bottom: .8rem;
+  padding-left: .4rem;
+  line-height: 1.7;
+}
+.estic-list li::marker { color: var(--fg-dim); }
+.estic-steps li::marker {
+  font-family: var(--font-mono);
+  font-size: .875em;
+  color: var(--accent);
+}
+
+/* ----- Tables: 1px rules, labels in mono, numbers in mono ----- */
+.estic-table-wrap {
+  max-width: 56rem;
+  margin: 2rem 0 2.25rem;
+  overflow-x: auto;                  /* a safety net only: every table fits a 320px screen */
+}
+
+.estic-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .9375rem;
+  line-height: 1.5;
+}
+
+.estic-table th,
+.estic-table td {
+  padding: .8rem 1.25rem .8rem 0;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+  font-weight: var(--fw-regular);
+}
+.estic-table th:last-child,
+.estic-table td:last-child { padding-right: 0; }
+
+.estic-table thead th {
+  padding-top: 0;
+  border-bottom-color: var(--line-strong);
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  letter-spacing: .08em;
+  line-height: 1.45;
+  text-transform: uppercase;
+  vertical-align: bottom;
+  color: var(--fg);
+}
+
+.estic-table tbody th { color: var(--fg-muted); }
+
+.estic-table td {
+  font-family: var(--font-mono);
+  font-size: .875rem;
+  color: var(--fg);
+}
+
+.estic-table .estic-col-num { text-align: right; }   /* not .num: style.css gives that the stats strip's block numbers */
+.estic-table .nobr { white-space: nowrap; }
+
+/* ----- Code ----- */
+.estic-code {
+  max-width: 56rem;
+  margin: 1.5rem 0 1rem;
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  background: var(--bg-raise);
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  line-height: 1.65;
+  color: var(--fg);
+  tab-size: 4;
+}
+.estic-code code { font-family: inherit; }
+.estic-code:focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
+
+/* ----- How to cite ----- */
+.estic-section .estic-cite {
+  max-width: 56rem;
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+  background: var(--bg-raise);
+  border: 1px solid var(--line);
+  box-shadow: inset 2px 0 0 var(--accent);
+  color: var(--fg);
+}
+
+/* ----- References ----- */
+.estic-refs {
+  max-width: 62rem;
+  margin: 0;
+  padding-left: 2.25rem;
+}
+.estic-refs li {
+  margin-bottom: .9rem;
+  padding-left: .4rem;
+  font-size: .9375rem;
+  line-height: 1.6;
+}
+.estic-refs li::marker {
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  color: var(--accent);
+}
+.estic-refs em { color: var(--fg-muted); }
+.estic-refs a {
+  color: var(--fg-muted);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+  white-space: nowrap;               /* a DOI moves to the next line whole instead of breaking at a hyphen */
+}
+.estic-refs a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+.estic-section .estic-updated {
+  margin: 2.5rem 0 0;
+  font-size: .875rem;
+}
+.estic-updated em { color: var(--fg-muted); }
+
+/* ----- Phones ----- */
+@media (max-width: 768px) {
+  .estic-hero { padding-top: calc(56px + 3.5rem); }
+  .estic-section { scroll-margin-top: 56px; }
+
+  .estic-table { font-size: .875rem; }
+  .estic-table th,
+  .estic-table td { padding-right: .625rem; }
+  .estic-table thead th { font-size: .6875rem; letter-spacing: .04em; }
+  .estic-table td { font-size: .75rem; }
+
+  .estic-code { padding: 1rem; font-size: .75rem; }
+  .estic-refs { padding-left: 1.75rem; }
+}
+
+/* The narrowest phones: a confidence interval may break inside its brackets */
+@media (max-width: 359px) {
+  .estic-table .nobr { white-space: normal; }
+}
+/* ...and the longest DOIs (256px on one line) may break */
+@media (max-width: 339px) {
+  .estic-refs a { white-space: normal; overflow-wrap: anywhere; }
+}

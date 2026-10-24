@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ESTIC 2026 Poster - Vishal Bharti</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Companion page to the ESTIC 2026 poster by Vishal Bharti and Debojyoti Chakraborty (CSIR-IGIB): most biomedical articles print no statistical result a reader can recompute.">
+  <meta name="keywords" content="ESTIC 2026, poster, statistical reporting, p-values, reproducibility, StickForStats">
+  <meta name="author" content="Vishal Bharti">
+  <meta property="og:title" content="Most biomedical articles print no statistical result a reader can recompute | Vishal Bharti">
+  <meta property="og:description" content="Companion page to our poster at ESTIC 2026, Bharat Mandapam, New Delhi, 27 to 29 October 2026.">
+  <meta property="og:url" content="https://visvikbharti.github.io/pages/estic-2026.html">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- Core styles -->
+  <link rel="stylesheet" href="../css/vars.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/estic.css" />
+
+  <!-- Portfolio logic -->
+  <script defer src="../js/main.js"></script>
+</head>
+
+<body class="estic-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <a href="../index.html" class="nav-logo"><span class="nav-logo__mark" aria-hidden="true">VB</span><span>Vishal Bharti</span></a>
+    <ul class="nav-links">
+      <li><a href="research.html">Research</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="hobby.html">Hobby</a></li>
+      <li><a href="estic-2026.html" class="active" aria-current="page">ESTIC 2026</a></li>
+      <li><a href="../my_cv/Vishal_Bharti_CV.pdf" class="nav-cta">CV &#8599;</a></li>
+      <li><a href="../index.html#contact" class="nav-cta nav-cta--alt">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main">
+
+  <!-- ================= Poster Hero ================= -->
+  <!-- The poster's QR code points to this page's address: never move or rename this file. -->
+  <section class="estic-hero">
+    <div class="container">
+      <h1 class="estic-title">Most biomedical articles print no statistical result a reader can recompute</h1>
+      <p class="estic-occasion"><em>Companion page to our poster at ESTIC 2026, Bharat Mandapam, New Delhi, 27 to 29 October 2026. Poster session: 28 October, afternoon.</em></p>
+      <p class="estic-authors">
+        <strong>Vishal Bharti and Debojyoti Chakraborty</strong><br>
+        CSIR-Institute of Genomics and Integrative Biology, New Delhi
+      </p>
+      <!-- PLACEHOLDER: poster PDF. The final full-size poster PDF is not in the repository yet. When it arrives,
+           add it under assets/ (the other posters are in assets/posters/), then remove the placeholder note
+           and give the button its address, for example:
+           <a href="../assets/posters/FILE.pdf" class="btn"><i class="fas fa-download" aria-hidden="true"></i> Download the poster (PDF)</a>
+           Until then the button has no href, so it is not a link. -->
+      <p class="estic-download">
+        <a class="btn estic-placeholder"><i class="fas fa-download" aria-hidden="true"></i> Download the poster (PDF)</a>
+        <span class="estic-placeholder__note">[Placeholder: poster PDF not added yet]</span>
+      </p>
+      <p class="estic-welcome">
+        Thank you for scanning the code on our poster. This page tells each story on the poster in more detail, with
+        the sources behind it, so you can check every claim yourself.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= In one paragraph ================= -->
+  <section class="estic-section" id="in-one-paragraph">
+    <div class="container">
+      <h2>In one paragraph</h2>
+      <p class="estic-summary">
+        Anyone can check a statistical test result if three numbers are printed together: the test statistic, its
+        degrees of freedom and the p-value. We audited 23,000 randomly selected open-access biomedical articles from
+        PubMed Central. Only 4.49% printed even one result with all three, and the pattern held when we repeated the
+        audit on 20,000 new articles. We also built StickForStats, free software that checks a dataset before a test
+        is run and records every analysis so it can be repeated.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= 1. Why statistics matters ================= -->
+  <section class="estic-section" id="why-statistics-matters">
+    <div class="container">
+      <h2><span class="estic-num">1.</span> Why statistics matters</h2>
+
+      <h3>Language models run on probabilities</h3>
+      <p>
+        When a language model writes, it doesn't look up an answer. At each step it gives every possible next word a
+        probability and then samples one (Holtzman et al., 2020). A setting called temperature reshapes those
+        probabilities. At a low temperature, the most likely word wins almost every time. At a high temperature, the
+        choice spreads across more words. The top-left panel of our poster shows this for the sentence start
+        "Statistics is the science of...". The numbers in that panel are illustrative, not taken from a real model.
+        The point is that every sentence these systems produce is a draw from a probability distribution.
+      </p>
+
+      <h3>A trial that changed treatment</h3>
+      <p>
+        The RECOVERY trial randomly assigned 2,104 patients in hospital with COVID-19 to dexamethasone (6 mg a day for
+        up to 10 days) and 4,321 to usual care (RECOVERY Collaborative Group, 2021). Within 28 days, 22.9% of the
+        dexamethasone group had died, against 25.7% with usual care: an age-adjusted rate ratio of 0.83 (95% CI 0.75
+        to 0.93, P &lt; 0.001).
+      </p>
+      <p>The benefit depended on how ill patients were:</p>
+      <div class="estic-table-wrap">
+        <table class="estic-table">
+          <thead>
+            <tr>
+              <th scope="col">Respiratory support at randomisation</th>
+              <th scope="col">Deaths: dexamethasone vs usual care</th>
+              <th scope="col">Rate ratio (95% CI)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Invasive mechanical ventilation</th><td>29.3% vs 41.4%</td><td>0.64 <span class="nobr">(0.51 to 0.81)</span></td></tr>
+            <tr><th scope="row">Oxygen only</th><td>23.3% vs 26.2%</td><td>0.82 <span class="nobr">(0.72 to 0.94)</span></td></tr>
+            <tr><th scope="row">No respiratory support</th><td>17.8% vs 14.0%</td><td>1.19 <span class="nobr">(0.91 to 1.55)</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        The trial was large and randomised, and it reported its estimates with confidence intervals, so doctors could
+        see who benefited and who didn't. Treatment guidelines changed quickly. That is what good statistics makes
+        possible.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= 2. What a complete test result looks like ================= -->
+  <section class="estic-section" id="complete-test-result">
+    <div class="container">
+      <h2><span class="estic-num">2.</span> What a complete test result looks like</h2>
+      <p>Suppose a paper reports: <strong class="estic-stat">t(38) = 2.31, p = 0.026</strong>.</p>
+      <ul class="estic-list">
+        <li><strong>The test statistic (t = 2.31)</strong> is the observed difference divided by its standard error: a ratio of signal to noise.</li>
+        <li><strong>The degrees of freedom (38)</strong> are set by the sample size and the test. For a two-sample t-test they are n₁ + n₂ − 2, so 38 means 40 participants in total, for example two groups of 20.</li>
+        <li><strong>The p-value (0.026)</strong> is the probability of a result at least this extreme if there were no real effect. It is not the probability that the result arose by chance, and it is not the probability that the hypothesis is true (Wasserstein and Lazar, 2016).</li>
+      </ul>
+      <p>
+        With the statistic and the degrees of freedom, anyone can recompute the p-value. For t = 2.31 on 38 degrees of
+        freedom, the two-sided p-value is 0.0264, which matches the 0.026 printed. That is what "recompute" means on our
+        poster.
+      </p>
+      <p>
+        When the three numbers disagree, something has gone wrong: a typo, a copying error or the wrong test. A tool
+        called statcheck runs this check automatically on psychology papers. It found that about half of the papers it
+        checked contained at least one p-value inconsistent with its test statistic and degrees of freedom, and one in
+        eight contained an inconsistency that may have changed the statistical conclusion (Nuijten et al., 2016). In
+        biomedicine, as our audit shows, most articles don't print all three numbers, so the check can't even begin.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= 3. When statistics goes wrong ================= -->
+  <section class="estic-section" id="when-statistics-goes-wrong">
+    <div class="container">
+      <h2><span class="estic-num">3.</span> When statistics goes wrong</h2>
+
+      <h3>Unequal spreads can manufacture false positives</h3>
+      <p>
+        Student's t-test assumes that both groups have the same spread. We simulated two groups with no true difference
+        between them: 10 observations from a group with a larger standard deviation and 40 from a group with a smaller
+        one, repeated 40,000 times at each ratio of standard deviations.
+      </p>
+      <div class="estic-table-wrap">
+        <table class="estic-table">
+          <thead>
+            <tr>
+              <th scope="col">How much larger the small group's SD is</th>
+              <th scope="col" class="estic-col-num">Student's <span class="nobr">t-test:</span> false positives</th>
+              <th scope="col" class="estic-col-num">Welch's <span class="nobr">t-test:</span> false positives</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Same SD</th><td class="estic-col-num">5.0%</td><td class="estic-col-num">5.1%</td></tr>
+            <tr><th scope="row">2 times</th><td class="estic-col-num">18.3%</td><td class="estic-col-num">5.1%</td></tr>
+            <tr><th scope="row">3 times</th><td class="estic-col-num">25.7%</td><td class="estic-col-num">5.1%</td></tr>
+            <tr><th scope="row">4 times</th><td class="estic-col-num">29.2%</td><td class="estic-col-num">4.9%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        With no real difference, a test at the 5% level should flag a "significant" result about 5% of the time.
+        Student's test did so nearly six times as often. Welch's t-test, which doesn't assume equal spreads, stayed at
+        about 5% throughout. The error also runs the other way: when the larger group has the larger spread, Student's
+        test becomes too cautious and misses real effects (0.1% false positives in our simulation, against 5.1% for
+        Welch). This is why many statisticians recommend Welch's test as the default (Ruxton, 2006; Delacre, Lakens and
+        Leys, 2017), and why StickForStats checks the spread of the data before it chooses a test.
+      </p>
+      <p>The simulation takes a few lines of Python, and running it reproduces the table exactly:</p>
+      <pre class="estic-code" tabindex="0"><code class="language-python">import numpy as np
+from scipy import stats
+
+rng = np.random.default_rng(2026)
+reps = 40000
+
+def false_positive_rates(sd_small, sd_large):
+    small = rng.normal(0, sd_small, (reps, 10))  # 10 observations
+    large = rng.normal(0, sd_large, (reps, 40))  # 40 observations
+    student = stats.ttest_ind(small, large, axis=1, equal_var=True).pvalue
+    welch = stats.ttest_ind(small, large, axis=1, equal_var=False).pvalue
+    return (student &lt; 0.05).mean(), (welch &lt; 0.05).mean()
+
+for ratio in [1, 2, 3, 4]:
+    print("small group SD x", ratio, false_positive_rates(ratio, 1))
+print("large group SD x 4", false_positive_rates(1, 4))</code></pre>
+
+      <h3>Survivorship bias and the missing negative results</h3>
+      <p>
+        During the Second World War, the statistician Abraham Wald, working with the Statistical Research Group at
+        Columbia University, studied the damage on aircraft that returned from missions (Mangel and Samaniego, 1984).
+        The popular telling of the story, shown on our poster, makes his central point: the planes you can inspect are
+        the ones that survived, so the places without bullet holes may be exactly where a hit was fatal.
+      </p>
+      <p>
+        Science has the same problem. Studies with positive results are more likely to be published, so the literature
+        we read is a sample of survivors (Rosenthal, 1979). In one clear example, 51% of 74 antidepressant trials
+        registered with the US Food and Drug Administration were positive according to the agency's analysis, but 94%
+        of the published trials looked positive. Most of the negative trials were either never published or published
+        in a way that made them look positive (Turner et al., 2008).
+      </p>
+
+      <h3>The Sally Clark case</h3>
+      <p>
+        In 1999, Sally Clark, a solicitor in England, was convicted of murdering her two baby sons, who had died
+        suddenly in 1996 and 1998. A prosecution witness, the paediatrician Roy Meadow, told the jury that the chance of
+        a death from sudden infant death syndrome (SIDS) in an affluent, non-smoking family like hers was 1 in 8,543. He
+        squared that figure to say the chance of two such deaths was about 1 in 73 million (8,543 × 8,543 = 72,982,849).
+      </p>
+      <p>The calculation contained two errors.</p>
+      <ol class="estic-steps">
+        <li><strong>It assumed the two deaths were independent.</strong> Multiplying probabilities is valid only if one event tells you nothing about the other. SIDS deaths cluster in families, through shared genetic and environmental factors, so after one SIDS death a second is far more likely than 1 in 8,543 (Hill, 2004).</li>
+        <li><strong>It invited the prosecutor's fallacy.</strong> Even a correct chance of two SIDS deaths is not the chance that the mother is innocent. Two infant murders in one family are also extremely rare. The question that matters is which explanation is more likely given that two babies died, and answering it means comparing both probabilities.</li>
+      </ol>
+      <p>
+        The Royal Statistical Society publicly criticised the use of the 1 in 73 million figure in 2001. Sally Clark's
+        convictions were quashed on her second appeal in 2003 (R v Clark, 2003). A flawed probability calculation had
+        helped convict her.
+      </p>
+
+      <h3>The Reinhart and Rogoff debt study</h3>
+      <p>
+        In 2010, the economists Carmen Reinhart and Kenneth Rogoff reported that countries with public debt above 90% of
+        their GDP had average growth of −0.1% a year (Reinhart and Rogoff, 2010). The finding was cited widely in
+        arguments for austerity.
+      </p>
+      <p>
+        In 2013, Thomas Herndon, then a graduate student, worked with Michael Ash and Robert Pollin to reproduce the
+        result from the authors' own spreadsheet. They found three problems: a spreadsheet formula that left out
+        several countries, the exclusion of years of data that were available, and an unusual weighting that gave a
+        country with a single year above the threshold as much weight as one with many years. Corrected, average growth
+        above the 90% threshold was 2.2% a year, not −0.1% (Herndon, Ash and Pollin, 2014). The error came to light
+        only because the data and calculations could be checked.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= 4. Our audit ================= -->
+  <section class="estic-section" id="our-audit">
+    <div class="container">
+      <h2><span class="estic-num">4.</span> Our audit: can a reader recompute the result?</h2>
+      <p>
+        We asked one question of each article: does it print at least one test result with all three numbers, meaning
+        the test statistic, its degrees of freedom and the p-value?
+      </p>
+      <p>
+        We randomly selected 23,000 open-access biomedical articles from PubMed Central. We scored a first sample of
+        3,000 articles, then repeated the audit on 20,000 new ones, and the two samples agreed closely. The figures
+        below pool both samples. How the scoring rules were set and checked will be described in full in our preprint.
+      </p>
+      <div class="estic-table-wrap">
+        <table class="estic-table">
+          <thead>
+            <tr>
+              <th scope="col">What the article printed</th>
+              <th scope="col" class="estic-col-num">Share of articles</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">A p-value and the test named, but not the statistic's value</th><td class="estic-col-num">39.70%</td></tr>
+            <tr><th scope="row">No inferential statistics</th><td class="estic-col-num">27.72%</td></tr>
+            <tr><th scope="row">Only estimates and confidence intervals</th><td class="estic-col-num">18.03%</td></tr>
+            <tr><th scope="row">Incomplete or unpaired statistical reporting</th><td class="estic-col-num">10.07%</td></tr>
+            <tr><th scope="row">At least one result with the statistic, degrees of freedom and p-value</th><td class="estic-col-num">4.49%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        So fewer than 1 in 20 articles let a reader recompute even one test result. Articles that report estimates with
+        confidence intervals are doing something useful, and readers can check those in other ways. For tests, though,
+        most of the literature asks readers to take the p-value on trust.
+      </p>
+      <p>The full methods and results will be in our preprint, which we will link here as soon as it is posted.</p>
+    </div>
+  </section>
+
+  <!-- ================= 5. StickForStats ================= -->
+  <section class="estic-section" id="stickforstats">
+    <div class="container">
+      <h2><span class="estic-num">5.</span> StickForStats</h2>
+      <p>
+        StickForStats is a free, open-source statistics platform we built to help researchers get these details right
+        from the start.
+      </p>
+      <ul class="estic-list">
+        <li><strong>It checks the data first.</strong> Before running a test, it looks at the shape and spread of the data and at outliers.</li>
+        <li><strong>Its Guardian system picks a suitable test.</strong> When an assumption fails, it switches to an alternative, for example Welch's t-test for unequal spreads or the Mann-Whitney U test for data that aren't normally distributed, and it tells you which test it used.</li>
+        <li><strong>It records every analysis,</strong> so the analysis can be rerun and checked.</li>
+        <li><strong>It reports results in full,</strong> with the test statistic, degrees of freedom and exact p-value.</li>
+      </ul>
+      <p>
+        Try it at <a href="https://stickforstats.com" target="_blank" rel="noopener">stickforstats.com</a>, now open
+        to everyone as a public beta. The paper describing it is on bioRxiv
+        (<a href="https://doi.org/10.64898/2026.06.15.732278" target="_blank" rel="noopener">doi:10.64898/2026.06.15.732278</a>)
+        and is in review at BMC Bioinformatics.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= 6. Beyond p < 0.05 ================= -->
+  <section class="estic-section" id="beyond-p-0-05">
+    <div class="container">
+      <h2><span class="estic-num">6.</span> Beyond p &lt; 0.05</h2>
+      <p>
+        The 0.05 threshold is a convention, not a law of nature. Ronald Fisher, who popularised it, called it
+        "convenient" (Fisher, 1925). Statisticians still disagree about what should replace it:
+      </p>
+      <ul class="estic-list">
+        <li>some argue for reporting exact p-values together with effect sizes and confidence intervals, without declaring results "significant" or "not significant" (Wasserstein and Lazar, 2016; Wasserstein, Schirm and Lazar, 2019; Amrhein, Greenland and McShane, 2019);</li>
+        <li>some for a stricter default threshold of 0.005 (Benjamin et al., 2018);</li>
+        <li>some for choosing and justifying the threshold separately for each study (Lakens et al., 2018).</li>
+      </ul>
+      <p>
+        Bayesian methods offer another route (Kruschke, 2013). They combine the new data with prior knowledge. That
+        prior should come from earlier evidence and be set before the new data are seen, together with a check of how
+        much the conclusion depends on it.
+      </p>
+      <p>
+        Our position is simple. Whatever framework you use, print the test statistic, its degrees of freedom, the exact
+        p-value, the effect size and its confidence interval, and let the reader judge.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= How to cite ================= -->
+  <section class="estic-section" id="how-to-cite">
+    <div class="container">
+      <h2>How to cite this poster</h2>
+      <p class="estic-cite">
+        Bharti V, Chakraborty D. Most biomedical articles print no statistical result a reader can recompute. Poster
+        presented at ESTIC 2026, New Delhi, 28 October 2026.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= References ================= -->
+  <section class="estic-section" id="references">
+    <div class="container">
+      <h2>References</h2>
+      <ol class="estic-refs">
+        <li>Amrhein V, Greenland S, McShane B. Scientists rise up against statistical significance. <em>Nature</em>. 2019;567:305-307. <a href="https://doi.org/10.1038/d41586-019-00857-9" target="_blank" rel="noopener">doi:10.1038/d41586-019-00857-9</a></li>
+        <li>Benjamin DJ, Berger JO, Johannesson M, et al. Redefine statistical significance. <em>Nature Human Behaviour</em>. 2018;2:6-10. <a href="https://doi.org/10.1038/s41562-017-0189-z" target="_blank" rel="noopener">doi:10.1038/s41562-017-0189-z</a></li>
+        <li>Delacre M, Lakens D, Leys C. Why psychologists should by default use Welch's t-test instead of Student's t-test. <em>International Review of Social Psychology</em>. 2017;30(1):92-101. <a href="https://doi.org/10.5334/irsp.82" target="_blank" rel="noopener">doi:10.5334/irsp.82</a></li>
+        <li>Fisher RA. <em>Statistical Methods for Research Workers</em>. Edinburgh: Oliver and Boyd; 1925.</li>
+        <li>Herndon T, Ash M, Pollin R. Does high public debt consistently stifle economic growth? A critique of Reinhart and Rogoff. <em>Cambridge Journal of Economics</em>. 2014;38(2):257-279. <a href="https://doi.org/10.1093/cje/bet075" target="_blank" rel="noopener">doi:10.1093/cje/bet075</a></li>
+        <li>Hill R. Multiple sudden infant deaths: coincidence or beyond coincidence? <em>Paediatric and Perinatal Epidemiology</em>. 2004;18(5):320-326. <a href="https://doi.org/10.1111/j.1365-3016.2004.00560.x" target="_blank" rel="noopener">doi:10.1111/j.1365-3016.2004.00560.x</a></li>
+        <li>Holtzman A, Buys J, Du L, Forbes M, Choi Y. The curious case of neural text degeneration. <em>International Conference on Learning Representations</em>. 2020. <a href="https://arxiv.org/abs/1904.09751" target="_blank" rel="noopener">arXiv:1904.09751</a></li>
+        <li>Kruschke JK. Bayesian estimation supersedes the t test. <em>Journal of Experimental Psychology: General</em>. 2013;142(2):573-603. <a href="https://doi.org/10.1037/a0029146" target="_blank" rel="noopener">doi:10.1037/a0029146</a></li>
+        <li>Lakens D, Adolfi FG, Albers CJ, et al. Justify your alpha. <em>Nature Human Behaviour</em>. 2018;2:168-171. <a href="https://doi.org/10.1038/s41562-018-0311-x" target="_blank" rel="noopener">doi:10.1038/s41562-018-0311-x</a></li>
+        <li>Mangel M, Samaniego FJ. Abraham Wald's work on aircraft survivability. <em>Journal of the American Statistical Association</em>. 1984;79(386):259-267. <a href="https://doi.org/10.1080/01621459.1984.10478038" target="_blank" rel="noopener">doi:10.1080/01621459.1984.10478038</a></li>
+        <li>Nuijten MB, Hartgerink CHJ, van Assen MALM, Epskamp S, Wicherts JM. The prevalence of statistical reporting errors in psychology (1985-2013). <em>Behavior Research Methods</em>. 2016;48(4):1205-1226. <a href="https://doi.org/10.3758/s13428-015-0664-2" target="_blank" rel="noopener">doi:10.3758/s13428-015-0664-2</a></li>
+        <li>R v Clark [2003] EWCA Crim 1020 (Court of Appeal of England and Wales).</li>
+        <li>RECOVERY Collaborative Group. Dexamethasone in hospitalized patients with Covid-19. <em>New England Journal of Medicine</em>. 2021;384(8):693-704. <a href="https://doi.org/10.1056/NEJMoa2021436" target="_blank" rel="noopener">doi:10.1056/NEJMoa2021436</a></li>
+        <li>Reinhart CM, Rogoff KS. Growth in a time of debt. <em>American Economic Review</em>. 2010;100(2):573-578. <a href="https://doi.org/10.1257/aer.100.2.573" target="_blank" rel="noopener">doi:10.1257/aer.100.2.573</a></li>
+        <li>Rosenthal R. The file drawer problem and tolerance for null results. <em>Psychological Bulletin</em>. 1979;86(3):638-641. <a href="https://doi.org/10.1037/0033-2909.86.3.638" target="_blank" rel="noopener">doi:10.1037/0033-2909.86.3.638</a></li>
+        <li>Ruxton GD. The unequal variance t-test is an underused alternative to Student's t-test and the Mann-Whitney U test. <em>Behavioral Ecology</em>. 2006;17(4):688-690. <a href="https://doi.org/10.1093/beheco/ark016" target="_blank" rel="noopener">doi:10.1093/beheco/ark016</a></li>
+        <li>Turner EH, Matthews AM, Linardatos E, Tell RA, Rosenthal R. Selective publication of antidepressant trials and its influence on apparent efficacy. <em>New England Journal of Medicine</em>. 2008;358(3):252-260. <a href="https://doi.org/10.1056/NEJMsa065779" target="_blank" rel="noopener">doi:10.1056/NEJMsa065779</a></li>
+        <li>Wasserstein RL, Lazar NA. The ASA statement on p-values: context, process, and purpose. <em>The American Statistician</em>. 2016;70(2):129-133. <a href="https://doi.org/10.1080/00031305.2016.1154108" target="_blank" rel="noopener">doi:10.1080/00031305.2016.1154108</a></li>
+        <li>Wasserstein RL, Schirm AL, Lazar NA. Moving to a world beyond "p &lt; 0.05". <em>The American Statistician</em>. 2019;73(sup1):1-19. <a href="https://doi.org/10.1080/00031305.2019.1583913" target="_blank" rel="noopener">doi:10.1080/00031305.2019.1583913</a></li>
+      </ol>
+      <p class="estic-updated"><em>Last updated: October 2026.</em></p>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="copyright-year">2026</span> Vishal Bharti. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="projects.html">Projects</a>
+        <a href="hobby.html">Hobby</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

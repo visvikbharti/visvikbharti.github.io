@@ -249,7 +249,8 @@
 .estic-figure__link { display: block; cursor: zoom-in; }
 .estic-figure__link:hover { text-decoration: none; }
 .estic-figure__link:hover img { border-color: var(--line-strong); }
-.estic-figure figcaption {
+.estic-figure figcaption,
+.estic-anim figcaption {
   margin-top: .75rem;
   font-family: var(--font-mono);
   font-size: .8125rem;
@@ -267,6 +268,84 @@
   margin: -1.25rem 0 2.25rem;
   font-family: var(--font-mono);
   font-size: .8125rem;
+}
+
+/* ----- Animations (assets/estic-2026/estic-art.js): dots on black, as on the Research page. The script draws into
+   the frame's size, so the frame's height is set here: taller on narrow screens, where the drawings stack. ----- */
+.estic-anim {
+  max-width: 56rem;
+  margin: 2rem 0 2.25rem;
+}
+.estic-anim[hidden] { display: none; }
+.estic-anim__frame {
+  position: relative;
+  height: 21rem;
+  border: 1px solid var(--line);
+  background: var(--bg);
+}
+.estic-anim__frame canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.estic-anim[data-anim="pubbias"] .estic-anim__frame { height: 20rem; }
+
+.estic-anim__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem .75rem;
+  margin-top: .75rem;
+}
+.estic-anim__group { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+.estic-anim__grouplabel {
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.estic-anim__btn {
+  min-width: 44px;
+  min-height: 44px;
+  padding: .3rem .9rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.estic-anim__btn[hidden] { display: none; }
+.estic-anim__btn:hover,
+.estic-anim__btn:focus-visible { border-color: var(--fg); color: var(--fg); }
+.estic-anim__btn[aria-pressed="true"] { border-color: var(--accent); color: var(--fg); }
+
+/* The key under the publication-bias drawing: its dots, as small squares */
+.estic-anim__legend {
+  display: grid;
+  gap: .4rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: .875rem;
+  line-height: 1.5;
+  color: var(--fg-muted);
+}
+.estic-anim__legend li { display: flex; align-items: center; gap: .75rem; }
+.estic-key { flex: none; display: inline-block; width: 10px; height: 10px; margin: 0 3px; }
+.estic-key--pos { background: var(--accent); }
+.estic-key--neg { background: var(--cream); }
+.estic-key--spin { background: var(--accent); outline: 1px solid var(--accent); outline-offset: 2px; }
+.estic-key--none { box-sizing: border-box; border: 1px solid var(--fg-dim); }
+
+/* The script sets each frame's height itself, for the layout it chooses (stacked below 780 px of frame for the
+   simulation, 600 for the publication-bias drawing, 720 for the audit); these are the same heights before it runs,
+   at the page widths where the frames are that narrow, so nothing below them moves when it starts. */
+@media (max-width: 869px) { .estic-anim[data-anim="spreads"] .estic-anim__frame { height: 27rem; } }
+@media (max-width: 669px) { .estic-anim[data-anim="pubbias"] .estic-anim__frame { height: 18rem; } }
+@media (max-width: 801px) { .estic-anim[data-anim="audit"] .estic-anim__frame { height: 26rem; } }
+@media (max-width: 699px) {
+  .estic-anim__grouplabel { flex-basis: 100%; }                     /* the label on its own line, the buttons together below */
 }
 
 /* ----- How to cite ----- */

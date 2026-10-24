@@ -28,6 +28,9 @@
 
   <!-- Portfolio logic -->
   <script defer src="../js/main.js"></script>
+  <!-- The three animations (dots on black, as on the Research page); without JS the static figures and tables stand alone -->
+  <script defer src="../assets/estic-2026/estic-art.js"></script>
+  <noscript><style>.estic-anim{display:none}</style></noscript>
 </head>
 
 <body class="estic-page">
@@ -206,6 +209,18 @@
         between them: 10 observations from a group with a larger standard deviation and 40 from a group with a smaller
         one, repeated 40,000 times at each ratio of standard deviations.
       </p>
+      <!-- Live simulation (assets/estic-2026/estic-art.js). jStat, the Student t distribution, is fetched from cdnjs
+           only when this figure is near the screen: version pinned, with its Subresource Integrity hash -->
+      <figure class="estic-anim" data-anim="spreads"
+              data-jstat="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.6/jstat.min.js"
+              data-jstat-integrity="sha512-UK8MjH09aePxFAd8OwI5P4oP462OBBNGVh3OtnuHjybd0T3ArUbAseIuHpS1XfinmMXcCZG5barC+7SNPjuQtg==">
+        <div class="estic-anim__frame" aria-hidden="true"></div>
+        <figcaption>
+          Live simulation in your browser, not measured data, with the design of the table below: 10 values with the
+          chosen SD and 40 with SD 1, all from a true mean of 0, so every significant result is a false positive.
+          It stops after 40,000 runs per ratio, as in the table.
+        </figcaption>
+      </figure>
       <figure class="estic-figure">
         <a class="estic-figure__link" href="../assets/estic-2026/fig4_student_vs_welch.png" target="_blank" rel="noopener">
           <img src="../assets/estic-2026/fig4_student_vs_welch.png" width="1600" height="1000" loading="lazy" decoding="async"
@@ -215,7 +230,7 @@
         <figcaption>Figure 3. False positives when there is no real difference: Student's t-test against Welch's.</figcaption>
       </figure>
       <div class="estic-table-wrap">
-        <table class="estic-table">
+        <table class="estic-table" id="table-false-positives">
           <thead>
             <tr>
               <th scope="col">How much larger the small group's SD is</th>
@@ -283,6 +298,20 @@ print("large group SD x 4", false_positive_rates(1, 4))</code></pre>
         of the published trials looked positive. Most of the negative trials were either never published or published
         in a way that made them look positive (Turner et al., 2008).
       </p>
+      <figure class="estic-anim" data-anim="pubbias">
+        <div class="estic-anim__frame" aria-hidden="true"></div>
+        <ul class="estic-anim__legend">
+          <li><span class="estic-key estic-key--pos"></span> Positive by the FDA's analysis, or published as positive</li>
+          <li><span class="estic-key estic-key--neg"></span> Negative or questionable by the FDA's analysis</li>
+          <li><span class="estic-key estic-key--spin"></span> Ringed: negative or questionable by the FDA, but published as positive</li>
+          <li><span class="estic-key estic-key--none"></span> Hollow: not published</li>
+        </ul>
+        <figcaption>
+          Data: Turner et al., N Engl J Med 2008;358:252-260 (reference 17). One dot for each of the 74 antidepressant
+          trials registered with the FDA. By the FDA's analysis 38 were positive (37 published, 1 not) and 36 negative or
+          questionable (22 not published, 11 published as positive, 3 published as negative).
+        </figcaption>
+      </figure>
       <figure class="estic-figure">
         <a class="estic-figure__link" href="../assets/estic-2026/fig5_turner_publication_bias.png" target="_blank" rel="noopener">
           <img src="../assets/estic-2026/fig5_turner_publication_bias.png" width="1600" height="1000" loading="lazy" decoding="async"
@@ -348,6 +377,14 @@ print("large group SD x 4", false_positive_rates(1, 4))</code></pre>
         3,000 articles, then repeated the audit on 20,000 new ones, and the two samples agreed closely. The figures
         below pool both samples. How the scoring rules were set and checked will be described in full in our preprint.
       </p>
+      <figure class="estic-anim" data-anim="audit">
+        <div class="estic-anim__frame" aria-hidden="true"></div>
+        <figcaption>
+          Data: our audit of 23,000 randomly selected open-access articles from PubMed Central, both samples pooled.
+          1,000 dots, each standing for 23 articles, in the proportions of the table below, rounded to whole dots:
+          397, 277, 180, 101 and 45.
+        </figcaption>
+      </figure>
       <figure class="estic-figure">
         <a class="estic-figure__link" href="../assets/estic-2026/fig1_audit_shares.png" target="_blank" rel="noopener">
           <img src="../assets/estic-2026/fig1_audit_shares.png" width="1600" height="1000" loading="lazy" decoding="async"
@@ -357,7 +394,7 @@ print("large group SD x 4", false_positive_rates(1, 4))</code></pre>
         <figcaption>Figure 6. What 23,000 biomedical articles printed, from both samples pooled.</figcaption>
       </figure>
       <div class="estic-table-wrap">
-        <table class="estic-table">
+        <table class="estic-table" id="table-audit-shares">
           <thead>
             <tr>
               <th scope="col">What the article printed</th>

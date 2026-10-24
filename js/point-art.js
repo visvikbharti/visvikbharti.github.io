@@ -48,9 +48,10 @@
   // Checkability audit: a wall of 14 x 6 articles
   const AUD_C = 14, AUD_R = 6;
   const PAGE = [[0, 0], [1, 0], [2, 0], [3, 0], [0, 1], [1, 1], [2, 1], [0, 2], [1, 2], [0, 3], [1, 3]];   // a title, then lines
-  // a few articles light up as checkable (an illustration, not the audit's measured share; always at least one)
+  // the articles that light up as checkable, at the audit's measured share as on the ESTIC 2026 poster, 4.49%
+  // (about 1 in 22: 4 of the 84; always at least one)
   const AUD_OK = new Set([...Array(AUD_C * AUD_R).keys()].sort((a, b) => hash(a, 7) - hash(b, 7))
-    .slice(0, Math.max(1, Math.round(AUD_C * AUD_R / 10))));
+    .slice(0, Math.max(1, Math.round(AUD_C * AUD_R * 0.0449))));
 
   /* ---------- formations: f(i, t, tl, W, H, o) places point i ---------- */
   // t: seconds since the stage started; tl: seconds since this area came in. A formation sets o.x, o.y,

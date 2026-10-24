@@ -89,10 +89,11 @@
   }
 
   /* ---------- scenes: (grid, t) ---------- */
-  // the checkable papers on an audit wall of n: the lowest hashes, about 1 in 10 (an illustration, not the audit's measured share; always at least one)
+  // the checkable papers on an audit wall of n: the lowest hashes, at the audit's measured share as on the
+  // ESTIC 2026 poster, 4.49% (about 1 in 22; always at least one)
   const auditWalls = new Map();
   const checkableOf = n => auditWalls.get(n) || auditWalls.set(n, new Set([...Array(n).keys()]
-    .sort((a, b) => hash(a, 7) - hash(b, 7)).slice(0, Math.max(1, Math.round(n / 10))))).get(n);
+    .sort((a, b) => hash(a, 7) - hash(b, 7)).slice(0, Math.max(1, Math.round(n * 0.0449))))).get(n);
 
   const SCENES = {
     // StickForStats: a histogram, the fitted curve in green, and assumption checks ticking off

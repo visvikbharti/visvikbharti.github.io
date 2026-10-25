@@ -437,9 +437,10 @@
   color: var(--fg-muted);
 }
 
-/* Small mono labels leading a paragraph ('Summary:', 'Example:') */
+/* Small mono labels leading a paragraph ('Summary:', 'Example:', a roadmap item's 'Done:') */
 .use-case-example strong,
-.publication-highlight .abstract strong {
+.publication-highlight .abstract strong,
+.future-item__status {
   margin-right: .35rem;
   font-family: var(--font-mono);
   font-size: .6875rem;

@@ -198,6 +198,10 @@ document.addEventListener('DOMContentLoaded', () => {
         start: () => panel.offsetHeight > window.innerHeight ? 'bottom bottom' : 'top top',
         pin: true,
         pinSpacing: false,
+        // A panel holding a video gets a pin-spacer of its own: on every refresh (a resize, for one)
+        // ScrollTrigger would otherwise move the panel out of its spacer and back, and the browser
+        // reloads an iframe that is moved, which stops the video.
+        pinSpacer: panel.querySelector('iframe') ? document.createElement('div') : undefined,
         invalidateOnRefresh: true
       });
     });

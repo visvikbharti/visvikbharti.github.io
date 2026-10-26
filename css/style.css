@@ -548,9 +548,9 @@ p { margin-bottom: 1rem; }
 .ascii-photo canvas { transition: opacity .45s; }
 .ascii-photo:hover canvas { opacity: 0; }
 
-/* A YouTube video in a 16:9 frame. The slots are commented out until there is a video: the introduction
-   in index.html (#about), the demo in pages/rna-lab-navigator.html and the poster walkthrough at the top of
-   pages/estic-2026.html */
+/* A YouTube video in a 16:9 frame, its embed link ending in ?rel=0: the introduction in index.html (#about)
+   and the demo in pages/rna-lab-navigator.html. The poster walkthrough at the top of pages/estic-2026.html
+   is commented out until there is a video */
 .video-slot { margin: 2rem 0; display: flex; flex-direction: column; gap: .7rem; }
 .video-slot__frame { position: relative; width: 100%; max-width: 56rem; aspect-ratio: 16 / 9; border: 1px solid var(--line); background: var(--bg-raise); }
 .video-slot__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
